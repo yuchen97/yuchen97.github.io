@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="【2017-07-23】chenyu    基本概念 印制电路板要考虑以下基本原则 快捷键汇总 页面参数设置  芯片一般是U电阻一般是R电容一般是C电感一般是L 一、基本概念1.1 过孔（Via）为连通各层之间的线路，在各层需要连通的导线的文汇处钻上一个公共孔，这就是过孔。工艺上在过孔的孔壁圆柱面上用化学沉积的方法镀上一层金属，用以连通中间各层需要连通的铜箔。而过孔的上下两面做成普通的焊盘形状，可">
+<meta name="keywords" content="AD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01_AD使用的基础规则">
+<meta property="og:url" content="https://yuchen97.github.io/2018/12/10/01-AD使用的基础规则/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="【2017-07-23】chenyu    基本概念 印制电路板要考虑以下基本原则 快捷键汇总 页面参数设置  芯片一般是U电阻一般是R电容一般是C电感一般是L 一、基本概念1.1 过孔（Via）为连通各层之间的线路，在各层需要连通的导线的文汇处钻上一个公共孔，这就是过孔。工艺上在过孔的孔壁圆柱面上用化学沉积的方法镀上一层金属，用以连通中间各层需要连通的铜箔。而过孔的上下两面做成普通的焊盘形状，可">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/F6C4F688109042628B9FC11CBB22096F/24519">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/B5A3628527364A4793ABB8B044AEFEBC/24564">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/5E6F3EB330174A61B8EB9ED6473C2D00/24523">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/905E2AB573F94CE28B61C32C362608E3/24514">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/F6812BFDD9E0422B9F7B2387351E0ABC/24512">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/E6CE79A99D2E49219E26996C47306E0C/24513">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/C842B7A1B27E476189A51E0E05884F46/24569">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/3A8D2E269DBE46EFBFCA5F3B0ED9D868/24515">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/1F98E52EF6ED49129E3D8217173682B8/24521">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/6718EB4B58B342BAA4D17AECC0BB6386/24546">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/8D7843FB7AF44789A582851A37FA22E6/24490">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/D51B0698967E46DF8DF5C9D676821E04/24488">
+<meta property="og:updated_time" content="2018-12-10T14:59:24.057Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="01_AD使用的基础规则">
+<meta name="twitter:description" content="【2017-07-23】chenyu    基本概念 印制电路板要考虑以下基本原则 快捷键汇总 页面参数设置  芯片一般是U电阻一般是R电容一般是C电感一般是L 一、基本概念1.1 过孔（Via）为连通各层之间的线路，在各层需要连通的导线的文汇处钻上一个公共孔，这就是过孔。工艺上在过孔的孔壁圆柱面上用化学沉积的方法镀上一层金属，用以连通中间各层需要连通的铜箔。而过孔的上下两面做成普通的焊盘形状，可">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/F6C4F688109042628B9FC11CBB22096F/24519">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2018/12/10/01-AD使用的基础规则/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>01_AD使用的基础规则 | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/10/01-AD使用的基础规则/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">01_AD使用的基础规则
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-10 20:49:51 / 修改时间：22:59:24" itemprop="dateCreated datePublished" datetime="2018-12-10T20:49:51+08:00">2018-12-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Altium-Designer/" itemprop="url" rel="index"><span itemprop="name">Altium Designer</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>【2017-07-23】chenyu</strong><br><br>  </p>
+<ul>
+<li>基本概念</li>
+<li>印制电路板要考虑以下基本原则</li>
+<li>快捷键汇总</li>
+<li>页面参数设置</li>
+</ul>
+<p><strong>芯片一般是U</strong><br><strong>电阻一般是R</strong><br><strong>电容一般是C</strong><br><strong>电感一般是L</strong></p>
+<h4 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h4><h5 id="1-1-过孔（Via）"><a href="#1-1-过孔（Via）" class="headerlink" title="1.1 过孔（Via）"></a>1.1 过孔（Via）</h5><p>为连通各层之间的线路，在各层需要连通的导线的文汇处钻上一个公共孔，这就是过孔。工艺上在过孔的孔壁圆柱面上用化学沉积的方法镀上一层金属，用以连通中间各层需要连通的铜箔。而过孔的上下两面做成普通的焊盘形状，可直接与上下两面的线路相遇，也可不连。<br>一般而言设计线路时对过孔的处理有以下原则：<br>(1)    <strong>尽量少用过孔</strong>，一旦选用了过孔，务必处理好它与周边各实体的间隙，特别是容易被忽视的中间各层与过孔不相连的线与过孔的间隙，如果是自动布线，可在“过孔数量最小化（Via Minization ）”子菜单里选择“on”来自动解决。<br>(2)    需要的载流量越大，所需要的过孔尺寸越大，如<strong>电源层和地层与其他层联接</strong>所用的过孔就要大一些。</p>
+<h5 id="1-2-丝印层（Overlay）"><a href="#1-2-丝印层（Overlay）" class="headerlink" title="1.2 丝印层（Overlay）"></a>1.2 丝印层（Overlay）</h5><p>在印刷板的上下两表面印刷上所需要的标志图案和文字代号等，例如元件标号和标称值、元件外廓形状和厂家标志、生产日期等。丝印层字符布置的原则是“<strong>不出歧义，见缝插针，美观大方</strong>”</p>
+<h5 id="1-3-网络填充区（External-Plane）和填充区（fill）"><a href="#1-3-网络填充区（External-Plane）和填充区（fill）" class="headerlink" title="1.3 网络填充区（External Plane）和填充区（fill）"></a>1.3 网络填充区（External Plane）和填充区（fill）</h5><p>网络填充区是把大面积的铜箔处理成网状的，填充区仅仅是完整保留铜箔。把图片放大之后就可以看出来。前者在电路特性上有较强的抑制高频干扰的作用，适用于需做大面积填充的地方，特别是把某些区域当做屏蔽区，分割区或大电流的电源线时尤为适合。后者多用于一般的线端部或者转折区等需要小面积填充的地方。</p>
+<h5 id="1-4-焊盘（Pad）"><a href="#1-4-焊盘（Pad）" class="headerlink" title="1.4 焊盘（Pad）"></a>1.4 焊盘（Pad）</h5><p>选择元件的焊盘类型要综合考虑该元件的形状、大小、布置形式、振动和受热情况、受力方向等因素。例如对发热且受力较大、电流较大的焊盘，可自行设计成“泪滴状”，一般而言自行编辑焊盘时除了以上所讲的以外，还要考虑以下原则<br>（1）形状上长短不一致时要考虑连线宽度与焊盘特定边长的大小差异不能过大<br>（2）需要在元件引脚之间走线时选用长短不对称的焊盘往往事半功倍<br>（3）各元件焊盘的大小要按元件引脚粗细分别编辑确定，原则是孔的尺寸比引脚直径大0.2-0.4mm</p>
+<h5 id="1-5-各类膜（Mask）"><a href="#1-5-各类膜（Mask）" class="headerlink" title="1.5 各类膜（Mask）"></a>1.5 各类膜（Mask）</h5><p>“膜”可分为元件面（或焊接面）助焊膜（Top or Bottom）和元件面（或焊接面）阻焊膜（Top or BottomPaste Mask）两类。助焊膜是涂于焊盘上，提高可焊性能的一层膜，也就是在绿色板子上比焊盘略大的各浅色圆斑。阻焊膜的   为了使制成的板子适应波峰焊等焊接形式，要求板子上非焊盘处的铜箔不能粘锡，因此在焊盘以外的各个部位都要涂覆一层涂料，用于阻止这些部位上锡。</p>
+<h4 id="二、印制电路板要考虑以下基本原则"><a href="#二、印制电路板要考虑以下基本原则" class="headerlink" title="二、印制电路板要考虑以下基本原则"></a>二、印制电路板要考虑以下基本原则</h4><h5 id="2-1-抗干扰设计原则"><a href="#2-1-抗干扰设计原则" class="headerlink" title="2.1 抗干扰设计原则"></a>2.1 抗干扰设计原则</h5><h6 id="2-1-1-电源线的设计"><a href="#2-1-1-电源线的设计" class="headerlink" title="2.1.1 电源线的设计"></a>2.1.1 电源线的设计</h6><ul>
+<li>选择合适的电源；</li>
+<li>尽量加宽电源线（根据电流大小）；</li>
+<li>尽量加宽电源线（根据电流大小）；</li>
+<li>使用抗干扰元器件（磁珠、电源滤波器等）；   <ul>
+<li><strong>磁珠</strong>专用于抑制信号线、电源线上的高频噪声和尖峰干扰，还具有吸收静电脉冲的能力。磁珠是用来吸收超高频信号，像一些RF电路，PLL，振荡电路，含超高频存储器电路都需要在<strong>电源输入部分</strong>加磁珠，而电感是一种蓄能元件，用在LC振荡电路，中低频的滤波电路等，其应用频率范围很少超过50MHZ。 磁珠有很高的电阻率和磁导率，等效于电阻和电感串联，但电阻值和电感值都随频率变化。他比普通的电感有更好的高滤波特性，在高频时呈现阻性，所以能在相当宽的频率范围内保持较高的阻抗，从而提高调频滤波效果。</li>
+<li><strong>RF</strong>能量是叠加在直流传输电平上的交流正弦波成分，直流成分是需要的有用信号。</li>
+<li><strong>电源滤波器</strong>是由电容、电感和电阻组成的<strong>滤波电路</strong>，又名“电源EMI滤波器”，或是“EMI电源滤波器”，一种无源双向网络，它的一端是电源，另一端是负载。电源滤波器的原理就是一种——阻抗适配网络：电源滤波器输入、输出侧与电源和负载侧的阻抗适配越大，对电磁干扰的衰减就越有效。滤波器可以对电源线中特定频率的频点或该频点以外的频率进行有效滤除，得到一个特定频率的电源信号，或消除一个特定频率后的电源信号。   </li>
+</ul>
+</li>
+<li>电源入口添加去耦电容（一般是10-100uf）。<ul>
+<li>ps：去耦电容是电路中装设在元件的电源端的电容，此电容可以提供较稳定的电源，同时也可以降低元件耦合到电源端的噪声，间接可以减少其他元件受此元件噪声的影响。</li>
+<li>在电子电路中，去耦电容和旁路电容都是起到抗干扰的作用，电容所处的位置不同，称呼就不一样了。对于同一个电路来说，旁路电容是把输入信号中的高频噪声作为滤除对象，把前级携带的高频杂波滤除，而去耦电容也称退耦电容，是把输出信号的干扰作为滤除对象。去耦电容用在放大电路中不需要交流的地方，用来消除自激，使放大器稳定工作。</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-1-2-地线设计"><a href="#2-1-2-地线设计" class="headerlink" title="2.1.2 地线设计"></a>2.1.2 地线设计</h5><ul>
+<li>模拟地和数字地分开（最后可以通过电感或者磁珠汇聚到一起）；</li>
+<li>尽量采用单点接地（低频一般单点接地，高频一般多点接地）<br><strong>注：关于数字地、模拟地和单点接地的问题请看 笔记 AD_数字模拟地</strong></li>
+<li>尽量加宽地线（如果接地线采用很窄的布线，那么接地电位将会随着电流的变化而变化，这时就降低了电路的抗干扰性，设计时将地线加宽使其可以通过三倍的印制板上的电流，一般是在2-3mm以上）；</li>
+<li>将敏感电路连接到稳定的接地参考源（避免敏感电路的不稳定性）；</li>
+<li>对PCB板进行分区设计，把高带宽的噪声电路与低频电路分开（另外要尽量使干扰电流不通过公共的接地回路影响到其他电路）；</li>
+<li>尽量<strong>减少接地环路的面积</strong>（降低电路中的感应噪声）。</li>
+</ul>
+<h5 id="2-1-3-元器件的配置"><a href="#2-1-3-元器件的配置" class="headerlink" title="2.1.3 元器件的配置"></a>2.1.3 元器件的配置</h5><ul>
+<li>不要有过长的平行信号线；</li>
+<li>保证PCB的时钟发生器、晶振和CPU的时钟输入端尽量靠近，同时远离其他低频器件；</li>
+<li>元器件应围绕核心器件进行配置，尽量减少引线长度；</li>
+<li>对PCB板进行分区布局（比如按照频率和电流开关特性来进行分区同时保证噪声元器件和非噪声元器件保持一定的距离）；</li>
+<li>考虑PCB板在机箱中位置和方向（保证发热量大的元器件处于上方）；</li>
+<li>缩短高频元器件之间的引线（同时设法减少分布参数和相互间的电磁干扰）。<ul>
+<li><strong>电磁干扰EMI</strong>，有传导干扰和辐射干扰两种。<strong>传导干扰</strong>是指通过导电介质把一个电网络上的信号耦合（干扰）到另一个电网络。<strong>辐射干扰</strong>是指干扰源通过空间把其信号耦合（干扰）到另一个电网络。在高速PCB及系统设计中，高频信号线、集成电路的引脚、各类接插件等都可能成为具有天线特性的辐射干扰源，能发射电磁波并影响其他系统或本系统内其他子系统的正常工作。<br>所谓“干扰”，电磁兼容指设备受到干扰后性能降低以及对设备产生干扰的干扰源这二层意思。第一层意思如雷电使收音机产生杂音，摩托车在附近行驶后电视画面出现雪花，拿起电话后听到无线电声音等，这些可以简称其为与“BC I” “TV I” “Tel I”，这些缩写中都有相同的“I”（干扰）（BC：广播）<br>那么EMI标准和EMI检测是EMI的哪部分呢？理所当然是第二层含义，即<strong>干扰源</strong>，也包括受到干扰之前的电磁能量。<br>其次是“电磁”。电荷如果静止，称为静电。当不同的电位向一致移动时，便发生了静电放电，产生电流，电流周围产生<strong>磁场</strong>。如果电流的方向和大小持续不断变化就产生了<strong>电磁波</strong>。<br>电以各种状态存在，我们把这些所有状态统称为电磁。所以EMI标准和EMI检测是确定所处理的电的状态，决定如何检测，如何评价。<h5 id="2-1-4-去耦电容的配置"><a href="#2-1-4-去耦电容的配置" class="headerlink" title="2.1.4 去耦电容的配置"></a>2.1.4 去耦电容的配置</h5>在设计电路时通常在集成电路的电源和地之间加一个去耦电容，去耦电容的作用主要体现在一是用来作为集成电路的蓄能电容，第二是旁路掉器件的高频噪声。因此去耦电容的配置原则如下  </li>
+</ul>
+</li>
+<li>每10个集成电路要加一片充放电电容（电容大小一般是10uf）；</li>
+<li>引线式电容用于低频，贴片式电容用于高频；</li>
+<li>每个集成芯片要布置一个0.1或0.01uf的电容（如果印制板空间不够，可以每个4-8个芯片布置一个1-10uf的钽电容）；</li>
+<li>对抗噪声能力弱、关断时电源变化大（比如ROM RAM等存储器件）的器件要加高频去耦电容；</li>
+<li><strong>电容之间不要共用过孔</strong>（可以考虑打多个过孔接电源或地，另外电容的过孔要尽量靠近焊板）；</li>
+<li>去耦电容引线不能太长（尤其是高频旁路电容，不能够带引线，引线太长会影响去耦电容的作用）。<h5 id="2-1-5-降低噪声和电磁干扰的原则"><a href="#2-1-5-降低噪声和电磁干扰的原则" class="headerlink" title="2.1.5 降低噪声和电磁干扰的原则"></a>2.1.5 降低噪声和电磁干扰的原则</h5></li>
+<li>尽量采用45°折线而不是90°折线（这样可以尽量减少高频信号对外的发射与耦合，90°的信号线很容易将信号发射出去）；</li>
+<li>用<strong>串联电阻</strong>的方法来降低电路信号边沿的跳变速率（如果电路中有些信号的速率非常高，信号边沿跳变剧烈，可以串电阻来降低跳变速率同时吸收接收端的反射）；</li>
+<li>石英晶振的外壳要接地（另外石英晶振的下面和对噪声特别敏感的元器件下面不要走线，晶振高频信号比较多）；</li>
+<li>闲置不用的门电路输出端<strong>不要悬空</strong>（闲置不用的运放正输入端要接地，负输入端接输出端）；</li>
+<li>时钟线<strong>垂直</strong>于IO线时干扰较小（另外时钟元件的引脚要尽量远离印制板电路的IO电缆）；</li>
+<li>尽量让时钟线周围的电动势趋于0（可采用地线将时钟区圈起来，同时时钟的线也要尽量短，因为时钟线一般是板子上频率最高的信号）；</li>
+<li>IO驱动电路尽量靠近PCB边缘（同时总线时钟片选信号要尽量远离IO线）；</li>
+<li><strong>任何信号不要形成回路</strong> （若出现，则应尽量减少回路面积）；</li>
+<li>对高频板，电容的分布电感不能忽略，电感的分布电容也不能忽略；</li>
+<li>通常功率线、交流线尽量布置在和信号线不同的板子上（若要在一个板上则功率线、交流线应和信号线分开走线，避免功率线和交流线的噪声干扰信号）。</li>
+</ul>
+<h5 id="2-1-6-其他设计原则"><a href="#2-1-6-其他设计原则" class="headerlink" title="2.1.6 其他设计原则"></a>2.1.6 其他设计原则</h5><ul>
+<li>COMS的未使用引脚要通过电阻接地或接电源（因为COMS的输入阻抗比较高而且易受感染，不要悬空）；</li>
+<li>用RC电路来<strong>吸收</strong>继电器等元件的放电电流（因为接触器、继电器按钮等元器件在操作时可能产生较大的火花放电）；</li>
+<li>总线上加10k左右上拉电阻有助于抗干扰（比如PCB板上的数据总线、地址总线和控制总线）；</li>
+<li>采用全译码有更好的抗干扰性；</li>
+<li>元器件不用引脚通过10k电阻接电源；</li>
+<li>总线尽量短，尽量保持一样长度（比如数据总线、地址总线和控制总线，这样信号传递的时间可以同时到达。还有长度要尽量短一些）；</li>
+<li>两层之间的布线尽量垂直（正交，信号耦合最小）；</li>
+<li>发热元件尽量避开敏感元件（发热元器件比如大功率电阻）；</li>
+<li>除了地线，能用细线的不要用粗线，因为PCB上的每一根走线既是有用信号的载体，又是接收辐射干扰的干线，走线越长、越粗，天线效应越强。</li>
+</ul>
+<h5 id="2-2-热设计原则"><a href="#2-2-热设计原则" class="headerlink" title="2.2 热设计原则"></a>2.2 热设计原则</h5><p>有些元器件有自己正常工作的温度范围，可以通过控制PCB板的功率消耗。进行散热处理，散热通常有三种方式传导、对流、辐射。  </p>
+<ul>
+<li>对温度敏感的元器件应该尽量远离热源；</li>
+<li>如果使用风扇那么风扇不同大小的进风口和出风口都会引起气流阻力的变化，所以风扇的入口开口越大越好；</li>
+<li>对于可能存在扇热问题的元器件，应尽量保持足够多的放置改善空间，主要为了可以放置金属散热片、风扇等；</li>
+<li>对能够产生高热量的芯片或者电路，在设计的时候应该把它放到出风口（不能挡住风路）或者对流的位置。在PCB板布局的时候，各个元器件、集成电路芯片之间应该保持一定空间利于散热。</li>
+</ul>
+<h5 id="2-3-抗振设计原则"><a href="#2-3-抗振设计原则" class="headerlink" title="2.3 抗振设计原则"></a>2.3 抗振设计原则</h5><p>振动可分为确定性和随机性。对电路板的影响有三个方面，第一可能会破坏电路板的完整性，强烈的振动可产生裂纹，振动也可以破坏电路板的某些功能，比如一些元器件松动等，也可能会引起工艺方面的问题。<br>基本抗振设计原则包括  印制电路板降振控制一般从降低抗振源、隔振和减振三个方面入手。<br>在印刷板上对振动敏感的元器件设计的时候应尽量将其安装在受振动影响较小的区域，对印制板上的离散元器件设计的时候要尽量缩短引线的长度，注意贴面焊接。</p>
+<h5 id="2-4-可测试型设计原则"><a href="#2-4-可测试型设计原则" class="headerlink" title="2.4 可测试型设计原则"></a>2.4 可测试型设计原则</h5><p>指工程师尽量用最简单的方法来检测电路板的功能特性，在设计的时候尽量考虑可测试性，因为这样可以降低测试难度和提高测试的效率。  </p>
+<h4 id="三、快捷键汇总"><a href="#三、快捷键汇总" class="headerlink" title="三、快捷键汇总"></a>三、快捷键汇总</h4><p>界面上直接用鼠标右键会出现“手”型可以很方便的移动原理图；<br>放大缩小除了用 Ctrl+鼠标滑轮 之外也可以用键盘上的 PageDown和PageUp；<br>全屏 Alt+F5；<br>刷新 End；<br>拖动元器件按住X可进行左右翻转，Y可进行上下翻转；<br>循环线放置模式 Ctrl+ q 这个是我修改后的，原本应该是shift+space 但发现并没有什么用，点击左上角DXP_&gt;自定制，这个热键尽量不要有shift键，因为自己亲测，于是就改成了Ctrl+q；  </p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/F6C4F688109042628B9FC11CBB22096F/24519" alt="">  </p>
+<p>Grids（格点）的操作在View里面；<br>View里面有个Toggle units（单位切换）可进行厘米和英尺的切换；</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/B5A3628527364A4793ABB8B044AEFEBC/24564" alt="">  </p>
+<p>在AD内部进行界面切换的话可以用快捷键 Ctrl+Tab<br>在一个窗同时查看两个文件可以对着其中一个窗口的标题点击右键 分割split  。分割后还原还是右键点击merge all 。如果感觉分割之后显示的区域较小，可以点击右键Open in New Window。  </p>
+<h4 id="四、页面参数设置"><a href="#四、页面参数设置" class="headerlink" title="四、页面参数设置"></a>四、页面参数设置</h4><p>显示 Document Options 双击边框直接打开；右键；菜单栏中的Design；快捷键 D O<br>可以对纸张和标题框的格式进行设置；</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/5E6F3EB330174A61B8EB9ED6473C2D00/24523" alt="">  </p>
+<p>Document Options里面的 Orientation 可以对原理图方向进行调节</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/905E2AB573F94CE28B61C32C362608E3/24514" alt=""><br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/F6812BFDD9E0422B9F7B2387351E0ABC/24512" alt=""></p>
+<p>Title Block 可以设置标题框的格式，一般是 Standard ，也可以不显示</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/E6CE79A99D2E49219E26996C47306E0C/24513" alt=""></p>
+<p>里面的 Show Border 可以选择是否出现边界框，比如上图中的边界C D 等<br>页面和边界的颜色都可以通过 Border Color和 Sheet Color来进行改变<br>Visible 可以改变栅格的间距，也可以按 G 来循环切换栅格距离或者点击右上角的</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/C842B7A1B27E476189A51E0E05884F46/24569" alt=""></p>
+<p>主要是修改的这里的字体</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/3A8D2E269DBE46EFBFCA5F3B0ED9D868/24515" alt=""></p>
+<p>这里会对标题框的内容进行一些修改（不过可能是因为破解的问题，修改了title之后，一直不显示），但可以用过放置字符串来看是否修改成功。（放置字符串，之后点击Tab可以出来属性）。也可以通过调用template来进行显示。Design _&gt; General Tenplates</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/1F98E52EF6ED49129E3D8217173682B8/24521" alt=""><br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/6718EB4B58B342BAA4D17AECC0BB6386/24546" alt=""></p>
+<p>软件界面右下角有个shutcut 是快捷键的意思。这个菜单是针对当前环境的快捷键，如果界面的内容不一样，那么快捷键也不一样。<br>比如当界面在开始时，shortcut显示的是</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/8D7843FB7AF44789A582851A37FA22E6/24490" alt=""></p>
+<p>当打开schematic(原理图)的时候shortcut又变成</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/D51B0698967E46DF8DF5C9D676821E04/24488" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AD/" rel="tag"><i class="fa fa-tag"></i> AD</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、基本概念"><span class="nav-number">1.</span> <span class="nav-text">一、基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-过孔（Via）"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 过孔（Via）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-丝印层（Overlay）"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 丝印层（Overlay）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-网络填充区（External-Plane）和填充区（fill）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 网络填充区（External Plane）和填充区（fill）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-焊盘（Pad）"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 焊盘（Pad）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-各类膜（Mask）"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 各类膜（Mask）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、印制电路板要考虑以下基本原则"><span class="nav-number">2.</span> <span class="nav-text">二、印制电路板要考虑以下基本原则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-抗干扰设计原则"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 抗干扰设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-1-1-电源线的设计"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 电源线的设计</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-2-地线设计"><span class="nav-number">2.2.</span> <span class="nav-text">2.1.2 地线设计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-3-元器件的配置"><span class="nav-number">2.3.</span> <span class="nav-text">2.1.3 元器件的配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-4-去耦电容的配置"><span class="nav-number">2.4.</span> <span class="nav-text">2.1.4 去耦电容的配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-5-降低噪声和电磁干扰的原则"><span class="nav-number">2.5.</span> <span class="nav-text">2.1.5 降低噪声和电磁干扰的原则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-6-其他设计原则"><span class="nav-number">2.6.</span> <span class="nav-text">2.1.6 其他设计原则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-热设计原则"><span class="nav-number">2.7.</span> <span class="nav-text">2.2 热设计原则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-抗振设计原则"><span class="nav-number">2.8.</span> <span class="nav-text">2.3 抗振设计原则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-可测试型设计原则"><span class="nav-number">2.9.</span> <span class="nav-text">2.4 可测试型设计原则</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、快捷键汇总"><span class="nav-number">3.</span> <span class="nav-text">三、快捷键汇总</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、页面参数设置"><span class="nav-number">4.</span> <span class="nav-text">四、页面参数设置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_pv">
+    总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/10/01-AD使用的基础规则/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
