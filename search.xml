@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[test_v1]]></title>
-    <url>%2F2018%2F12%2F07%2Ftest_v1%2F</url>
-    <content type="text"><![CDATA[testtest1jitdasda]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-      <tags>
-        <tag>测试1</tag>
-        <tag>测试2</tag>
-      </tags>
+    <title></title>
+    <url>%2F2018%2F12%2F10%2F1%2F</url>
+    <content type="text"><![CDATA[qwe]]></content>
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
