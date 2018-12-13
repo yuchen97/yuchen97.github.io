@@ -115,23 +115,29 @@
 
 
 
-  <meta name="description" content="chenyu110197@gmail.com">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Chenyu&#39;s Blog">
-<meta property="og:url" content="https://yuchen97.github.io/archives/index.html">
+  <meta name="description" content="02_常见振荡电路 NE555多谐振荡（省赛常用） 与非门振荡（省赛常用） 与非门（施密特触发器）振荡电路 运放产生方波  1.  NE555多谐振荡（省赛常用）三角波和方波频率相同，但3脚输出方波，2、6脚输出三角波，峰值分别为 $\frac{2}{3}V_{CC}$、$\frac{1}{3}V_{CC}$。3脚输出方波周期计算公式如下：$T=0.7\cdot(R_1+2R_2)\cdot C_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02_常见振荡电路">
+<meta property="og:url" content="https://yuchen97.github.io/2018/12/13/江西省焊接赛/02_常见振荡电路/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="chenyu110197@gmail.com">
+<meta property="og:description" content="02_常见振荡电路 NE555多谐振荡（省赛常用） 与非门振荡（省赛常用） 与非门（施密特触发器）振荡电路 运放产生方波  1.  NE555多谐振荡（省赛常用）三角波和方波频率相同，但3脚输出方波，2、6脚输出三角波，峰值分别为 $\frac{2}{3}V_{CC}$、$\frac{1}{3}V_{CC}$。3脚输出方波周期计算公式如下：$T=0.7\cdot(R_1+2R_2)\cdot C_">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ee86e1b723b901bdfb0eb8d85fa3f165/xmlnote/6DAB12F1D89648C98D816B1804D76D4F/14542">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ee86e1b723b901bdfb0eb8d85fa3f165/xmlnote/5FA87E94ED9545A1B176E0E94099179E/14544">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ee86e1b723b901bdfb0eb8d85fa3f165/xmlnote/C3502DE1BC2B4009B07169F9177C2F7C/14546">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ee86e1b723b901bdfb0eb8d85fa3f165/xmlnote/71FA380660A8448EB5F127832EBD7B54/14548">
+<meta property="og:updated_time" content="2018-12-13T02:54:10.658Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chenyu&#39;s Blog">
-<meta name="twitter:description" content="chenyu110197@gmail.com">
+<meta name="twitter:title" content="02_常见振荡电路">
+<meta name="twitter:description" content="02_常见振荡电路 NE555多谐振荡（省赛常用） 与非门振荡（省赛常用） 与非门（施密特触发器）振荡电路 运放产生方波  1.  NE555多谐振荡（省赛常用）三角波和方波频率相同，但3脚输出方波，2、6脚输出三角波，峰值分别为 $\frac{2}{3}V_{CC}$、$\frac{1}{3}V_{CC}$。3脚输出方波周期计算公式如下：$T=0.7\cdot(R_1+2R_2)\cdot C_">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/ee86e1b723b901bdfb0eb8d85fa3f165/xmlnote/6DAB12F1D89648C98D816B1804D76D4F/14542">
 
 
 
 
 
 
-  <link rel="canonical" href="https://yuchen97.github.io/archives/">
+  <link rel="canonical" href="https://yuchen97.github.io/2018/12/13/江西省焊接赛/02_常见振荡电路/">
 
 
 
@@ -141,7 +147,7 @@
   };
 </script>
 
-  <title>归档 | Chenyu's Blog</title>
+  <title>02_常见振荡电路 | Chenyu's Blog</title>
   
 
 
@@ -190,7 +196,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
         position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
@@ -297,7 +303,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -368,420 +374,230 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/13/江西省焊接赛/02_常见振荡电路/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">02_常见振荡电路
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-13 10:38:24 / 修改时间：10:54:10" itemprop="dateCreated datePublished" datetime="2018-12-13T10:38:24+08:00">2018-12-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 25 篇日志。 继续努力。
-      </span>
-      
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/基础硬件/" itemprop="url" rel="index"><span itemprop="name">基础硬件</span></a></span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/13/江西省焊接赛/09_省赛中AD做法/" itemprop="url">
-              
-                <span itemprop="name">09_省赛中AD做法</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-13T11:14:35+08:00" content="2018-12-13">
-          12-13
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/13/江西省焊接赛/08_省赛中DA做法/" itemprop="url">
-              
-                <span itemprop="name">08_省赛中DA做法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-13T11:08:24+08:00" content="2018-12-13">
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/13/江西省焊接赛/07_常见模拟部分/" itemprop="url">
-              
-                <span itemprop="name">07_常见模拟部分</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-13T11:02:46+08:00" content="2018-12-13">
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h3 id="02-常见振荡电路"><a href="#02-常见振荡电路" class="headerlink" title="02_常见振荡电路"></a>02_常见振荡电路</h3><ul>
+<li>NE555多谐振荡（省赛常用）</li>
+<li>与非门振荡（省赛常用）</li>
+<li>与非门（施密特触发器）振荡电路</li>
+<li>运放产生方波</li>
+</ul>
+<h4 id="1-NE555多谐振荡（省赛常用）"><a href="#1-NE555多谐振荡（省赛常用）" class="headerlink" title="1.  NE555多谐振荡（省赛常用）"></a>1.  NE555多谐振荡（省赛常用）</h4><p><img src="https://note.youdao.com/yws/public/resource/ee86e1b723b901bdfb0eb8d85fa3f165/xmlnote/6DAB12F1D89648C98D816B1804D76D4F/14542" alt=""><br>三角波和方波频率相同，但3脚输出方波，2、6脚输出三角波，峰值分别为 $\frac{2}{3}V_{CC}$<code>、</code>$\frac{1}{3}V_{CC}$。<br>3脚输出方波周期计算公式如下：<br>$T=0.7\cdot(R_1+2R_2)\cdot C_1$<br>对于 1 $hz$ 的方波，一般取 “$R_1=4K7,R_2=4K7,C_1=100uf$”</p>
+<h4 id="2-与非门振荡（省赛常用）"><a href="#2-与非门振荡（省赛常用）" class="headerlink" title="2.  与非门振荡（省赛常用）"></a>2.  与非门振荡（省赛常用）</h4><p><img src="https://note.youdao.com/yws/public/resource/ee86e1b723b901bdfb0eb8d85fa3f165/xmlnote/5FA87E94ED9545A1B176E0E94099179E/14544" alt=""><br>其中 $R_1$ 要足够大，一般取 $2M$。<br>输出方波周期计算公式为：<br>$T=2.2\cdot R_2\cdot C_1$<br>对于 1 $hz$ 的方波，一般取 “$R_2=45K,C_1=10uf$”。</p>
+<h4 id="3-与非门（施密特触发器）振荡电路"><a href="#3-与非门（施密特触发器）振荡电路" class="headerlink" title="3.  与非门（施密特触发器）振荡电路"></a>3.  与非门（施密特触发器）振荡电路</h4><p><img src="https://note.youdao.com/yws/public/resource/ee86e1b723b901bdfb0eb8d85fa3f165/xmlnote/C3502DE1BC2B4009B07169F9177C2F7C/14546" alt=""><br>省赛一般不会遇到此种电路<br>如想得到 $1hz$ 的方波，一般取 “$R_1=10K,C_1=47uf$”。  </p>
+<h4 id="2-运放产生方波"><a href="#2-运放产生方波" class="headerlink" title="2.  运放产生方波"></a>2.  运放产生方波</h4><p><img src="https://note.youdao.com/yws/public/resource/ee86e1b723b901bdfb0eb8d85fa3f165/xmlnote/71FA380660A8448EB5F127832EBD7B54/14548" alt=""><br>一般 $R_1R_2R_3$ 电阻阻值一致，若周期为 $1s$ ，则 $R_4,C_1$ 值分别为 $20K,47uf$。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/13/江西省焊接赛/06_用二极管制作与门、或门/" itemprop="url">
-              
-                <span itemprop="name">06-用二极管制作与门、或门</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-13T11:01:20+08:00" content="2018-12-13">
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/13/江西省焊接赛/05_触摸开关/" itemprop="url">
-              
-                <span itemprop="name">05_触摸开关</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-13T10:58:55+08:00" content="2018-12-13">
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/13/江西省焊接赛/04_常见运算放大器、比较器/" itemprop="url">
-              
-                <span itemprop="name">04_常见运算放大器、比较器</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-13T10:57:01+08:00" content="2018-12-13">
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/13/江西省焊接赛/03_常见CD系列芯片/" itemprop="url">
-              
-                <span itemprop="name">03_常见CD系列芯片</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-13T10:54:51+08:00" content="2018-12-13">
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/13/江西省焊接赛/02_常见振荡电路/" itemprop="url">
-              
-                <span itemprop="name">02_常见振荡电路</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-13T10:38:24+08:00" content="2018-12-13">
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/12/江西省焊接赛/01-常见电源模块/" itemprop="url">
-              
-                <span itemprop="name">01-常见电源模块</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-12T22:03:27+08:00" content="2018-12-12">
-          12-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/12/基础硬件/03_运放十坑/" itemprop="url">
-              
-                <span itemprop="name">03-运放十坑</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-12T20:27:18+08:00" content="2018-12-12">
-          12-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/12/江西省焊接赛/01-常见电源模块/" rel="next" title="01-常见电源模块">
+                <i class="fa fa-chevron-left"></i> 01-常见电源模块
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/13/江西省焊接赛/03_常见CD系列芯片/" rel="prev" title="03_常见CD系列芯片">
+                03_常见CD系列芯片 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -802,8 +618,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -905,6 +730,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#02-常见振荡电路"><span class="nav-number">1.</span> <span class="nav-text">02_常见振荡电路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-NE555多谐振荡（省赛常用）"><span class="nav-number">1.1.</span> <span class="nav-text">1.  NE555多谐振荡（省赛常用）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-与非门振荡（省赛常用）"><span class="nav-number">1.2.</span> <span class="nav-text">2.  与非门振荡（省赛常用）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-与非门（施密特触发器）振荡电路"><span class="nav-number">1.3.</span> <span class="nav-text">3.  与非门（施密特触发器）振荡电路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-运放产生方波"><span class="nav-number">1.4.</span> <span class="nav-text">2.  运放产生方波</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1068,6 +909,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
 
   
 
@@ -1080,6 +925,20 @@
 
 
 
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/13/江西省焊接赛/02_常见振荡电路/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
