@@ -5,7 +5,7 @@
     <url>%2F2018%2F12%2F13%2F%E6%B1%9F%E8%A5%BF%E7%9C%81%E7%84%8A%E6%8E%A5%E8%B5%9B%2F09_%E7%9C%81%E8%B5%9B%E4%B8%ADAD%E5%81%9A%E6%B3%95%2F</url>
     <content type="text"><![CDATA[09_省赛中AD做法计数器计算一整次的周期（即从最小计数到最大的时间）小于模拟输入的变化周期。D触发器的数量 = 计数器的输出位数。无D触发器时可将比较器输出接至计数器的使能端。]]></content>
       <categories>
-        <category>基础硬件</category>
+        <category>江西省焊接赛</category>
       </categories>
   </entry>
   <entry>
@@ -13,25 +13,31 @@
     <url>%2F2018%2F12%2F13%2F%E6%B1%9F%E8%A5%BF%E7%9C%81%E7%84%8A%E6%8E%A5%E8%B5%9B%2F08_%E7%9C%81%E8%B5%9B%E4%B8%ADDA%E5%81%9A%E6%B3%95%2F</url>
     <content type="text"><![CDATA[08_省赛中DA做法1.模拟开关权电阻网络高位接低电阻。$V_o=V_p+(8D_3+4D_2+2D_1+D_0)\frac{V_p-V_{ref}}{n_{ref}}$一般 $V_{ref}=0$ ，即$V_o=V_p+(8D_3+4D_2+2D_1+D_0)\frac{V_p}{n_{ref}}$当 $R_f=\frac{R}{2}$ 时，$n_{ref}$ 取16；当 $R_f=R$ 时，$n_{ref}$ 取8。 2.8421电阻网络$D_3D_2D_1D_0$ 为计数器的输出或CD4511的输入。$V_o$ 驱动其他电路时，最好接着跟随器。 3.R2R电阻网络$V_o$ 驱动其他电路时，最好接着跟随器。]]></content>
       <categories>
-        <category>基础硬件</category>
+        <category>江西省焊接赛</category>
       </categories>
   </entry>
   <entry>
     <title><![CDATA[07_常见模拟部分]]></title>
     <url>%2F2018%2F12%2F13%2F%E6%B1%9F%E8%A5%BF%E7%9C%81%E7%84%8A%E6%8E%A5%E8%B5%9B%2F07_%E5%B8%B8%E8%A7%81%E6%A8%A1%E6%8B%9F%E9%83%A8%E5%88%86%2F</url>
-    <content type="text"><![CDATA[07_常见模拟部分 反相放大器 同相放大器 跟随器 加法器 减法器 积分器 微分器 差分放大器 1.反相放大器$V_o=-\frac{R_1}{R_f}V_-$$V_-=V_s$ 2.同相放大器$V_o=\frac{R_1+R_f}{R_1}V_-$$V_-=V_s$ 3.跟随器$V_o=V_-$$V_o=V_s$ 4.加法器$V_o=-\frac{R_f}{R_1}V_{s1}-\frac{R_f}{R_2}V_{s2}$当 $R_1=R_2$ 时，$V_o=-\frac{R_f}{R_1}(V_{s1}+V_{s2})$ 5.减法器$V_o=-\frac{R_f}{R_1}V_{s1}+(1+\frac{R_f}{R_1})(\frac{R_3}{R_2+R_3}V_{s2})$当$R_f=R_3$， $R_1=R_2$ 时，$V_o=\frac{R_f}{R_1}(V_{s2}-V_{s1})$ 6.积分器$V_o=-\frac{1}{RC}\int^t_0V_s{\rm d}t$ 7.微分器$V_o=-RC\frac{dV_s}{dt}$ 8.差分放大器$V_o=\frac{R_3+R_2}{R_1+R_4}\cdot \frac{R_4}{R_1}V_2-\frac{R_2}{R_1}V_1$当$R_1=R_3$，$R_2=R_4$ 时，$V_o=\frac{R_2}{R_1}(V_2-V_1)$]]></content>
+    <content type="text"><![CDATA[07_常见模拟部分 反相放大器 同相放大器 跟随器 加法器 减法器 积分器 微分器 差分放大器 1.反相放大器$V_o=-\frac{R_1}{R_f}V_-$$V_-=V_s$ 2.同相放大器$V_o=\frac{R_1+R_f}{R_1}V_-$$V_-=V_s$ 3.跟随器$V_o=V_-$$V_o=V_s$ 4.加法器$V_o=-\frac{R_f}{R_1}V_{s1}-\frac{R_f}{R_2}V_{s2}$当 $R_1=R_2$ 时，$V_o=-\frac{R_f}{R_1}(V_{s1}+V_{s2})$ 5.减法器$V_o=-\frac{R_f}{R_1}V_{s1}+(1+\frac{R_f}{R_1})(\frac{R_3}{R_2+R_3}V_{s2})$当 $R_f=R_3$， $R_1=R_2$ 时，$V_o=\frac{R_f}{R_1}(V_{s2}-V_{s1})$ 6.积分器$V_o=-\frac{1}{RC}\int^t_0V_s{\rm d}t$ 7.微分器$V_o=-RC\frac{dV_s}{dt}$ 8.差分放大器$V_o=\frac{R_3+R_2}{R_1+R_4}\cdot \frac{R_4}{R_1}V_2-\frac{R_2}{R_1}V_1$当 $R_1=R_3$，$R_2=R_4$ 时，$V_o=\frac{R_2}{R_1}(V_2-V_1)$]]></content>
+      <categories>
+        <category>江西省焊接赛</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[06-用二极管制作与门、或门]]></title>
     <url>%2F2018%2F12%2F13%2F%E6%B1%9F%E8%A5%BF%E7%9C%81%E7%84%8A%E6%8E%A5%E8%B5%9B%2F06_%E7%94%A8%E4%BA%8C%E6%9E%81%E7%AE%A1%E5%88%B6%E4%BD%9C%E4%B8%8E%E9%97%A8%E3%80%81%E6%88%96%E9%97%A8%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[06_用二极管制作与门、或门1.与门 2.或门]]></content>
+      <categories>
+        <category>江西省焊接赛</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[05_触摸开关]]></title>
     <url>%2F2018%2F12%2F13%2F%E6%B1%9F%E8%A5%BF%E7%9C%81%E7%84%8A%E6%8E%A5%E8%B5%9B%2F05_%E8%A7%A6%E6%91%B8%E5%BC%80%E5%85%B3%2F</url>
     <content type="text"><![CDATA[05_触摸开关 运放 三极管 NE555单稳态触发 1.运放用手触摸开关后，LM358会输出高电平脉冲，接上拉电阻是为了在空闲时LM358输出为低电平。 2.三极管 3.NE555单稳态触发在无信号输入时，2引脚最好为高电平。$R_2$ 是大约 $1k$ 的上拉电阻。3脚单稳态输入脉宽为 $T=1.1\cdot R_1\cdot C_1$]]></content>
       <categories>
-        <category>基础硬件</category>
+        <category>江西省焊接赛</category>
       </categories>
   </entry>
   <entry>
@@ -39,7 +45,7 @@
     <url>%2F2018%2F12%2F13%2F%E6%B1%9F%E8%A5%BF%E7%9C%81%E7%84%8A%E6%8E%A5%E8%B5%9B%2F04_%E5%B8%B8%E8%A7%81%E8%BF%90%E7%AE%97%E6%94%BE%E5%A4%A7%E5%99%A8%E3%80%81%E6%AF%94%E8%BE%83%E5%99%A8%2F</url>
     <content type="text"><![CDATA[04_常见运算放大器、比较器 LM324、LM358、LM393、LM339 1.LM324带有差动输入的单电源四路算放大器。 2.LM358双运算放大器，单双电源均可。直流电压增益高（100dB），内部频率补偿。 3.LM393双电压比较器，单双电源均可。 4.LM339四个电压比较器。 注：LM393和LM339在使用的时候，输出端最好加 $1k$ 的上拉电阻。]]></content>
       <categories>
-        <category>基础硬件</category>
+        <category>江西省焊接赛</category>
       </categories>
   </entry>
   <entry>
@@ -47,7 +53,7 @@
     <url>%2F2018%2F12%2F13%2F%E6%B1%9F%E8%A5%BF%E7%9C%81%E7%84%8A%E6%8E%A5%E8%B5%9B%2F03_%E5%B8%B8%E8%A7%81CD%E7%B3%BB%E5%88%97%E8%8A%AF%E7%89%87%2F</url>
     <content type="text"><![CDATA[03_常见CD系列芯片 4011、4069、4081、40192、4511、4520、4017、4066 1.CD40114个二输入与非门。 2.CD40696个非门。 3.CD40814个二输入与门。 4.CD40192同步十进制可逆计数器，双时钟输入，清零和置数功能。$J_1J_2J_3J_4$ 是数据输入端，$Q_1Q_2Q_3Q_4$ 是数据输出端。加法计数时，减计数端为高电平；减计数时，加计数端为高电平。加计数时，13脚恒为1；计数由9到0时，12脚输出一个负脉冲。减计数时，12脚恒为1，计数由0到9时，13脚输出一个负脉冲。 5.CD4511正常计数时3、4拉高，5拉低，ABCD接4个下拉电阻到地。3脚为低电平有效，为低时所有段位全输出高。4脚为消隐端，为低时所有段位全灭。5脚高电平时为锁存端有效。 6.CD4520双二进制加法计数器，范围0~15。有两种计数方法：1.ENABLE 为1时，CLOCK上升沿作计数器边沿计数。2.CLOCK 为0时，ENABLE 下降沿作为边沿计数。 7.CD4017十进制计数器。12脚在溢出时会向上跳变。15脚清零端高电平有效，正常计数接低。 8.CD4066四双向模拟开关。Control为高电平时，两端导通，低电平截止。]]></content>
       <categories>
-        <category>基础硬件</category>
+        <category>江西省焊接赛</category>
       </categories>
   </entry>
   <entry>
@@ -55,7 +61,7 @@
     <url>%2F2018%2F12%2F13%2F%E6%B1%9F%E8%A5%BF%E7%9C%81%E7%84%8A%E6%8E%A5%E8%B5%9B%2F02_%E5%B8%B8%E8%A7%81%E6%8C%AF%E8%8D%A1%E7%94%B5%E8%B7%AF%2F</url>
     <content type="text"><![CDATA[02_常见振荡电路 NE555多谐振荡（省赛常用） 与非门振荡（省赛常用） 与非门（施密特触发器）振荡电路 运放产生方波 1. NE555多谐振荡（省赛常用）三角波和方波频率相同，但3脚输出方波，2、6脚输出三角波，峰值分别为 $\frac{2}{3}V_{CC}$、$\frac{1}{3}V_{CC}$。3脚输出方波周期计算公式如下：$T=0.7\cdot(R_1+2R_2)\cdot C_1$对于 1 $hz$ 的方波，一般取 “$R_1=4K7,R_2=4K7,C_1=100uf$” 2. 与非门振荡（省赛常用）其中 $R_1$ 要足够大，一般取 $2M$。输出方波周期计算公式为：$T=2.2\cdot R_2\cdot C_1$对于 1 $hz$ 的方波，一般取 “$R_2=45K,C_1=10uf$”。 3. 与非门（施密特触发器）振荡电路省赛一般不会遇到此种电路如想得到 $1hz$ 的方波，一般取 “$R_1=10K,C_1=47uf$”。 2. 运放产生方波一般 $R_1R_2R_3$ 电阻阻值一致，若周期为 $1s$ ，则 $R_4,C_1$ 值分别为 $20K,47uf$。]]></content>
       <categories>
-        <category>基础硬件</category>
+        <category>江西省焊接赛</category>
       </categories>
   </entry>
   <entry>
@@ -63,7 +69,7 @@
     <url>%2F2018%2F12%2F12%2F%E6%B1%9F%E8%A5%BF%E7%9C%81%E7%84%8A%E6%8E%A5%E8%B5%9B%2F01-%E5%B8%B8%E8%A7%81%E7%94%B5%E6%BA%90%E6%A8%A1%E5%9D%97%2F</url>
     <content type="text"><![CDATA[01_常见电源模块 省赛常见的几种电源模块电路 5种整流滤波模块电路 1. 省赛常见的几种电源模块电路1.1 LM317可调稳压源LM317的1引脚是电压调节脚，2引脚是电压输出，3号引脚是电压输入。 全波整流电路 全桥整流电路LM317输出电压计算公式为 $v_o=1.25\cdot(1+\frac{R2}{R1})$ 一般选用全桥整流电路。 LM317与LM337正负可调式稳压源其中LM337和LM317引脚类似。 1.2 780x系列稳压电路单个的780x和790x系列电路接法比较简单，整流滤波之后可以直接接780x系列芯片。正负电源电路 2. 五种整流滤波模块电路半波整流全桥整流全桥整流全波整流半桥整流倍压电路]]></content>
       <categories>
-        <category>基础硬件</category>
+        <category>江西省焊接赛</category>
       </categories>
   </entry>
   <entry>
