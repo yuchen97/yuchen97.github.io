@@ -83,11 +83,11 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[0101_省赛]]></title>
+    <title><![CDATA[01_省赛]]></title>
     <url>%2F2018%2F12%2F12%2F%E5%9F%BA%E7%A1%80%E7%A1%AC%E4%BB%B6%2F01_%E7%9C%81%E8%B5%9B%2F</url>
     <content type="text"><![CDATA[2011502电位器 103电位器 IN4007 IN4148 LM317 CD4011 CD4017 CD40192 CD4511 LM358 9013 9014 蜂鸣器 继电器JC-23F LED502电位器即5K滑动变阻器 此类电位器，比如5K，两端是5K，顺时针转动，左一和左二电阻减小 这个脚要焊IN4007整流二极管 灰色相当于负极，即带色环的是负极LM317 CD4011 CD4017十进制计数器CD4511CD4511 是一片 CMOS BCD-锁存/7 段译码/驱动器，用于驱动共阴极 LED (数码管)显示器的 BCD 码-七段码译码器LM358LM358是双运算放大器。内部包括有两个独立的、高增益、内部频率补偿的双运算放大器，适合于电源电压范围很宽的单电源使用，也适用于双电源工作模式，在推荐的工作条件下，电源电流与电源电压无关。它的使用范围包括传感放大器、直流增益模块和其他所有可用单电源供电的使用运算放大器的场合。三极管]]></content>
       <categories>
-        <category>基本硬件</category>
+        <category>基础硬件</category>
       </categories>
   </entry>
   <entry>
