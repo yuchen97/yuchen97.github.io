@@ -86,18 +86,6 @@
 
 
 
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
-
-
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -127,17 +115,17 @@
 
 
 
-  <meta name="description" content="qdds">
+  <meta name="description" content="这是一篇加密的文章。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="test">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/16/test/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="qdds">
+<meta property="og:description" content="这是一篇加密的文章。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-15T16:40:04.301Z">
+<meta property="og:updated_time" content="2018-12-15T16:53:22.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="test">
-<meta name="twitter:description" content="qdds">
+<meta name="twitter:description" content="这是一篇加密的文章。">
 
 
 
@@ -443,7 +431,7 @@
                 
               
 
-              <time title="创建时间：2018-12-16 00:39:46 / 修改时间：00:40:04" itemprop="dateCreated datePublished" datetime="2018-12-16T00:39:46+08:00">2018-12-16</time>
+              <time title="创建时间：2018-12-16 00:39:46 / 修改时间：00:53:22" itemprop="dateCreated datePublished" datetime="2018-12-16T00:39:46+08:00">2018-12-16</time>
             
 
             
@@ -481,7 +469,20 @@
       
 
       
-        <h3 id="qdds"><a href="#qdds" class="headerlink" title="qdds"></a>qdds</h3>
+        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="enter password to read.">
+    <label for="pass">enter password to read.</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">Incorrect Password!</div>
+<div id="noContentError" style="display: none;">No content to display!</div>
+<div id="encrypt-blog" style="display:none">
+U2FsdGVkX1+qFw+4zs6XHCbqP8fmOCPh1EqS7dhGCqEPHWkVBR4LYBxAJFZqjle5Amiwx9JXQ/7cRFKCojOnyoiwiRXQ7reFOSUhdQpciuUtpjwuSd7GlpYGEROyeR/wznZmg4DGWVzZImWN+g4rTXMqCMp3WiqXJ2dIdXovrGDIgI91rKRivXBjKqvJNXi060Bok8J7dq/ITlZ3okWkGsXIQfoOj8GoV1XhlbFBeQnuWWcRw27DnBGmgvrq5IZD
+</div>
+<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
       
     </div>
 
@@ -593,17 +594,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -715,22 +707,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#qdds"><span class="nav-number">1.</span> <span class="nav-text">qdds</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
