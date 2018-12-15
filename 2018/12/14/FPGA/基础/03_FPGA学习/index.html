@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="以下内容大部分是直接截图摘抄（时间不多）  系统级: 用语言提供的高级结构能够实现所设计模块的外部性能的模型 算法级： 用语言提供的高级结构能够实现算法运行的模型 RTL级： 描述数据在存储器之间的流动和如何处理、控制这些数据流动的模型    以上三点属于行为描述，只有RTL级才对逻辑电路有明确的对应关系。  门级： 描述逻辑门，以及逻辑门之间连接的模型 开关级： 描述器件中三极管和储存节点以及他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="03-FPGA学习">
+<meta property="og:url" content="https://yuchen97.github.io/2018/12/14/FPGA/基础/03_FPGA学习/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="以下内容大部分是直接截图摘抄（时间不多）  系统级: 用语言提供的高级结构能够实现所设计模块的外部性能的模型 算法级： 用语言提供的高级结构能够实现算法运行的模型 RTL级： 描述数据在存储器之间的流动和如何处理、控制这些数据流动的模型    以上三点属于行为描述，只有RTL级才对逻辑电路有明确的对应关系。  门级： 描述逻辑门，以及逻辑门之间连接的模型 开关级： 描述器件中三极管和储存节点以及他">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/42B3A1675A2346219E9D40BC941EA01B/26746">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/2BF19E5E0BA645938686FC83F154D0BD/26817">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/93457FCB5BAF41EAAF9B0B9E1FEA39D7/26810">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A074730C63D249E1B0794BEC8F7744B0/26774">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/370C155D03CA442FA5B5F6F50886FCCA/26809">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/92B4B9C7C82B48688C31D393C68F011D/26779">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/6C16A137798245A4900303AFF766EEB0/26772">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/1358C40A43C84D0FAB0EA9514FB113CD/26835">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/8927875DE986430DADBE4C0E3D1D53E0/26798">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/844BBD5D025847288A50118BC803516F/26813">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/31B70745D71748E59510DAB05842A298/26787">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/76595F91D21945F39FB8B16BBA962130/26882">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/1D093C91C4764236AE99DEAB34A9A8C9/26716">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/654E5B1244704A8B9B997191C7335B87/26745">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E31DFA926CC3415BB04767C27C7C0B13/26782">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/FC230AFBD942487C91A51DFA21FAEA4C/26872">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/77EC7DD871C4495EB751739FAB6AA378/26807">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9FDB640D81E0420199F57010D23CEBCE/26754">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E7F3C6F94638464CB59F0C4D29224DC9/26720">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5622CA464C8B4671B2428CDBD850DC8A/26744">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/AF78127CE50840AD99134923C4F16181/26728">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/BC9E9469841A49E680F9E59D2AC4CB5E/26718">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/153CE531FED84A3FB3482D5F7C398EE2/26918">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4F1277DD37E24EFC84FF0946842404EA/26865">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/EDD5CA6178794F6F9550DA5AD328688B/26710">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/22ECC0323A0441408F8A3BBDAFF20B6B/26721">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/8C0C78645BC24EE5BBBA6DF089D4B090/26763">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/50A131E786EB4E358305473656E4B2DC/26832">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/98828DE4F87D4E0890F5DEC44804540A/26818">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/B27092BDC3044F059E131E9E3E6B9C6A/26725">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9D63389F580B409A86B97FE9DAD70F94/26783">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A5321F0180194465A28E334720146F4E/26887">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9A1E8E0D15C749D6B200F761A3DFE41D/26915">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/74D6E05D285643FBBFE26404052B4BC7/26750">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/C23D58255FEF44ACA15528C35F1334FD/26765">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/7C4F781ADD524F3FB8F0B5A87433B0D9/26828">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/352CFAEABF6C4BA592B1EC3FC844D56F/26848">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F26A22B7E75C434DA8E9C13422E8B2AB/26870">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A752E7B09D284954805162AA2FCCD318/26771">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/430026B3458246B59B0EA43963799679/26755">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/712E37ED7D144223B2C32FBFC22A377F/26878">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/14578E4821E3433F8A7940354354A20E/26834">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/509A4C2301034F0A8A705713C508CF9A/26914">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/BC9902524DA44D46B0A6CD9F4753F76A/26738">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/CEC5E3DD2F4C4A3C8CB8153C56FBC02E/26793">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/03527D2DC0D243809862D640E77FFB0F/26910">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3230952D01254067890C87F63A9DB509/26884">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/46280EF2DEF24312ADA37929F027ABB1/26851">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/135E761290AF4A70B19C2DD0ACFCA673/26737">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9D5AF170AB684D9E8FCF6CE41721B4E8/26804">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/51E1CF55A9EC42AE8E364AA6FD903D06/26805">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E483F1EB83574018887F4438FC0D4721/26889">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/40BDF4F91E3B4C438FE2421DE535A303/26814">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5FAAC85537714BE0B44786F5E5EEBD73/26855">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A8BFE5A63A8F4C5489C187D4C6B6DE99/26770">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/624C6C8D045D4F989F13AE21492FF573/26847">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4850E3FDA43C4DE29AB36AC18C0EC69B/26764">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/09945C6674794997B7158835F2AB76A3/26869">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E93BDC270C294AB59ADCF847C5F26916/26815">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/B9056284D2BA458E8BB6D21022D5F172/26773">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5A10E60ADDA64EC0A44399D8B7713FB0/26761">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/EA806FB82CAB4ED988204098D10D444B/26837">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5B588FF3BB39438FAE5CFC556AF8B1D5/26836">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/AE0D78EB08804D3A99C0D0D693EFFC7B/26908">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/89F3FFAAF49349B3A775D04D23978B5E/26775">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E6DA6AE79F504B66AF4BBB3E6510685D/26729">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/065556439C274990A58EF701CE46C3E0/26722">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E401F822B05144FEA91261E8F7B6F931/26786">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/373548FAB9BD44FD8BA672C4589850EA/26858">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4614DB33E1B34FC08A25B92AC93DCD24/26727">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3FA4BC0871E6450DAE6744D1D8C3E075/26717">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/546ECAF0CA774924BDBD392AFC75ABAD/26880">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A6DA8B9D8CAD42B8961D529C9BF4F9E8/26740">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F4C3A6A8752D4F39BE3A7AB72E997ACB/26719">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F4C3A6A8752D4F39BE3A7AB72E997ACB/26719">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3686EF19C6C14AD28FE86C2BFC47346A/26806">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/26F7A24EF1784B17A2EC8185DE209A55/26907">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A4B52AF79F54476CAB0DB6250E744E14/26800">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/59056BAE25B4416585488CC3140DA47D/26812">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/6775361DF8814B79A08DD1EA5DEAC79D/26742">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A954113816B1430BB5F9B02AE4FD5B9A/26829">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/90691830214F48BBA217990D1CA4DA09/26905">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/30F222BEFB2A409C8DD212BFF95A02F6/26898">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/B704FB9C6FD84226979C1BB6E3259712/26822">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/95F5F5720BA04E64B81D9AF7D85D4E8F/26762">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D581EC7F67B54ECBB1852A84D699B221/26790">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5FB13A1FED82454F9AE3CD7D651BEADA/26873">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/127CEF2454D64651BC0222480944565D/26868">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D3479FEF953542BEA91B663D1A28AFE0/26760">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/759D4BF3A92D44BF92EB0EA21A0D0B4B/26759">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D3479FEF953542BEA91B663D1A28AFE0/26760">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/380B5748CB9049A38A85A6453BC02CB8/26927">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/390136E407C04C7DA2F04519A8632B2A/26824">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/284AC54A47624F66A39720DAB937B98C/26731">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/501B5D91F07643C6869A16E0D0F67D43/26862">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/714F499E251A42488D205E0A68BB3D32/26825">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/6970F9BA52F64A7F93B7F796C659DEDB/26830">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/93F166EC82134917977B4C04E38B7B5D/26866">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4078242E2408480AABD2CA2066B0297D/26903">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D503D8C323EC44788A46EE87F4F8B406/26843">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/AAA1B1150C4B45F888E68965C4C400D7/26780">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/FFC8660A7B464C00B4CB7C44E9AEA0C8/26823">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/0DF430FC44E44E2BB71A39A716209865/26853">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4682FCA1FE1C4E558D559E595AF36248/26849">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/6C0114FBFCAF4A6DB4A578E10DF08D58/26781">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/7FABB3829850468C80A2C6E58269D382/26819">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/790178C2FD5440CE88555445F26879DA/26784">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/974DC2B635BA49FF982070176BC97191/26856">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/22EA330E20C94E59ACA6B88A82486D81/26736">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/44A89C10CC3B4BB5AF9751F8F1F41904/26833">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4042F49A3492400CB4E62E7FA3A7C324/26732">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/302B1AC94AAC44AE828599A4E9D0A303/26756">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/2A385BBDA3404C54AB57670A1AA2C88C/26820">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F43F8DF7AAFB46F5971A60E6837EB32D/26752">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D0D027D361774A348EA368D134672296/26899">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/40E68192D5FC458B948FCE4252C52050/26850">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/218E847F7E1C45D0A96F416692AEB65D/26733">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9DF8E32CE6194250AB724B3E99B71563/26821">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F97EBA9A6AE346E1A16153479A9DABAE/26902">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/22A31531C04C4A689F70E1A73C6CDA33/26735">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/85A8C38822294F6CAAA08F942F82984A/26792">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/B750F7D2F22C4CE3B65A86C4EB92C74B/26747">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/11B845278D754DA1BFB7124A2230B86C/26839">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/7B27B069FBEC48CFA23AE19FF81B7D61/26726">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/83D4092DF4264D0CBAF37B97257C13F8/26768">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/B6A620963BB94A69A6C6F68A2268DC59/26724">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/2D91F879C3434697BEBFE8FAF24C633B/26897">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/345D0B8E9725492E938A755BB35A8AC4/26916">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/8B2EC007447A4961B443A990A6F0A924/26911">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F3AEFD893A3D42679261F66070C40712/26876">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/C9178B589A9C4A1295D9C0605C4796BA/26748">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/225228E3972E49BE82970DB80C84E591/26741">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/7AF5AC1651524EC382CFC3656A9FA3CF/26808">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/73A86A9052FE47F2B83ACF1B4CAA9DDE/26788">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/954D2A82ACB04F01B0F1779B0B267967/26799">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9FAC4C4BFEF5419CA44ABAEBBDF146B2/26881">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/004225B24FDF4F7D80279527F274CA99/26859">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/684EEA263C3A41B0B7C6315CBD4427B5/26753">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9F70D18266034B8CACE82EE0CB9AA956/26739">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/11C63977919448FFAE537C223A744B9B/26723">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3F08E77760C04DEA916D50160FFEC0D3/26730">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/ED7CEEF8D3DF41B9BD1F4DFD02ECD6F3/26901">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D62F68A3682C45049C0917846DCF05B4/26827">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/0D35E553DD15416495B969644280EDDC/26795">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/FBFE4A16A3DE4912B6F976A2BB1E0842/26757">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/DD769B5E4CED4751BE864DFA6A64AEB0/26778">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E95B98F2308A435FB8AF40B6D4246E55/26714">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/8601A5D6DF064ABFA41167A8B98B83AA/26734">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/CED815DCA0F3449C91BA32DC5DC31ABC/26715">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/028F45BAB40C4E47AF50B4418C2CD66A/26711">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/39B34B9F0EF54F0A8CAC69F5974F0726/26777">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9933B99338D54618BD18671989D467DB/26789">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F94E75F22CAE4518A80415A097075E13/26707">
+<meta property="og:updated_time" content="2018-12-14T13:22:17.464Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="03-FPGA学习">
+<meta name="twitter:description" content="以下内容大部分是直接截图摘抄（时间不多）  系统级: 用语言提供的高级结构能够实现所设计模块的外部性能的模型 算法级： 用语言提供的高级结构能够实现算法运行的模型 RTL级： 描述数据在存储器之间的流动和如何处理、控制这些数据流动的模型    以上三点属于行为描述，只有RTL级才对逻辑电路有明确的对应关系。  门级： 描述逻辑门，以及逻辑门之间连接的模型 开关级： 描述器件中三极管和储存节点以及他">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/42B3A1675A2346219E9D40BC941EA01B/26746">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2018/12/14/FPGA/基础/03_FPGA学习/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>03-FPGA学习 | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/14/FPGA/基础/03_FPGA学习/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">03-FPGA学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-14 20:04:44 / 修改时间：21:22:17" itemprop="dateCreated datePublished" datetime="2018-12-14T20:04:44+08:00">2018-12-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/基础/" itemprop="url" rel="index"><span itemprop="name">基础</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>以下内容大部分是直接截图摘抄（时间不多）</strong></p>
+<ul>
+<li><strong>系统级:</strong> 用语言提供的高级结构能够实现所设计模块的外部性能的模型</li>
+<li><strong>算法级：</strong> 用语言提供的高级结构能够实现算法运行的模型</li>
+<li><strong>RTL级：</strong> 描述数据在存储器之间的流动和如何处理、控制这些数据流动的模型  </li>
+</ul>
+<p>以上三点属于行为描述，只有RTL级才对逻辑电路有明确的对应关系。</p>
+<ul>
+<li><strong>门级：</strong> 描述逻辑门，以及逻辑门之间连接的模型</li>
+<li><strong>开关级：</strong> 描述器件中三极管和储存节点以及他们之间连接的模型</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/42B3A1675A2346219E9D40BC941EA01B/26746" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/2BF19E5E0BA645938686FC83F154D0BD/26817" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/93457FCB5BAF41EAAF9B0B9E1FEA39D7/26810" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A074730C63D249E1B0794BEC8F7744B0/26774" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/370C155D03CA442FA5B5F6F50886FCCA/26809" alt=""></p>
+<p>程序模块中的and or not都是verilog语言的保留字，分别表示与门、或门和非门</p>
+<p> #1 #2分别表示门输入到输出的延迟为1和2个单位时间<br>模块表示的是电路结构</p>
+<p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/92B4B9C7C82B48688C31D393C68F011D/26779" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/6C16A137798245A4900303AFF766EEB0/26772" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/1358C40A43C84D0FAB0EA9514FB113CD/26835" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/8927875DE986430DADBE4C0E3D1D53E0/26798" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/844BBD5D025847288A50118BC803516F/26813" alt=""></p>
+<p>每个模块的内容都是位于module和endmodule两个语句之间。<br>除了endmodule语句外，每个语句和数据定义的最后必须有分号。</p>
+<ul>
+<li>模块端口的定义<br>模块端口声明了模块的输入输出口，其格式为module 模块名(口1，口2，口3，等);</li>
+<li>在引用模块时其端口可以用以下两种方法连接：<ul>
+<li>在引用时，严格按照模块定义的端口顺序来连接，不用标明原模块定义时规定的端口名，例如  模块名（连接端口1信号名，连接端口2信号名，连接端口3信号名，等）；</li>
+<li>在引用时医用”.”符号，标明原模块是定义时规定的端口名，例如<br>模块名（.端口名1（连接信号1名），端口名2（连接信号2名），等）；这样的好处在于可以用端口名与被引用模块的端口相对应，而不必严格按端口名顺序对应。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/31B70745D71748E59510DAB05842A298/26787" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/76595F91D21945F39FB8B16BBA962130/26882" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/1D093C91C4764236AE99DEAB34A9A8C9/26716" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/654E5B1244704A8B9B997191C7335B87/26745" alt=""></p>
+<ol>
+<li>在verilog模块中所有的过程块（如initial块、always块）、连续赋值语句、实例引用都是并行的；</li>
+<li>它们表示的是一种通过变量名互相连接的关系；</li>
+<li>在同一模块中这三者的先后顺序没有关系；</li>
+<li>只有连续赋值语句assign和实例引用语句可以独立于过程模块而存在于模块的功能定义部分。<br>许多与C语言类似的语句只能出现在过程模块中（即initial和always块），而不能随意出现在模块功能定义的范围内</li>
+</ol>
+<p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E31DFA926CC3415BB04767C27C7C0B13/26782" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/FC230AFBD942487C91A51DFA21FAEA4C/26872" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/77EC7DD871C4495EB751739FAB6AA378/26807" alt=""></p>
+<p><strong>寄存器数据类型</strong><br>所谓寄存器数据类型就是表示一个抽象的数据存储单元，它只能在always语句和initial语句等过程语句中被赋值，它的缺省值为x。在实际的数字电路中，如果该过程语句描述的是时序逻辑，则该寄存器变量对应为寄存器；如果该过程语句描述的是组合逻辑，则该寄存器变量对应为硬件连线；如果该过程语句描述的是不完全组合逻辑，那么该寄存器变量也可以对应为锁存器。由此可见，寄存器类型的变量不一定会综合为寄存器。寄存器数据类型有很多种，如reg、integer、real。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9FDB640D81E0420199F57010D23CEBCE/26754" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E7F3C6F94638464CB59F0C4D29224DC9/26720" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5622CA464C8B4671B2428CDBD850DC8A/26744" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/AF78127CE50840AD99134923C4F16181/26728" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/BC9E9469841A49E680F9E59D2AC4CB5E/26718" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/153CE531FED84A3FB3482D5F7C398EE2/26918" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4F1277DD37E24EFC84FF0946842404EA/26865" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/EDD5CA6178794F6F9550DA5AD328688B/26710" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/22ECC0323A0441408F8A3BBDAFF20B6B/26721" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/8C0C78645BC24EE5BBBA6DF089D4B090/26763" alt=""><br>下图为程序改正<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/50A131E786EB4E358305473656E4B2DC/26832" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/98828DE4F87D4E0890F5DEC44804540A/26818" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/B27092BDC3044F059E131E9E3E6B9C6A/26725" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9D63389F580B409A86B97FE9DAD70F94/26783" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A5321F0180194465A28E334720146F4E/26887" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9A1E8E0D15C749D6B200F761A3DFE41D/26915" alt=""><br>在进行算术运算操作时，如果某一个操作数有不确定的值x，则整个结果也为不定值x。<br>不同长度的数据进行位运算时，系统会自动的将两者按右端对齐，位数少的操作数会在相应的高位用0填满。<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/74D6E05D285643FBBFE26404052B4BC7/26750" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/C23D58255FEF44ACA15528C35F1334FD/26765" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/7C4F781ADD524F3FB8F0B5A87433B0D9/26828" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/352CFAEABF6C4BA592B1EC3FC844D56F/26848" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F26A22B7E75C434DA8E9C13422E8B2AB/26870" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A752E7B09D284954805162AA2FCCD318/26771" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/430026B3458246B59B0EA43963799679/26755" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/712E37ED7D144223B2C32FBFC22A377F/26878" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/14578E4821E3433F8A7940354354A20E/26834" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/509A4C2301034F0A8A705713C508CF9A/26914" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/BC9902524DA44D46B0A6CD9F4753F76A/26738" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/CEC5E3DD2F4C4A3C8CB8153C56FBC02E/26793" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/03527D2DC0D243809862D640E77FFB0F/26910" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3230952D01254067890C87F63A9DB509/26884" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/46280EF2DEF24312ADA37929F027ABB1/26851" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/135E761290AF4A70B19C2DD0ACFCA673/26737" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9D5AF170AB684D9E8FCF6CE41721B4E8/26804" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/51E1CF55A9EC42AE8E364AA6FD903D06/26805" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E483F1EB83574018887F4438FC0D4721/26889" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/40BDF4F91E3B4C438FE2421DE535A303/26814" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5FAAC85537714BE0B44786F5E5EEBD73/26855" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A8BFE5A63A8F4C5489C187D4C6B6DE99/26770" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/624C6C8D045D4F989F13AE21492FF573/26847" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4850E3FDA43C4DE29AB36AC18C0EC69B/26764" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/09945C6674794997B7158835F2AB76A3/26869" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E93BDC270C294AB59ADCF847C5F26916/26815" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/B9056284D2BA458E8BB6D21022D5F172/26773" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5A10E60ADDA64EC0A44399D8B7713FB0/26761" alt=""><br>在if-else语句中，系统对表达式的值进行判断，若为0，x，z，按“假”处理。<br>if(expression) 等同于 if(expression==1)    if(!expression) 等同于 if(expression!=1)<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/EA806FB82CAB4ED988204098D10D444B/26837" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5B588FF3BB39438FAE5CFC556AF8B1D5/26836" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/AE0D78EB08804D3A99C0D0D693EFFC7B/26908" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/89F3FFAAF49349B3A775D04D23978B5E/26775" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E6DA6AE79F504B66AF4BBB3E6510685D/26729" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/065556439C274990A58EF701CE46C3E0/26722" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E401F822B05144FEA91261E8F7B6F931/26786" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/373548FAB9BD44FD8BA672C4589850EA/26858" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4614DB33E1B34FC08A25B92AC93DCD24/26727" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3FA4BC0871E6450DAE6744D1D8C3E075/26717" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/546ECAF0CA774924BDBD392AFC75ABAD/26880" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A6DA8B9D8CAD42B8961D529C9BF4F9E8/26740" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F4C3A6A8752D4F39BE3A7AB72E997ACB/26719" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F4C3A6A8752D4F39BE3A7AB72E997ACB/26719" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3686EF19C6C14AD28FE86C2BFC47346A/26806" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/26F7A24EF1784B17A2EC8185DE209A55/26907" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A4B52AF79F54476CAB0DB6250E744E14/26800" alt=""><br>循环语句，forever、repeat、while、for<br>forever：连续的执行语句。  repeat：连续执行一条语句n次。<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/59056BAE25B4416585488CC3140DA47D/26812" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/6775361DF8814B79A08DD1EA5DEAC79D/26742" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A954113816B1430BB5F9B02AE4FD5B9A/26829" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/90691830214F48BBA217990D1CA4DA09/26905" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/30F222BEFB2A409C8DD212BFF95A02F6/26898" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/B704FB9C6FD84226979C1BB6E3259712/26822" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/95F5F5720BA04E64B81D9AF7D85D4E8F/26762" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D581EC7F67B54ECBB1852A84D699B221/26790" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5FB13A1FED82454F9AE3CD7D651BEADA/26873" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/127CEF2454D64651BC0222480944565D/26868" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D3479FEF953542BEA91B663D1A28AFE0/26760" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/759D4BF3A92D44BF92EB0EA21A0D0B4B/26759" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D3479FEF953542BEA91B663D1A28AFE0/26760" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/380B5748CB9049A38A85A6453BC02CB8/26927" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/390136E407C04C7DA2F04519A8632B2A/26824" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/284AC54A47624F66A39720DAB937B98C/26731" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/501B5D91F07643C6869A16E0D0F67D43/26862" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/714F499E251A42488D205E0A68BB3D32/26825" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/6970F9BA52F64A7F93B7F796C659DEDB/26830" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/93F166EC82134917977B4C04E38B7B5D/26866" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4078242E2408480AABD2CA2066B0297D/26903" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D503D8C323EC44788A46EE87F4F8B406/26843" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/AAA1B1150C4B45F888E68965C4C400D7/26780" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/FFC8660A7B464C00B4CB7C44E9AEA0C8/26823" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/0DF430FC44E44E2BB71A39A716209865/26853" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4682FCA1FE1C4E558D559E595AF36248/26849" alt=""><br>每个系统函数和任务前面都用一个标识符$来加以确认。<br>display和write用来输出信息。<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/6C0114FBFCAF4A6DB4A578E10DF08D58/26781" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/7FABB3829850468C80A2C6E58269D382/26819" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/790178C2FD5440CE88555445F26879DA/26784" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/974DC2B635BA49FF982070176BC97191/26856" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/22EA330E20C94E59ACA6B88A82486D81/26736" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/44A89C10CC3B4BB5AF9751F8F1F41904/26833" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4042F49A3492400CB4E62E7FA3A7C324/26732" alt=""><br>系统函数$time，$time可以返回一个以64位的整数来表示当前的仿真时刻值，该时刻是以模块的仿真时间尺度为基准的。<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/302B1AC94AAC44AE828599A4E9D0A303/26756" alt=""><br>系统函数$realtime，和$time的作用是一样的，只是$realtime返回的时间数字是一个实型数，该数字也是以时间尺度为基准的。<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/2A385BBDA3404C54AB57670A1AA2C88C/26820" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F43F8DF7AAFB46F5971A60E6837EB32D/26752" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D0D027D361774A348EA368D134672296/26899" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/40E68192D5FC458B948FCE4252C52050/26850" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/218E847F7E1C45D0A96F416692AEB65D/26733" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9DF8E32CE6194250AB724B3E99B71563/26821" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F97EBA9A6AE346E1A16153479A9DABAE/26902" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/22A31531C04C4A689F70E1A73C6CDA33/26735" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/85A8C38822294F6CAAA08F942F82984A/26792" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/B750F7D2F22C4CE3B65A86C4EB92C74B/26747" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/11B845278D754DA1BFB7124A2230B86C/26839" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/7B27B069FBEC48CFA23AE19FF81B7D61/26726" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/83D4092DF4264D0CBAF37B97257C13F8/26768" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/B6A620963BB94A69A6C6F68A2268DC59/26724" alt=""></p>
+<h4 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h4><p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/2D91F879C3434697BEBFE8FAF24C633B/26897" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/345D0B8E9725492E938A755BB35A8AC4/26916" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/8B2EC007447A4961B443A990A6F0A924/26911" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module FullAdder(A,B,Cin,Sum,Cout);</span><br><span class="line">input A,B,Cin;</span><br><span class="line">output Sum,Cout;</span><br><span class="line">endmodule</span><br><span class="line">module Top …</span><br><span class="line">FullAdder FA(.Sum(W1),.Cout(W2),.Cin(W3),.A(W4),.B(W5));</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F3AEFD893A3D42679261F66070C40712/26876" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/C9178B589A9C4A1295D9C0605C4796BA/26748" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/225228E3972E49BE82970DB80C84E591/26741" alt=""><br>UDP : User Defined Primitives 用户定义的原语<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/7AF5AC1651524EC382CFC3656A9FA3CF/26808" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/73A86A9052FE47F2B83ACF1B4CAA9DDE/26788" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/954D2A82ACB04F01B0F1779B0B267967/26799" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9FAC4C4BFEF5419CA44ABAEBBDF146B2/26881" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/004225B24FDF4F7D80279527F274CA99/26859" alt=""><br>比较器<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/684EEA263C3A41B0B7C6315CBD4427B5/26753" alt=""><br>多路选择器简称多路器，它是由一个多输入，单输出的组合逻辑电路。<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9F70D18266034B8CACE82EE0CB9AA956/26739" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/11C63977919448FFAE537C223A744B9B/26723" alt=""><br>流水线设计的概念：所谓流水线设计实际上是把规模较大、层次较多的组合逻辑电路分为几个级，在每一级插入寄存器组并暂存中间数据，K级的流水线就是从组合逻辑的输入到输出恰好有K个寄存器组（分为K级，每一级都有一个寄存器组），上一级的输出是下一级的输入而又无反馈的电路。<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3F08E77760C04DEA916D50160FFEC0D3/26730" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/ED7CEEF8D3DF41B9BD1F4DFD02ECD6F3/26901" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D62F68A3682C45049C0917846DCF05B4/26827" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/0D35E553DD15416495B969644280EDDC/26795" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/FBFE4A16A3DE4912B6F976A2BB1E0842/26757" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/DD769B5E4CED4751BE864DFA6A64AEB0/26778" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E95B98F2308A435FB8AF40B6D4246E55/26714" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/8601A5D6DF064ABFA41167A8B98B83AA/26734" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/CED815DCA0F3449C91BA32DC5DC31ABC/26715" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/028F45BAB40C4E47AF50B4418C2CD66A/26711" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/39B34B9F0EF54F0A8CAC69F5974F0726/26777" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9933B99338D54618BD18671989D467DB/26789" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F94E75F22CAE4518A80415A097075E13/26707" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/14/FPGA/基础/02_FPGA-basis/" rel="next" title="02-FPGA-basis">
+                <i class="fa fa-chevron-left"></i> 02-FPGA-basis
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/14/FPGA/基础/04_FPGA数电/" rel="prev" title="04_FPGA数电">
+                04_FPGA数电 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#习题"><span class="nav-number">1.</span> <span class="nav-text">习题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_pv">
+    总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/14/FPGA/基础/03_FPGA学习/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
