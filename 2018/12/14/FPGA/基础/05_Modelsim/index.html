@@ -511,8 +511,7 @@
 <p>时间尺度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">`timescale </span><br><span class="line">用来说明跟在该命令后的模块的时间单位和时间精度。使用此命令可以在同一个设计里包含采用了不同的时间单位的模块。例如，一个设计中包含了两个模块，其中一个模块的时间延迟单位为ns，拎一个模块的时间延迟单位为ps。EDA工具仍然可以对这个设计进行仿真测试。</span><br><span class="line">`timescale 命令的格式如下</span><br><span class="line">`tiimescale&lt;时间单位&gt;/&lt;时间精度&gt;</span><br><span class="line">在这条命令中，用于说明时间单位和时间精度参量值的数字必须是整数，其有效数字为1,10,100，单位为s,ms,us,ns,ps,fs。</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/52FAE72176E1472C9AE92311DEE8E156/26892" alt=""><br>例如<br>1.<code>timescale 1ns/1ps; 在这个命令之后，模块中所有的时间值都表示是1ns的整数倍。这是因为在</code>timescale命令中，定义了时间单位为1ns。模块中的延迟时间可表达为带3位小数的实型数，因为<code>timescale 命令定义时间精度为1ps。
 2.</code>timescale 10ns/1ns<br>module         test;<br>reg             set;<br>parameter    d=1.55;<br>initial<br>begin</p>
-<p>#d set=0;</p>
-<p>#d set=1;<br>end<br>endmodule<br>在此，`timescale命令定义了模块test的时间单位为10ns、时间精度为1ns。因此在此模块test中，所有的时间值应为10ns的整数倍，且以1ns为时间精度。这样经过取整操作，存在参数d中的延迟时间实际是16ns（1.6X10ns），这意味着在仿真时刻为16ns时寄存器set被赋值为00，在仿真时刻为32ns时寄存器set被赋值为1，仿真时刻值计算步骤如下：<br>（1）根据时间精度，参数d值被从1.55取整为1.6<br>（2）因为时间单位是10ns，时间精度是1ns，所以延迟时间#d为时间单位的整数倍，即为16ns<br>（3）EDA工具预定在仿真时刻为16ns的时候给寄存器set赋值为0（即#d set=0;），在仿真时刻为32ns的时候给寄存器set赋值为1.</p>
+<h1 id="d-set-0"><a href="#d-set-0" class="headerlink" title="d set=0;"></a>d set=0;</h1><h1 id="d-set-1"><a href="#d-set-1" class="headerlink" title="d set=1;"></a>d set=1;</h1><p>end<br>endmodule<br>在此，`timescale命令定义了模块test的时间单位为10ns、时间精度为1ns。因此在此模块test中，所有的时间值应为10ns的整数倍，且以1ns为时间精度。这样经过取整操作，存在参数d中的延迟时间实际是16ns（1.6X10ns），这意味着在仿真时刻为16ns时寄存器set被赋值为00，在仿真时刻为32ns时寄存器set被赋值为1，仿真时刻值计算步骤如下：<br>（1）根据时间精度，参数d值被从1.55取整为1.6<br>（2）因为时间单位是10ns，时间精度是1ns，所以延迟时间#d为时间单位的整数倍，即为16ns<br>（3）EDA工具预定在仿真时刻为16ns的时候给寄存器set赋值为0（即#d set=0;），在仿真时刻为32ns的时候给寄存器set赋值为1.</p>
 
       
     </div>
@@ -629,8 +628,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -748,6 +756,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#d-set-0"><span class="nav-number">1.</span> <span class="nav-text">d set=0;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#d-set-1"><span class="nav-number">2.</span> <span class="nav-text">d set=1;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1287,6 +1311,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
   
