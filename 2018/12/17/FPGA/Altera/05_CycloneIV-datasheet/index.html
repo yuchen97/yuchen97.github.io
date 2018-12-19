@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1. Clock ManagementCyclone IV设备最多可包含30个全球时钟（GCLK）网络，最多可支持8个每个PLL具有5个输出的PLL，以提供强大的时钟管理和综合。可以在用户模式下动态地重新配置Cyclone IV器件PLL，以更改时钟频率或相位。Cyclone IV GX器件支持两种类型的PLL：  多用途PLL使用多用途PLL来收发收发器模块。 也可以使用它们用于通用时钟，当它们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05_CycloneIV-datasheet">
+<meta property="og:url" content="https://yuchen97.github.io/2018/12/17/FPGA/Altera/05_CycloneIV-datasheet/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="1. Clock ManagementCyclone IV设备最多可包含30个全球时钟（GCLK）网络，最多可支持8个每个PLL具有5个输出的PLL，以提供强大的时钟管理和综合。可以在用户模式下动态地重新配置Cyclone IV器件PLL，以更改时钟频率或相位。Cyclone IV GX器件支持两种类型的PLL：  多用途PLL使用多用途PLL来收发收发器模块。 也可以使用它们用于通用时钟，当它们">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/E825891B6D8C45DFA0F00073F67F585B/27284">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/D64A5E06B7C24881B2EC4C7AF7934CCE/27287">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/D7FDF22071054748913C1836D3F1A6AD/27290">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/E62DC136239545DBA7DD38F83AAA733E/27292">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/711AE740E8CB4877A80A4D3CD4130B1A/27294">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/B8C14511458742FAB1CE004378E1019B/27296">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/EB30B761499149A2AEA3D36513407DE0/27298">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/EB30B761499149A2AEA3D36513407DE0/27298">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/243EA1759399433E9AB45B5FC7CA6178/27302">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/86A500694B1940FB9D9359F1E5A3F22F/27304">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/18802503E57840D2B011C645C168AC6E/27306">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/D258D38A612D467D8C693E4D752E6E57/27308">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/A43F533B61E84D2ABE9D152E31C47C34/27310">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/F20757C5D9194F5BB82F7FA8FB116E61/27312">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/77F88D63147A4706872D3644509F9DB0/27314">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/F7E10E7B667E454CBD424F3C48100C53/27316">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/23CC2D7AD5744D86914DABC0EB441FCD/27318">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/970163CC17014ECCB367D04CA0DFE7D4/27320">
+<meta property="og:updated_time" content="2018-12-17T07:36:47.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="05_CycloneIV-datasheet">
+<meta name="twitter:description" content="1. Clock ManagementCyclone IV设备最多可包含30个全球时钟（GCLK）网络，最多可支持8个每个PLL具有5个输出的PLL，以提供强大的时钟管理和综合。可以在用户模式下动态地重新配置Cyclone IV器件PLL，以更改时钟频率或相位。Cyclone IV GX器件支持两种类型的PLL：  多用途PLL使用多用途PLL来收发收发器模块。 也可以使用它们用于通用时钟，当它们">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/E825891B6D8C45DFA0F00073F67F585B/27284">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2018/12/17/FPGA/Altera/05_CycloneIV-datasheet/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>05_CycloneIV-datasheet | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/17/FPGA/Altera/05_CycloneIV-datasheet/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">05_CycloneIV-datasheet
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-17 13:16:36 / 修改时间：15:36:47" itemprop="dateCreated datePublished" datetime="2018-12-17T13:16:36+08:00">2018-12-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/Altera/" itemprop="url" rel="index"><span itemprop="name">Altera</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-Clock-Management"><a href="#1-Clock-Management" class="headerlink" title="1. Clock Management"></a>1. Clock Management</h4><p>Cyclone IV设备最多可包含30个全球时钟（GCLK）网络，最多可支持8个<br>每个PLL具有5个输出的PLL，以提供强大的时钟管理和综合。<br>可以在用户模式下动态地重新配置Cyclone IV器件PLL，以更改<br>时钟频率或相位。<br><strong>Cyclone IV GX器件支持两种类型的PLL：</strong></p>
+<ul>
+<li>多用途PLL<br>使用多用途PLL来收发收发器模块。 也可以使用它们用于通用时钟，当它们不用于收发器时钟时。</li>
+<li>通用PLL：<br>在通用应用中使用通用PLL进行编织周边，如外部存储器接口。 一些通用PLL可以支持收发器时钟</li>
+</ul>
+<h4 id="2-Transceivers"><a href="#2-Transceivers" class="headerlink" title="2.Transceivers"></a>2.Transceivers</h4><p>the structure of the cyclone 4 GX transceiver<br>transceiver channel for the cyclone 4 GX device<br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/E825891B6D8C45DFA0F00073F67F585B/27284" alt=""><br><strong>(1)</strong> PIPE Interface为PCIE的接口用于连接PCIE controller和PCIE PHY（物理层）， controller用PIPE接口发送并行数给PHY用于并串转换等操作， PHY把串并转换得到的并行数通过PIPE接口送给controller。<br>transmitter channel PCS（物理编码子层）<br><strong>(2)</strong> TX Phase Compensation FIFO：发送相位补偿FIFO<br> PCIE接收端为了能并行处理数据，必须要去除通道与通道的相位偏移，此动作称为链路的相位补偿，具体方法是通过微调芯片内部的自动延迟电路来实现的。PCIE规范要求，在发送端需要拥有1.5ns的Deskew补偿能力，在接收端需要拥有20ns的补偿能力。所以PCIE总线对个通道的走线长度约束非常宽松，不需要像并行总线那样做等长处理。<br><strong>(3)</strong> Byte Serializer:字节串行器<br><strong>(4)</strong> 8bit 10bit encoder:8bit 10bit编码器</p>
+<h5 id="2-1-transceiver-channel-PMA（物理介质附加子层）"><a href="#2-1-transceiver-channel-PMA（物理介质附加子层）" class="headerlink" title="2.1 transceiver channel PMA（物理介质附加子层）"></a>2.1 transceiver channel PMA（物理介质附加子层）</h5><p><strong>(1)</strong> Serializer:串行</p>
+<h5 id="2-2-receiver-channel-PMA"><a href="#2-2-receiver-channel-PMA" class="headerlink" title="2.2 receiver channel PMA"></a>2.2 receiver channel PMA</h5><p><strong>(1)</strong> CDR（clock data recovery）：时钟数据恢复。SerDes(Serializer-Deserializer)是串行器和解串器的简称，不传送时钟信号，这也是SerDes最特别的地方，SerDes在接收端集成了CDR(Clock Data Recovery)电路，利用CDR从数据的边沿信息中抽取时钟，并找到最优的采样位置。<br><strong>(2)</strong> Deserializer：解串器</p>
+<h5 id="2-3-receiver-channel-PCS"><a href="#2-3-receiver-channel-PCS" class="headerlink" title="2.3 receiver channel PCS"></a>2.3 receiver channel PCS</h5><p><strong>(1)</strong> word aligner：字对齐器，可以适当调整接收数据的字节颠倒问题。<br><strong>(2)</strong> Rate Match FIFO：速率匹配FIFO<br><strong>(3)</strong> 8bit 10bit decoder<br><strong>(4)</strong> Byte Deserializer：字节解串器<br><strong>(5)</strong> Byte Ordering：字节排序<br><strong>(6)</strong> RX Phase Compensation FIFO：接收相位补偿</p>
+<p><strong>每个收发器通道均由一个发送数据通路和一个接收数据通路组成。每个数据通路又由以下两部分构成：</strong></p>
+<ul>
+<li><strong>物理介质附加子层 (PMA)</strong><br>包括 I/O 缓冲器的模拟电路、时钟数据恢复 (CDR)、 串行<br>器 / 解串器 (SERDES) 以及用于优化串行数据通道性能的可编程预加重与均衡。</li>
+<li><strong>物理编码子层(PCS)</strong><br>包括兼容所支持协议的收发器中的数字功能的硬核逻辑实现。</li>
+</ul>
+<p>FPGA 架构中的输出并行数据通过发送器 PCS 和 PMA 进行传输，并作为串行数据被发送。接收到的输入串行数据通过接收器 PMA 和 PCS 传输到 FPGA 架构中。该收发器支持下面的接口宽度：</p>
+<ul>
+<li>FPGA 架构收发器 PCS—8、10、16 和 20 bit</li>
+<li>PMA-PCS—8 或 10 bit</li>
+</ul>
+<h4 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h4><p><strong>Packaging Ordering Information for the Cyclone IV GX Device</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/D64A5E06B7C24881B2EC4C7AF7934CCE/27287" alt=""></p>
+<p><strong>Packaging Ordering Information for the Cyclone IV E Device</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/D7FDF22071054748913C1836D3F1A6AD/27290" alt=""></p>
+<h4 id="4-LE"><a href="#4-LE" class="headerlink" title="4. LE"></a>4. LE</h4><p>Logic elements（LEs）是cyclone IV器件中最小的逻辑单元，紧凑，提供高效的逻辑功能用法，每个LE具有以下特征。</p>
+<ul>
+<li>一个四输入查询表（LUT），可实现四个变量的任何功能；</li>
+<li>a programmable register：可编程寄存器</li>
+<li>a carry chain connection：携带链连接</li>
+<li>a register chain connection：注册链连接</li>
+<li>the ability to drive the follwing interconnects：能够有驱动以下互连的能力<ul>
+<li>local    本地</li>
+<li>row    行</li>
+<li>column    列</li>
+<li>register chain    注册链</li>
+<li>direct link    直接链接</li>
+</ul>
+</li>
+<li>register packing support：注册包装支持</li>
+<li>register feedback support：注册反馈支持</li>
+</ul>
+<p><strong>cyclone IV device LEs</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/E62DC136239545DBA7DD38F83AAA733E/27292" alt=""></p>
+<ul>
+<li>可以对每个LE进行编程控制，构成D、T、JK、SR触发器模式。</li>
+<li>每个寄存器都有数据、时钟使能和清零输入。信号使用全局时钟网络，通用I/O引脚或任何内部逻辑可以驱动时钟并清除寄存器的控制信号。</li>
+<li>通用I/O引脚或内部逻辑可以驱动时钟使能。对于组合功能，LUT输出绕过寄存器并直接驱动到LE输出。</li>
+<li>每个LE有三个输出驱动本地、行和列路由资源。LUT或寄存器输出独立驱动这三个输出。两个LE输出驱动列或行和直接链路路由器链接，而一个LE驱动本地互连资源。这允许LUT驱动一个输出当寄存器驱动另一个输出的时候。这个称为寄存器打包的功能提高了设备利用率，因为设备可以使用寄存器和LUT进行无关的功能。使用register packing的时候，LAB-wide同步负载控制信号不可用。</li>
+<li>寄存器反馈模式允许寄存器输出反馈到同一LE的LUT，以确保寄存器包含自己的fan-out（扇出）LUT，为改进配件提供了另一种机制。LE还可以驱动LUT输出的注册和非注册版本。</li>
+<li>除了三个通用路由输出之外，LAB（logic array block）中的LE具有寄存器链输出，允许同一LAB中的寄存器级联在一起。 寄存器链输出允许LUT用于组合功能，寄存器用于不相关的移位寄存器实现。 这些资源加速了LAB之间的连接，同时节省了本地互连资源。</li>
+</ul>
+<h4 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h4><p>cycloneIV 包括normal mode and arithmetic mode</p>
+<ul>
+<li><strong>normal mode</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/711AE740E8CB4877A80A4D3CD4130B1A/27294" alt=""><br>正常模式适用于通用逻辑应用和组合功能。<br><br></li>
+<li><strong>arithmetic mode</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/B8C14511458742FAB1CE004378E1019B/27296" alt=""><br>算术模式是实现加法器（adders）、计数器（counters）、累加器（accumulators）、比较器（comparators）的理想选择。</li>
+</ul>
+<h4 id="6-Logic-Array-Blocks（LABs）逻辑阵列块"><a href="#6-Logic-Array-Blocks（LABs）逻辑阵列块" class="headerlink" title="6. Logic Array Blocks（LABs）逻辑阵列块"></a>6. Logic Array Blocks（LABs）逻辑阵列块</h4><p>contain groups of LEs<br>Topology（拓扑）<br>each LAB consists of the following features</p>
+<ul>
+<li>16 LEs</li>
+<li>LAB控制信号</li>
+<li>LE进位链（carry chains）</li>
+<li>寄存器链</li>
+<li>本地互联<h5 id="6-1-LAB结构"><a href="#6-1-LAB结构" class="headerlink" title="6.1 LAB结构"></a>6.1 LAB结构</h5><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/EB30B761499149A2AEA3D36513407DE0/27298" alt=""></li>
+</ul>
+<h5 id="6-2-直接连接方式"><a href="#6-2-直接连接方式" class="headerlink" title="6.2 直接连接方式"></a>6.2 直接连接方式</h5><p><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/EB30B761499149A2AEA3D36513407DE0/27298" alt=""></p>
+<p>LAB 本地互联是由列和行互联以及 LE 在相同的 LAB 中的输出端驱动的。邻近的 LAB, 锁相环 (PLL),M9K RAM 模块和嵌入式乘法器由左到右通过直接链接连接也可以驱动 LAB的本地互联。直接链接连接功能最小化行和列互联的使用，以提供更高的性能和灵活性。每个 LE 通过加速本地和直接链接互联可以驱动多达 48 个的 LE。</p>
+<h5 id="6-3-LAB控制信号"><a href="#6-3-LAB控制信号" class="headerlink" title="6.3 LAB控制信号"></a>6.3 LAB控制信号</h5><p>每个LAB都包含专用的逻辑以驱动控制信号各自LE，控制信号包括</p>
+<ul>
+<li>两个时钟</li>
+<li>两个时钟使能</li>
+<li>两个异步清零</li>
+<li>一个同步清零</li>
+<li>一个同步加载</li>
+</ul>
+<h4 id="7-Memory-Blocks-in-Cyclone-IV-Devices存储器模块"><a href="#7-Memory-Blocks-in-Cyclone-IV-Devices存储器模块" class="headerlink" title="7. Memory Blocks in Cyclone IV Devices存储器模块"></a>7. Memory Blocks in Cyclone IV Devices存储器模块</h4><p>嵌入式存储器结构由一列列 M9K 存储器模块组成，通过对这些 M9K 存储器模块进行配置，可以实现各种存储器功能，例如：RAM、移位寄存器、 ROM 以及FIFO 缓冲器。 </p>
+<h5 id="7-1-M9K"><a href="#7-1-M9K" class="headerlink" title="7.1 M9K"></a>7.1 M9K</h5><p><strong>M9K 存储器模块支持以下特性：</strong></p>
+<ul>
+<li>每模块 8,192 个存储器位 ( 包括奇偶校验位，每模块共 9,216 位 )</li>
+<li>用于每一个端口的独立读使能 (rden) 与写使能 (wren) 信号</li>
+<li>Packed 模式，该模式下 M9K 存储器模块被分成两个 4.5 K 单端口 RAM</li>
+<li>可变端口配置</li>
+<li>单端口与简单双端口模式，支持所有端口宽度</li>
+<li>真双端口 ( 一个读和一个写，两个读，或者两个写 ) 操作</li>
+<li>字节使能，实现写入期间的数据输入屏蔽</li>
+<li>用于每一个端口 ( 端口 A 和 B) 的时钟使能控制信号</li>
+<li>初始化文件，在 RAM 和 ROM 模式下预加载存储器中的数据</li>
+</ul>
+<p><strong>M9K存储特性</strong></p>
+<p><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/243EA1759399433E9AB45B5FC7CA6178/27302" alt=""></p>
+<h5 id="7-2-存储器模块"><a href="#7-2-存储器模块" class="headerlink" title="7.2 存储器模块"></a>7.2 存储器模块</h5><ul>
+<li><strong>控制信号</strong><br>时钟使能控制信号对进入输入与输出寄存器的时钟以及整个 M9K 存储器模块进行控制。<br>该信号将时钟禁用，使 M9K 存储器模块侦测不到任何的时钟边沿，从而不会执行任何<br>操作。<br>rden 与 wren 控制信号控制 M9K 存储器模块的每一个端口上的读写操作。当不需要操作<br>时，您可以分别将 rden 或者 wren 信号禁用，从而降低功耗。</li>
+<li><strong>奇偶校验位支持</strong><br>通过奇偶校验位以及内部逻辑资源，用于错误检测的奇偶校验检查是可以实现的。Cyclone IV 器件 M9K 存储器模块支持每一个存储字节含有一个奇偶校验位，您可以将该位用作奇偶校验位或者额外的数据位。实际上，该位不执行奇偶校验功能。</li>
+<li><strong>字节使能支持</strong><br>Cyclone IV 器件 M9K 存储器模块支持字节使能，该功能屏蔽了输入数据，这样仅写入数据中的指定字节。未被写入的字节保留之前写入的值。 wren 信号以及字节使能(byteena) 信号一起控制 RAM 模块的写操作。 byteena 信号默认为高电平 ( 使能的 )，这种情况下写操作仅由 wren 信号来控制。 byteena 寄存器的清零端口是不存在的。当写端口具有 ×16, ×18, ×32, 或者 ×36 位数据位宽时，M9K 模块将支持字节使能。<br>字节使能以独热码的形式运行，并且 byteena 的最低位对应于数据总线的最低字节。例如，若 byteena = 01， 并且在 ×18 模式下使用一个 RAM 模块，则 data[8..0] 被使能，而 data[17..9] 被禁用。同样地，若 byteena = 11, 则 data[8..0] 以及data[17..9] 均被使能。字节使能为高电平有效。<br><strong>M9K模块的byteena模块</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/86A500694B1940FB9D9359F1E5A3F22F/27304" alt=""></li>
+</ul>
+<p><strong>byteena功能波形图</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/18802503E57840D2B011C645C168AC6E/27306" alt=""><br>当一个 byteena 位在写周期中被置低时，存储器中的旧数据会出现在相应的数据字节输出端。当一个 byteena 位在写周期中被置位时，相应的数据字节输出取决于Quartus® II 中所选择的设置。 该设置既可以是在相应位置上新写入的数据，也可以是原有的旧数据。<br>当单独的M9K存储器模块的PortA以及PortB数据位宽是8位或者9位的倍数时，字节使能仅适用于真双端口 (True Dual-Port) 存储器配置。</p>
+<p><strong>地址时钟使能支持</strong><br>Cyclone IV 器件 M9K 存储器模块支持低电平有效地址时钟使能，只要 addressstall信号为高电平 (addressstall = ‘1’)，低电平有效地址时钟使能就会保持之前的地址值。 当在双端口模式下配置 M9K 存储器模块时，每个端口都有各自独立的地址时钟使能。<br>地址时钟使能通常在高速缓存错失期间用于增进高速缓存存储器应用的有效性。地址<br>时钟使能的默认值为低电平。</p>
+<p><strong>地址时钟使能在度周期中的波形</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/D258D38A612D467D8C693E4D752E6E57/27308" alt=""></p>
+<p><strong>地址时钟在写周期中的波形</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/A43F533B61E84D2ABE9D152E31C47C34/27310" alt=""></p>
+<p><strong>混合位宽支持</strong><br>M9K 存储器模块支持混合数据位宽。当使用简单双端口、真双端口、或者 FIFO 模式时，混合位宽支持实现了读写不同的数据位宽到 M9K 存储器模块。</p>
+<p><strong>异步清零</strong><br>Cyclone IV 器件仅支持读地址寄存器、输出寄存器以及输出锁存器的异步清零操作，输入寄存器 ( 除了读地址寄存器 ) 不支持异步清零。在读操作过程中，对读地址寄存器置位异步清零有可能会导致存储数据的损坏。<br>输出锁存器异步清零<br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/F20757C5D9194F5BB82F7FA8FB116E61/27312" alt=""></p>
+<p>通过使用 Quartus II RAM MegaWizard ™ Plug-In Manager，可以有选择地使能每个逻辑存储器的异步清零功能。</p>
+<p><strong>通过三种方式可以对 M9K 模块中的寄存器进行复位：</strong></p>
+<ul>
+<li>器件上电</li>
+<li>将 aclr 信号仅用于输出寄存器</li>
+<li>使用 DEV_CLRn 选项来进行全器件复位</li>
+</ul>
+<p><strong>存储器包括：单端口、简单双端口、真双端口、移位寄存器、ROM、FIFO。</strong></p>
+<ul>
+<li><p>单端口模式<br>单端口模式支持从单一地址上的异时读写操作。写操作期间，RAM 输出行为是可以配置的。如果在写操作期间激活 rden 信号，则 RAM输出端会显示相应地址上正在写入的新数据，或者原有的旧数据。 如果在 rden 信号未激活的情况下执行写操作，那么 RAM 输出端将保留它们在最近的 rden 信号有效期间所保持的值。要选择所需的行为，需要在 Quartus II 的 RAM MegaWizard Plug-In Manager 中，将Read-During-Write 选项设置成 New Data 或者 Old Data。<br><strong>单端口模式时序波形</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/77F88D63147A4706872D3644509F9DB0/27314" alt=""><br>输出端的单端口模式下读写操作的时序波形。 寄存 RAM 的输出端只会将 q 输出延长一个时钟周期。</p>
+</li>
+<li><p>简单双端口模式<br>简单双端口模式支持到不同位置的同时读写操作。在简单双端口模式中，M9K 存储器模块支持独立的 wren 与 rden 信号。在没有进行读操作的时候，将 rden 信号保持在低电平 ( 无效状态 )，从而降低功耗。 相同地址上的Read- during- write 操作能够在相应位置上输出 “New Data” 数据，或者输出 “Old<br>Data”。要选择所需的行为，需要在 Quartus II 的 RAM MegaWizard Plug-In Manager中将 Read- During-Write 选项设置成 New Data 或者 Old Data。<br><strong>简单双端口时序波形</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/F7E10E7B667E454CBD424F3C48100C53/27316" alt=""></p>
+</li>
+<li><p>真双端口模式<br>真双端口模式支持两端口操作的任何组合：在两个不同时钟频率上的两个读操作、两个写操作，或者一个读操作和一个写操作。<br>在真双端口模式中，M9K 存储器模块支持独立的 wren 与 rden 信号。在没有进行读操作的时候，将 rden 信号保持在低电平 ( 无效状态 )，从而降低功耗。 相同地址上的Read- during- write 操作能够在相应位置上输出 “Don’t Care” 数据，或者输出“Old Data”。要选择所需的行为，需要在 Quartus II 的 RAM MegaWizard Plug-InManager 中将 Read- During-Write 选项设置成 Don’t Care 或者 Old ata。</p>
+</li>
+<li>ROM 模式<br>Cyclone IV 器件 M9K 存储器模块支持 ROM 模式。 .mif 文件对这些模块的 ROM 中的数据进行初始化。OM 的地址线是寄存的，输出端可以被寄存，也可以不被寄存。ROM 的读操作与单端口 RAM 配置中的读操作相同。</li>
+<li>FIFO 缓冲器模式<br>Cyclone IV 器件 M9K 存储器模块支持单时钟或者双时钟 FIFO 缓冲器。当从一个时钟域到另一个时钟域传输数据时，会用到双时钟 FIFO 缓冲器。Cyclone IV 器件 M9K 存储器模块不支持同时读写操作在一个空白 FIFO 缓冲器中。</li>
+</ul>
+<h4 id="8-嵌入式乘法器Embedded-Multipliers"><a href="#8-嵌入式乘法器Embedded-Multipliers" class="headerlink" title="8. 嵌入式乘法器Embedded Multipliers"></a>8. 嵌入式乘法器Embedded Multipliers</h4><p>DE2-115有266个嵌入式乘法器，即532个9×9乘法器和18×18乘法器</p>
+<h4 id="9-时钟网络"><a href="#9-时钟网络" class="headerlink" title="9. 时钟网络"></a>9. 时钟网络</h4><p>GCLK全局时钟网络，驱动整个器件，并对器件各象限提供时钟。器件中的所有资源 (I/O 单元、逻辑<br>阵列模块 (LAB)、专用乘法器模块以及 M9K 存储器模块 ) 都能够将 GCLK 用作时钟资源。<br><strong>时钟控制模块输入</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/23CC2D7AD5744D86914DABC0EB441FCD/27318" alt=""><br><strong>时钟控制模块</strong><br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/970163CC17014ECCB367D04CA0DFE7D4/27320" alt=""><br>每个 PLL 通过 c[4..0] 计数器生成五个时钟输出。其中的两个时钟通过时钟控制模块来驱动 GCLK。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/17/FPGA/Altera/04_CycloneIV-IOE/" rel="next" title="04_CycloneIV-IOE">
+                <i class="fa fa-chevron-left"></i> 04_CycloneIV-IOE
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/17/FPGA/Altera/06_PLL/" rel="prev" title="06_PLL内部结构">
+                06_PLL内部结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Clock-Management"><span class="nav-number">1.</span> <span class="nav-text">1. Clock Management</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Transceivers"><span class="nav-number">2.</span> <span class="nav-text">2.Transceivers</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-transceiver-channel-PMA（物理介质附加子层）"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 transceiver channel PMA（物理介质附加子层）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-receiver-channel-PMA"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 receiver channel PMA</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-receiver-channel-PCS"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 receiver channel PCS</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3"><span class="nav-number">3.</span> <span class="nav-text">3.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-LE"><span class="nav-number">4.</span> <span class="nav-text">4. LE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5"><span class="nav-number">5.</span> <span class="nav-text">5.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Logic-Array-Blocks（LABs）逻辑阵列块"><span class="nav-number">6.</span> <span class="nav-text">6. Logic Array Blocks（LABs）逻辑阵列块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-LAB结构"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 LAB结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-直接连接方式"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 直接连接方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-3-LAB控制信号"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 LAB控制信号</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-Memory-Blocks-in-Cyclone-IV-Devices存储器模块"><span class="nav-number">7.</span> <span class="nav-text">7. Memory Blocks in Cyclone IV Devices存储器模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#7-1-M9K"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 M9K</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-2-存储器模块"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 存储器模块</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-嵌入式乘法器Embedded-Multipliers"><span class="nav-number">8.</span> <span class="nav-text">8. 嵌入式乘法器Embedded Multipliers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-时钟网络"><span class="nav-number">9.</span> <span class="nav-text">9. 时钟网络</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_pv">
+    总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/17/FPGA/Altera/05_CycloneIV-datasheet/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
