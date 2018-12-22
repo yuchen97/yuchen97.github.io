@@ -115,23 +115,26 @@
 
 
 
-  <meta name="description" content="chenyu110197@gmail.com">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Chenyu&#39;s Blog">
-<meta property="og:url" content="https://yuchen97.github.io/tags/AD/index.html">
+  <meta name="description" content="07_简单神经网络train and test详解（双层）【 The latest data ： 2018/05/01 】Yuchen Loop   Sample a batch of data    Forward prop it through the graph,get loss    Backprop to calculate the gradients    Update the par">
+<meta property="og:type" content="article">
+<meta property="og:title" content="07_简单神经网络详解（双层）">
+<meta property="og:url" content="https://yuchen97.github.io/2018/12/21/Machine Learning/Tensorflow/07_简单神经网络详解（双层）/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="chenyu110197@gmail.com">
+<meta property="og:description" content="07_简单神经网络train and test详解（双层）【 The latest data ： 2018/05/01 】Yuchen Loop   Sample a batch of data    Forward prop it through the graph,get loss    Backprop to calculate the gradients    Update the par">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/0262b30e96c98b67a94f5012a233abe0/xmlnote/72294450957B478A84381B1FB76B7C51/13413">
+<meta property="og:updated_time" content="2018-12-21T09:02:13.369Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chenyu&#39;s Blog">
-<meta name="twitter:description" content="chenyu110197@gmail.com">
+<meta name="twitter:title" content="07_简单神经网络详解（双层）">
+<meta name="twitter:description" content="07_简单神经网络train and test详解（双层）【 The latest data ： 2018/05/01 】Yuchen Loop   Sample a batch of data    Forward prop it through the graph,get loss    Backprop to calculate the gradients    Update the par">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/0262b30e96c98b67a94f5012a233abe0/xmlnote/72294450957B478A84381B1FB76B7C51/13413">
 
 
 
 
 
 
-  <link rel="canonical" href="https://yuchen97.github.io/tags/AD/">
+  <link rel="canonical" href="https://yuchen97.github.io/2018/12/21/Machine Learning/Tensorflow/07_简单神经网络详解（双层）/">
 
 
 
@@ -141,7 +144,7 @@
   };
 </script>
 
-  <title>标签: AD | Chenyu's Blog</title>
+  <title>07_简单神经网络详解（双层） | Chenyu's Blog</title>
   
 
 
@@ -190,7 +193,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
         position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
@@ -368,313 +371,347 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>AD<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/21/Machine Learning/Tensorflow/07_简单神经网络详解（双层）/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/12/11/AD/10_PCB布线与覆铜/" itemprop="url">
-              
-                <span itemprop="name">10_PCB布线与覆铜</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">07_简单神经网络详解（双层）
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T17:40:55+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-21 16:54:47 / 修改时间：17:02:13" itemprop="dateCreated datePublished" datetime="2018-12-21T16:54:47+08:00">2018-12-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/Tensorflow/" itemprop="url" rel="index"><span itemprop="name">Tensorflow</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/11/AD/09_创建元件库及元件封装/" itemprop="url">
-              
-                <span itemprop="name">09_创建元件库及元件封装</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T17:07:21+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
+        <h3 id="07-简单神经网络train-and-test详解（双层）"><a href="#07-简单神经网络train-and-test详解（双层）" class="headerlink" title="07_简单神经网络train and test详解（双层）"></a>07_简单神经网络train and test详解（双层）</h3><p><strong>【 The latest data ： 2018/05/01 】Yuchen</strong></p>
+<p><strong>Loop</strong></p>
+<ul>
+<li><ol>
+<li>Sample a batch of data</li>
+</ol>
+</li>
+<li><ol>
+<li>Forward prop it through the graph,get loss</li>
+</ol>
+</li>
+<li><ol>
+<li>Backprop to calculate the gradients</li>
+</ol>
+</li>
+<li><ol>
+<li>Update the parameters using the gradient<h4 id="1-NN模型如下"><a href="#1-NN模型如下" class="headerlink" title="1. NN模型如下"></a>1. NN模型如下</h4>神经网络整体架构内容可参考之前的云笔记《06_神经网络整体架构》<br><a href="http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5e8c1&amp;sub=7F4BC70112524F9289531EC6AE435E14" target="_blank" rel="noopener">http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5e8c1&amp;sub=7F4BC70112524F9289531EC6AE435E14</a></li>
+</ol>
+</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/0262b30e96c98b67a94f5012a233abe0/xmlnote/72294450957B478A84381B1FB76B7C51/13413" alt=""><br>其中，</p>
+<p>n是指的样本数</p>
+<p>Mnist数据集 784是28×28×1 灰度图 channel = 1</p>
+<p>wb是指的权重参数</p>
+<p>输出的是10分类的得分值，也可以接softmax分类器</p>
+<p>out是L2层和输出层之间的关系</p>
+<p>256 128 10是指的神经元数量</p>
+<h4 id="2-构造参数"><a href="#2-构造参数" class="headerlink" title="2. 构造参数"></a>2. 构造参数</h4><p>由于 $w_1$ 前后数据分别是 784 和 256 ，所以 $w_1=784\times256$，同理  $w_2=256\times128$，$out=128\times10$ 对于 $b$ 直接让其等于常量，因为 $L_1 L_2$ 神经元数量分别是 256 和 128，可以令 $b_1=256,b_2=128,b_3=10$</p>
+<h4 id="3-Code"><a href="#3-Code" class="headerlink" title="3. Code"></a>3. Code</h4><h5 id="1-网络模型架构搭建"><a href="#1-网络模型架构搭建" class="headerlink" title="1. 网络模型架构搭建"></a>1. 网络模型架构搭建</h5><p><strong>导入相应数据</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import tensorflow as tf</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import input_data</span><br><span class="line"></span><br><span class="line">mnist = input_data.read_data_sets(&apos;data/&apos;, one_hot=True)</span><br></pre></td></tr></table></figure></p>
+<p><strong>network topologies</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 网络拓扑 network topologies</span><br><span class="line"># layer中神经元数量</span><br><span class="line">n_hidden_1 = 256</span><br><span class="line">n_hidden_2 = 128</span><br><span class="line"></span><br><span class="line"># 输入数据的像素点 28x28x1</span><br><span class="line">n_input    = 784</span><br><span class="line"># 10分类</span><br><span class="line">n_classes  = 10</span><br></pre></td></tr></table></figure></p>
+<p><strong>input and output</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = tf.placeholder(&quot;float&quot;,[None,n_input])</span><br><span class="line">y = tf.placeholder(&quot;float&quot;,[None,n_classes])</span><br></pre></td></tr></table></figure></p>
+<p><strong>network parameters</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    # network parameters</span><br><span class="line"></span><br><span class="line">    # 方差</span><br><span class="line">    stddev = 0.1</span><br><span class="line">    # random_normal 高斯初始化</span><br><span class="line">    weights = &#123;</span><br><span class="line">        &apos;w1&apos;  : tf.Variable(tf.random_normal([n_input,n_hidden_1],stddev=stddev)),</span><br><span class="line">        &apos;w2&apos;  : tf.Variable(tf.random_normal([n_hidden_1,n_hidden_2],stddev=stddev)),</span><br><span class="line">        &apos;out&apos; : tf.Variable(tf.random_normal([n_hidden_2,n_classes],stddev=stddev))</span><br><span class="line">    &#125;</span><br><span class="line">    # 对于 b 零值初始化也可以</span><br><span class="line">    biases = &#123;</span><br><span class="line">        &apos;b1&apos;  : tf.Variable(tf.random_normal([n_hidden_1])),</span><br><span class="line">        &apos;b2&apos;  : tf.Variable(tf.random_normal([n_hidden_2])),</span><br><span class="line">        &apos;out&apos; : tf.Variable(tf.random_normal([n_classes]))</span><br><span class="line">    &#125;</span><br><span class="line">    print(&quot;Network Ready&quot;)</span><br><span class="line">```    </span><br><span class="line">output</span><br></pre></td></tr></table></figure></p>
+<pre><code>Network Ready
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">可以看到网络模型架构搭建成功</span><br><span class="line">##### 2.训练网络模型</span><br><span class="line"></span><br><span class="line">**定义前向传播函数**</span><br></pre></td></tr></table></figure>
+<pre><code># 定义前向传播函数
+def multilayer_perceptron(_X, _weights, _biases):
+    # 之所以加 sigmoid 是因为每一个 hidden layer 都有一个非线性函数
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+    layer_1 = tf.nn.sigmoid(tf.add(tf.matmul(_X, _weights[&#39;w1&#39;]), _biases[&#39;b1&#39;]))
+    layer_2 = tf.nn.sigmoid(tf.add(tf.matmul(layer_1, _weights[&#39;w2&#39;]), _biases[&#39;b2&#39;]))
+    return (tf.matmul(layer_2, _weights[&#39;out&#39;]) + _biases[&#39;out&#39;])
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">**反向传播**</span><br><span class="line"></span><br><span class="line">（1）将前向传播预测值</span><br></pre></td></tr></table></figure>
+<pre><code># prediction
+pred = multilayer_perceptron(x, weights, biases)
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（2）定义损失函数</span><br></pre></td></tr></table></figure>
+<pre><code># 首先定义损失函数 softmax_cross_entropy_with_logits 交叉熵函数
+# 交叉熵函数的输入有 pred : 网络的预测值 （前向传播的结果）
+#                      y  : 实际的label值
+# 将两参数的一系列的比较结果，除以 batch 求平均之后的 loss 返回给 cost 损失值
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y))
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（3）梯度下降最优化</span><br></pre></td></tr></table></figure>
+<pre><code>optm = tf.train.GradientDescentOptimizer(learning_rate = 0.001).minimize(cost)
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（4）精确值</span><br><span class="line">  </span><br><span class="line">  具体解释详见上一篇笔记《06_迭代完成逻辑回归模型》http://note.youdao.com/noteshare?id=36ba03155b0d93b5273d7a3602ca9542&amp;sub=D051DF2A1A7C4754A5A6227692115605</span><br></pre></td></tr></table></figure>
+<pre><code>corr = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
+accr = tf.reduce_mean(tf.cast(corr, &quot;float&quot;))
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（5）初始化</span><br></pre></td></tr></table></figure>
+<pre><code># initializer
+init = tf.global_variables_initializer()
+print(&quot;Function ready&quot;)
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output</span><br></pre></td></tr></table></figure>
+<pre><code>Function ready
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">可以看出传播中的参数和优化模型搭建成功</span><br><span class="line">##### 3. Train and Test</span><br></pre></td></tr></table></figure>
+<pre><code>training_epochs = 20
+# 每次 iteration 的样本
+batch_size      = 100
+# 每四个 epoch 打印一次结果
+display_step    = 4
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/11/AD/08_AD-PCB-ATmega16/" itemprop="url">
-              
-                <span itemprop="name">08_AD-PCB-ATmega16</span>
-              
-            </a>
-        
-      </h2>
+# lanch the graph
+sess = tf.Session()
+sess.run(init)
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T11:52:08+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/11/AD/07_AD-ATmega16最小系统绘制/" itemprop="url">
-              
-                <span itemprop="name">07_AD-ATmega16最小系统绘制</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T11:33:56+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/11/AD/06_AD-PCB-Library/" itemprop="url">
-              
-                <span itemprop="name">06_AD-PCB-Library</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T11:02:22+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/11/AD/05_AD-Schematic-Library/" itemprop="url">
-              
-                <span itemprop="name">05_AD-Schematic-Library</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T10:39:47+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/11/AD/04_AD分层次设计/" itemprop="url">
-              
-                <span itemprop="name">04-AD分层次设计</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T10:22:03+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/11/AD/03_AD_数字模拟地/" itemprop="url">
-              
-                <span itemprop="name">03_AD_数字模拟地</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T10:12:21+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/11/AD/02_AD_PCB_layers/" itemprop="url">
-              
-                <span itemprop="name">02—_AD_PCB_layers</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T10:01:38+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/10/AD/01_AD使用的基础规则/" itemprop="url">
-              
-                <span itemprop="name">01_AD使用的基础规则</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-10T20:49:51+08:00" content="2018-12-10">
-          12-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+# optimize
+for epoch in range(training_epochs):
+    # 初始，平均 loss = 0
+    avg_cost    = 0
+    total_batch = int(mnist.train.num_examples/batch_size)
+    # iteration
+    for i in range(total_batch):
+        # 通过 next_batch 返回相应的 batch_xs，batch_ys
+        batch_xs, batch_ys = mnist.train.next_batch(batch_size)
+        feeds              = {x: batch_xs, y: batch_ys}
+        sess.run(optm, feed_dict = feeds)
+        avg_cost          += sess.run(cost, feed_dict = feeds)
+    avg_cost = avg_cost / total_batch
+    # display
+    if (epoch+1) % display_step == 0:
+        print(&quot;Epoch: %03d/%03d cost: %.9f &quot; %(epoch, training_epochs, avg_cost))
+        feeds = {x: batch_xs, y: batch_ys}
+        train_acc = sess.run(accr, feed_dict = feeds)
+        print(&quot;train accuracy: %.3f&quot; % (train_acc))
+        feeds = {x: mnist.test.images, y: mnist.test.labels}
+        test_acc = sess.run(accr, feed_dict = feeds)
+        print(&quot;test accuracy: %.3f&quot; % (test_acc))
+print(&quot;optimization finished&quot;)
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output</span><br></pre></td></tr></table></figure>
+<pre><code>Epoch: 003/020 cost: 2.273774184 
+train accuracy: 0.250
+test accuracy: 0.197
+Epoch: 007/020 cost: 2.240329206 
+train accuracy: 0.270
+test accuracy: 0.311
+Epoch: 011/020 cost: 2.203503076 
+train accuracy: 0.370
+test accuracy: 0.404
+Epoch: 015/020 cost: 2.161286944 
+train accuracy: 0.490
+test accuracy: 0.492
+Epoch: 019/020 cost: 2.111541148 
+train accuracy: 0.410
+test accuracy: 0.534
+optimization finished
+</code></pre><p>```<br>像素28 $\times$ 28 $\times$ 1</p>
+<p>20个batch每个batch 100个样本，每隔4个batch打印一次</p>
+<p>处理器：Intel Core i5-6200U CPU @ 2.30GHz 2.04GHz</p>
+<p>04 epoch：train+test, cost_time: 25’40”</p>
+<p>08 epoch：train+test, cost_time: 50’29”</p>
+<p>12 epoch：train+test, cost_time:  74’42”</p>
+<p>16 epoch：train+test, cost_time:  98’63”</p>
+<p>20 epoch：train+test, cost_time:  121’49”</p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/21/Machine Learning/Tensorflow/06_迭代完成逻辑回归模型/" rel="next" title="06_迭代完成逻辑回归模型">
+                <i class="fa fa-chevron-left"></i> 06_迭代完成逻辑回归模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/22/Machine Learning/01_得分函数/" rel="prev" title="01_得分函数">
+                01_得分函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -695,8 +732,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -713,7 +759,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-count">88</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -748,25 +794,26 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
               
 
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
               
             </nav>
           
@@ -814,6 +861,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#07-简单神经网络train-and-test详解（双层）"><span class="nav-number">1.</span> <span class="nav-text">07_简单神经网络train and test详解（双层）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-NN模型如下"><span class="nav-number">1.1.</span> <span class="nav-text">1. NN模型如下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-构造参数"><span class="nav-number">1.2.</span> <span class="nav-text">2. 构造参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Code"><span class="nav-number">1.3.</span> <span class="nav-text">3. Code</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-网络模型架构搭建"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 网络模型架构搭建</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -977,6 +1040,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
 
   
 
@@ -989,6 +1056,20 @@
 
 
 
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/21/Machine Learning/Tensorflow/07_简单神经网络详解（双层）/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
