@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="【2018/3/7】  参考资料http://blog.csdn.net/zhaoxinfan/article/details/73824232http://xilinx.eetrend.com/blog/9704http://www.instructables.com/id/Embedded-Linux-Tutorial-Zybo/《Miz702 ZYNQ开发教程》《Miz702 ZYNQ（LI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05_zynq-soc-light">
+<meta property="og:url" content="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/05_zynq-soc-light/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="【2018/3/7】  参考资料http://blog.csdn.net/zhaoxinfan/article/details/73824232http://xilinx.eetrend.com/blog/9704http://www.instructables.com/id/Embedded-Linux-Tutorial-Zybo/《Miz702 ZYNQ开发教程》《Miz702 ZYNQ（LI">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/D4E88D50028B4C56A0AC33C55599DA3A/28764">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/B4590FA1FD9F4D23BB989C67E7CA5101/28800">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/96FF09D8944A4A0793067DCD4ED139E1/28838">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/EE0565BB68814B5BBD0F5DC4EEF82479/28834">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/BAA45BCED4124D8993CB98899A38C8BB/28792">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/066CC554E76D43BEBAB83243F3C9E43D/28796">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/ED94D72DB7E84ADDA410F541D88A8912/28771">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/BE940EEC06304275B7CD178BC4B3A210/28830">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/7E90086124FD4E17926D50ADF4C203C8/28823">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/6134612D2E3C4FA7904F6258FE4B5C65/28810">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/E06E84E409974111960ED88E70E0481B/28828">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/AD9BB504887948A1AA3856DADFCB4298/28826">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/229F2C42570A46FE801A2B57D5722C97/28827">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/E2470E22457E406EAAB7EB61EB74B2B3/28806">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/5B2F02A5242B4677A9B463C76353370D/28832">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/F90229A5929F4D63AF28382BAEB91369/28835">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/7E0243468A6B4B07AC853ACE56899E39/28812">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/576408627D524D4D90F300619BE66FA7/28813">
+<meta property="og:updated_time" content="2018-12-20T09:34:51.804Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="05_zynq-soc-light">
+<meta name="twitter:description" content="【2018/3/7】  参考资料http://blog.csdn.net/zhaoxinfan/article/details/73824232http://xilinx.eetrend.com/blog/9704http://www.instructables.com/id/Embedded-Linux-Tutorial-Zybo/《Miz702 ZYNQ开发教程》《Miz702 ZYNQ（LI">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/D4E88D50028B4C56A0AC33C55599DA3A/28764">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/05_zynq-soc-light/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>05_zynq-soc-light | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/05_zynq-soc-light/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">05_zynq-soc-light
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-20 15:29:16 / 修改时间：17:34:51" itemprop="dateCreated datePublished" datetime="2018-12-20T15:29:16+08:00">2018-12-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/Xilinx/" itemprop="url" rel="index"><span itemprop="name">Xilinx</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>【2018/3/7】</p>
+<blockquote>
+<p><strong>参考资料</strong><br><a href="http://blog.csdn.net/zhaoxinfan/article/details/73824232" target="_blank" rel="noopener">http://blog.csdn.net/zhaoxinfan/article/details/73824232</a><br><a href="http://xilinx.eetrend.com/blog/9704" target="_blank" rel="noopener">http://xilinx.eetrend.com/blog/9704</a><br><a href="http://www.instructables.com/id/Embedded-Linux-Tutorial-Zybo/" target="_blank" rel="noopener">http://www.instructables.com/id/Embedded-Linux-Tutorial-Zybo/</a><br>《Miz702 ZYNQ开发教程》<br>《Miz702 ZYNQ（LINUX）开发教程》<br>《Getting Started with ZYBO》</p>
+</blockquote>
+<p>放在SD Card中的文件应包括 Boot.bin、devicetree.dtb、uimage三个文件。<br>其中boot.bin可以通过SDK的 Creat Zynq Boot Image来完成，具体可参考Miz702 ZYNQ开发教程的《第十章ZYNQ制作UBOOT》。<br>一般而言boot.bin由fsbl.elf  system.bit  system.elf组成，而对于linux下的开发而言，boot.bin是由fsbl.elf uboot.elf和system.bit组成，其中fsbl和system.bit和前者没什么区别，主要是uboot需要在linux下编译完成。<br>经测验，boot.bin也可以由前两者生成，由于uboot、uimage、devicetree对于在此xillydemo工程下的同一个板子而言是相同的，而fsbl又是SDK直接生成的，所以在使用的时候直接用boot.bin uimage devicetree.dtb 和 工程的bit文件就可以。</p>
+<p>也就是说对同一块板子，不同的工程只需要修改system.bit就ok。</p>
+<p>下面根据设计所需，一个一个来进行解说。</p>
+<h4 id="1-制作BOOT-BIN"><a href="#1-制作BOOT-BIN" class="headerlink" title="1. 制作BOOT,BIN"></a>1. 制作BOOT,BIN</h4><p>boot.bin =  fsbl.elf + uboot.elf + system.bit.<br>首先完成system.bit的搭建。</p>
+<p>用官方给的xillydemo工程，可参考以下文件。<br>链接：<a href="https://pan.baidu.com/s/1TdHkrjEiYFDxScewaddNoQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1TdHkrjEiYFDxScewaddNoQ</a> 密码：6dhn</p>
+<p>通过tcl建立硬件工程</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/D4E88D50028B4C56A0AC33C55599DA3A/28764" alt=""></p>
+<p>蓝色有空格<br>在工程中添加my_led_ip_0，自动连接之后在相应的输出点击右键可以添加端口，如下所示</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/B4590FA1FD9F4D23BB989C67E7CA5101/28800" alt=""></p>
+<p>根据添加的ip进行原工程相应.v文件的更改。编译之后生成bitstream。</p>
+<h4 id="2-fsbl-elf"><a href="#2-fsbl-elf" class="headerlink" title="2. fsbl.elf"></a>2. fsbl.elf</h4><p>直接参考Miz702 ZYNQ开发教程的《第十章ZYNQ制作UBOOT》。</p>
+<h4 id="3-uboot"><a href="#3-uboot" class="headerlink" title="3. uboot"></a>3. uboot</h4><p>直接参考Miz702 ZYNQ开发教程（LINUX）的《第三章LINUX下的uboot的修改和编译》和配套视频讲解，在此之前需要搭建linux下的交叉编译环境。具体请看之前的linux下的交叉编译环境搭建的笔记。</p>
+<p>用uboot、fsbl生成boot.bin文件保留以备用。</p>
+<h4 id="4-devicetree-dtb"><a href="#4-devicetree-dtb" class="headerlink" title="4. devicetree.dtb"></a>4. devicetree.dtb</h4><h4 id="5-uimage"><a href="#5-uimage" class="headerlink" title="5. uimage"></a>5. uimage</h4><p>直接参考《Getting Started with ZYBO》</p>
+<p>将</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/96FF09D8944A4A0793067DCD4ED139E1/28838" alt=""></p>
+<p>放入SD Card，注意跳线帽接在SD端。<br>用putty软件打开进行参数修改。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/EE0565BB68814B5BBD0F5DC4EEF82479/28834" alt=""></p>
+<p>修改好串口对应参数</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/BAA45BCED4124D8993CB98899A38C8BB/28792" alt=""></p>
+<p>上电之后如图</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/066CC554E76D43BEBAB83243F3C9E43D/28796" alt=""></p>
+<p>按下开发板上的PS-RESET进行复位</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/ED94D72DB7E84ADDA410F541D88A8912/28771" alt=""></p>
+<p>ls，找到对应的.c文件<br>（注 新建文件可以用mkdir 比如</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/BE940EEC06304275B7CD178BC4B3A210/28830" alt=""></p>
+<p>rm -rf XX可删除文件<br>注：若删除时出现 Permission denied 的提示，可以在命令前加sudo 即:sudo rm -rf 文件夹的名字，即可删除。<br>提醒：使用这个rm -rf的时候一定要格外小心，linux没有回收站的。rm还有更多的其他参数和用法，具体参数用法使用man rm查看。<br>说明：<br>-r 向下递归，不管有多少级目录，一并删除<br>-f 直接强行删除，不作任何提示的意思</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/7E90086124FD4E17926D50ADF4C203C8/28823" alt=""><br>）<br>nano文本编辑器，比vi/vim简单</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/6134612D2E3C4FA7904F6258FE4B5C65/28810" alt=""></p>
+<p>.c文件在Desktop_&gt;tyqxilinx里<br>01_linux_led.c内容如下（偷懒，前两个图从网站上截的，后一个是putty，两个程序连起来就是了）<br>资料参考：<a href="http://blog.csdn.net/zhaoxinfan/article/details/73824232" target="_blank" rel="noopener">http://blog.csdn.net/zhaoxinfan/article/details/73824232</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdint.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;sys/stat.h&gt;</span><br><span class="line">#include &lt;sys/mman.h&gt;</span><br><span class="line"> </span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;fcntl.h&gt;</span><br><span class="line"> </span><br><span class="line">#define PAGE_SIZE  ((size_t)getpagesize())</span><br><span class="line">#define PAGE_MASK ((uint64_t) (long)~(PAGE_SIZE - 1))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">void Xil_Out32(uint64_t phyaddr, uint32_t val)</span><br><span class="line">&#123;</span><br><span class="line">	int fd;</span><br><span class="line">	volatile uint8_t *map_base;</span><br><span class="line">	uint64_t base = phyaddr &amp; PAGE_MASK;</span><br><span class="line">	uint64_t pgoffset = phyaddr &amp; (~PAGE_MASK);</span><br><span class="line"> </span><br><span class="line">	if((fd = open(&quot;/dev/mem&quot;, O_RDWR | O_SYNC)) == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		perror(&quot;open /dev/mem:&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	map_base = mmap(NULL, PAGE_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED,</span><br><span class="line">			fd, base);</span><br><span class="line">	if(map_base == MAP_FAILED)</span><br><span class="line">	&#123;</span><br><span class="line">		perror(&quot;mmap:&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	*(volatile uint32_t *)(map_base + pgoffset) = val; </span><br><span class="line">	close(fd);</span><br><span class="line">	munmap((void *)map_base, PAGE_SIZE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/E06E84E409974111960ED88E70E0481B/28828" alt=""></p>
+<p>ctrl + x 可以退出</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/AD9BB504887948A1AA3856DADFCB4298/28826" alt=""></p>
+<p>对其进行交叉编译时，需要把opencv_compile.sh（在Desktop_&gt;xilnx里）放在对应的文件夹下。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/229F2C42570A46FE801A2B57D5722C97/28827" alt=""><br><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/E2470E22457E406EAAB7EB61EB74B2B3/28806" alt=""></p>
+<p>打开之后可以看到其内容</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/5B2F02A5242B4677A9B463C76353370D/28832" alt=""></p>
+<p>需要把待编译的文件改成所需编译的.c文件</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/F90229A5929F4D63AF28382BAEB91369/28835" alt=""></p>
+<p>执行编译</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/7E0243468A6B4B07AC853ACE56899E39/28812" alt=""><br>（出错的，此文件编译有误）</p>
+<p>关机shutdown 其中shutdown -P 1是指的一分钟之后系统关机。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/576408627D524D4D90F300619BE66FA7/28813" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/20/FPGA/Xilinx/04_linux内核移植/" rel="next" title="04_linux内核移植">
+                <i class="fa fa-chevron-left"></i> 04_linux内核移植
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/20/FPGA/Xilinx/06_PS端口/" rel="prev" title="06-PS端口">
+                06-PS端口 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-制作BOOT-BIN"><span class="nav-number">1.</span> <span class="nav-text">1. 制作BOOT,BIN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-fsbl-elf"><span class="nav-number">2.</span> <span class="nav-text">2. fsbl.elf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-uboot"><span class="nav-number">3.</span> <span class="nav-text">3. uboot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-devicetree-dtb"><span class="nav-number">4.</span> <span class="nav-text">4. devicetree.dtb</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-uimage"><span class="nav-number">5.</span> <span class="nav-text">5. uimage</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_pv">
+    总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/20/FPGA/Xilinx/05_zynq-soc-light/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

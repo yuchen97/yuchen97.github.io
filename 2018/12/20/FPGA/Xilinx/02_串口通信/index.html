@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="串口通信【2017.06.28】实现功能： 将打包好的数据通过串口来进行发送和接收并实现错误检测软件平台： Quartus Ⅱ、Modelsim思路：      发送端包括发送控制和串口发送两个模块，在接收端包括串口接收和接收控制两个模块。将发送FIFO中读取的数据通过uart_tx发送出去，uart_rx接到的数据存入到接收端的FIFO。整体结构框图如图一所示。 图一 uart数据传输整体结构框">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02-串口通信">
+<meta property="og:url" content="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/02_串口通信/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="串口通信【2017.06.28】实现功能： 将打包好的数据通过串口来进行发送和接收并实现错误检测软件平台： Quartus Ⅱ、Modelsim思路：      发送端包括发送控制和串口发送两个模块，在接收端包括串口接收和接收控制两个模块。将发送FIFO中读取的数据通过uart_tx发送出去，uart_rx接到的数据存入到接收端的FIFO。整体结构框图如图一所示。 图一 uart数据传输整体结构框">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/974EBB66AC904B5EA500EBD5BEC9B9AF/27687">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/C37D994245C84598BB2E22B0F0EDB873/27717">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/B915A0ED7C2F4D9089FB779258C8F181/27724">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/B33166DC06F34B399CE9375A2D04A113/27716">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/3A5B211FA1F94266960A7C3040F3374F/27707">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/07138673D783491DB013F45CBD5E92BD/27723">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/9A79449CA66D424B86678716155DCB0C/27713">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/1967CC706579453492643B5D7659437E/27728">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/91700BDF103C4C8BBA7FB1480DFCB7BD/27710">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/36B231A9738A4B2AAB11BCF0FF1D5E3B/27698">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/F51691298B614EB284817A04D9DC1D7E/27725">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/2A2C8A46E9BA4CA8A959D7E6801172A6/27711">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/055B651C184B4C69B38189230E21579C/27706">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/4AC304385A414A6DA27CF9C34947F323/27718">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/86D525DF04F643E79BB2231F7FE965EF/27721">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/2146636800D5468FA459915C060557A3/27704">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/F49791D5868D4DDD9BA8495A1A3ECFCB/27703">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/05B9C254BED9466BB3B54DE19BD10E44/27683">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/7CD58A98648B42F3B59C2ACA6FE927A4/27712">
+<meta property="og:updated_time" content="2018-12-20T06:48:48.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="02-串口通信">
+<meta name="twitter:description" content="串口通信【2017.06.28】实现功能： 将打包好的数据通过串口来进行发送和接收并实现错误检测软件平台： Quartus Ⅱ、Modelsim思路：      发送端包括发送控制和串口发送两个模块，在接收端包括串口接收和接收控制两个模块。将发送FIFO中读取的数据通过uart_tx发送出去，uart_rx接到的数据存入到接收端的FIFO。整体结构框图如图一所示。 图一 uart数据传输整体结构框">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/974EBB66AC904B5EA500EBD5BEC9B9AF/27687">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/02_串口通信/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>02-串口通信 | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/02_串口通信/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">02-串口通信
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-20 11:05:57 / 修改时间：14:48:48" itemprop="dateCreated datePublished" datetime="2018-12-20T11:05:57+08:00">2018-12-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/Xilinx/" itemprop="url" rel="index"><span itemprop="name">Xilinx</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h3><p>【2017.06.28】<br><strong>实现功能：</strong> 将打包好的数据通过串口来进行发送和接收并实现错误检测<br><strong>软件平台：</strong> Quartus Ⅱ、Modelsim<br><strong>思路：</strong>      发送端包括发送控制和串口发送两个模块，在接收端包括串口接收和接收控制两个模块。将发送FIFO中读取的数据通过uart_tx发送出去，uart_rx接到的数据存入到接收端的FIFO。整体结构框图如图一所示。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/974EBB66AC904B5EA500EBD5BEC9B9AF/27687" alt=""><br><em>图一 uart数据传输整体结构框图</em></p>
+<h4 id="一、循环冗余检验"><a href="#一、循环冗余检验" class="headerlink" title="一、循环冗余检验"></a>一、循环冗余检验</h4><p>由于普通由于普通串口协议判错能力较低，所以在数据传输中加入了循环冗余检验，如图二。所示，以确保接收数据的准确性。在接收端进行(数据位—检验位)%5 运算，当结果为 0 时，说明这一帧数据是正确的。在数据传输过程中如果有一位数据出错，则中断该数据的接收。为了防止传输过程有数据串丢失，在发送文件之前，先通过函数获取该文件的大小，把此文件的大小发送出去，在接收时先接受该文件的大小，再来接收文件。接收完成后比较两个文件的大小是否一致，若不一致，则舍去此帧数据。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/C37D994245C84598BB2E22B0F0EDB873/27717" alt=""><br><em>图二循环冗余检验示意图</em></p>
+<h4 id="二、FPGA数据发送端"><a href="#二、FPGA数据发送端" class="headerlink" title="二、FPGA数据发送端"></a>二、FPGA数据发送端</h4><p>数据发送端由ctrl_tx和uart_tx两个模块组成。<br>发送端FPGA的发送控制模块向串口发送模块发送启动信号，为了保证数据的准确性，在此采用循环冗余检验，当串口发送模块收到所有的文件数据时，它向发送控制模块发送完成信号，表示此帧数据完全发送至串口发送模块。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/B915A0ED7C2F4D9089FB779258C8F181/27724" alt=""><br><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/B33166DC06F34B399CE9375A2D04A113/27716" alt=""><br><em>图三 FPGA发送端控制模块、发送模块引脚图</em></p>
+<h5 id="2-1-ctrl-tx"><a href="#2-1-ctrl-tx" class="headerlink" title="2.1 ctrl_tx"></a>2.1 ctrl_tx</h5><p>在state_tx程序里面定义了三个状态，分别是IDLE、ST_START、ST_DONE，这三个状态之间是转换可以通过FIFO_NUM、cnt、send_done的值来决定。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/3A5B211FA1F94266960A7C3040F3374F/27707" alt=""></p>
+<h5 id="2-2-uart-tx"><a href="#2-2-uart-tx" class="headerlink" title="2.2 uart_tx"></a>2.2 uart_tx</h5><p>在此拟设传码率是5M，系统是100M，可知当计数值达到20时，发送完成一位数据<br>但后来又在最后加了两位XX，为预留时间多加了几个计数到28。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/07138673D783491DB013F45CBD5E92BD/27723" alt=""><br>数据发送，此发送格式参照循环冗余检验数据格式。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/9A79449CA66D424B86678716155DCB0C/27713" alt=""><br>BUSY检测发送端是否忙碌，当数据正在发送时BUSY为高电平。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/1967CC706579453492643B5D7659437E/27728" alt=""></p>
+<h5 id="2-3-发送端整体RTL视图"><a href="#2-3-发送端整体RTL视图" class="headerlink" title="2.3 发送端整体RTL视图"></a>2.3 发送端整体RTL视图</h5><p>（寄存器转换级电路Register Transfer Level的缩写，也叫暂存器转移层次）如图四所示。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/91700BDF103C4C8BBA7FB1480DFCB7BD/27710" alt=""><br><em>图四 发送端RTL视图</em></p>
+<h5 id="2-4-发送端testbench"><a href="#2-4-发送端testbench" class="headerlink" title="2.4 发送端testbench"></a>2.4 发送端testbench</h5><p>testbench是一种验证手段，主要运用于Modelsim软件的仿真。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">/*****关于仿真文件的编写祥见modelsim笔记*****/</span><br><span class="line">`timescale 1 ps/ 1 ps   //自动生成</span><br><span class="line">module uart1_vlg_tst();</span><br><span class="line"></span><br><span class="line">reg [5:0] FIFO_NUM;</span><br><span class="line">reg clk;</span><br><span class="line">reg [7:0] db_in;</span><br><span class="line">reg rst_n;                                       </span><br><span class="line">wire BUSY;</span><br><span class="line">wire TX;</span><br><span class="line">/***初始化***/                                          </span><br><span class="line">initial  </span><br><span class="line">begin     </span><br><span class="line">       clk       	&lt;=      0;</span><br><span class="line">       FIFO_NUM	&lt;=      0;</span><br><span class="line">       rst_n     	&lt;=      0;</span><br><span class="line">		 #10</span><br><span class="line">       rst_n     	&lt;=      1;</span><br><span class="line">end</span><br><span class="line">/***在此我们假设输入的数据为00110101***/</span><br><span class="line">always @ (posedge clk or negedge rst_n)</span><br><span class="line">begin</span><br><span class="line">	if(!rst_n)</span><br><span class="line">		db_in	&lt;=	&apos;b00110101;</span><br><span class="line">	else if(BUSY==0)</span><br><span class="line">		db_in	&lt;=	~db_in;</span><br><span class="line">end		</span><br><span class="line">	</span><br><span class="line">always</span><br><span class="line">		#100 if(FIFO_NUM &lt; 50)</span><br><span class="line">					FIFO_NUM	&lt;=	FIFO_NUM	+ 1&apos;b1;</span><br><span class="line">			  else</span><br><span class="line">					FIFO_NUM	&lt;=	FIFO_NUM;   </span><br><span class="line"></span><br><span class="line">						 </span><br><span class="line">always #5 clk    	&lt;=   ~clk; </span><br><span class="line">              </span><br><span class="line">uart1 i1 (</span><br><span class="line"></span><br><span class="line">	.BUSY(BUSY),</span><br><span class="line">	.FIFO_NUM(FIFO_NUM),</span><br><span class="line">	.TX(TX),</span><br><span class="line">	.clk(clk),</span><br><span class="line">	.db_in(db_in),</span><br><span class="line">	.rst_n(rst_n)</span><br><span class="line">);</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
+<p>发送端modelsim仿真结果图如下所示</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/36B231A9738A4B2AAB11BCF0FF1D5E3B/27698" alt=""><br><em>图五 发送端modelsim仿真结果示意图</em><br>将其放大讲解</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/F51691298B614EB284817A04D9DC1D7E/27725" alt=""><br>db_in=8‘b00110101<br>而uart通信中包括起始位、数据位、校验位、截止位。起始位由低电平触发，当BUSY为0时ST=0,下一位为这一帧的起始位。由TX波形可知其为01010110011001.<br>0为起始位；10101100为数据位，低位在前；110为校验位；0为截止位1，1为截止位2.<br>注：00110101转化成十进制为53，53%5=3，3转化成二进制为11，而在数据传输中，低位在前所以校验位为110。</p>
+<h4 id="三、FPGA数据接收端"><a href="#三、FPGA数据接收端" class="headerlink" title="三、FPGA数据接收端"></a>三、FPGA数据接收端</h4><p>由于uart_rx在某些程序的原理上与uart_tx相似，这里就不做过多解释。</p>
+<h5 id="3-1-uart-rx"><a href="#3-1-uart-rx" class="headerlink" title="3.1 uart_rx"></a>3.1 uart_rx</h5><p>db_out_buf为原始数据</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/2A2C8A46E9BA4CA8A959D7E6801172A6/27711" alt=""></p>
+<p>判断信号<br>其中if语句里db_out_buf==0&amp;&amp;mod==0&amp;&amp;RX==0判断接收到的所有信号是否都为0，如果是则db_error=1。<br><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/055B651C184B4C69B38189230E21579C/27706" alt=""></p>
+<h5 id="3-2-ctrl-rx"><a href="#3-2-ctrl-rx" class="headerlink" title="3.2 ctrl_rx"></a>3.2 ctrl_rx</h5><p>“act_pos设定是，因为之前只有一个db_act信号来判断是对的，但后来加到了4位，就是把四位读下来。读下来的方式就是差不多移位寄存器，这个方法是郑龙飞当时在计算机网络看到的好像我记得（本来应该是移位后到0011，后来发现不理想，改成了0001）。读到act_reg这四位，且最后一位为1，也就是act_pos=1才算是正确信号。学姐之前是(act_reg==4’b0011)? 1:0,但仿真结果是乱的，改成4‘b0001就不乱了。“</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/4AC304385A414A6DA27CF9C34947F323/27718" alt=""><br>一帧数据成功接收clk_write为高电平。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/86D525DF04F643E79BB2231F7FE965EF/27721" alt=""></p>
+<h5 id="3-3-接收端RTL视图"><a href="#3-3-接收端RTL视图" class="headerlink" title="3.3 接收端RTL视图"></a>3.3 接收端RTL视图</h5><p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/2146636800D5468FA459915C060557A3/27704" alt=""><br><em>图六 接收端RTL视图</em></p>
+<h4 id="四、发送-接收仿真"><a href="#四、发送-接收仿真" class="headerlink" title="四、发送-接收仿真"></a>四、发送-接收仿真</h4><h5 id="4-1-发送和接收端testbench"><a href="#4-1-发送和接收端testbench" class="headerlink" title="4.1 发送和接收端testbench"></a>4.1 发送和接收端testbench</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">`timescale 1 ps/ 1 ps</span><br><span class="line">module uart_vlg_tst();</span><br><span class="line"></span><br><span class="line">reg [5:0] FIFO_NUM;</span><br><span class="line">reg clk;</span><br><span class="line">reg rst_n;</span><br><span class="line">                                             </span><br><span class="line">wire BUSY1;</span><br><span class="line">wire BUSY2;</span><br><span class="line">wire [3:0]  ST;</span><br><span class="line">wire clk_write;</span><br><span class="line">wire [7:0]  db_out;</span><br><span class="line">wire db_out_flag;</span><br><span class="line"></span><br><span class="line">initial  begin     </span><br><span class="line">       clk       	        &lt;=      0;</span><br><span class="line">       FIFO_NUM	&lt;=      0;</span><br><span class="line">       rst_n     	        &lt;=      0;</span><br><span class="line">	#10</span><br><span class="line">       rst_n     	        &lt;=      1;</span><br><span class="line">     end</span><br><span class="line">always #100 if(FIFO_NUM &lt; 50)</span><br><span class="line">						 FIFO_NUM	&lt;=	FIFO_NUM	+ 1&apos;b1;</span><br><span class="line">					else</span><br><span class="line">						 FIFO_NUM	&lt;=	FIFO_NUM;   </span><br><span class="line">always #5 clk    	&lt;=   ~clk; </span><br><span class="line"></span><br><span class="line">wire line_uart;</span><br><span class="line">wire send_done;</span><br><span class="line">reg	[7:0]	db_sim;</span><br><span class="line"></span><br><span class="line">always @ (posedge clk or negedge rst_n)</span><br><span class="line">	if(!rst_n)</span><br><span class="line">		db_sim	&lt;=	&apos;b00110101;</span><br><span class="line">	else if(send_done)</span><br><span class="line">		db_sim	&lt;=	~db_sim;</span><br><span class="line"></span><br><span class="line">wire 	[7:0] db_sim_l;</span><br><span class="line">assign	db_sim_l	=	db_sim;</span><br><span class="line"></span><br><span class="line">ctrl_rx					ctrl_rx_Init</span><br><span class="line">(</span><br><span class="line">	.clk					(clk			),</span><br><span class="line">	.rst_n				(rst_n		),</span><br><span class="line">	.db_act				(db_act		),</span><br><span class="line">	.db_error			 	(db_error		),</span><br><span class="line">				</span><br><span class="line">	.db_out_flag			(db_out_flag	),</span><br><span class="line">	.clk_write				(clk_write		)		</span><br><span class="line">);</span><br><span class="line">uart_rx1					uart_rx1_Init</span><br><span class="line">(</span><br><span class="line">	.clk					(clk			),</span><br><span class="line">	.rst_n				(rst_n		),</span><br><span class="line">	.RX					(line_uart		),	</span><br><span class="line">   	.db_out				(db_out		),</span><br><span class="line">   	.db_act				(db_act		),</span><br><span class="line">  	.db_error				(db_error		),</span><br><span class="line">  	.mod				(mod		),</span><br><span class="line"> 	.BUSY2				(BUSY2		),</span><br><span class="line"> 	.ST					(ST			)					</span><br><span class="line">);</span><br><span class="line">uart_tx				uart_tx_Init</span><br><span class="line">(</span><br><span class="line">	.clk				(clk			),		</span><br><span class="line">	.rst_n			(rst_n		),</span><br><span class="line">	.send_en			(send_en		),				</span><br><span class="line">	.db_in			(db_sim_l	), </span><br><span class="line">	.BUSY1			(BUSY1		),</span><br><span class="line">	.send_done		(send_done	),	</span><br><span class="line">	.TX				(line_uart		)	</span><br><span class="line">);</span><br><span class="line">ctrl_tx				ctrl_tx_Init</span><br><span class="line">(</span><br><span class="line">	.clk				(clk			),		</span><br><span class="line">	.rst_n			(rst_n		),</span><br><span class="line">	.send_done		(send_done	),</span><br><span class="line">	.FIFO_NUM		(FIFO_NUM	),		</span><br><span class="line">	.send_en			(send_en		) 		</span><br><span class="line">);                                                    </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
+<h5 id="4-2-发送-接收端RTL视图"><a href="#4-2-发送-接收端RTL视图" class="headerlink" title="4.2 发送-接收端RTL视图"></a>4.2 发送-接收端RTL视图</h5><p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/F49791D5868D4DDD9BA8495A1A3ECFCB/27703" alt=""><br><em>图七 send-receive RTL视图</em></p>
+<h5 id="4-3-modelsim仿真"><a href="#4-3-modelsim仿真" class="headerlink" title="4.3 modelsim仿真"></a>4.3 modelsim仿真</h5><p>结果如图八所示</p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/05B9C254BED9466BB3B54DE19BD10E44/27683" alt=""><br><em>图八 发送端-接收端时序仿真图</em></p>
+<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/7CD58A98648B42F3B59C2ACA6FE927A4/27712" alt=""><br>由图可知，当输入数据为00110101时，输出数据也为00110101。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/20/FPGA/Xilinx/01_物理层抗干扰功能实现/" rel="next" title="01-物理层抗干扰功能实现">
+                <i class="fa fa-chevron-left"></i> 01-物理层抗干扰功能实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/20/FPGA/Xilinx/03_SOC系统流程/" rel="prev" title="03_SOC系统流程">
+                03_SOC系统流程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#串口通信"><span class="nav-number">1.</span> <span class="nav-text">串口通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、循环冗余检验"><span class="nav-number">1.1.</span> <span class="nav-text">一、循环冗余检验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、FPGA数据发送端"><span class="nav-number">1.2.</span> <span class="nav-text">二、FPGA数据发送端</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-ctrl-tx"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 ctrl_tx</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-uart-tx"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 uart_tx</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-发送端整体RTL视图"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 发送端整体RTL视图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-发送端testbench"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 发送端testbench</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、FPGA数据接收端"><span class="nav-number">1.3.</span> <span class="nav-text">三、FPGA数据接收端</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-uart-rx"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 uart_rx</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-ctrl-rx"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 ctrl_rx</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-接收端RTL视图"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 接收端RTL视图</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、发送-接收仿真"><span class="nav-number">1.4.</span> <span class="nav-text">四、发送-接收仿真</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-发送和接收端testbench"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 发送和接收端testbench</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-发送-接收端RTL视图"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 发送-接收端RTL视图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-modelsim仿真"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 modelsim仿真</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_pv">
+    总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/20/FPGA/Xilinx/02_串口通信/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

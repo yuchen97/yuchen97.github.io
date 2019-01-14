@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="【2017/11/02】chenyu【详细资料请参见 CycloneIV Handbook】 1. Phase-Locked Loop简称PLL其作用是使得电路上的时钟和某一外部时钟的相位同步。因锁相环可以实现输出信号频率对输入信号频率的自动跟踪，所以锁相环通常用于闭环跟踪电路。锁相环在工作的过程中，当输出信号的频率与输入信号的频率相等时，输出电压与输入电压保持固定的相位差值，即输出电压与输入电压">
+<meta property="og:type" content="article">
+<meta property="og:title" content="06_PLL内部结构">
+<meta property="og:url" content="https://yuchen97.github.io/2018/12/17/FPGA/Altera/06_PLL/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="【2017/11/02】chenyu【详细资料请参见 CycloneIV Handbook】 1. Phase-Locked Loop简称PLL其作用是使得电路上的时钟和某一外部时钟的相位同步。因锁相环可以实现输出信号频率对输入信号频率的自动跟踪，所以锁相环通常用于闭环跟踪电路。锁相环在工作的过程中，当输出信号的频率与输入信号的频率相等时，输出电压与输入电压保持固定的相位差值，即输出电压与输入电压">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/CE1D9104EC67468AB80B2E9A3C467D57/27322">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/EB418D63FB1F4C488C1DA73445FAFDC1/27324">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/B508AE136422484CAB03445AF6EF556D/27326">
+<meta property="og:updated_time" content="2018-12-17T06:18:15.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="06_PLL内部结构">
+<meta name="twitter:description" content="【2017/11/02】chenyu【详细资料请参见 CycloneIV Handbook】 1. Phase-Locked Loop简称PLL其作用是使得电路上的时钟和某一外部时钟的相位同步。因锁相环可以实现输出信号频率对输入信号频率的自动跟踪，所以锁相环通常用于闭环跟踪电路。锁相环在工作的过程中，当输出信号的频率与输入信号的频率相等时，输出电压与输入电压保持固定的相位差值，即输出电压与输入电压">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/CE1D9104EC67468AB80B2E9A3C467D57/27322">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2018/12/17/FPGA/Altera/06_PLL/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>06_PLL内部结构 | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/17/FPGA/Altera/06_PLL/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">06_PLL内部结构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-17 13:55:08 / 修改时间：14:18:15" itemprop="dateCreated datePublished" datetime="2018-12-17T13:55:08+08:00">2018-12-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/Altera/" itemprop="url" rel="index"><span itemprop="name">Altera</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>【2017/11/02】chenyu</strong><br>【详细资料请参见 CycloneIV Handbook】</p>
+<h4 id="1-Phase-Locked-Loop"><a href="#1-Phase-Locked-Loop" class="headerlink" title="1. Phase-Locked Loop"></a>1. Phase-Locked Loop</h4><p>简称PLL<br>其作用是使得电路上的时钟和某一外部时钟的相位同步。因锁相环可以实现输出信号频率对输入信号频率的自动跟踪，所以锁相环通常用于闭环跟踪电路。锁相环在工作的过程中，当输出信号的频率与输入信号的频率相等时，输出电压与输入电压保持固定的相位差值，即输出电压与输入电压的相位被锁住，这就是锁相环名称的由来。 </p>
+<p>Cyclone IV GX 器件内嵌两种 PLL：</p>
+<ul>
+<li>通用 PLL </li>
+<li>多用 PLL</li>
+</ul>
+<p>Cyclone IV E 器件仅包含通用 PLL。<br>通用 PLL 用于 FPGA 结构及外设 ( 例如：外部存储器接口 ) 中的通用应用，而多用 PLL则用于同步收发器模块。如果多用 PLL 未用于收发器时钟，则可用于通用时钟。<br>Cyclone IV GX 器件最多可包含八个通用 PLL 和多用 PLL，而 Cyclone IV E 器件最多可有四个通用 PLL。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/CE1D9104EC67468AB80B2E9A3C467D57/27322" alt=""><br><em>cyclone IV E    PLL结构图</em></p>
+<h5 id="1-1-鉴频鉴相器-Phase-Frequency-Detector-PFD"><a href="#1-1-鉴频鉴相器-Phase-Frequency-Detector-PFD" class="headerlink" title="1.1 鉴频鉴相器(Phase Frequency Detector,PFD)"></a>1.1 鉴频鉴相器(Phase Frequency Detector,PFD)</h5><p>决定系统的精度和稳定度，检测频率差和相位差让大家跟上节奏。</p>
+<h5 id="1-2-电荷泵（Charge-Pump，CP）"><a href="#1-2-电荷泵（Charge-Pump，CP）" class="headerlink" title="1.2 电荷泵（Charge Pump，CP）"></a>1.2 电荷泵（Charge Pump，CP）</h5><p>为系统提供了宽的频率捕捉范围和快速的锁定能力。基本原理是给电容充电，把电容从充电电路取下以隔离充进的电荷，然后接到另一个电路上。传递刚才隔离的电荷。形象的把此看作装了电子的水桶。从一个大水箱把这个桶装满。关闭水龙头，然后把桶倒进一个大水箱里。开关电容式电压变换器，是利用“快速”或“泵送”的电容，可以使输入电压升高或降低，也可以产生负电压。</p>
+<h5 id="1-3-环路滤波（Loop-filter，LP）"><a href="#1-3-环路滤波（Loop-filter，LP）" class="headerlink" title="1.3 环路滤波（Loop filter，LP）"></a>1.3 环路滤波（Loop filter，LP）</h5><p>一定要有环路滤波器的，不然鉴相器输出的是脉冲信号，必需经过环路滤波器，把高次成份滤除，类似积分电路一样，得到一个相对平滑的信号去控制VCO工作，如果是不停跳变的脉冲，锁相环输出根本无法稳定，就全乱套了。</p>
+<h5 id="1-4-VCO-电压控制振荡器"><a href="#1-4-VCO-电压控制振荡器" class="headerlink" title="1.4 VCO(电压控制振荡器)"></a>1.4 VCO(电压控制振荡器)</h5><p>指输出频率与输入控制电压有对应关系的振荡电路，振荡器的工作状态或振荡回路的元件参数受输入控制电压的控制，就可以构成一个压控振荡器。</p>
+<p>相器用来鉴别输入信号Ui与输出信号Uo之间的相位差，并输出误差电压Ud。Ud 中的噪声和干扰成分被低通性质的环路滤波器滤除，形成压控振荡器（VCO）的控制电压Uc。Uc作用于压控振荡器的结果是把它的输出振荡频率fo拉向环路输入信号频率fi ，当二者相等时，环路被锁定 ，称为入锁。维持锁定的直流控制电压由鉴相器提供，因此鉴相器的两个输入信号间留有一定的相位差。</p>
+<h4 id="2-锁相环的工作原理："><a href="#2-锁相环的工作原理：" class="headerlink" title="2. 锁相环的工作原理："></a>2. 锁相环的工作原理：</h4><p><strong>1.</strong> 压控振荡器的输出经过采集并分频；<br><strong>2.</strong> 和基准信号同时输入鉴相器；<br><strong>3.</strong> 鉴相器通过比较上述两个信号的频率差，然后输出一个直流脉冲电压；<br><strong>4.</strong> 控制VCO，使它的频率改变；<br><strong>5.</strong> 这样经过一个很短的时间，VCO 的输出就会稳定于某一期望值。 </p>
+<p>Cyclone IV 器件的每个 PLL 均支持一个单端时钟输出或者一个差分时钟输出。只有 C0输出计数器才能驱动专用的外部时钟输出，而无需遍历 GCLK, 如图图 5-11 所示。 其它输出计数器可以通过 GCLK 来驱动其它 I/O 管脚。<br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/EB418D63FB1F4C488C1DA73445FAFDC1/27324" alt=""><br><em>PLL的外部时钟输出</em></p>
+<p><strong>(1)</strong> 这些外部时钟使能信号仅在使用 ALTCLKCTRL 宏功能的时候有效。<br><strong>(2)</strong> PLL#_CLKOUTp 与 PLL#_CLKOUTn 管脚是两用 I/O 管脚，可用作一个单端时钟输出或者一个差分时钟输出。 当将这两个管脚都用作单端 I/O 时 , 其中一个可用作时钟输出，而另一个可配置为普通用户 I/O。<br>差分输出对的每一个管脚的相位差了 180°。Quartus II 软件将设计中的 NOT gate 布局到 I/O 单元，对于差分输出对中的另一个管脚，实现了 180° 相位。时钟输出管脚对支持作为标准输出管脚的同一 I/O 标准</p>
+<h4 id="3-时钟的乘法与除法"><a href="#3-时钟的乘法与除法" class="headerlink" title="3. 时钟的乘法与除法"></a>3. 时钟的乘法与除法</h4><p>每一个 Cyclone IV PLL 均采用 M/(N* 后缩放计数器 ) 缩放因子为 PLL 输出端口提供时钟合成输出。输入时钟由预缩放因子 N 分频 , 然后乘以反馈因子 M。控制环路驱动 VCO以匹配 fIN (M/N)。每一个输出端口均有一个唯一的后缩放计数器，对高频 VCO 进行分频。对于不同频率的多个 PLL 输出，VCO 值是输出频率的最小公倍数，以满足其频率规格。例如，如果一个 PLL 所要求的输出频率是 33 和 66 MHz, 那么 Quartus II 软件会将VCO 设置为 660 MHz(33 和 66 MHz 在 VCO 频率范围内的最小公倍数 )。然后，后放大计数器会降低每个输出端口的 VCO 频率。<br>每一个 PLL 上均有一个预缩放计数器 N 和一个乘法计数器 M，范围从 1 到 512。由于计数器 N 仅用于计算分频，因此该计数器不使用占空比控制。此外，每个 PLL 上有五个用于驱动 GCLK 或外部时钟输出的通用后缩放计数器。这些后缩放计数器的范围从 1 到512，并具有 50% 的占空比设置。后缩放计数器的范围从 1 到 256，具有非 50% 的占空比设置。设计所选择的高 / 低计数值的总和，将用于给定计数器分频值的选择。Quartus II 软件根据输入到 ALTPLL 宏功能的输入频率、乘法和除法值来自动选择相应的缩放因子。</p>
+<h4 id="4-后缩放计数器的级联"><a href="#4-后缩放计数器的级联" class="headerlink" title="4. 后缩放计数器的级联"></a>4. 后缩放计数器的级联</h4><p>Cyclone IV 器件的 PLL 支持后缩放计数器的级联，以生成大于 512 的计数器。 这是通过将一个 C 计数器的输出送至下一个 C 计数器的输入来实现的，如图 5-16 所示。<br><img src="https://note.youdao.com/yws/public/resource/7d142411dec024b653e82fb840a037e3/xmlnote/B508AE136422484CAB03445AF6EF556D/27326" alt=""><br>当通过级联计数器来实现高频 VCO 时钟的更大分频时，级联的计数器作为单个计数器运行，并具有单个计数器设置的乘积。<br>例如，如果 C0 = 4 和 C1 = 2, 则级联的值是 C0 × C1 = 8。</p>
+<h4 id="5-可编程占空比"><a href="#5-可编程占空比" class="headerlink" title="5. 可编程占空比"></a>5. 可编程占空比</h4><p>可编程占空比功能使 PLL 能够生成具有可变占空比的时钟输出，PLL 后缩放计数器支持这一功能。通过后缩放计数器的高 / 低时间计数设置来实现占空比设置。Quartus II软件使用输入频率和目的倍频 / 分频比率来确定占空比的选择。后缩放计数器的值决定了占空周期的精度，该精度定义为 50% 除以后缩放计数器的值。例如，如果 C0 计数器的值为 10, 则 5% 的步长可用于 5% 到 90% 之间的占空比的选择。<br><strong>PLL 控制信号</strong><br>可以通过使用 pfdena, areset 和 locked 信号来观测和控制 PLL 的操作以及重同步。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/17/FPGA/Altera/05_CycloneIV-datasheet/" rel="next" title="05_CycloneIV-datasheet">
+                <i class="fa fa-chevron-left"></i> 05_CycloneIV-datasheet
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/17/FPGA/Altera/07_8B10B编码器/" rel="prev" title="07_8B10B编码器">
+                07_8B10B编码器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Phase-Locked-Loop"><span class="nav-number">1.</span> <span class="nav-text">1. Phase-Locked Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-鉴频鉴相器-Phase-Frequency-Detector-PFD"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 鉴频鉴相器(Phase Frequency Detector,PFD)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-电荷泵（Charge-Pump，CP）"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 电荷泵（Charge Pump，CP）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-环路滤波（Loop-filter，LP）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 环路滤波（Loop filter，LP）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-VCO-电压控制振荡器"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 VCO(电压控制振荡器)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-锁相环的工作原理："><span class="nav-number">2.</span> <span class="nav-text">2. 锁相环的工作原理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-时钟的乘法与除法"><span class="nav-number">3.</span> <span class="nav-text">3. 时钟的乘法与除法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-后缩放计数器的级联"><span class="nav-number">4.</span> <span class="nav-text">4. 后缩放计数器的级联</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-可编程占空比"><span class="nav-number">5.</span> <span class="nav-text">5. 可编程占空比</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_pv">
+    总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/17/FPGA/Altera/06_PLL/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

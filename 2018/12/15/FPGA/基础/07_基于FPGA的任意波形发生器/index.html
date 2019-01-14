@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="基于FPGA的任意波形发生器（Easy版）【2017.04.13】Chenyu 实现功能： 要求用FPGA做一款波形、幅值、频率可调，且频率可通过开发板的数码管显示硬件平台： Altera 黑金 AX301 Cyclone ⅣE EP4CE6F17C8  R-2R电阻网络（DAC模块）软件平台： QuartusⅡ  Guagle/matlab 思路：    用C或者matlab等软件生成mif文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="07_基于FPGA的任意波形发生器">
+<meta property="og:url" content="https://yuchen97.github.io/2018/12/15/FPGA/基础/07_基于FPGA的任意波形发生器/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="基于FPGA的任意波形发生器（Easy版）【2017.04.13】Chenyu 实现功能： 要求用FPGA做一款波形、幅值、频率可调，且频率可通过开发板的数码管显示硬件平台： Altera 黑金 AX301 Cyclone ⅣE EP4CE6F17C8  R-2R电阻网络（DAC模块）软件平台： QuartusⅡ  Guagle/matlab 思路：    用C或者matlab等软件生成mif文件">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/63B88390BC9E47D1BE15655E613C5B5C/26919">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/324438F446A542129510BD7F84B69B97/26900">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/ED1F0ABC979C48939A7C64027603DEEC/26894">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/07CB53F0059A4C17B623A0381F14A88D/26924">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F5E32984AE6648F29F001BF75D0F094B/26867">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/0DE1AB2A56EB48B1969968FF858ECFE9/26803">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/92A3CA367B3247539B04170C34CC2342/26794">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3E6714BE2F5943F2867ED7A2EA0774F1/26801">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/AAA58943194F4D1EAB519749509DDB0B/26791">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/676EB504AE1F461983AE1ECC53E08830/26797">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/6117E4B6497548EE817D9FA3020BAF8F/26904">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D6CFF60872F545B4850C929D92862470/26857">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F40AB352D7344973B4445E0F43A2A7A4/26885">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9163C274B7C249D4AB9D272B127B4CC6/26912">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E064C7FF06E8494AA1F28512447CC43A/26917">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D878DDA0BA604907BAA68F1912FB78AF/26864">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9B50B06B96D84ECEAF8514B8FE93DD25/26906">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D1EFA8D0BB6C463087DDE7836E85FB48/26922">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/0E77109F5535408198E36F1E4CC4C263/26909">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4E8C9D602A1F46A2A1C2FE24C1E52F89/26844">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9F9489E140044ECC9560D93FC508A767/26891">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/7BCD4D5266404237BAD209D56BBA8092/26877">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/548AEE38E6044220B0FFD07B5735BBA0/26923">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5DE0FA3049D84119825477289B8E8C4C/26860">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4AEE6A53F5D4424EB30B33A1DCB602CF/26712">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F6FCE0B19A094BEB8B6F73D23C5E98E3/26895">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5F568D5AD7F342C4A75D2DF1469CECE3/26713">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/2E814B0AF3314EF19D5DAD006A6F6107/26709">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/AD2CD0D4E49B4B6FA5413A6A4C7DCC42/26708">
+<meta property="og:updated_time" content="2018-12-15T11:53:59.276Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="07_基于FPGA的任意波形发生器">
+<meta name="twitter:description" content="基于FPGA的任意波形发生器（Easy版）【2017.04.13】Chenyu 实现功能： 要求用FPGA做一款波形、幅值、频率可调，且频率可通过开发板的数码管显示硬件平台： Altera 黑金 AX301 Cyclone ⅣE EP4CE6F17C8  R-2R电阻网络（DAC模块）软件平台： QuartusⅡ  Guagle/matlab 思路：    用C或者matlab等软件生成mif文件">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/63B88390BC9E47D1BE15655E613C5B5C/26919">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2018/12/15/FPGA/基础/07_基于FPGA的任意波形发生器/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>07_基于FPGA的任意波形发生器 | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/15/FPGA/基础/07_基于FPGA的任意波形发生器/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">07_基于FPGA的任意波形发生器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-15 18:12:04 / 修改时间：19:53:59" itemprop="dateCreated datePublished" datetime="2018-12-15T18:12:04+08:00">2018-12-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/基础/" itemprop="url" rel="index"><span itemprop="name">基础</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="基于FPGA的任意波形发生器（Easy版）"><a href="#基于FPGA的任意波形发生器（Easy版）" class="headerlink" title="基于FPGA的任意波形发生器（Easy版）"></a>基于FPGA的任意波形发生器（Easy版）</h3><p><strong>【2017.04.13】Chenyu</strong></p>
+<p><strong>实现功能：</strong> 要求用FPGA做一款波形、幅值、频率可调，且频率可通过开发板的数码管显示<br><strong>硬件平台：</strong> Altera 黑金 AX301 Cyclone ⅣE EP4CE6F17C8  R-2R电阻网络（DAC模块）<br><strong>软件平台：</strong> QuartusⅡ  Guagle/matlab</p>
+<p><strong>思路：</strong>    用C或者matlab等软件生成mif文件；将mif文件导入FPGA的ROM；对各个模块编写程序；模块例化5.DAC</p>
+<h4 id="一、生成MIF文件"><a href="#一、生成MIF文件" class="headerlink" title="一、生成MIF文件"></a>一、生成MIF文件</h4><p>mif文件就是存储器初始化文件，即memory initialization file，用来配置RAM或ROM中的数据。</p>
+<h4 id="1-1-利用Quartus自带的mif编译器"><a href="#1-1-利用Quartus自带的mif编译器" class="headerlink" title="1.1 利用Quartus自带的mif编译器"></a>1.1 利用Quartus自带的mif编译器</h4><p>优：对小容量的RAM、ROM可以快速方便的完成mif文件的编辑工作，不需要第三方软件编辑；<br>缺：数据量过大时，不推荐使用<br>使用方法：【File】_&gt;【New】 _&gt;【Memory  Initialization file】<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/63B88390BC9E47D1BE15655E613C5B5C/26919" alt=""><br>Number of words：可寻址的存储单元数，对于8bit地址线，此处选择256；<br>words size：存储单元宽度，8bit<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/324438F446A542129510BD7F84B69B97/26900" alt=""><br>右击左侧地址值可改变地址和数据的显示格式；<br>表中任意数据的地制值=列值+行值（图中蓝色单元的地址为32+3=35）</p>
+<h4 id="1-2-利用mif软件生成"><a href="#1-2-利用mif软件生成" class="headerlink" title="1.2 利用mif软件生成"></a>1.2 利用mif软件生成</h4><p>本次任务中我采用的是Guagle。<br>优：方便导出mif文件，尤其是数据量比较大时。<br>缺：此款软件可以自动设置的波形只有：方波、正弦波、锯齿波、三角波。不过这个软件支持手绘图形。<br>使用方法：<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/ED1F0ABC979C48939A7C64027603DEEC/26894" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/07CB53F0059A4C17B623A0381F14A88D/26924" alt=""></p>
+<p>更改设定波形和变量可以对相应参数进行配置。</p>
+<h4 id="1-3-利用高级语言"><a href="#1-3-利用高级语言" class="headerlink" title="1.3 利用高级语言"></a>1.3 利用高级语言</h4><p>C语言或matlab语言来生成相应的mif文件<br><strong>C语言生成正弦波的数据波形（代码来源于网络）</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">#define PI 3.141592</span><br><span class="line">#define DEPTH 128     /*数据深度，即存储单元的个数*/</span><br><span class="line">#define WIDTH 8       /*存储单元的宽度*/</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int i,temp;</span><br><span class="line">    float s;</span><br><span class="line"></span><br><span class="line">    FILE *fp;</span><br><span class="line">    fp = fopen(&quot;TestMif.mif&quot;,&quot;w&quot;);   /*文件名随意，但扩展名必须为.mif*/</span><br><span class="line">    if(NULL==fp)</span><br><span class="line">        printf(&quot;Can not creat file!\r\n&quot;);</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;File created successfully!\n&quot;);</span><br><span class="line">        /*</span><br><span class="line">        *    生成文件头：注意不要忘了“;”</span><br><span class="line">        */</span><br><span class="line">        fprintf(fp,&quot;DEPTH = %d;\n&quot;,DEPTH);</span><br><span class="line">        fprintf(fp,&quot;WIDTH = %d;\n&quot;,WIDTH);</span><br><span class="line">        fprintf(fp,&quot;ADDRESS_RADIX = HEX;\n&quot;);</span><br><span class="line">        fprintf(fp,&quot;DATA_RADIX = HEX;\n&quot;);</span><br><span class="line">        fprintf(fp,&quot;CONTENT\n&quot;);</span><br><span class="line">        fprintf(fp,&quot;BEGIN\n&quot;);</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">        * 以十六进制输出地址和数据</span><br><span class="line">        */</span><br><span class="line">        for(i=0;i&lt;DEPTH;i++)</span><br><span class="line">        &#123;</span><br><span class="line">             /*周期为128个点的正弦波*/ </span><br><span class="line">            s = sin(PI*i/64);   </span><br><span class="line">            /*将-1～1之间的正弦波的值扩展到0-255之间*/ </span><br><span class="line">            temp = (int)((s+1)*255/2);</span><br><span class="line">            /*以十六进制输出地址和数据*/</span><br><span class="line">            fprintf(fp,&quot;%x\t:\t%x;\n&quot;,i,temp);</span><br><span class="line">        &#125;//end for</span><br><span class="line">        </span><br><span class="line">        fprintf(fp,&quot;END;\n&quot;);</span><br><span class="line">        fclose(fp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>matlab</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">depth  = 512;     %存储器的单元数</span><br><span class="line">widths = 8;     %数据宽度为8位</span><br><span class="line">%N = 0:511;</span><br><span class="line">%s =round(127*sin(2*pi*N/512)+128);  %计算0 ~2*pi之间的sinֵ</span><br><span class="line">fidc = fopen(&apos;sin.mif&apos;,&apos;wt&apos;);</span><br><span class="line">fprintf(fidc , &apos;depth = %d;\n&apos;,depth);</span><br><span class="line">fprintf(fidc, &apos;width = %d;\n&apos;,widths);</span><br><span class="line">fprintf(fidc, &apos;address_radix = UNS;\n&apos;);</span><br><span class="line">fprintf(fidc,&apos;data_radix = UNS;\n&apos;);</span><br><span class="line">fprintf(fidc,&apos;content begin\n&apos;);</span><br><span class="line">for(x = 1 : depth)</span><br><span class="line"> </span><br><span class="line">fprintf(fidc,&apos;%d:%d;\n&apos;,x-1,round(127*sin(2*pi*(x-1)/512)+128));</span><br><span class="line"> </span><br><span class="line">end</span><br><span class="line">fprintf(fidc, &apos;end;&apos;);</span><br><span class="line">fclose(fidc);</span><br></pre></td></tr></table></figure></p>
+<p><strong>matlab（代码来源于陈强胜）</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%mif生成   xt为输入</span><br><span class="line">WIDTH=8;</span><br><span class="line">DEPTH=256</span><br><span class="line">xt2=floor(xt);%xt取整</span><br><span class="line">xt2=xt2+128.*ones(1,256);%将数据加128</span><br><span class="line">fp=fopen(&apos;sin.txt&apos;,&apos;w&apos;);</span><br><span class="line">fprintf(fp,&apos;WIDTH=%d;\n&apos;,WIDTH);</span><br><span class="line">fprintf(fp,&apos;DEPTH=%d;\n&apos;,DEPTH);</span><br><span class="line">fprintf(fp,&apos;ADDRESS_RADIX=UNS;\n&apos;);</span><br><span class="line">fprintf(fp,&apos;DATA_RADIX=UNS;\n&apos;);</span><br><span class="line">fprintf(fp,&apos;CONTENT BEGIN\n&apos;);</span><br><span class="line"></span><br><span class="line">for i=0:DEPTH-1</span><br><span class="line">    fprintf(fp,&apos;%d : &apos;,i);</span><br><span class="line">    fprintf(fp,&apos;%d;\n&apos;,xt2(i+1));</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">fprintf(fp,&apos;END;\n&apos;);</span><br><span class="line"></span><br><span class="line">fclose(fp);</span><br></pre></td></tr></table></figure></p>
+<h4 id="二、定制ROM：PORT"><a href="#二、定制ROM：PORT" class="headerlink" title="二、定制ROM：PORT"></a>二、定制ROM：PORT</h4><p>使用方法<br>【Tool】_&gt;【MegaWizard Plug-In Manager】<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F5E32984AE6648F29F001BF75D0F094B/26867" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/0DE1AB2A56EB48B1969968FF858ECFE9/26803" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/92A3CA367B3247539B04170C34CC2342/26794" alt=""></p>
+<p>bits和words根据mif文件的数据来设置<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3E6714BE2F5943F2867ED7A2EA0774F1/26801" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/AAA58943194F4D1EAB519749509DDB0B/26791" alt=""></p>
+<p>一直点Next<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/676EB504AE1F461983AE1ECC53E08830/26797" alt=""><br>（详情解释见《Hello FPGA》-软件工具篇第五章IP核之ROM）<br>生成之后需要对以上模块进行例化<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/6117E4B6497548EE817D9FA3020BAF8F/26904" alt=""></p>
+<h4 id="三、各个模块代码"><a href="#三、各个模块代码" class="headerlink" title="三、各个模块代码"></a>三、各个模块代码</h4><p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D6CFF60872F545B4850C929D92862470/26857" alt=""><br><strong>【key_module】</strong><br>接收按键状态，并通过按键不同的状态来对不同的flag进行赋值<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F40AB352D7344973B4445E0F43A2A7A4/26885" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9163C274B7C249D4AB9D272B127B4CC6/26912" alt=""></p>
+<p><strong>【DA_data_module】</strong><br>根据按键不同的状态，来改变DA_data输出数据，以及频率。<br>波形选择、改变幅值<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/E064C7FF06E8494AA1F28512447CC43A/26917" alt=""><br>波形通过case语句，在wave_flag取不同的值时，分别输出不同的波形（由于按键个数的限制在此只用了两种波形）<br>输出波形幅值的大小通过移位来改变。<br>ROM数据<br>输出<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D878DDA0BA604907BAA68F1912FB78AF/26864" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9B50B06B96D84ECEAF8514B8FE93DD25/26906" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/D1EFA8D0BB6C463087DDE7836E85FB48/26922" alt=""></p>
+<p><strong>【seg_module】</strong><br>控制数码管动态显示<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/0E77109F5535408198E36F1E4CC4C263/26909" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4E8C9D602A1F46A2A1C2FE24C1E52F89/26844" alt=""></p>
+<p>六个数码管，每个数码管可以显示0~9，8=4’b1000；四位，所以iData为6*4=24位<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/9F9489E140044ECC9560D93FC508A767/26891" alt=""></p>
+<h4 id="四、例化"><a href="#四、例化" class="headerlink" title="四、例化"></a>四、例化</h4><p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/7BCD4D5266404237BAD209D56BBA8092/26877" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/548AEE38E6044220B0FFD07B5735BBA0/26923" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5DE0FA3049D84119825477289B8E8C4C/26860" alt=""></p>
+<h4 id="五、DAC转化"><a href="#五、DAC转化" class="headerlink" title="五、DAC转化"></a>五、DAC转化</h4><p><strong>【8位R-2R电阻网络】</strong><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/4AEE6A53F5D4424EB30B33A1DCB602CF/26712" alt=""><br>无论从哪个位置断开，向内看阻抗均为R。输出阻抗固定为R<br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/F6FCE0B19A094BEB8B6F73D23C5E98E3/26895" alt=""><br>等效电压源、等效电流源<br>第一个<br>$U_{out}=\frac{U_{D0}}{2}$<br>第二个<br>$U_{out}=\frac{U_{D0}}{4}+\frac{U_{D1}}{2}$<br>…<br>第八个<br>$U_{out}=\frac{U_{D0}}{2^8}+\frac{U_{D1}}{2^7}+\frac{U_{D2}}{2^6}+\frac{U_{D3}}{2^5}+\frac{U_{D4}}{2^4}+\frac{U_{D5}}{2^3}+\frac{U_{D6}}{2^2}+\frac{U_{D7}}{2^1}$<br>所以输出电压有256种变化</p>
+<h4 id="六、实物展示"><a href="#六、实物展示" class="headerlink" title="六、实物展示"></a>六、实物展示</h4><p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/5F568D5AD7F342C4A75D2DF1469CECE3/26713" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/2E814B0AF3314EF19D5DAD006A6F6107/26709" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/AD2CD0D4E49B4B6FA5413A6A4C7DCC42/26708" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/15/FPGA/基础/06_基本组合逻辑/" rel="next" title="06_基本组合逻辑">
+                <i class="fa fa-chevron-left"></i> 06_基本组合逻辑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/15/FPGA/Altera/01_Altera-FPGA基础介绍/" rel="prev" title="01_Altera-FPGA基础介绍">
+                01_Altera-FPGA基础介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于FPGA的任意波形发生器（Easy版）"><span class="nav-number">1.</span> <span class="nav-text">基于FPGA的任意波形发生器（Easy版）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、生成MIF文件"><span class="nav-number">1.1.</span> <span class="nav-text">一、生成MIF文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-利用Quartus自带的mif编译器"><span class="nav-number">1.2.</span> <span class="nav-text">1.1 利用Quartus自带的mif编译器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-利用mif软件生成"><span class="nav-number">1.3.</span> <span class="nav-text">1.2 利用mif软件生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-利用高级语言"><span class="nav-number">1.4.</span> <span class="nav-text">1.3 利用高级语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、定制ROM：PORT"><span class="nav-number">1.5.</span> <span class="nav-text">二、定制ROM：PORT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、各个模块代码"><span class="nav-number">1.6.</span> <span class="nav-text">三、各个模块代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、例化"><span class="nav-number">1.7.</span> <span class="nav-text">四、例化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、DAC转化"><span class="nav-number">1.8.</span> <span class="nav-text">五、DAC转化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、实物展示"><span class="nav-number">1.9.</span> <span class="nav-text">六、实物展示</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_pv">
+    总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/15/FPGA/基础/07_基于FPGA的任意波形发生器/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

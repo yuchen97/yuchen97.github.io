@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="【2017-07-25】chenyu   二者本质是一致的，就是数字地和模拟地都是地。要明白为什么要分开，先听一个故事；我们公司的商务楼，2楼是搞模拟的，3楼是搞数字的，整幢楼只有一部电梯，平时人少的时候还好办，上2楼上3楼互不影响，但每天上下班的时候就不得了了，人多得很，搞数字的要上3楼，总是被2楼搞模拟的人影响，2楼模拟的人要下楼，总是要等电梯上了3楼再下来，互相影响很是麻烦，商务楼的物业为解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="03_AD_数字模拟地">
+<meta property="og:url" content="https://yuchen97.github.io/2018/12/11/AD/03_AD_数字模拟地/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="【2017-07-25】chenyu   二者本质是一致的，就是数字地和模拟地都是地。要明白为什么要分开，先听一个故事；我们公司的商务楼，2楼是搞模拟的，3楼是搞数字的，整幢楼只有一部电梯，平时人少的时候还好办，上2楼上3楼互不影响，但每天上下班的时候就不得了了，人多得很，搞数字的要上3楼，总是被2楼搞模拟的人影响，2楼模拟的人要下楼，总是要等电梯上了3楼再下来，互相影响很是麻烦，商务楼的物业为解">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-22T06:21:26.809Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="03_AD_数字模拟地">
+<meta name="twitter:description" content="【2017-07-25】chenyu   二者本质是一致的，就是数字地和模拟地都是地。要明白为什么要分开，先听一个故事；我们公司的商务楼，2楼是搞模拟的，3楼是搞数字的，整幢楼只有一部电梯，平时人少的时候还好办，上2楼上3楼互不影响，但每天上下班的时候就不得了了，人多得很，搞数字的要上3楼，总是被2楼搞模拟的人影响，2楼模拟的人要下楼，总是要等电梯上了3楼再下来，互相影响很是麻烦，商务楼的物业为解">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2018/12/11/AD/03_AD_数字模拟地/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>03_AD_数字模拟地 | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/11/AD/03_AD_数字模拟地/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">03_AD_数字模拟地
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-11 10:12:21" itemprop="dateCreated datePublished" datetime="2018-12-11T10:12:21+08:00">2018-12-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-22 14:21:26" itemprop="dateModified" datetime="2018-12-22T14:21:26+08:00">2018-12-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Altium-Designer/" itemprop="url" rel="index"><span itemprop="name">Altium Designer</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>【2017-07-25】chenyu</strong>  </p>
+<p>二者本质是一致的，就是数字地和模拟地都是地。要明白为什么要分开，先听一个故事；我们公司的商务楼，2楼是搞模拟的，3楼是搞数字的，整幢楼只有一部电梯，平时人少的时候还好办，上2楼上3楼互不影响，但每天上下班的时候就不得了了，人多得很，搞数字的要上3楼，总是被2楼搞模拟的人影响，2楼模拟的人要下楼，总是要等电梯上了3楼再下来，互相影响很是麻烦，商务楼的物业为解决这个问题，提出了2个方案：第1个（笑死人了）电梯扩大，可以装更多的人，电梯大了是好，但公司会招人，人又多了，再换电梯，再招人…永远死循环，有一个办法到挺好，大家索性不要电梯，直接往下跳，不管2楼的3楼的，肯定解决问题，但肯定会出问题（第1个被枪毙掉了）。第2个办法装2部电梯，一部专门上2楼，另一部专门上3楼，Wonderful！太机智了，这样2层楼面的工作人员就互不影响了。明白了否？<br>数字地、模拟地互相会影响不是因为一个叫数字，一个叫模拟，而是他们用了同一部电梯：地，而这部电梯所用的井道就是我们在PCB上布得地线。模拟回路的电流走这条线，数字回路的电流也走这条线，本来无可厚非，线布着就是用来导通电流的，可问题出在这根线上有电阻！而且最根本的问题是走这条线的电流要去2个不同的回路。假设一下：有2股电流，数流，模流同时从地出发。有2个器件：数字件和模拟件。若2个回路不分开，数流模流走到数字件的接地端前的时候，损耗的电压为V=（数流+模流）X走线电阻，相当于数字器件的接地端相对于地端升高了V，数字器件不满意了，我承认会升高少许电压，数流的那部分我认了，但模流的为什么要加在我头上？同理模拟器件也会同样抱怨！<br>两个解决方案：第1个：你布的PCB线没有阻抗，自然不会引起干扰，就像2、3楼直接往下跳，那是井道最宽的时候，也就是可以装一个无限大的电梯，自然谁都不影响谁，但谁都知道，This is mission impossible！第2个：2条回路分开走，数流，模流分开，既数地、模地分开。<br>同理，有时虽在模拟回路中，但也要分大、小电流回路，就是避免相互干扰。所谓的干扰就是：2个不同回路中的电流在PCB走线上引起的电压，这2部分电压互相叠加而产生的。<br>下面再具体介绍，简单来说，数字地是数字电路部分的公共基准端，即数字电压信号的基准端；模拟地是模拟电路部分的公共基准端，模拟信号的电压基准端（零电位点）。  </p>
+<h4 id="一、分为数字地和模拟地的原因"><a href="#一、分为数字地和模拟地的原因" class="headerlink" title="一、分为数字地和模拟地的原因"></a>一、分为数字地和模拟地的原因</h4><p><strong>由于数字信号一般为矩形波，带有大量的谐波</strong>。如果电路板中的数字地与模拟地没有从接入点分开，数字信号中的谐波很容易会干扰到模拟信号的波形。当模拟信号为高频或强电信号时，也会影响到数字电路的正常工作。模拟电路涉及弱小信号，但是数字电路门限电平较高，对电源的要求就比模拟电路低些。既有数字电路又有模拟电路的系统中，数字电路产生的噪声会影响模拟电路，使模拟电路的小信号指标变差，克服的办法是分开模拟地和数字地。<br>存在问题的根本原因是，无法保证电路板上铜箔的电阻为零，在接入点将数字地和模拟地分开，就是为了将数字地和模拟地的共地电阻降到最小。</p>
+<h4 id="二、数字地和模拟地处理的基本原则如下"><a href="#二、数字地和模拟地处理的基本原则如下" class="headerlink" title="二、数字地和模拟地处理的基本原则如下"></a>二、数字地和模拟地处理的基本原则如下</h4><p>如果把模拟地和数字地大面积直接相连，会导致互相干扰。不短接又不妥。<strong>对于低频模拟电路，除了加粗和缩短地线之外，电路各部分采用一点接地是抑制地线干扰的最佳选择，主要可以防止由于地线公共阻抗而导致的部件之间的互相干扰</strong>。<br><strong>而对于高频电路和数字电路，由于这时地线的电感效应影响会更大，一点接地会导致实际地线加长而带来不利影响，这时应采取分开接地和一点接地相结合的方式。</strong>另外对于高频电路还要考虑如何抑制高频辐射噪声，方法是：尽量加粗地线，以降低噪声对地阻抗；满接地，即除传输信号的印制线以外，其他部分全作为地线。不要有无用的大面积铜箔。<br><strong>地线应构成环路，以防止产生高频辐射噪声，但环路所包围面积不可过大，以免仪器处于强磁场中时，产生感应电流</strong>。但如果只是低频电路，则应避免地线环路。<strong>数字电源和模拟电源最好隔离，地线分开布置，如果有A/D，则只在此处单点共地。</strong>低频中没有多大影响，但建议模拟和数字一点接地。<strong>高频时，可通过磁珠把模拟和数字地一点共地。</strong></p>
+<h4 id="三、四种解决方法"><a href="#三、四种解决方法" class="headerlink" title="三、四种解决方法"></a>三、四种解决方法</h4><p>模拟地和数字地间的串接可以采用四种方式：</p>
+<ul>
+<li><strong>用磁珠连接；</strong></li>
+<li><strong>用电容连接（利用电容隔直通交的原理）；</strong></li>
+<li><strong>用电感连接（一般用几uH到数十uH）；</strong></li>
+<li><strong>用0欧姆电阻连接。</strong></li>
+</ul>
+<p><strong>下面重点介绍一下磁珠和0欧姆电阻：</strong></p>
+<ul>
+<li>一般情况下，<strong>用0欧电阻</strong>是最佳选择，  <ul>
+<li>可保证直流电位相等；</li>
+<li>单点接地，限制噪声；</li>
+<li>对所有频率的噪声都有衰减作用（0欧也有阻抗，而且电流路径狭窄，可以限制噪声电流通过）；</li>
+<li>电容（利用电容隔直通交的原理）。</li>
+</ul>
+</li>
+<li><strong>磁珠</strong><ul>
+<li>采用在高频段具有良好阻抗特性的铁氧体材料烧结面成，专用于抑制信号线、电源线上的高频噪声和尖峰干扰，还具有吸收静电脉冲的能力。磁珠有很高的电阻率和磁导率，等效于电阻和电感串联，但电阻值和电感值都随频率变化。它比普通的电感有更好的高频滤波特性，在高频时呈现阻性，所以能在相当宽的频率范围内保持较高的阻抗，从而提高调频滤波效果。磁珠对高频信号才有较大阻碍作用，一般规格有100欧/100mMHZ，它在低频时电阻比电感小得多。铁氧体磁珠（Ferrite Bead）是目前应用发展很快的一种抗干扰组件，廉价、易用，滤除高频噪声效果显着。</li>
+<li>铁氧体磁珠不仅可用于电源电路中滤除高频噪声（可用于直流和交流输出），还可广泛应用于其它电路，其体积可以做得很小。特别是在数字电路中，由于脉冲信号含有频率很高的高次谐波，也是电路高频辐射的主要根源，所以可在这种场合发挥磁珠的作用。在电路中只要导线穿过它即可。当导线中电流穿过时，铁氧体对低频电流几乎没有什么阻抗，而对较高频率的电流会产生较大衰减作用。</li>
+</ul>
+</li>
+</ul>
+<h4 id="四、电感与磁珠的区别"><a href="#四、电感与磁珠的区别" class="headerlink" title="四、电感与磁珠的区别"></a>四、电感与磁珠的区别</h4><p>有一匝以上的线圈习惯称为电感线圈，少于一匝（导线直通磁环）的线圈习惯称之为磁珠。电感是储能元件，而磁珠是能量转换（消耗）器件，电感多用于电源滤波回路，磁珠多用于信号回路，用于EMC对策；磁珠主要用于抑制电磁辐射干扰，而电感用于这方面则侧重于抑制传导性干扰。两者都可用于处理EMC、EMI问题；电感一般用于电路的匹配和信号质量的控制上，在模拟地和数字地结合的地方用磁珠。<br>作为电源滤波，可以使用电感。磁珠的电路符号就是电感但是型号上可以看出使用的是磁珠在电路功能上，磁珠和电感是原理相同的，只是频率特性不同罢了;磁珠由氧磁体组成，电感由磁心和线圈组成，磁珠把交流信号转化为热能，电感把交流存储起来，缓慢的释放出去。<br>电感是储能元件，而磁珠是能量转换（消耗）器件；电感多用于电源滤波回路，磁珠多用于信号回路，用于EMC对策；磁珠主要用于抑制电磁辐射干扰，而电感用于这方面则侧重于抑制传导性干扰。两者都可用于处理EMC、EMI问题。<strong>磁珠是用来吸收超高频信号，象一些RF电路，PLL，振荡电路，含超高频存储器电路（DDR SDRAM，RAMBUS等）都需要在电源输入部分加磁珠，而电感是一种蓄能元件，用在LC振荡电路，中低频的滤波电路等，其应用频率范围很少超过50MHZ。</strong></p>
+<h4 id="五、几种方法综述"><a href="#五、几种方法综述" class="headerlink" title="五、几种方法综述"></a>五、几种方法综述</h4><p>电容隔直通交，造成浮地。电容不通直流，会导致压差和静电积累，摸机壳会麻手。如果把电容和磁珠并联，就是画蛇添足，因为磁珠通直，电容将失效。串联的话就显得不伦不类。<br>电感体积大，杂散参数多，特性不稳定，离散分布参数不好控制，体积大。电感也是陷波，LC谐振(分布电容)，对噪点有特效。<br>磁珠的等效电路相当于带阻陷波器，只对某个频点的噪声有抑制作用，如果不能预知噪点，如何选择型号，况且，噪点频率也不一定固定，故磁珠不是一个好的选择。<br>0欧电阻相当于很窄的电流通路，能够有效地限制环路电流，使噪声得到抑制。电阻在所有频带上都有衰减作用(0欧电阻也有阻抗)，这点比磁珠强。<br>总之，关键是模拟地和数字地要一点接地。建议，不同种类地之间用0欧电阻相连；电源引入高频器件时用磁珠；高频信号线耦合用小电容；电感用在大功率低频上。  </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/11/AD/02_AD_PCB_layers/" rel="next" title="02—_AD_PCB_layers">
+                <i class="fa fa-chevron-left"></i> 02—_AD_PCB_layers
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/11/AD/04_AD分层次设计/" rel="prev" title="04-AD分层次设计">
+                04-AD分层次设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、分为数字地和模拟地的原因"><span class="nav-number">1.</span> <span class="nav-text">一、分为数字地和模拟地的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、数字地和模拟地处理的基本原则如下"><span class="nav-number">2.</span> <span class="nav-text">二、数字地和模拟地处理的基本原则如下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、四种解决方法"><span class="nav-number">3.</span> <span class="nav-text">三、四种解决方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、电感与磁珠的区别"><span class="nav-number">4.</span> <span class="nav-text">四、电感与磁珠的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、几种方法综述"><span class="nav-number">5.</span> <span class="nav-text">五、几种方法综述</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_pv">
+    总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/11/AD/03_AD_数字模拟地/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、绘制库元件1.1 绘制库元件的原理图符号 File——&amp;gt;New——&amp;gt;Library——&amp;gt;Schematic Library，启动原理图库文件编辑器，并创建一个新的原理图库文件，命名为NewLib.SchLib； 为新建的库文件原理图符号命名在创建了一个新的原理图库文件的同时，系统已自动为该库添加了一个默认原理图符号名为Component-1的库文件，打开SCH Library">
+<meta property="og:type" content="article">
+<meta property="og:title" content="09_创建元件库及元件封装">
+<meta property="og:url" content="https://yuchen97.github.io/2018/12/11/AD/09_创建元件库及元件封装/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="一、绘制库元件1.1 绘制库元件的原理图符号 File——&amp;gt;New——&amp;gt;Library——&amp;gt;Schematic Library，启动原理图库文件编辑器，并创建一个新的原理图库文件，命名为NewLib.SchLib； 为新建的库文件原理图符号命名在创建了一个新的原理图库文件的同时，系统已自动为该库添加了一个默认原理图符号名为Component-1的库文件，打开SCH Library">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/6212DF5C12F845E6AA449ADCEAD263D2/24638">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/0344B32FB835450FBB07D5705F43319D/24640">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/CF7752F3966D4546828D57357AEA0793/24642">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/D6E3B67254AF425A9AF33F68354A009B/24644">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/BBEF6077116B49879E4DF40A53185954/24646">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/A83DF85CF3404667BD692B59C34EE15B/24648">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/C9396DA9B49943F7ABA006455E3BD848/24650">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/066E80E7A3C34ABB90332FC3AC2BAEFF/24652">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/2C9238D25D5D4BC9B5343DBE857959CD/24654">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/FC58444071344160B6276F43D51980A5/24656">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/DC5CB24D522C4F99885B3CA53EDAF56F/24658">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/027FCF09C1864E17A09D26D63E06A3DD/24660">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/6C4447F49C0A4AC0886FD460449B08CA/24662">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/35C5BEEFA04746A3BAF32FA156308D84/24664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/3D9E4FE42407459B96F8AF0B853EC759/24666">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/6A1CA57E64A04A8BB6F5547221BA2CE1/24668">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/1656162DEC57464EABF18935D1810DA9/24670">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/63A1C5B222C34637AA5C98C88542ACBA/24674">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/478009CC69E6452AA0F3D391F941DDD8/24676">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/2CCB529825954BEC9B3C3A40E30594C4/24678">
+<meta property="og:updated_time" content="2018-12-22T06:22:33.552Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="09_创建元件库及元件封装">
+<meta name="twitter:description" content="一、绘制库元件1.1 绘制库元件的原理图符号 File——&amp;gt;New——&amp;gt;Library——&amp;gt;Schematic Library，启动原理图库文件编辑器，并创建一个新的原理图库文件，命名为NewLib.SchLib； 为新建的库文件原理图符号命名在创建了一个新的原理图库文件的同时，系统已自动为该库添加了一个默认原理图符号名为Component-1的库文件，打开SCH Library">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/6212DF5C12F845E6AA449ADCEAD263D2/24638">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2018/12/11/AD/09_创建元件库及元件封装/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>09_创建元件库及元件封装 | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/11/AD/09_创建元件库及元件封装/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">09_创建元件库及元件封装
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-11 17:07:21" itemprop="dateCreated datePublished" datetime="2018-12-11T17:07:21+08:00">2018-12-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-22 14:22:33" itemprop="dateModified" datetime="2018-12-22T14:22:33+08:00">2018-12-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Altium-Designer/" itemprop="url" rel="index"><span itemprop="name">Altium Designer</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一、绘制库元件"><a href="#一、绘制库元件" class="headerlink" title="一、绘制库元件"></a>一、绘制库元件</h4><h4 id="1-1-绘制库元件的原理图符号"><a href="#1-1-绘制库元件的原理图符号" class="headerlink" title="1.1 绘制库元件的原理图符号"></a>1.1 绘制库元件的原理图符号</h4><ul>
+<li>File——&gt;New——&gt;Library——&gt;Schematic Library，启动原理图库文件编辑器，并创建一个新的原理图库文件，命名为NewLib.SchLib；</li>
+<li>为新建的库文件原理图符号命名<br>在创建了一个新的原理图库文件的同时，系统已自动为该库添加了一个默认原理图符号名为Component-1的库文件，打开SCH Library面板可以看到，两种方法对该库文件，进行重新命名。<ul>
+<li>单击原理图符号绘制工具栏的创建新元件按钮 ，则弹出原理图符号名称对话框，可以在此会话框内输入自己想要的绘制的库文件名称；</li>
+<li>在SCH Library面板上，直接单击原理图符号名称框下面的 Add 按钮，也会弹出同样的原理图符号名称对话</li>
+</ul>
+</li>
+<li>单击原理图符号绘制工具栏中放置矩形按钮，则光标变成十字形状，并附有一个矩形符号；</li>
+<li>两次单击鼠标左键，在编辑窗口绘制一个矩形。</li>
+</ul>
+<h4 id="1-2-放置引脚"><a href="#1-2-放置引脚" class="headerlink" title="1.2 放置引脚"></a>1.2 放置引脚</h4><ul>
+<li>单击原理图符号绘制工具栏中的放置引脚按钮，则光标会变成十字形状，并附有一个引脚符号；</li>
+<li>移动引脚到矩形边框处，单击左键完成放置；<br>   放置引脚时，一定要保证具有电气特性的一端，即带有 “×”的一端朝外，可通过在放置引脚时按空格键旋转实现。</li>
+<li><p>在放置引脚时按下Tab，或者双击已放置的引脚 ，系统将会弹出元件引脚属性对话框，完成各项设置；</p>
+<ul>
+<li>Display Name(显示名称)：设置库元件引脚的名称；</li>
+<li>Designator(标识)：设置库元件引脚的编号，应与实际的引脚编号相对应；</li>
+<li>Electrical Type(电气类型)：设置库元件引脚的电气特性。Input(输入)、IO(输入输出)、Output(输出)、OpenCoiiector(打开集流器)、Passive(中性的)、Hiz(脚)、Emitter(发射器)和Power(激励)8个选项。Passive(中性的)表示不设置电气特性；</li>
+<li><p>Hide(隐藏管脚)：设置引脚是否为隐藏引脚，若勾选，则引脚将不会显示出来。此时，应在右侧的Connect To文本框中输入与该引脚连接的网络名称；</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/6212DF5C12F845E6AA449ADCEAD263D2/24638" alt="">  </p>
+</li>
+</ul>
+</li>
+<li><p>按照同样的操作，完成其余引脚设置。</p>
+</li>
+</ul>
+<h4 id="1-3-编辑元件属性"><a href="#1-3-编辑元件属性" class="headerlink" title="1.3 编辑元件属性"></a>1.3 编辑元件属性</h4><p><strong>(1)</strong> 双击SCH Library 面板原理图符号名称栏中的库文件名称，弹出如图对话框；</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/0344B32FB835450FBB07D5705F43319D/24640" alt="">  </p>
+<ul>
+<li>Default  Designator(默认符号） : 默认库元件标号， 即把该元件放置到原理图文件中时，系统最初默认显示的元件标号。 这里设置为 “U?”，并勾选右侧的“visible(可用)” 复选框， 则放置该元件时，序号“U? “ 会显示在原理图上;</li>
+<li>DefauIt comment(元件) 下拉列表框:用于说明库元件型号。勾选右侧的 “Visible （可见）” 复选框， 则放置该元件时名称会显示在原理图上;</li>
+<li>Description（描述）：用于描述库元件功能;</li>
+<li>Type（类型）下拉列表框：库元件符号类型，可以选择设置。这里采用系统默认设置 Standard（标准）;</li>
+<li>Library Link(元件库线路）：库元件在系统中的标识符;</li>
+<li>Show All pins On Sheet（Even if Hidden ） （在原理图中显示全部引脚）复选框 ： 勾选该复选框后，在原理图上会显示该元件的全部引脚;</li>
+<li>Lock Pins （锁定引脚）复选框，勾选该复选框后，所有的引脚将和库元件成为一个整体，不能在原理图上单独移动引脚。建议用户勾选该复选框 ，这样对电路原理图的绘制和编辑会有很大好处，以减少不必要的麻烦;</li>
+<li>在 “parameters” 列表框中，单击Add按钮，可以为库元件添加其他的参数;</li>
+<li>在 “Models（模型）” 列表框中， 单击Add按钮，可以为该库元件添加其他的模型，如 PCB封装模型、信号完整性模型、仿真模型、PCB 3D模型等;</li>
+<li>单击左下角的Edit Pins按钮，则会打开元件引脚编辑器，可以对该元件所有引脚进行一次性的编辑设置。</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/CF7752F3966D4546828D57357AEA0793/24642" alt=""></p>
+<p><strong>(2)</strong> 设置完毕，关闭对话框；<br><strong>(3)</strong> P+T，或单击原理图符号绘制工具栏中的放置文本字符按钮”A”,光标会变成十字形状，并带有一个文本字符串；<br><strong>(4)</strong> 移动光标到原理图符号中心位置处，按下Tab键或双击字符串，弹出文本字符串注释对话框输入要输入的文本。</p>
+<h4 id="二、绘制含有子部件的库元件"><a href="#二、绘制含有子部件的库元件" class="headerlink" title="二、绘制含有子部件的库元件"></a>二、绘制含有子部件的库元件</h4><h5 id="2-1-绘制库元件的第一个子部件"><a href="#2-1-绘制库元件的第一个子部件" class="headerlink" title="2.1 绘制库元件的第一个子部件"></a>2.1 绘制库元件的第一个子部件</h5><p>与上面步骤相同</p>
+<h5 id="2-2-创建库元件的第二个子部件"><a href="#2-2-创建库元件的第二个子部件" class="headerlink" title="2.2 创建库元件的第二个子部件"></a>2.2 创建库元件的第二个子部件</h5><p><strong>(1)</strong> Edit ——&gt; Select(原理图) ——&gt; Inside Area(选择区域对象)，或单击标准工具栏中的区域内选择对象按钮，将第一个子部件选中，或者画个框圈起来</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/D6E3B67254AF425A9AF33F68354A009B/24644" alt=""></p>
+<p><strong>(2)</strong> 复制选中的子部件原理符号；<br><strong>(3)</strong> Tools ——&gt; New Part(新建部件)；<br>      执行该命令后，在SCH Library(SCH 元件库)的面板上库元件的名称前会多一个+，单击+打开，可以看到该元件中有两个子部件，刚才绘制的子部件原理图符合系统已经命名为Part A,还有一个子部件Part B是新创建的；<br><strong>(4)</strong> 将复制的子部件原理图符号粘贴在Part B中，改引脚序号。</p>
+<h4 id="三、创建PCB元件库及封装"><a href="#三、创建PCB元件库及封装" class="headerlink" title="三、创建PCB元件库及封装"></a>三、创建PCB元件库及封装</h4><h5 id="3-1-封装概述"><a href="#3-1-封装概述" class="headerlink" title="3.1 封装概述"></a>3.1 封装概述</h5><p>封装是指安装半导体集成电路芯片用的外壳，它起着安放、固定、密封、保护芯片和增强电热性能的作用，也是沟通芯片内部与外部电路的桥梁。芯片的封装在PCB板上通常表现为一组焊盘、丝印层上的边框及芯片的说明文字。焊盘是封装中最重要的组成部分，用于连接芯片的引脚，并通过印制板上的导线来连接印制板上的其他焊盘，进一步连接焊盘所对应的芯片引脚，完成电路板的功能。在封装中，每一个焊盘都有唯一的标号，以区别于封装中的其他焊盘。丝印层上的边框和文字说明主要起指示作用，指明焊盘组所对应的芯片，方便印制板的焊接。焊盘的形状和排列是封装的关键组成部分，确保焊盘的形状和排列正确才能正确地建立一个封装。对于安装有特殊要求的封装，边框也需要绝对正确。</p>
+<h5 id="3-2-常用封装介绍"><a href="#3-2-常用封装介绍" class="headerlink" title="3.2 常用封装介绍"></a>3.2 常用封装介绍</h5><p>总体上讲， 根据元件采用安装技术的不同 ， 可分为插入式封装技术（Through Technology, THT 〕 和表贴式封装技术 （surface Mounted Technology, SMT ）。<br>插入式封装元件安装时， 元件安置在板子的一面， 将引脚穿过PCB 板焊接在另一面上。 插入式元件需要占用较大的空间，并且要为每只引脚钻一个孔，所以它们的引脚会占据两面的空间，而且焊点也比较大。但从另一方面来说，插入式元件与PCB连接较好，机械性能好。例如，排线的插座、接囗板插槽等类似的界而都需要一定的耐压能力，因此，通常采用THT封装技术。<br>表贴式封装的元件，引脚焊盘与元件在同一面。表贴元件一般比插入式元件体积要小，而且不必为焊盘钻孔，甚至还能在PCB板的两面都焊上元件。因此，与使用插入式元件的PCB比起来， 使用表贴元件的PCB板上元件布局要密集很多， 体积也就小很多。 此外， 表贴封装元件也必插入式元件要便宜一些，所以现今的PCB上广泛采用表贴元件。<br>元件封装可以大致分成以下种类。</p>
+<ul>
+<li>BGA( Ball Grid Array）： 球栅阵列封装。 因其封装材料和尺寸的不同还细分成不同的 BGA 封装， 如陶瓷球栅阵列封装CBGA、 小型球栅阵列封装 μBGA等。<ul>
+<li>PGA（Pin Grid Array）： 插针栅格阵列封装技术。 这种技术封装的芯片内外有多个方阵形的插针， 每个方阵形插针沿芯片的四周间隔一定距离排列， 根据管脚数目的多少， 可以围成2~5圈。 安装时， 将芯片插入专门的PGA插座。 该技术一般用于插拔操作比较频繁的场合之下， 如个人计算机CPU。</li>
+<li>QFP（ Quad Flat Package ）： 方形扁平封装， 为当前芯片使用较多的一种封装形式。</li>
+<li>PLCC（Plastic Leaded Chip carrier）： 有引线塑料芯片载体。</li>
+<li>DIP （Dual In-line Package）：双列直插封装。</li>
+<li>SIP（Single In-line Package）： 单列直插封装。</li>
+<li>SOP（Small Out-line Package）： 小外形封装。</li>
+<li>SOJ（small Out-line J-LeadedPackage）：J形引脚小外形封装。</li>
+<li>CSP（Chip Scale Package）：芯片级封装，较新的封装形式，常用于内存条中。在CSP的封装方式中，芯片是通过一个个锡球焊接在PCB板上，由于焊点和PCB板的接触面积较大，所以内存芯片在运行中所产生的热量可以很容易地传导到PCB板上并散发出去。另外，CSP封装芯片采用中心引脚形式，有效地缩短了信号的传导距离，其衰减随之减少，芯片的抗干扰、抗噪性能也能得到大幅提升。<h5 id="3-3-新建封装"><a href="#3-3-新建封装" class="headerlink" title="3.3 新建封装"></a>3.3 新建封装</h5><strong>(1)</strong> 新建一个PCB库文件；<br>File ——&gt; New——&gt; Library——&gt;PCB Library<br><strong>(2)</strong> 保存并更改PCB库文件名称。<h5 id="3-4-用PCB向导创建PCB元件规则封装"><a href="#3-4-用PCB向导创建PCB元件规则封装" class="headerlink" title="3.4 用PCB向导创建PCB元件规则封装"></a>3.4 用PCB向导创建PCB元件规则封装</h5><strong>(1)</strong> Tools——&gt;Component Wizard<br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/BBEF6077116B49879E4DF40A53185954/24646" alt=""></li>
+</ul>
+</li>
+</ul>
+<p><strong>(2)</strong> 单击Next，进入元件封装模式选择<br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/A83DF85CF3404667BD692B59C34EE15B/24648" alt=""></p>
+<p><strong>(3)</strong> 单击next，进入焊盘尺寸设定画面<br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/C9396DA9B49943F7ABA006455E3BD848/24650" alt=""></p>
+<p><strong>(4)</strong>  单击next，进入焊盘形状设定画面<br>默认设置，令第1脚为圆形，其余脚为方形，以便区分。<br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/066E80E7A3C34ABB90332FC3AC2BAEFF/24652" alt=""></p>
+<p><strong>(5)</strong> 单击next，进入轮廓宽度设置画面<br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/2C9238D25D5D4BC9B5343DBE857959CD/24654" alt=""></p>
+<p><strong>(6)</strong> 单击next，进入焊盘间距设置画面<br>焊盘间距设置为0.5m，经计算行列间距为1.75mm。<br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/FC58444071344160B6276F43D51980A5/24656" alt=""></p>
+<p><strong>(7)</strong> 单击next ，进入焊盘起始位置和命名方向设置<br>单击单选框可以确定焊盘起始位置，单击箭头可以改变焊盘命名方向。采用默认设置，将第一个焊盘设置在封装左上角，逆时针方向为命名方向。<br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/DC5CB24D522C4F99885B3CA53EDAF56F/24658" alt=""></p>
+<p><strong>(8)</strong> 单击next，进入焊盘数目设置<br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/027FCF09C1864E17A09D26D63E06A3DD/24660" alt=""></p>
+<p><strong>(9)</strong> 单击next，进入封装命名<br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/6C4447F49C0A4AC0886FD460449B08CA/24662" alt=""></p>
+<p><strong>(10)</strong> 单击next，进入封装制作完成画面，单击Finish，退出封装导向<br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/35C5BEEFA04746A3BAF32FA156308D84/24664" alt=""><br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/3D9E4FE42407459B96F8AF0B853EC759/24666" alt=""></p>
+<h4 id="3-5-手工创建PCB元件不规则封装"><a href="#3-5-手工创建PCB元件不规则封装" class="headerlink" title="3.5 手工创建PCB元件不规则封装"></a>3.5 手工创建PCB元件不规则封装</h4><p><strong>(1)</strong> 打开PCB元件库NewPcbLib.PcbLib，执行Toois——&gt;component Wizard，这时PCB Library操作界面的元件框会出现一个新的PCBCOMPONENT_1空文件，双击该文件，在弹出对话框中修改元件名称。<br><strong>(2)</strong> 编辑工作环境设置<br>Tools——&gt;Library Options，或工作区域单击右键，选择Library Options<br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/6A1CA57E64A04A8BB6F5547221BA2CE1/24668" alt=""></p>
+<p><strong>(3)</strong> 放置焊盘<br>在Top Layer   ——&gt;   P+P ,光标上会悬浮一个十字光标和一个焊盘，单击鼠标左键确定焊盘位置<br><strong>(4)</strong> 编辑焊盘属性<br>双击焊盘即进入设置焊盘属性</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/1656162DEC57464EABF18935D1810DA9/24670" alt=""><br><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/63A1C5B222C34637AA5C98C88542ACBA/24674" alt=""></p>
+<p><strong>(5)</strong> 绘制轮廓线<br>放置焊盘完毕后，需要绘制元件轮廓线。元件轮廓线：该元件封装在电路板上占据的空间大小，轮廓线的线形和大小取决于实际元件的形状和大小，通常需要测量实际元件。<br><strong>(6)</strong> 绘制一段直线<br>单击Top Overlay(顶层覆盖) ,将活动层设置为顶层丝印层。P+L，光标将会变成十字形状，单击鼠标左键确定直线起点，并移动鼠标拉出一条直线，将直线 拉到合适的位置，单击鼠标左键确定直线终点，单击右键退出。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/478009CC69E6452AA0F3D391F941DDD8/24676" alt=""></p>
+<p><strong>(7)</strong> 绘制一段弧线<br>P+（Arc(center)），光标变成十字形状，将光标移到坐标原点，单击鼠标左键确定圆心，然后将鼠标移动至直线的任一端，单击鼠标左键确定圆弧半径，再在直线两个端点两次单击鼠标左键确定圆弧</p>
+<p><img src="https://note.youdao.com/yws/public/resource/8c672c8f9257bd4cb04f911e2facd9fd/xmlnote/2CCB529825954BEC9B3C3A40E30594C4/24678" alt=""></p>
+<p><strong>(8)</strong> Edit——&gt;Set Reference 有三个选项Pin 1，Center，Location。可以选择合适的元件参考点。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/11/AD/08_AD-PCB-ATmega16/" rel="next" title="08_AD-PCB-ATmega16">
+                <i class="fa fa-chevron-left"></i> 08_AD-PCB-ATmega16
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/11/AD/10_PCB布线与覆铜/" rel="prev" title="10_PCB布线与覆铜">
+                10_PCB布线与覆铜 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、绘制库元件"><span class="nav-number">1.</span> <span class="nav-text">一、绘制库元件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-绘制库元件的原理图符号"><span class="nav-number">2.</span> <span class="nav-text">1.1 绘制库元件的原理图符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-放置引脚"><span class="nav-number">3.</span> <span class="nav-text">1.2 放置引脚</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-编辑元件属性"><span class="nav-number">4.</span> <span class="nav-text">1.3 编辑元件属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、绘制含有子部件的库元件"><span class="nav-number">5.</span> <span class="nav-text">二、绘制含有子部件的库元件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-绘制库元件的第一个子部件"><span class="nav-number">5.1.</span> <span class="nav-text">2.1 绘制库元件的第一个子部件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-创建库元件的第二个子部件"><span class="nav-number">5.2.</span> <span class="nav-text">2.2 创建库元件的第二个子部件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、创建PCB元件库及封装"><span class="nav-number">6.</span> <span class="nav-text">三、创建PCB元件库及封装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-封装概述"><span class="nav-number">6.1.</span> <span class="nav-text">3.1 封装概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-常用封装介绍"><span class="nav-number">6.2.</span> <span class="nav-text">3.2 常用封装介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-新建封装"><span class="nav-number">6.3.</span> <span class="nav-text">3.3 新建封装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-用PCB向导创建PCB元件规则封装"><span class="nav-number">6.4.</span> <span class="nav-text">3.4 用PCB向导创建PCB元件规则封装</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-手工创建PCB元件不规则封装"><span class="nav-number">7.</span> <span class="nav-text">3.5 手工创建PCB元件不规则封装</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_pv">
+    总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/11/AD/09_创建元件库及元件封装/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
