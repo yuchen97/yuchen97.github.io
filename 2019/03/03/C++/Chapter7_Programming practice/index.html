@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="7.1.1 题目编写一个程序，不断要求用户输入两个数，直到其中的一个为0。对于每两个数，程序将使用一个函数来计算它们的调和平均数，并将结果返回给 main()，而后者将报告结果。调和平均数指的是倒数平均值的倒数，计算公式如下：1调和平均数 = 2.0*x*y/(x+y) 7.1.2 代码12345678910111213141516171819202122232425#include &amp;lt;io">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter7_Programming practice">
+<meta property="og:url" content="https://yuchen97.github.io/2019/03/03/C++/Chapter7_Programming practice/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="7.1.1 题目编写一个程序，不断要求用户输入两个数，直到其中的一个为0。对于每两个数，程序将使用一个函数来计算它们的调和平均数，并将结果返回给 main()，而后者将报告结果。调和平均数指的是倒数平均值的倒数，计算公式如下：1调和平均数 = 2.0*x*y/(x+y) 7.1.2 代码12345678910111213141516171819202122232425#include &amp;lt;io">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-03T14:07:23.740Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter7_Programming practice">
+<meta name="twitter:description" content="7.1.1 题目编写一个程序，不断要求用户输入两个数，直到其中的一个为0。对于每两个数，程序将使用一个函数来计算它们的调和平均数，并将结果返回给 main()，而后者将报告结果。调和平均数指的是倒数平均值的倒数，计算公式如下：1调和平均数 = 2.0*x*y/(x+y) 7.1.2 代码12345678910111213141516171819202122232425#include &amp;lt;io">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2019/03/03/C++/Chapter7_Programming practice/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Chapter7_Programming practice | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2019/03/03/C++/Chapter7_Programming practice/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Chapter7_Programming practice
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-03 22:05:46 / Modified: 22:07:23" itemprop="dateCreated datePublished" datetime="2019-03-03T22:05:46+08:00">2019-03-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="7-1-1-题目"><a href="#7-1-1-题目" class="headerlink" title="7.1.1 题目"></a>7.1.1 题目</h3><p>编写一个程序，不断要求用户输入两个数，直到其中的一个为0。对于每两个数，程序将使用一个函数来计算它们的调和平均数，并将结果返回给 main()，而后者将报告结果。调和平均数指的是倒数平均值的倒数，计算公式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">调和平均数 = 2.0*x*y/(x+y)</span><br></pre></td></tr></table></figure></p>
+<h3 id="7-1-2-代码"><a href="#7-1-2-代码" class="headerlink" title="7.1.2 代码"></a>7.1.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">double har_ave(double x, double y);</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line"></span><br><span class="line">    double n,m;</span><br><span class="line">    cout &lt;&lt; &quot;Enter double nums(0 to quit): &quot;;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    while((n!=0)&amp;&amp;(m!=0))</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;The answer is: &quot; &lt;&lt; har_ave(n,m) &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; &quot;Enter double nums(0 to quit): &quot;;</span><br><span class="line">        cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; &quot;Has the 0, quit&quot; &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double har_ave(double x, double y)</span><br><span class="line">&#123;</span><br><span class="line">    double ave = 2.0*x*y/(x+y);</span><br><span class="line">    return ave;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-1-3-运行结果"><a href="#7-1-3-运行结果" class="headerlink" title="7.1.3 运行结果"></a>7.1.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; g++ .\test.cpp -o test.exe</span><br><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">Enter double nums(0 to quit): 2 2</span><br><span class="line">The answer is: 2</span><br><span class="line">Enter double nums(0 to quit): 1 2</span><br><span class="line">The answer is: 1.33333</span><br><span class="line">Enter double nums(0 to quit): 2.2 2.2</span><br><span class="line">The answer is: 2.2</span><br><span class="line">Enter double nums(0 to quit): 0 1</span><br><span class="line">Has the 0, quit</span><br></pre></td></tr></table></figure>
+<hr>
+<p>7.2 略</p>
+<hr>
+<h3 id="7-3-1-题目"><a href="#7-3-1-题目" class="headerlink" title="7.3.1 题目"></a>7.3.1 题目</h3><p>下面是一个结构声明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">struct box  </span><br><span class="line">&#123;  </span><br><span class="line">    char maker[40];  </span><br><span class="line">    float height;  </span><br><span class="line">    float width;  </span><br><span class="line">    float length;  </span><br><span class="line">    float volume;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>a. 编写一个函数，按值传递 box 的结构，并显示每个成员的值。<br>b. 编写一个函数，传递 box 结构的地址，并将 volume 成员设置为其他三维长度的乘积。<br>c. 编写一个使用这两个函数的简单程序。  </p>
+<h3 id="7-3-2-代码"><a href="#7-3-2-代码" class="headerlink" title="7.3.2 代码"></a>7.3.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">struct box</span><br><span class="line">&#123;</span><br><span class="line">    char maker[40];</span><br><span class="line">    float height;</span><br><span class="line">    float width;</span><br><span class="line">    float length;</span><br><span class="line">    float volume;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void value_return(box value);</span><br><span class="line">void addr_return(box * addr);</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    box box_test = &#123;&quot;chen&quot;, 1.1, 2.0, 1.1, 0.0&#125;;</span><br><span class="line">    value_return(box_test);</span><br><span class="line">    addr_return(&amp;box_test);</span><br><span class="line">    value_return(box_test);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void value_return(box value)</span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; &quot;***** This is value return: *****&quot; &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;maker: &quot; &lt;&lt; value.maker &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;height: &quot; &lt;&lt; value.height &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;width: &quot; &lt;&lt; value.width &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;length: &quot; &lt;&lt; value.length &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;volume: &quot; &lt;&lt; value.volume &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">void addr_return(box * addr)</span><br><span class="line">&#123;</span><br><span class="line">   addr-&gt;volume = addr-&gt;height*addr-&gt;width*addr-&gt;length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-3-3-运行结果"><a href="#7-3-3-运行结果" class="headerlink" title="7.3.3 运行结果"></a>7.3.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">***** This is value return: *****</span><br><span class="line">maker: chen</span><br><span class="line">height: 1.1</span><br><span class="line">width: 2</span><br><span class="line">length: 1.1</span><br><span class="line">volume: 0</span><br><span class="line">***** This is value return: *****</span><br><span class="line">maker: chen</span><br><span class="line">height: 1.1</span><br><span class="line">width: 2</span><br><span class="line">length: 1.1</span><br><span class="line">volume: 2.42</span><br></pre></td></tr></table></figure>
+<hr>
+<p>7.4 略</p>
+<hr>
+<h3 id="7-5-1-题目"><a href="#7-5-1-题目" class="headerlink" title="7.5.1 题目"></a>7.5.1 题目</h3><p>定义一个递归函数，接受一个整数参数，并返回该参数的阶乘。前面讲过，3 的阶乘写作 3！，等于 3*2！，依此类推；而 0！被定义为1.通用的计算公式是，如果 n 大于 0，则<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n!=n*(n-1)</span><br></pre></td></tr></table></figure></p>
+<p>在程序中对该函数进行测试，程序使用循环让用户输入不同的值，程序将报告这些值的阶乘。</p>
+<h3 id="7-5-2-代码"><a href="#7-5-2-代码" class="headerlink" title="7.5.2 代码"></a>7.5.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">long factorial(int n);</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line">    int x;</span><br><span class="line">    cout &lt;&lt; &quot;Enter the num: &quot;;</span><br><span class="line">    while(cin&gt;&gt;x)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; x &lt;&lt; &quot;! is &quot; &lt;&lt; factorial(x) &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; &quot;Enter the num: &quot;; </span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">long factorial(int n)</span><br><span class="line">&#123;</span><br><span class="line">    if (n==0)</span><br><span class="line">        return 1;</span><br><span class="line">    else</span><br><span class="line">        return n*factorial(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-5-3-运行结果"><a href="#7-5-3-运行结果" class="headerlink" title="7.5.3 运行结果"></a>7.5.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">Enter the num: 0</span><br><span class="line">0! is 1</span><br><span class="line">Enter the num: 1</span><br><span class="line">1! is 1</span><br><span class="line">Enter the num: 2</span><br><span class="line">2! is 2</span><br><span class="line">Enter the num: 3</span><br><span class="line">3! is 6</span><br><span class="line">Enter the num: 4</span><br><span class="line">4! is 24</span><br><span class="line">Enter the num: q</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="7-6-1-题目"><a href="#7-6-1-题目" class="headerlink" title="7.6.1 题目"></a>7.6.1 题目</h3><p>编写一个程序，它将使用下列函数：<br>Fill_array() 将一个 double 数组的名称和长度作为参数。它提示用户输入 double 值，并将这些值存储到数组中。当数组被填满或用户输入了非数字时，输入将停止，并返回实际输入了多少个数字。<br>Show_array() 将一个 double 数组的名称和长度作为参数，并显示该数组的内容。<br>Reverse_array() 将一个 double 数组的名称和长度作为参数，并将存储在数组中的值的顺序反转。<br>程序将使用这些函数来填充数组，然后显示数组；反转数组，然后显示数组；反转数组中除第一个和最后一个元素之外的所有元素，然后显示数组。</p>
+<h3 id="7-6-2-代码"><a href="#7-6-2-代码" class="headerlink" title="7.6.2 代码"></a>7.6.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int len = 4;</span><br><span class="line"></span><br><span class="line">int Fill_array(double str[], int size);</span><br><span class="line">void Show_array(double str[], int n);</span><br><span class="line">void Reverse_array(double str[], int n);</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    double strs[len] = &#123;0.0&#125;;</span><br><span class="line">    int real_size;</span><br><span class="line">    real_size = Fill_array(strs, len);</span><br><span class="line">    Show_array(strs, real_size+1);</span><br><span class="line">    Reverse_array(strs, real_size+1);</span><br><span class="line">    Show_array(strs, real_size+1);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int Fill_array(double str[], int size)</span><br><span class="line">&#123;</span><br><span class="line">    double value;</span><br><span class="line">    </span><br><span class="line">    int num=0;</span><br><span class="line">    for (int i=0; i&lt;size; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;Enter the value(double): &quot;;</span><br><span class="line">        if(!(cin&gt;&gt;value))</span><br><span class="line">        &#123;</span><br><span class="line">            cin.clear();</span><br><span class="line">            while (cin.get() != &apos;\n&apos;)</span><br><span class="line">                continue;</span><br><span class="line">            cout &lt;&lt; &quot;Bad input; Please enter a number: &quot;;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">            str[num++] = value;</span><br><span class="line">    &#125;</span><br><span class="line">    return num-1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Show_array(double str[], int n)</span><br><span class="line">&#123;</span><br><span class="line">    for (int i=0; i&lt;n; ++i)</span><br><span class="line">        cout &lt;&lt; str[i] &lt;&lt; &quot; &quot; &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">void Reverse_array(double str[], int n)</span><br><span class="line">&#123;</span><br><span class="line">    for (int i=0; i&lt;n/2; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        double temp = str[i];</span><br><span class="line">        str[i] = str[n-i-1];</span><br><span class="line">        str[n-i-1] = temp;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-6-3-运行结果"><a href="#7-6-3-运行结果" class="headerlink" title="7.6.3 运行结果"></a>7.6.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">Enter the value(double): 1.1</span><br><span class="line">Enter the value(double): c</span><br><span class="line">Bad input; Please enter a number: 1.1</span><br><span class="line">1.1</span><br><span class="line"></span><br><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">Enter the value(double): 1.1</span><br><span class="line">Enter the value(double): 2.2</span><br><span class="line">Enter the value(double): 3.3</span><br><span class="line">Enter the value(double): 4.4</span><br><span class="line">1.1</span><br><span class="line">2.2</span><br><span class="line">3.3</span><br><span class="line">4.4</span><br><span class="line">4.4</span><br><span class="line">3.3</span><br><span class="line">2.2</span><br><span class="line">1.1</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="7-7-1-题目"><a href="#7-7-1-题目" class="headerlink" title="7.7.1 题目"></a>7.7.1 题目</h3><p>修改程序清单 7.7 中的 3 个数组处理函数，使之使用两个指针参数来表示区间。fill_array() 函数不返回实际读取了多少个数字，而是返回一个指针，该指针指向最后被填充的位置；其他的函数可以将该指针作为第二个参数，以标识数据结尾。</p>
+<h3 id="7-7-2-代码"><a href="#7-7-2-代码" class="headerlink" title="7.7.2 代码"></a>7.7.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line">    const int Max=5;</span><br><span class="line">    double arr[Max];</span><br><span class="line"></span><br><span class="line">    int * arr_end = fill_array(arr, Max);</span><br><span class="line">    show_array(arr, arr_end);</span><br><span class="line">    if (arr_end != arr)</span><br><span class="line">    &#123;</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        revalue(factor, arr, arr_end);</span><br><span class="line">        show(arr, arr_end);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="7-8-1-题目"><a href="#7-8-1-题目" class="headerlink" title="7.8.1 题目"></a>7.8.1 题目</h3><p>在不使用 array 类的情况下完成程序清单 7.15 所做的工作。编写两个这样的版本：<br>a. 使用 const char<em> 数组存储表示季度名称的字符串，并使用 double 数组存储开支。<br>b. 使用 const char</em> 数组存储表示季度名称的字符串，并使用一个结构，该结构只有一个成员——一个用于存储开支的 double 数组。这种设计与使用 array 类的基本设计类似。</p>
+<h3 id="7-8-2-代码"><a href="#7-8-2-代码" class="headerlink" title="7.8.2 代码"></a>7.8.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">a</span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int Seasons = 4;</span><br><span class="line">const char* Snames[Seasons] = &#123;&quot;Spring&quot;, &quot;Summer&quot;, &quot;Fall&quot;, &quot;Winter&quot;&#125;;</span><br><span class="line">void fill(double* array);</span><br><span class="line">void show(double *array);</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    double expenses[Seasons];</span><br><span class="line">    fill(expenses);</span><br><span class="line">    show(expenses);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void fill(double *array)</span><br><span class="line">&#123;</span><br><span class="line">    for (int i=0; i&lt;Seasons; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;Enter &quot; &lt;&lt; Snames[i] &lt;&lt; &quot;expenses: &quot;;</span><br><span class="line">        cin &gt;&gt; array[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void show(double *array)</span><br><span class="line">&#123;</span><br><span class="line">    double total = 0.0;</span><br><span class="line">    cout &lt;&lt; &quot;\nEXPENSES\n&quot;;</span><br><span class="line">    for (int i=0; i&lt;Seasons; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; Snames[i] &lt;&lt; &quot;: $&quot; &lt;&lt; array[i] &lt;&lt;endl;</span><br><span class="line">        total += array[i];</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; &quot;Total expenses: $&quot; &lt;&lt; total &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">b</span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int Seasons = 4;</span><br><span class="line">const char* Snames[Seasons] = &#123;&quot;Spring&quot;, &quot;Summer&quot;, &quot;Fall&quot;, &quot;Winter&quot;&#125;;</span><br><span class="line"></span><br><span class="line">struct dollar</span><br><span class="line">&#123;</span><br><span class="line">    double expenses[Seasons];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void fill(dollar * array);</span><br><span class="line">void show(dollar * array);</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    dollar pay;</span><br><span class="line">    fill(&amp;pay);</span><br><span class="line">    show(&amp;pay);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void fill(dollar *array)</span><br><span class="line">&#123;</span><br><span class="line">    for (int i=0; i&lt;Seasons; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;Enter &quot; &lt;&lt; Snames[i] &lt;&lt; &quot;expenses: &quot;;</span><br><span class="line">        cin &gt;&gt; array-&gt;expenses[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void show(dollar *array)</span><br><span class="line">&#123;</span><br><span class="line">    double total = 0.0;</span><br><span class="line">    cout &lt;&lt; &quot;\nEXPENSES\n&quot;;</span><br><span class="line">    for (int i=0; i&lt;Seasons; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; Snames[i] &lt;&lt; &quot;: $&quot; &lt;&lt; array-&gt;expenses[i] &lt;&lt;endl;</span><br><span class="line">        total += array-&gt;expenses[i];</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; &quot;Total expenses: $&quot; &lt;&lt; total &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-8-3-运行结果"><a href="#7-8-3-运行结果" class="headerlink" title="7.8.3 运行结果"></a>7.8.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a b</span><br><span class="line"></span><br><span class="line">Enter Summerexpenses: PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">Enter Springexpenses: 212</span><br><span class="line">Enter Summerexpenses: 256</span><br><span class="line">Enter Fallexpenses: 208</span><br><span class="line">Enter Winterexpenses: 244</span><br><span class="line"></span><br><span class="line">EXPENSES</span><br><span class="line">Spring: $212</span><br><span class="line">Summer: $256</span><br><span class="line">Fall: $208</span><br><span class="line">Winter: $244</span><br><span class="line">Total expenses: $920</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="7-9-1-题目"><a href="#7-9-1-题目" class="headerlink" title="7.9.1 题目"></a>7.9.1 题目</h3><p>太长了，，加油！</p>
+<h3 id="7-9-2-代码"><a href="#7-9-2-代码" class="headerlink" title="7.9.2 代码"></a>7.9.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int SLEN = 30;</span><br><span class="line">struct student</span><br><span class="line">&#123;</span><br><span class="line">    char fullname[SLEN];</span><br><span class="line">    char hobby[SLEN];</span><br><span class="line">    int ooplevel;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int getinfo(student pa[], int n)</span><br><span class="line">&#123;</span><br><span class="line">    int real_num=0;</span><br><span class="line">    for(int i=0; i&lt;n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;Enter the student&apos;s name: &quot;;</span><br><span class="line">        cin.getline(pa[i].fullname, SLEN); // if string type, getline(cin, pa[i].fullname)</span><br><span class="line">        if(!strlen(pa[i].fullname))</span><br><span class="line">            break;</span><br><span class="line">        cout &lt;&lt; &quot;Enter the student&apos;s hobby: &quot;;</span><br><span class="line">        cin.getline(pa[i].hobby, SLEN); </span><br><span class="line">        cout &lt;&lt; &quot;Enter the student&apos;s ooplevel: &quot;;</span><br><span class="line">        (cin &gt;&gt; pa[i].ooplevel).get(); </span><br><span class="line">        real_num++;</span><br><span class="line">    &#125;</span><br><span class="line">    return real_num;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void display1(student st)</span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; &quot;name: &quot; &lt;&lt; st.fullname &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;hobby: &quot; &lt;&lt; st.hobby &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;ooplevel: &quot; &lt;&lt; st.ooplevel &lt;&lt; endl;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void display2(const student *st)</span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; &quot;name: &quot; &lt;&lt; st-&gt;fullname &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;hobby: &quot; &lt;&lt; st-&gt;hobby &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;ooplevel: &quot; &lt;&lt; st-&gt;ooplevel &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void display3(const student pa[],int n)</span><br><span class="line">&#123;</span><br><span class="line">    for(int i = 0; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;info #&quot; &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; &quot;name: &quot; &lt;&lt; (pa + i)-&gt;fullname &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; &quot;hobby: &quot; &lt;&lt; (pa + i)-&gt;hobby &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; &quot;ooplevel: &quot; &lt;&lt; (pa + i)-&gt;ooplevel &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  cout &lt;&lt; &quot;enter class size: &quot;;</span><br><span class="line">    int class_size;</span><br><span class="line">    cin &gt;&gt; class_size;</span><br><span class="line">    while(cin.get()!=&apos;\n&apos;)</span><br><span class="line">        continue;</span><br><span class="line"></span><br><span class="line">    student *ptr_stu = new student[class_size];</span><br><span class="line">    int entered = getinfo(ptr_stu,class_size);</span><br><span class="line">    cout &lt;&lt; &quot;\n diplay1 and 2 \n&quot;;</span><br><span class="line">    for(int i=0;i&lt;entered;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        display1(ptr_stu[i]);</span><br><span class="line">        display2(&amp;ptr_stu[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; &quot;\n\n&quot;;</span><br><span class="line">    display3(ptr_stu,entered);</span><br><span class="line">    delete [] ptr_stu;</span><br><span class="line">    cout &lt;&lt; &quot;Done!&quot;;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-9-3-运行结果"><a href="#7-9-3-运行结果" class="headerlink" title="7.9.3 运行结果"></a>7.9.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">enter class size: 1</span><br><span class="line">Enter the student&apos;s name:</span><br><span class="line"></span><br><span class="line"> diplay1 and 2</span><br><span class="line">Done!</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">enter class size: 1</span><br><span class="line">Enter the student&apos;s name: jac k</span><br><span class="line">Enter the student&apos;s hobby: pla y</span><br><span class="line">Enter the student&apos;s ooplevel: 12</span><br><span class="line"></span><br><span class="line"> diplay1 and 2</span><br><span class="line">name: jac k</span><br><span class="line">hobby: pla y</span><br><span class="line">ooplevel: 12</span><br><span class="line">name: jac k</span><br><span class="line">hobby: pla y</span><br><span class="line">ooplevel: 12</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">info #0</span><br><span class="line">name: jac k</span><br><span class="line">hobby: pla y</span><br><span class="line">ooplevel: 12</span><br><span class="line">Done!</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="7-10-1-题目"><a href="#7-10-1-题目" class="headerlink" title="7.10.1 题目"></a>7.10.1 题目</h3><p>设计一个名为 calculate() 的函数，它接受两个 double 值和一个指向函数的指针，而被指向的函数接受两个 double 参数，并返回一个 double 值。calculate() 函数的类型也是 double，并返回被指向的函数使用 calculate() 的两个 double 参数计算得到的值。例如，假设 add() 函数的定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">double add(double x, double y)</span><br><span class="line">&#123;</span><br><span class="line">    return x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>则用下述代码中的函数调用将导致 calculate() 把 2.5 和 10.4 传递给 add() 函数，并返回 add() 的返回值 (12.9):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">double q = calculate(2.5, 10.4, add);</span><br></pre></td></tr></table></figure></p>
+<p>请编写一个程序，它调用上述两个函数和至少另一个与 add() 类似的函数。该程序使用循环来让用户成对的输入数字。对于每对数字，程序都使用 calculate() 来调用 add() 和至少一个其他的函数。如果读者爱冒险，可以尝试创建一个指针数组，其中的指针指向 add() 样式的函数，并编写一个循环，使用这些指针连续让 calculate() 调用这些函数。提示：下面是声明这种指针数组的方式，其中包含三个指针：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">double (*pf[3])(double, double)；</span><br></pre></td></tr></table></figure></p>
+<p>可以采用数组初始化语法，并将函数名作为地址来初始化这样的数组。</p>
+<h3 id="7-10-2-代码"><a href="#7-10-2-代码" class="headerlink" title="7.10.2 代码"></a>7.10.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">double calculate(double x, double y, double (*pt)(double, double));</span><br><span class="line">double add(double x, double y);</span><br><span class="line">double reduce(double x, double y);</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line">    cout &lt;&lt; &quot;Enter two nums: &quot; &lt;&lt; endl;</span><br><span class="line">    double n,m;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    cout &lt;&lt; &quot;add value: &quot; &lt;&lt; calculate(n, m, add) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;reduce value: &quot; &lt;&lt; calculate(n, m, reduce) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    double (*pf[2])(double, double) = &#123;add, reduce&#125;;    // 函数指针数组</span><br><span class="line">    cout &lt;&lt; &quot;an array of 2 function pointers: &quot; &lt;&lt; endl;</span><br><span class="line">    for (int i=0; i&lt;2; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; calculate(n, m, pf[i]) &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double calculate(double x, double y, double (*pt)(double, double))</span><br><span class="line">&#123;</span><br><span class="line">    return pt(x, y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double add(double x, double y)</span><br><span class="line">&#123;</span><br><span class="line">    return x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double reduce(double x, double y)</span><br><span class="line">&#123;</span><br><span class="line">    return x-y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-10-3-运行结果"><a href="#7-10-3-运行结果" class="headerlink" title="7.10.3 运行结果"></a>7.10.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">Enter two nums:</span><br><span class="line">1.1 2.2</span><br><span class="line">add value: 3.3</span><br><span class="line">reduce value: -1.1</span><br><span class="line">an array of 2 function pointers:</span><br><span class="line">3.3</span><br><span class="line">-1.1</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/26/C++/Chapter6_Programming practice/" rel="next" title="Chapter6_Programming practice">
+                <i class="fa fa-chevron-left"></i> Chapter6_Programming practice
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">92</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-1-题目"><span class="nav-number">1.</span> <span class="nav-text">7.1.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-2-代码"><span class="nav-number">2.</span> <span class="nav-text">7.1.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-3-运行结果"><span class="nav-number">3.</span> <span class="nav-text">7.1.3 运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-1-题目"><span class="nav-number">4.</span> <span class="nav-text">7.3.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-2-代码"><span class="nav-number">5.</span> <span class="nav-text">7.3.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-3-运行结果"><span class="nav-number">6.</span> <span class="nav-text">7.3.3 运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-1-题目"><span class="nav-number">7.</span> <span class="nav-text">7.5.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-2-代码"><span class="nav-number">8.</span> <span class="nav-text">7.5.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-3-运行结果"><span class="nav-number">9.</span> <span class="nav-text">7.5.3 运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-6-1-题目"><span class="nav-number">10.</span> <span class="nav-text">7.6.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-6-2-代码"><span class="nav-number">11.</span> <span class="nav-text">7.6.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-6-3-运行结果"><span class="nav-number">12.</span> <span class="nav-text">7.6.3 运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-7-1-题目"><span class="nav-number">13.</span> <span class="nav-text">7.7.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-7-2-代码"><span class="nav-number">14.</span> <span class="nav-text">7.7.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-8-1-题目"><span class="nav-number">15.</span> <span class="nav-text">7.8.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-8-2-代码"><span class="nav-number">16.</span> <span class="nav-text">7.8.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-8-3-运行结果"><span class="nav-number">17.</span> <span class="nav-text">7.8.3 运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-9-1-题目"><span class="nav-number">18.</span> <span class="nav-text">7.9.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-9-2-代码"><span class="nav-number">19.</span> <span class="nav-text">7.9.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-9-3-运行结果"><span class="nav-number">20.</span> <span class="nav-text">7.9.3 运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-10-1-题目"><span class="nav-number">21.</span> <span class="nav-text">7.10.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-10-2-代码"><span class="nav-number">22.</span> <span class="nav-text">7.10.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-10-3-运行结果"><span class="nav-number">23.</span> <span class="nav-text">7.10.3 运行结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+<!--<span id="busuanzi_container_site_uv">
+    总访问量<span id="busuanzi_value_site_uv"></span>次
+</span>-->
+
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2019/03/03/C++/Chapter7_Programming practice/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
