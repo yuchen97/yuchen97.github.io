@@ -115,24 +115,24 @@
 
 
 
-  <meta name="description" content="5.1 略  5.2.1 题目使用 array 对象（而不是数组）和 long double （而不是 long long）重新编写程序清单 5.4，并计算 100！的值。 5.2.2 代码12345678910111213141516171819#include &amp;lt;iostream&amp;gt;#include &amp;lt;array&amp;gt;const int ArSize = 101;int ma">
+  <meta name="description" content="chenyu110197@gmail.com">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Chapter5_Programming practice">
-<meta property="og:url" content="https://yuchen97.github.io/2019/02/26/C++/Chapter5_Programming practice/index.html">
+<meta property="og:title" content="tt">
+<meta property="og:url" content="https://yuchen97.github.io/2019/03/08/tt/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="5.1 略  5.2.1 题目使用 array 对象（而不是数组）和 long double （而不是 long long）重新编写程序清单 5.4，并计算 100！的值。 5.2.2 代码12345678910111213141516171819#include &amp;lt;iostream&amp;gt;#include &amp;lt;array&amp;gt;const int ArSize = 101;int ma">
+<meta property="og:description" content="chenyu110197@gmail.com">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-26T14:31:58.560Z">
+<meta property="og:updated_time" content="2019-03-08T14:30:39.592Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter5_Programming practice">
-<meta name="twitter:description" content="5.1 略  5.2.1 题目使用 array 对象（而不是数组）和 long double （而不是 long long）重新编写程序清单 5.4，并计算 100！的值。 5.2.2 代码12345678910111213141516171819#include &amp;lt;iostream&amp;gt;#include &amp;lt;array&amp;gt;const int ArSize = 101;int ma">
+<meta name="twitter:title" content="tt">
+<meta name="twitter:description" content="chenyu110197@gmail.com">
 
 
 
 
 
 
-  <link rel="canonical" href="https://yuchen97.github.io/2019/02/26/C++/Chapter5_Programming practice/">
+  <link rel="canonical" href="https://yuchen97.github.io/2019/03/08/tt/">
 
 
 
@@ -142,7 +142,7 @@
   };
 </script>
 
-  <title>Chapter5_Programming practice | Chenyu's Blog</title>
+  <title>tt | Chenyu's Blog</title>
   
 
 
@@ -389,7 +389,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2019/02/26/C++/Chapter5_Programming practice/">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2019/03/08/tt/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
@@ -406,7 +406,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Chapter5_Programming practice
+          <h1 class="post-title" itemprop="name headline">tt
               
             
           </h1>
@@ -431,34 +431,12 @@
                 
               
 
-              <time title="Created: 2019-02-26 22:30:48 / Modified: 22:31:58" itemprop="dateCreated datePublished" datetime="2019-02-26T22:30:48+08:00">2019-02-26</time>
+              <time title="Created: 2019-03-08 22:30:39" itemprop="dateCreated datePublished" datetime="2019-03-08T22:30:39+08:00">2019-03-08</time>
             
 
-            
-              
-
-              
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -487,34 +465,7 @@
       
 
       
-        <p>5.1 略</p>
-<hr>
-<h3 id="5-2-1-题目"><a href="#5-2-1-题目" class="headerlink" title="5.2.1 题目"></a>5.2.1 题目</h3><p>使用 array 对象（而不是数组）和 long double （而不是 long long）重新编写程序清单 5.4，并计算 100！的值。</p>
-<h3 id="5-2-2-代码"><a href="#5-2-2-代码" class="headerlink" title="5.2.2 代码"></a>5.2.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;array&gt;</span><br><span class="line"></span><br><span class="line">const int ArSize = 101;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line"></span><br><span class="line">    array&lt;long double, ArSize&gt; factorials;</span><br><span class="line"></span><br><span class="line">    factorials[1] = factorials[0] = 1.0;</span><br><span class="line">    for (int i = 2; i&lt; ArSize; i++)</span><br><span class="line">        factorials[i] = i* factorials[i-1];</span><br><span class="line">    for (int i = 0; i &lt; ArSize; i++)</span><br><span class="line">        cout &lt;&lt; i &lt;&lt; &quot;!=&quot; &lt;&lt; factorials[i] &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="5-2-3-运行结果"><a href="#5-2-3-运行结果" class="headerlink" title="5.2.3 运行结果"></a>5.2.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">96!=9.91678e+149</span><br><span class="line">97!=9.61928e+151</span><br><span class="line">98!=9.42689e+153</span><br><span class="line">99!=9.33262e+155</span><br><span class="line">100!=9.33262e+157</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="5-3-1-题目"><a href="#5-3-1-题目" class="headerlink" title="5.3.1 题目"></a>5.3.1 题目</h3><p>编写一个要求用户输入数字的程序。每次输入后，程序都将报告到目前为止，所有输入的累计和。当用户输入 0 时，程序结束。  </p>
-<h3 id="5-3-2-代码"><a href="#5-3-2-代码" class="headerlink" title="5.3.2 代码"></a>5.3.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line">    int num = 0;</span><br><span class="line">    int sum = 0;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; &quot;Enter the number(0 to stop): &quot; &lt;&lt; endl;</span><br><span class="line">    cin &gt;&gt; num;</span><br><span class="line">    </span><br><span class="line">    while(num)</span><br><span class="line">    &#123;</span><br><span class="line">        sum += num;</span><br><span class="line">        cout &lt;&lt; &quot;Up to now,the sum of the input data is: &quot; </span><br><span class="line">             &lt;&lt; sum &lt;&lt; endl ;</span><br><span class="line">        cout &lt;&lt; &quot;Enter the number(0 to stop): &quot; &lt;&lt; endl;</span><br><span class="line">        cin &gt;&gt; num ;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="5-3-3-运行结果"><a href="#5-3-3-运行结果" class="headerlink" title="5.3.3 运行结果"></a>5.3.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; g++ .\test.cpp -o test.exe</span><br><span class="line">PS E:\Buffer\C++_code&gt; ./test.exe</span><br><span class="line">Enter the number(0 to stop):</span><br><span class="line">1 2 3</span><br><span class="line">Up to now,the sum of the input data is: 1</span><br><span class="line">Enter the number(0 to stop):</span><br><span class="line">Up to now,the sum of the input data is: 3</span><br><span class="line">Enter the number(0 to stop):</span><br><span class="line">Up to now,the sum of the input data is: 6</span><br><span class="line">Enter the number(0 to stop):</span><br><span class="line">4 0</span><br><span class="line">Up to now,the sum of the input data is: 10</span><br><span class="line">Enter the number(0 to stop):</span><br></pre></td></tr></table></figure>
-<hr>
-<p>5.4 略</p>
-<hr>
-<h3 id="5-5-1-题目"><a href="#5-5-1-题目" class="headerlink" title="5.5.1 题目"></a>5.5.1 题目</h3><p>假设销售一本书。请编写一个程序，输入全年中每个月的销售量（图书数量，而非销售额）。程序通过循环，使用初始化为月份字符串的 char*数组（或 string 对象数组）逐月进行提示，并将输入的数据存储在一个int数组中。然后，程序计算数组中各元素的总数，并报告这一年的销售情况。</p>
-<h3 id="5-5-2-代码"><a href="#5-5-2-代码" class="headerlink" title="5.5.2 代码"></a>5.5.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line">    // 一定要有 const 要不然会报错：</span><br><span class="line">    // warning: ISO C++ forbids converting a string constant to &apos;char*&apos; [-Wwrite-strings]</span><br><span class="line">    // 因为 char *背后的含义是：给我个字符串，我要修改它。</span><br><span class="line">    // 而理论上，我们传给函数的字面常量是没法被修改的。  </span><br><span class="line">    // 所以说，比较和理的办法是把参数类型修改为const char *。</span><br><span class="line">    // 这个类型说背后的含义是：给我个字符串，我只要读取它。</span><br><span class="line">    const char * month [12] = </span><br><span class="line">    &#123;</span><br><span class="line">        &quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;,</span><br><span class="line">        &quot;July&quot;, &quot;August&quot;, &quot;Septempber&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    int sale[12];</span><br><span class="line">    int num,sum = 0;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; &quot;Enter 12 Months sale: &quot; &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; 12; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        cin &gt;&gt; num;</span><br><span class="line">        sale[i] = num;</span><br><span class="line">        cout &lt;&lt; month[i] &lt;&lt; &quot; : &quot; &lt;&lt; sale[i] &lt;&lt; endl;</span><br><span class="line">        sum += num;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; &quot;The all year sale is: &quot; &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="5-5-3-运行结果"><a href="#5-5-3-运行结果" class="headerlink" title="5.5.3 运行结果"></a>5.5.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; g++ .\test.cpp -o test.exe</span><br><span class="line">PS E:\Buffer\C++_code&gt; ./test.exe</span><br><span class="line">Enter 12 Months sale:</span><br><span class="line">1 2 3 4 5 6 7 8 9 10 11 12</span><br><span class="line">January : 1</span><br><span class="line">February : 2</span><br><span class="line">March : 3</span><br><span class="line">April : 4</span><br><span class="line">May : 5</span><br><span class="line">June : 6</span><br><span class="line">July : 7</span><br><span class="line">August : 8</span><br><span class="line">Septempber : 9</span><br><span class="line">October : 10</span><br><span class="line">November : 11</span><br><span class="line">December : 12</span><br><span class="line">The all year sale is: 78</span><br></pre></td></tr></table></figure>
-<hr>
-<p>5.6 略</p>
-<hr>
-<h3 id="5-7-1-题目"><a href="#5-7-1-题目" class="headerlink" title="5.7.1 题目"></a>5.7.1 题目</h3><p>设计一个名为 car 的结构，用它存储下述有关汽车的信息：生产商（存储在字符数组或 string 对象中的字符串）、生产年份（整数）。编写一个程序，向用户询问有多少辆汽车。随后，程序使用 new 来创建一个由相应数量的 car 结构组成的动态数组。接下来，程序提示用户输入每辆车的生产商（可能由多个单词组成）和年份信息。请注意，这需要特别小心，因为它将交替读取数值和字符串（参见第 4 章）。最后，程序将显示每个结构的内容。改程序的运行情况如下：<br>How many cars do you wish to catalog? 2<br>Car #1 :<br>Please enter the make: H H<br>Please enter the year made: 1952<br>Car #2 :<br>Please enter the make: k<br>Please enter the year made: 1951<br>Here is your collection:<br>1952 H H<br>1951 k  </p>
-<h3 id="5-7-2-代码"><a href="#5-7-2-代码" class="headerlink" title="5.7.2 代码"></a>5.7.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line"></span><br><span class="line">    unsigned int car_num;</span><br><span class="line"> </span><br><span class="line">    struct car</span><br><span class="line">    &#123;</span><br><span class="line">        string make;</span><br><span class="line">        int year;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    cout &lt;&lt; &quot;How many cars do you wish to catalog? &quot;;</span><br><span class="line">    cin &gt;&gt; car_num;</span><br><span class="line">    cin.get();</span><br><span class="line">    </span><br><span class="line">    car * new_car = new car [car_num];</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i&lt; car_num; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;Car #&quot; &lt;&lt; i+1 &lt;&lt; &quot; :&quot; &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; &quot;Please enter the make: &quot;;</span><br><span class="line">        //new_car[i].make = cin.get();</span><br><span class="line">        getline(cin, new_car[i].make);</span><br><span class="line">        cout &lt;&lt; &quot;Please enter the year made: &quot;;</span><br><span class="line">        cin &gt;&gt; new_car[i].year;</span><br><span class="line">        cin.get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; &quot;Here is your collection:&quot; &lt;&lt; endl;</span><br><span class="line">    for (int i = 0; i&lt; car_num; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; new_car[i].year &lt;&lt; &quot; &quot; &lt;&lt; new_car[i].make &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="5-7-3-运行结果"><a href="#5-7-3-运行结果" class="headerlink" title="5.7.3 运行结果"></a>5.7.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; g++ test.cpp -o test.exe</span><br><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">How many cars do you wish to catalog? 2</span><br><span class="line">Car #1 :</span><br><span class="line">Please enter the make: H H</span><br><span class="line">Please enter the year made: 1952</span><br><span class="line">Car #2 :</span><br><span class="line">Please enter the make: k</span><br><span class="line">Please enter the year made: 1951</span><br><span class="line">Here is your collection:</span><br><span class="line">1952 H H</span><br><span class="line">1951 k</span><br></pre></td></tr></table></figure>
-<hr>
-<p>5.8 略，5.9 略  </p>
-<hr>
-<h3 id="5-10-1-题目"><a href="#5-10-1-题目" class="headerlink" title="5.10.1 题目"></a>5.10.1 题目</h3><p>编写一个使用嵌套循环的程序，要求用户输入一个值，指出要显示多少行。然后，程序将显示相应行数的星号，其中第一个行包括一个星号，第二行包括两个星号，依次类推。每一行包含的字符数等于用户指定的行数，在星号不够的情况下，在星号前面加上句点。该程序的运行情况如下：<br>Enter number of rows: 5<br>….<em><br>…<strong><br>..</strong></em><br>.<em>**</em>  </p>
-<h3 id="5-10-2-代码"><a href="#5-10-2-代码" class="headerlink" title="5.10.2 代码"></a>5.10.2 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line"></span><br><span class="line">    unsigned int num;</span><br><span class="line">    cout &lt;&lt; &quot;Enter number of rows: &quot;;</span><br><span class="line">    cin &gt;&gt; num;</span><br><span class="line"></span><br><span class="line">    int i,j;</span><br><span class="line">    for (i=0; i&lt;num; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        for (j=0; j&lt;num; ++j )</span><br><span class="line">        &#123;</span><br><span class="line">            if(num-i-1&gt;j)</span><br><span class="line">                cout &lt;&lt; &quot;.&quot;;</span><br><span class="line">            else</span><br><span class="line">                cout &lt;&lt; &quot;*&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="5-10-3-运行结果"><a href="#5-10-3-运行结果" class="headerlink" title="5.10.3 运行结果"></a>5.10.3 运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; g++ test.cpp -o test.exe</span><br><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">Enter number of rows: 5</span><br><span class="line">....*</span><br><span class="line">...**</span><br><span class="line">..***</span><br><span class="line">.****</span><br></pre></td></tr></table></figure>
-
+        
       
     </div>
 
@@ -568,8 +519,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/26/C++/Chapter4_Programming practice/" rel="next" title="Chapter4_Programming practice">
-                <i class="fa fa-chevron-left"></i> Chapter4_Programming practice
+              <a href="/2019/03/08/C++/Chapter8_Programming practice Plus/" rel="next" title="Chapter8_Programming practice Plus">
+                <i class="fa fa-chevron-left"></i> Chapter8_Programming practice Plus
               </a>
             
           </div>
@@ -577,10 +528,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/26/C++/Chapter6_Programming practice/" rel="prev" title="Chapter6_Programming practice">
-                Chapter6_Programming practice <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -630,17 +577,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -657,7 +595,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">92</span>
+                    <span class="site-state-item-count">94</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -741,22 +679,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-题目"><span class="nav-number">1.</span> <span class="nav-text">5.2.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-代码"><span class="nav-number">2.</span> <span class="nav-text">5.2.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-3-运行结果"><span class="nav-number">3.</span> <span class="nav-text">5.2.3 运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-1-题目"><span class="nav-number">4.</span> <span class="nav-text">5.3.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-2-代码"><span class="nav-number">5.</span> <span class="nav-text">5.3.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-3-运行结果"><span class="nav-number">6.</span> <span class="nav-text">5.3.3 运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-1-题目"><span class="nav-number">7.</span> <span class="nav-text">5.5.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-2-代码"><span class="nav-number">8.</span> <span class="nav-text">5.5.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-3-运行结果"><span class="nav-number">9.</span> <span class="nav-text">5.5.3 运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-7-1-题目"><span class="nav-number">10.</span> <span class="nav-text">5.7.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-7-2-代码"><span class="nav-number">11.</span> <span class="nav-text">5.7.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-7-3-运行结果"><span class="nav-number">12.</span> <span class="nav-text">5.7.3 运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-10-1-题目"><span class="nav-number">13.</span> <span class="nav-text">5.10.1 题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-10-2-代码"><span class="nav-number">14.</span> <span class="nav-text">5.10.2 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-10-3-运行结果"><span class="nav-number">15.</span> <span class="nav-text">5.10.3 运行结果</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -944,7 +866,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2019/02/26/C++/Chapter5_Programming practice/'
+        refer: '2019/03/08/tt/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];
