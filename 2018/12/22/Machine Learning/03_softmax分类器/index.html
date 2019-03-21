@@ -115,20 +115,20 @@
 
 
 
-  <meta name="description" content="04_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理 exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化处">
+  <meta name="description" content="03_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理 exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化处">
 <meta property="og:type" content="article">
 <meta property="og:title" content="03_softmax分类器">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/22/Machine Learning/03_softmax分类器/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="04_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理 exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化处">
+<meta property="og:description" content="03_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理 exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化处">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7E625082BF0543A29A007CE9A6F293BC/12614">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/DEBB6E7A990F4642ABBAD9D41057292B/12664">
-<meta property="og:updated_time" content="2019-03-21T03:13:07.460Z">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7E625082BF0543A29A007CE9A6F293BC/13228">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/DEBB6E7A990F4642ABBAD9D41057292B/13223">
+<meta property="og:updated_time" content="2019-03-21T03:22:00.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="03_softmax分类器">
-<meta name="twitter:description" content="04_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理 exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化处">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7E625082BF0543A29A007CE9A6F293BC/12614">
+<meta name="twitter:description" content="03_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理 exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化处">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7E625082BF0543A29A007CE9A6F293BC/13228">
 
 
 
@@ -451,7 +451,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-21 11:13:07" itemprop="dateModified" datetime="2019-03-21T11:13:07+08:00">2019-03-21</time>
+                <time title="Modified: 2019-03-21 11:22:00" itemprop="dateModified" datetime="2019-03-21T11:22:00+08:00">2019-03-21</time>
               
             
           </span>
@@ -530,8 +530,8 @@
       
 
       
-        <h3 id="04-softmax分类器"><a href="#04-softmax分类器" class="headerlink" title="04_softmax分类器"></a>04_softmax分类器</h3><p><strong>【 The latest data ： 2018/04/27 】Yuchen</strong></p>
-<h4 id="1-Scores-处理"><a href="#1-Scores-处理" class="headerlink" title="1. Scores 处理"></a>1. Scores 处理</h4><p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7E625082BF0543A29A007CE9A6F293BC/12614" alt=""></p>
+        <h3 id="03-softmax分类器"><a href="#03-softmax分类器" class="headerlink" title="03_softmax分类器"></a>03_softmax分类器</h3><p><strong>【 The latest data ： 2018/04/27 】Yuchen</strong></p>
+<h4 id="1-Scores-处理"><a href="#1-Scores-处理" class="headerlink" title="1. Scores 处理"></a>1. Scores 处理</h4><p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7E625082BF0543A29A007CE9A6F293BC/13228" alt=""></p>
 <p><strong>exp映射</strong></p>
 <p>最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。</p>
 <p><strong>normalize</strong></p>
@@ -543,7 +543,7 @@
 <p>$L_{car} = - \log(0.87) = 0.06$</p>
 <p>$L_{frog} = - \log(0.00) = \infty$</p>
 <p>loss 值越接近0，对应的 score 越高。原本是 cat 但是权重参数选择有问题。 </p>
-<h4 id="2-最优化"><a href="#2-最优化" class="headerlink" title="2. 最优化"></a>2. 最优化</h4><p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/DEBB6E7A990F4642ABBAD9D41057292B/12664" alt=""></p>
+<h4 id="2-最优化"><a href="#2-最优化" class="headerlink" title="2. 最优化"></a>2. 最优化</h4><p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/DEBB6E7A990F4642ABBAD9D41057292B/13223" alt=""></p>
 
       
     </div>
@@ -781,7 +781,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#04-softmax分类器"><span class="nav-number">1.</span> <span class="nav-text">04_softmax分类器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Scores-处理"><span class="nav-number">1.1.</span> <span class="nav-text">1. Scores 处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-最优化"><span class="nav-number">1.2.</span> <span class="nav-text">2. 最优化</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#03-softmax分类器"><span class="nav-number">1.</span> <span class="nav-text">03_softmax分类器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Scores-处理"><span class="nav-number">1.1.</span> <span class="nav-text">1. Scores 处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-最优化"><span class="nav-number">1.2.</span> <span class="nav-text">2. 最优化</span></a></li></ol></li></ol></div>
             
 
           </div>

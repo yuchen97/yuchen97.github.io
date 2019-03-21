@@ -115,21 +115,21 @@
 
 
 
-  <meta name="description" content="07_激活函数&amp;amp;数据预处理【 The latest data ： 2018/05/01 】Yuchen 1. 激活函数在每个 hidden layer 后面都会跟着一个 activation function (非线性函数)，详见上篇笔记《06_神经网络整体架构》http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5">
+  <meta name="description" content="06_激活函数&amp;amp;数据预处理【 The latest data ： 2018/05/01 】Yuchen 1. 激活函数在每个 hidden layer 后面都会跟着一个 activation function (非线性函数)，详见上篇笔记《06_神经网络整体架构》http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5">
 <meta property="og:type" content="article">
 <meta property="og:title" content="06_激活函数">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/22/Machine Learning/06_激活函数/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="07_激活函数&amp;amp;数据预处理【 The latest data ： 2018/05/01 】Yuchen 1. 激活函数在每个 hidden layer 后面都会跟着一个 activation function (非线性函数)，详见上篇笔记《06_神经网络整体架构》http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5">
+<meta property="og:description" content="06_激活函数&amp;amp;数据预处理【 The latest data ： 2018/05/01 】Yuchen 1. 激活函数在每个 hidden layer 后面都会跟着一个 activation function (非线性函数)，详见上篇笔记《06_神经网络整体架构》http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/8DA5B747C0AD410DA8A09424C85A81A0/13317">
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/D677D428B1C54DBC99FCD745290C150E/13327">
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/2F476B1079B84837AFE97F9572F68BA9/13329">
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7A9B7812550343E9B9AEBC0714CB977B/13339">
-<meta property="og:updated_time" content="2019-03-21T03:12:54.988Z">
+<meta property="og:updated_time" content="2019-03-21T03:25:42.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="06_激活函数">
-<meta name="twitter:description" content="07_激活函数&amp;amp;数据预处理【 The latest data ： 2018/05/01 】Yuchen 1. 激活函数在每个 hidden layer 后面都会跟着一个 activation function (非线性函数)，详见上篇笔记《06_神经网络整体架构》http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5">
+<meta name="twitter:description" content="06_激活函数&amp;amp;数据预处理【 The latest data ： 2018/05/01 】Yuchen 1. 激活函数在每个 hidden layer 后面都会跟着一个 activation function (非线性函数)，详见上篇笔记《06_神经网络整体架构》http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5">
 <meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/8DA5B747C0AD410DA8A09424C85A81A0/13317">
 
 
@@ -453,7 +453,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-21 11:12:54" itemprop="dateModified" datetime="2019-03-21T11:12:54+08:00">2019-03-21</time>
+                <time title="Modified: 2019-03-21 11:25:42" itemprop="dateModified" datetime="2019-03-21T11:25:42+08:00">2019-03-21</time>
               
             
           </span>
@@ -532,7 +532,7 @@
       
 
       
-        <h3 id="07-激活函数-amp-数据预处理"><a href="#07-激活函数-amp-数据预处理" class="headerlink" title="07_激活函数&amp;数据预处理"></a>07_激活函数&amp;数据预处理</h3><p><strong>【 The latest data ： 2018/05/01 】Yuchen</strong></p>
+        <h3 id="06-激活函数-amp-数据预处理"><a href="#06-激活函数-amp-数据预处理" class="headerlink" title="06_激活函数&amp;数据预处理"></a>06_激活函数&amp;数据预处理</h3><p><strong>【 The latest data ： 2018/05/01 】Yuchen</strong></p>
 <h4 id="1-激活函数"><a href="#1-激活函数" class="headerlink" title="1. 激活函数"></a>1. 激活函数</h4><p>在每个 hidden layer 后面都会跟着一个 activation function (非线性函数)，详见上篇笔记《06_神经网络整体架构》<a href="http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5e8c1&amp;sub=7F4BC70112524F9289531EC6AE435E14" target="_blank" rel="noopener">http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5e8c1&amp;sub=7F4BC70112524F9289531EC6AE435E14</a><br>加上非线性之后，神经网络的表达能力会更强。<br><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/8DA5B747C0AD410DA8A09424C85A81A0/13317" alt=""></p>
 <p>现在一般用 ReLU 激活函数，因为对于 sigmoid function 而言，当取值为 [10,20] 之后，梯度变化很小</p>
 <p><strong>sigmoid function</strong><br><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/D677D428B1C54DBC99FCD745290C150E/13327" alt=""><br><strong>ReLU</strong><br><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/2F476B1079B84837AFE97F9572F68BA9/13329" alt=""></p>
@@ -779,7 +779,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#07-激活函数-amp-数据预处理"><span class="nav-number">1.</span> <span class="nav-text">07_激活函数&amp;数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-激活函数"><span class="nav-number">1.1.</span> <span class="nav-text">1. 激活函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-数据预处理"><span class="nav-number">1.2.</span> <span class="nav-text">2. 数据预处理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#06-激活函数-amp-数据预处理"><span class="nav-number">1.</span> <span class="nav-text">06_激活函数&amp;数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-激活函数"><span class="nav-number">1.1.</span> <span class="nav-text">1. 激活函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-数据预处理"><span class="nav-number">1.2.</span> <span class="nav-text">2. 数据预处理</span></a></li></ol></li></ol></div>
             
 
           </div>

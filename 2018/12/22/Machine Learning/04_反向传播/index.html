@@ -123,11 +123,11 @@
 <meta property="og:description" content="05_反向传播【 The latest data ： 2018/04/30 】Yuchen 1. 简单案例假设有三个数据 $xyz$，将其进行组合，比如是 $f(x,y,z) = (x+y)z$  给定相应的初始值，比如 $x=-2; y=5;z=-4$ 可得如下 计算三个数据对结果的贡献 即求偏导 $\frac{\partial f}{\partial x}=z=-4$ $\frac{\part">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/4B21A9AE96E24CBF921E05B02D36C530/13230">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/A07E3421C77E4836961223F304F59F93/12995">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/1C82C182E65847E2B2A1BE599882AD0D/13016">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/E3DD2A6F3901456598BA02D2EAE06F21/13128">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/2F4FCD0D7000471AACA47B36CBE450BB/13147">
-<meta property="og:updated_time" content="2019-03-21T03:16:46.611Z">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/A07E3421C77E4836961223F304F59F93/13227">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/1C82C182E65847E2B2A1BE599882AD0D/13218">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/E3DD2A6F3901456598BA02D2EAE06F21/13222">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/2F4FCD0D7000471AACA47B36CBE450BB/13229">
+<meta property="og:updated_time" content="2019-03-21T03:23:18.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="04_反向传播">
 <meta name="twitter:description" content="05_反向传播【 The latest data ： 2018/04/30 】Yuchen 1. 简单案例假设有三个数据 $xyz$，将其进行组合，比如是 $f(x,y,z) = (x+y)z$  给定相应的初始值，比如 $x=-2; y=5;z=-4$ 可得如下 计算三个数据对结果的贡献 即求偏导 $\frac{\partial f}{\partial x}=z=-4$ $\frac{\part">
@@ -454,7 +454,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-21 11:16:46" itemprop="dateModified" datetime="2019-03-21T11:16:46+08:00">2019-03-21</time>
+                <time title="Modified: 2019-03-21 11:23:18" itemprop="dateModified" datetime="2019-03-21T11:23:18+08:00">2019-03-21</time>
               
             
           </span>
@@ -544,8 +544,8 @@
 <p>$\frac{\partial f}{\partial y}=z=-4$</p>
 <p>$\frac{\partial f}{\partial z}=x+y=3$ ; $z$ 对结果产生三倍的影响，即 $z$ 增大一倍，结果增大三倍。</p>
 <p>比如说 Gradients 最终结果是 loss ， 先算 f，即 z 对 loss 做的贡献，然后再算 x 和 y。相当于上面的 (x+y) 是中间的 f，最后的结果是 $f(x,y,z)=(x+y)z=pz$， p 就相当于图中的 z。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/A07E3421C77E4836961223F304F59F93/12995" alt=""></p>
-<h4 id="2-复杂案例"><a href="#2-复杂案例" class="headerlink" title="2. 复杂案例"></a>2. 复杂案例</h4><p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/1C82C182E65847E2B2A1BE599882AD0D/13016" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/A07E3421C77E4836961223F304F59F93/13227" alt=""></p>
+<h4 id="2-复杂案例"><a href="#2-复杂案例" class="headerlink" title="2. 复杂案例"></a>2. 复杂案例</h4><p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/1C82C182E65847E2B2A1BE599882AD0D/13218" alt=""></p>
 <p>其中颜色是绿色的数字是从左往右即按照公式顺序推导出来的。</p>
 <p>红色的字是从右往左，来求相应偏导，比如</p>
 <p><strong>法一</strong></p>
@@ -566,9 +566,9 @@
 <p>…</p>
 <p>对于图中红色框框里的数据而言，假设 $w_0x_0=q$ ，$\frac{\partial q}{\partial w_0}=x_0=-1$, 再用 -1 乘以 q 处的0.2（复合函数求导原则），所以 $w_0$ 的影响系数有-0.2。</p>
 <p><strong>法二</strong></p>
-<p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/E3DD2A6F3901456598BA02D2EAE06F21/13128" alt=""><br>对于此公式 $f(w,x)$ 相当于 $\sigma(x)=\frac{1}{1+e^{-x}}$ 所以可以将后面的看成 sigmoid function ，将数值代入结果一致。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/E3DD2A6F3901456598BA02D2EAE06F21/13222" alt=""><br>对于此公式 $f(w,x)$ 相当于 $\sigma(x)=\frac{1}{1+e^{-x}}$ 所以可以将后面的看成 sigmoid function ，将数值代入结果一致。</p>
 <p>也可以将上面想象成一个门单元</p>
-<p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/2F4FCD0D7000471AACA47B36CBE450BB/13147" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/2F4FCD0D7000471AACA47B36CBE450BB/13229" alt=""></p>
 <p>加法门单元：偏导都是 1 ；<br>乘法门单元：偏导两元素互换，比如 $z=xy$， $z$ 对 $x$ 的偏导为 $y$， $z$ 对 $y$ 的偏导为 $x$</p>
 
       
