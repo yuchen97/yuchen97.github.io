@@ -115,25 +115,25 @@
 
 
 
-  <meta name="description" content="Modelsim 是类似于电视机的工具，作为用户我们只要学会开关和调节节目即可。调试用来观察结果，仿真则是观察过程，仿真不等于调试。Testbench配置仿真环境1.产生环境输入（时钟信号、复位信号）2.建立仿真对象3.产生虚拟输入4.产生虚拟输出  Testbenchtestbench中的例化应该把input转化成reg，因为待测试设计的输入值是由testbench决定的。相应的output应该">
+  <meta name="description" content="Modelsim 是类似于电视机的工具，作为用户我们只要学会开关和调节节目即可。调试用来观察结果，仿真则是观察过程，仿真不等于调试。Testbench配置仿真环境1.产生环境输入（时钟信号、复位信号）2.建立仿真对象3.产生虚拟输入4.产生虚拟输出   Testbenchtestbench中的例化应该把input转化成reg，因为待测试设计的输入值是由testbench决定的。相应的output应">
 <meta property="og:type" content="article">
 <meta property="og:title" content="05_Modelsim">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/14/FPGA/基础/05_Modelsim/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="Modelsim 是类似于电视机的工具，作为用户我们只要学会开关和调节节目即可。调试用来观察结果，仿真则是观察过程，仿真不等于调试。Testbench配置仿真环境1.产生环境输入（时钟信号、复位信号）2.建立仿真对象3.产生虚拟输入4.产生虚拟输出  Testbenchtestbench中的例化应该把input转化成reg，因为待测试设计的输入值是由testbench决定的。相应的output应该">
+<meta property="og:description" content="Modelsim 是类似于电视机的工具，作为用户我们只要学会开关和调节节目即可。调试用来观察结果，仿真则是观察过程，仿真不等于调试。Testbench配置仿真环境1.产生环境输入（时钟信号、复位信号）2.建立仿真对象3.产生虚拟输入4.产生虚拟输出   Testbenchtestbench中的例化应该把input转化成reg，因为待测试设计的输入值是由testbench决定的。相应的output应">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A8B9B154AB144598B43BF1DF1811CBF5/26802">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/FAFD74A4FFFD4FD18C082B8FCDD99609/26758">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/8CAB731835264E68B6D13DAB3278CAF5/26921">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/0160B700B9DB4580AFB55DDDD2FC82B6/26926">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3D2871E0022A4FCCAC7A5F62DE176171/26913">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/224CF746CD224806A0E84EC55204CD93/26816">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/52FAE72176E1472C9AE92311DEE8E156/26892">
-<meta property="og:updated_time" content="2019-02-26T14:09:10.146Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/基础/05_Modelsim1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/基础/05_Modelsim2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/基础/05_Modelsim3.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/基础/05_Modelsim4.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/基础/05_Modelsim5.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/基础/05_Modelsim6.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/基础/05_Modelsim7.png">
+<meta property="og:updated_time" content="2019-03-21T10:45:24.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="05_Modelsim">
-<meta name="twitter:description" content="Modelsim 是类似于电视机的工具，作为用户我们只要学会开关和调节节目即可。调试用来观察结果，仿真则是观察过程，仿真不等于调试。Testbench配置仿真环境1.产生环境输入（时钟信号、复位信号）2.建立仿真对象3.产生虚拟输入4.产生虚拟输出  Testbenchtestbench中的例化应该把input转化成reg，因为待测试设计的输入值是由testbench决定的。相应的output应该">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A8B9B154AB144598B43BF1DF1811CBF5/26802">
+<meta name="twitter:description" content="Modelsim 是类似于电视机的工具，作为用户我们只要学会开关和调节节目即可。调试用来观察结果，仿真则是观察过程，仿真不等于调试。Testbench配置仿真环境1.产生环境输入（时钟信号、复位信号）2.建立仿真对象3.产生虚拟输入4.产生虚拟输出   Testbenchtestbench中的例化应该把input转化成reg，因为待测试设计的输入值是由testbench决定的。相应的output应">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/FPGA/基础/05_Modelsim1.png">
 
 
 
@@ -456,7 +456,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:09:10" itemprop="dateModified" datetime="2019-02-26T22:09:10+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 18:45:24" itemprop="dateModified" datetime="2019-03-21T18:45:24+08:00">2019-03-21</time>
               
             
           </span>
@@ -536,15 +536,15 @@
 
       
         <p>Modelsim 是类似于电视机的工具，作为用户我们只要学会开关和调节节目即可。<br>调试用来观察结果，仿真则是观察过程，仿真不等于调试。<br>Testbench配置仿真环境<br>1.产生环境输入（时钟信号、复位信号）<br>2.建立仿真对象<br>3.产生虚拟输入<br>4.产生虚拟输出</p>
-<p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/A8B9B154AB144598B43BF1DF1811CBF5/26802" alt=""></p>
+<p><img src="/img/FPGA/基础/05_Modelsim1.png" alt=""> </p>
 <p>Testbench<br>testbench中的例化应该把input转化成reg，因为待测试设计的输入值是由testbench决定的。相应的output应该转化成wire，因为待测试设计的输出值不是由testbench决定的。<br>两种基本的时钟信号和复位信号的产生</p>
-<p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/FAFD74A4FFFD4FD18C082B8FCDD99609/26758" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/8CAB731835264E68B6D13DAB3278CAF5/26921" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//每个always和initial说明语句在仿真的一开始同时立即开始执行。initial语句只执行一次，而always语句则是不断地重复活动着，知道仿真过程结束。initial常用与测试文件和虚拟模块的编写，用来产生仿真测试信号和设置信号记录等仿真环境。</span><br><span class="line">//forever语句</span><br><span class="line">//其格式为forever 语句； 或 forever begin 多条语句 end</span><br><span class="line">//forever循环语句常用于产生周期性的波形，作为仿真测试信号。它与alwa语句不同之处在于它不能独立写在程序中，而必须写在initial块中。</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/0160B700B9DB4580AFB55DDDD2FC82B6/26926" alt=""><br><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/3D2871E0022A4FCCAC7A5F62DE176171/26913" alt=""></p>
-<p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/224CF746CD224806A0E84EC55204CD93/26816" alt=""></p>
+<p><img src="/img/FPGA/基础/05_Modelsim2.png" alt=""><br><img src="/img/FPGA/基础/05_Modelsim3.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//每个always和initial说明语句在仿真的一开始同时立即开始执行。initial语句只执行一次，而always语句则是不断地重复活动着，知道仿真过程结束。initial常用与测试文件和虚拟模块的编写，用来产生仿真测试信号和设置信号记录等仿真环境。</span><br><span class="line">//forever语句</span><br><span class="line">//其格式为forever 语句； 或 forever begin 多条语句 end</span><br><span class="line">//forever循环语句常用于产生周期性的波形，作为仿真测试信号。它与alwa语句不同之处在于它不能独立写在程序中，而必须写在initial块中。</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/FPGA/基础/05_Modelsim4.png" alt=""><br><img src="/img/FPGA/基础/05_Modelsim5.png" alt=""><br><img src="/img/FPGA/基础/05_Modelsim6.png" alt=""> </p>
 <p>时间尺度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">`timescale </span><br><span class="line">用来说明跟在该命令后的模块的时间单位和时间精度。使用此命令可以在同一个设计里包含采用了不同的时间单位的模块。例如，一个设计中包含了两个模块，其中一个模块的时间延迟单位为ns，拎一个模块的时间延迟单位为ps。EDA工具仍然可以对这个设计进行仿真测试。</span><br><span class="line">`timescale 命令的格式如下</span><br><span class="line">`tiimescale&lt;时间单位&gt;/&lt;时间精度&gt;</span><br><span class="line">在这条命令中，用于说明时间单位和时间精度参量值的数字必须是整数，其有效数字为1,10,100，单位为s,ms,us,ns,ps,fs。</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://note.youdao.com/yws/public/resource/77541789d1df46f3bc034ada6a777144/xmlnote/52FAE72176E1472C9AE92311DEE8E156/26892" alt=""><br>例如<br>1.<code>timescale 1ns/1ps; 在这个命令之后，模块中所有的时间值都表示是1ns的整数倍。这是因为在</code>timescale命令中，定义了时间单位为1ns。模块中的延迟时间可表达为带3位小数的实型数，因为<code>timescale 命令定义时间精度为1ps。
-2.</code>timescale 10ns/1ns<br>module         test;<br>reg             set;<br>parameter    d=1.55;<br>initial<br>begin</p>
-<h1 id="d-set-0"><a href="#d-set-0" class="headerlink" title="d set=0;"></a>d set=0;</h1><h1 id="d-set-1"><a href="#d-set-1" class="headerlink" title="d set=1;"></a>d set=1;</h1><p>end<br>endmodule<br>在此，`timescale命令定义了模块test的时间单位为10ns、时间精度为1ns。因此在此模块test中，所有的时间值应为10ns的整数倍，且以1ns为时间精度。这样经过取整操作，存在参数d中的延迟时间实际是16ns（1.6X10ns），这意味着在仿真时刻为16ns时寄存器set被赋值为00，在仿真时刻为32ns时寄存器set被赋值为1，仿真时刻值计算步骤如下：<br>（1）根据时间精度，参数d值被从1.55取整为1.6<br>（2）因为时间单位是10ns，时间精度是1ns，所以延迟时间#d为时间单位的整数倍，即为16ns<br>（3）EDA工具预定在仿真时刻为16ns的时候给寄存器set赋值为0（即#d set=0;），在仿真时刻为32ns的时候给寄存器set赋值为1.</p>
+<p><img src="/img/FPGA/基础/05_Modelsim7.png" alt=""><br>例如<br>1.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">`timescale 1ns/1ps;</span><br><span class="line">``` </span><br><span class="line">在这个命令之后，模块中所有的时间值都表示是1ns的整数倍。这是因为在`timescale命令中，定义了时间单位为1ns。模块中的延迟时间可表达为带3位小数的实型数，因为`timescale 命令定义时间精度为1ps。</span><br><span class="line">2.</span><br></pre></td></tr></table></figure></p>
+<p>`timescale 10ns/1ns<br>module         test;<br>reg             set;<br>parameter    d=1.55;<br>initial<br>begin</p>
+<h1 id="d-set-0"><a href="#d-set-0" class="headerlink" title="d set=0;"></a>d set=0;</h1><h1 id="d-set-1"><a href="#d-set-1" class="headerlink" title="d set=1;"></a>d set=1;</h1><p>end<br>endmodule<br><code>``
+在此，</code>timescale命令定义了模块test的时间单位为10ns、时间精度为1ns。因此在此模块test中，所有的时间值应为10ns的整数倍，且以1ns为时间精度。这样经过取整操作，存在参数d中的延迟时间实际是16ns（1.6X10ns），这意味着在仿真时刻为16ns时寄存器set被赋值为00，在仿真时刻为32ns时寄存器set被赋值为1，仿真时刻值计算步骤如下：<br>（1）根据时间精度，参数d值被从1.55取整为1.6<br>（2）因为时间单位是10ns，时间精度是1ns，所以延迟时间#d为时间单位的整数倍，即为16ns<br>（3）EDA工具预定在仿真时刻为16ns的时候给寄存器set赋值为0（即#d set=0;），在仿真时刻为32ns的时候给寄存器set赋值为1.</p>
 
       
     </div>
@@ -819,7 +819,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -828,7 +828,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

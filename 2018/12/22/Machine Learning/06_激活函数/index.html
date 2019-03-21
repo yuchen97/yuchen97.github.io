@@ -122,15 +122,15 @@
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="06_激活函数&amp;amp;数据预处理【 The latest data ： 2018/05/01 】Yuchen 1. 激活函数在每个 hidden layer 后面都会跟着一个 activation function (非线性函数)，详见上篇笔记《06_神经网络整体架构》http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/8DA5B747C0AD410DA8A09424C85A81A0/13317">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/D677D428B1C54DBC99FCD745290C150E/13327">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/2F476B1079B84837AFE97F9572F68BA9/13329">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7A9B7812550343E9B9AEBC0714CB977B/13339">
-<meta property="og:updated_time" content="2019-03-21T03:25:42.444Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/06_激活函数1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/06_激活函数2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/06_激活函数3.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/06_激活函数4.png">
+<meta property="og:updated_time" content="2019-03-21T12:11:23.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="06_激活函数">
 <meta name="twitter:description" content="06_激活函数&amp;amp;数据预处理【 The latest data ： 2018/05/01 】Yuchen 1. 激活函数在每个 hidden layer 后面都会跟着一个 activation function (非线性函数)，详见上篇笔记《06_神经网络整体架构》http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/8DA5B747C0AD410DA8A09424C85A81A0/13317">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/ML/06_激活函数1.png">
 
 
 
@@ -453,7 +453,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-21 11:25:42" itemprop="dateModified" datetime="2019-03-21T11:25:42+08:00">2019-03-21</time>
+                <time title="Modified: 2019-03-21 20:11:23" itemprop="dateModified" datetime="2019-03-21T20:11:23+08:00">2019-03-21</time>
               
             
           </span>
@@ -498,7 +498,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">487</span>
+                <span title="Symbols count in article">491</span>
               
 
               
@@ -533,10 +533,11 @@
 
       
         <h3 id="06-激活函数-amp-数据预处理"><a href="#06-激活函数-amp-数据预处理" class="headerlink" title="06_激活函数&amp;数据预处理"></a>06_激活函数&amp;数据预处理</h3><p><strong>【 The latest data ： 2018/05/01 】Yuchen</strong></p>
-<h4 id="1-激活函数"><a href="#1-激活函数" class="headerlink" title="1. 激活函数"></a>1. 激活函数</h4><p>在每个 hidden layer 后面都会跟着一个 activation function (非线性函数)，详见上篇笔记《06_神经网络整体架构》<a href="http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5e8c1&amp;sub=7F4BC70112524F9289531EC6AE435E14" target="_blank" rel="noopener">http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5e8c1&amp;sub=7F4BC70112524F9289531EC6AE435E14</a><br>加上非线性之后，神经网络的表达能力会更强。<br><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/8DA5B747C0AD410DA8A09424C85A81A0/13317" alt=""></p>
+<h4 id="1-激活函数"><a href="#1-激活函数" class="headerlink" title="1. 激活函数"></a>1. 激活函数</h4><p>在每个 hidden layer 后面都会跟着一个 activation function (非线性函数)，详见上篇笔记《06_神经网络整体架构》<a href="http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5e8c1&amp;sub=7F4BC70112524F9289531EC6AE435E14" target="_blank" rel="noopener">http://note.youdao.com/noteshare?id=2c27bbf6625d75e4173d9fcbeea5e8c1&amp;sub=7F4BC70112524F9289531EC6AE435E14</a><br>加上非线性之后，神经网络的表达能力会更强。</p>
+<p><img src="/img/ML/06_激活函数1.png" alt=""> </p>
 <p>现在一般用 ReLU 激活函数，因为对于 sigmoid function 而言，当取值为 [10,20] 之后，梯度变化很小</p>
-<p><strong>sigmoid function</strong><br><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/D677D428B1C54DBC99FCD745290C150E/13327" alt=""><br><strong>ReLU</strong><br><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/2F476B1079B84837AFE97F9572F68BA9/13329" alt=""></p>
-<h4 id="2-数据预处理"><a href="#2-数据预处理" class="headerlink" title="2. 数据预处理"></a>2. 数据预处理</h4><p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7A9B7812550343E9B9AEBC0714CB977B/13339" alt=""></p>
+<p><strong>sigmoid function</strong><br><img src="/img/ML/06_激活函数2.png" alt=""><br><strong>ReLU</strong><br><img src="/img/ML/06_激活函数3.png" alt=""> </p>
+<h4 id="2-数据预处理"><a href="#2-数据预处理" class="headerlink" title="2. 数据预处理"></a>2. 数据预处理</h4><p><img src="/img/ML/06_激活函数4.png" alt=""> </p>
 <p>得到数据后，一般是先将数据做以0为中心做均值化：</p>
 <p>$X -= np.mean(X, axis = 0)$</p>
 <p>用每个值减去均值，然后再进行数据归一化，消除 xy 差异</p>
@@ -816,7 +817,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -825,7 +826,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

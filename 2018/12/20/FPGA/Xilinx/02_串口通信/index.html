@@ -117,35 +117,35 @@
 
   <meta name="description" content="串口通信【2017.06.28】实现功能： 将打包好的数据通过串口来进行发送和接收并实现错误检测软件平台： Quartus Ⅱ、Modelsim思路：      发送端包括发送控制和串口发送两个模块，在接收端包括串口接收和接收控制两个模块。将发送FIFO中读取的数据通过uart_tx发送出去，uart_rx接到的数据存入到接收端的FIFO。整体结构框图如图一所示。 图一 uart数据传输整体结构框">
 <meta property="og:type" content="article">
-<meta property="og:title" content="02-串口通信">
+<meta property="og:title" content="02_串口通信">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/02_串口通信/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="串口通信【2017.06.28】实现功能： 将打包好的数据通过串口来进行发送和接收并实现错误检测软件平台： Quartus Ⅱ、Modelsim思路：      发送端包括发送控制和串口发送两个模块，在接收端包括串口接收和接收控制两个模块。将发送FIFO中读取的数据通过uart_tx发送出去，uart_rx接到的数据存入到接收端的FIFO。整体结构框图如图一所示。 图一 uart数据传输整体结构框">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/974EBB66AC904B5EA500EBD5BEC9B9AF/27687">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/C37D994245C84598BB2E22B0F0EDB873/27717">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/B915A0ED7C2F4D9089FB779258C8F181/27724">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/B33166DC06F34B399CE9375A2D04A113/27716">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/3A5B211FA1F94266960A7C3040F3374F/27707">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/07138673D783491DB013F45CBD5E92BD/27723">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/9A79449CA66D424B86678716155DCB0C/27713">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/1967CC706579453492643B5D7659437E/27728">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/91700BDF103C4C8BBA7FB1480DFCB7BD/27710">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/36B231A9738A4B2AAB11BCF0FF1D5E3B/27698">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/F51691298B614EB284817A04D9DC1D7E/27725">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/2A2C8A46E9BA4CA8A959D7E6801172A6/27711">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/055B651C184B4C69B38189230E21579C/27706">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/4AC304385A414A6DA27CF9C34947F323/27718">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/86D525DF04F643E79BB2231F7FE965EF/27721">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/2146636800D5468FA459915C060557A3/27704">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/F49791D5868D4DDD9BA8495A1A3ECFCB/27703">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/05B9C254BED9466BB3B54DE19BD10E44/27683">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/7CD58A98648B42F3B59C2ACA6FE927A4/27712">
-<meta property="og:updated_time" content="2019-02-26T14:07:17.842Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信3.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信4.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信5.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信6.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信7.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信8.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信9.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信10.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信11.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信12.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信13.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信14.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信15.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信16.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信17.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信18.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信19.png">
+<meta property="og:updated_time" content="2019-03-21T09:48:39.697Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="02-串口通信">
+<meta name="twitter:title" content="02_串口通信">
 <meta name="twitter:description" content="串口通信【2017.06.28】实现功能： 将打包好的数据通过串口来进行发送和接收并实现错误检测软件平台： Quartus Ⅱ、Modelsim思路：      发送端包括发送控制和串口发送两个模块，在接收端包括串口接收和接收控制两个模块。将发送FIFO中读取的数据通过uart_tx发送出去，uart_rx接到的数据存入到接收端的FIFO。整体结构框图如图一所示。 图一 uart数据传输整体结构框">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/974EBB66AC904B5EA500EBD5BEC9B9AF/27687">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/02_串口通信1.png">
 
 
 
@@ -162,7 +162,7 @@
   };
 </script>
 
-  <title>02-串口通信 | Chenyu's Blog</title>
+  <title>02_串口通信 | Chenyu's Blog</title>
   
 
 
@@ -426,7 +426,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">02-串口通信
+          <h1 class="post-title" itemprop="name headline">02_串口通信
               
             
           </h1>
@@ -468,7 +468,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:07:17" itemprop="dateModified" datetime="2019-02-26T22:07:17+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 17:48:39" itemprop="dateModified" datetime="2019-03-21T17:48:39+08:00">2019-03-21</time>
               
             
           </span>
@@ -548,36 +548,35 @@
 
       
         <h3 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h3><p>【2017.06.28】<br><strong>实现功能：</strong> 将打包好的数据通过串口来进行发送和接收并实现错误检测<br><strong>软件平台：</strong> Quartus Ⅱ、Modelsim<br><strong>思路：</strong>      发送端包括发送控制和串口发送两个模块，在接收端包括串口接收和接收控制两个模块。将发送FIFO中读取的数据通过uart_tx发送出去，uart_rx接到的数据存入到接收端的FIFO。整体结构框图如图一所示。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/974EBB66AC904B5EA500EBD5BEC9B9AF/27687" alt=""><br><em>图一 uart数据传输整体结构框图</em></p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信1.png" alt=""><br><em>图一 uart数据传输整体结构框图</em></p>
 <h4 id="一、循环冗余检验"><a href="#一、循环冗余检验" class="headerlink" title="一、循环冗余检验"></a>一、循环冗余检验</h4><p>由于普通由于普通串口协议判错能力较低，所以在数据传输中加入了循环冗余检验，如图二。所示，以确保接收数据的准确性。在接收端进行(数据位—检验位)%5 运算，当结果为 0 时，说明这一帧数据是正确的。在数据传输过程中如果有一位数据出错，则中断该数据的接收。为了防止传输过程有数据串丢失，在发送文件之前，先通过函数获取该文件的大小，把此文件的大小发送出去，在接收时先接受该文件的大小，再来接收文件。接收完成后比较两个文件的大小是否一致，若不一致，则舍去此帧数据。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/C37D994245C84598BB2E22B0F0EDB873/27717" alt=""><br><em>图二循环冗余检验示意图</em></p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信2.png" alt=""><br><em>图二循环冗余检验示意图</em></p>
 <h4 id="二、FPGA数据发送端"><a href="#二、FPGA数据发送端" class="headerlink" title="二、FPGA数据发送端"></a>二、FPGA数据发送端</h4><p>数据发送端由ctrl_tx和uart_tx两个模块组成。<br>发送端FPGA的发送控制模块向串口发送模块发送启动信号，为了保证数据的准确性，在此采用循环冗余检验，当串口发送模块收到所有的文件数据时，它向发送控制模块发送完成信号，表示此帧数据完全发送至串口发送模块。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/B915A0ED7C2F4D9089FB779258C8F181/27724" alt=""><br><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/B33166DC06F34B399CE9375A2D04A113/27716" alt=""><br><em>图三 FPGA发送端控制模块、发送模块引脚图</em></p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信3.png" alt=""><br><img src="/img/FPGA/Xilinx/02_串口通信4.png" alt=""><br><em>图三 FPGA发送端控制模块、发送模块引脚图</em></p>
 <h5 id="2-1-ctrl-tx"><a href="#2-1-ctrl-tx" class="headerlink" title="2.1 ctrl_tx"></a>2.1 ctrl_tx</h5><p>在state_tx程序里面定义了三个状态，分别是IDLE、ST_START、ST_DONE，这三个状态之间是转换可以通过FIFO_NUM、cnt、send_done的值来决定。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/3A5B211FA1F94266960A7C3040F3374F/27707" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信5.png" alt=""> </p>
 <h5 id="2-2-uart-tx"><a href="#2-2-uart-tx" class="headerlink" title="2.2 uart_tx"></a>2.2 uart_tx</h5><p>在此拟设传码率是5M，系统是100M，可知当计数值达到20时，发送完成一位数据<br>但后来又在最后加了两位XX，为预留时间多加了几个计数到28。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/07138673D783491DB013F45CBD5E92BD/27723" alt=""><br>数据发送，此发送格式参照循环冗余检验数据格式。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/9A79449CA66D424B86678716155DCB0C/27713" alt=""><br>BUSY检测发送端是否忙碌，当数据正在发送时BUSY为高电平。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/1967CC706579453492643B5D7659437E/27728" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信6.png" alt=""><br>数据发送，此发送格式参照循环冗余检验数据格式。</p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信7.png" alt=""><br>BUSY检测发送端是否忙碌，当数据正在发送时BUSY为高电平。</p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信8.png" alt=""> </p>
 <h5 id="2-3-发送端整体RTL视图"><a href="#2-3-发送端整体RTL视图" class="headerlink" title="2.3 发送端整体RTL视图"></a>2.3 发送端整体RTL视图</h5><p>（寄存器转换级电路Register Transfer Level的缩写，也叫暂存器转移层次）如图四所示。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/91700BDF103C4C8BBA7FB1480DFCB7BD/27710" alt=""><br><em>图四 发送端RTL视图</em></p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信9.png" alt=""><br><em>图四 发送端RTL视图</em></p>
 <h5 id="2-4-发送端testbench"><a href="#2-4-发送端testbench" class="headerlink" title="2.4 发送端testbench"></a>2.4 发送端testbench</h5><p>testbench是一种验证手段，主要运用于Modelsim软件的仿真。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">/*****关于仿真文件的编写祥见modelsim笔记*****/</span><br><span class="line">`timescale 1 ps/ 1 ps   //自动生成</span><br><span class="line">module uart1_vlg_tst();</span><br><span class="line"></span><br><span class="line">reg [5:0] FIFO_NUM;</span><br><span class="line">reg clk;</span><br><span class="line">reg [7:0] db_in;</span><br><span class="line">reg rst_n;                                       </span><br><span class="line">wire BUSY;</span><br><span class="line">wire TX;</span><br><span class="line">/***初始化***/                                          </span><br><span class="line">initial  </span><br><span class="line">begin     </span><br><span class="line">       clk       	&lt;=      0;</span><br><span class="line">       FIFO_NUM	&lt;=      0;</span><br><span class="line">       rst_n     	&lt;=      0;</span><br><span class="line">		 #10</span><br><span class="line">       rst_n     	&lt;=      1;</span><br><span class="line">end</span><br><span class="line">/***在此我们假设输入的数据为00110101***/</span><br><span class="line">always @ (posedge clk or negedge rst_n)</span><br><span class="line">begin</span><br><span class="line">	if(!rst_n)</span><br><span class="line">		db_in	&lt;=	&apos;b00110101;</span><br><span class="line">	else if(BUSY==0)</span><br><span class="line">		db_in	&lt;=	~db_in;</span><br><span class="line">end		</span><br><span class="line">	</span><br><span class="line">always</span><br><span class="line">		#100 if(FIFO_NUM &lt; 50)</span><br><span class="line">					FIFO_NUM	&lt;=	FIFO_NUM	+ 1&apos;b1;</span><br><span class="line">			  else</span><br><span class="line">					FIFO_NUM	&lt;=	FIFO_NUM;   </span><br><span class="line"></span><br><span class="line">						 </span><br><span class="line">always #5 clk    	&lt;=   ~clk; </span><br><span class="line">              </span><br><span class="line">uart1 i1 (</span><br><span class="line"></span><br><span class="line">	.BUSY(BUSY),</span><br><span class="line">	.FIFO_NUM(FIFO_NUM),</span><br><span class="line">	.TX(TX),</span><br><span class="line">	.clk(clk),</span><br><span class="line">	.db_in(db_in),</span><br><span class="line">	.rst_n(rst_n)</span><br><span class="line">);</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
 <p>发送端modelsim仿真结果图如下所示</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/36B231A9738A4B2AAB11BCF0FF1D5E3B/27698" alt=""><br><em>图五 发送端modelsim仿真结果示意图</em><br>将其放大讲解</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/F51691298B614EB284817A04D9DC1D7E/27725" alt=""><br>db_in=8‘b00110101<br>而uart通信中包括起始位、数据位、校验位、截止位。起始位由低电平触发，当BUSY为0时ST=0,下一位为这一帧的起始位。由TX波形可知其为01010110011001.<br>0为起始位；10101100为数据位，低位在前；110为校验位；0为截止位1，1为截止位2.<br>注：00110101转化成十进制为53，53%5=3，3转化成二进制为11，而在数据传输中，低位在前所以校验位为110。</p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信10.png" alt=""><br><em>图五 发送端modelsim仿真结果示意图</em><br>将其放大讲解</p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信11.png" alt=""><br>db_in=8‘b00110101<br>而uart通信中包括起始位、数据位、校验位、截止位。起始位由低电平触发，当BUSY为0时ST=0,下一位为这一帧的起始位。由TX波形可知其为01010110011001.<br>0为起始位；10101100为数据位，低位在前；110为校验位；0为截止位1，1为截止位2.<br>注：00110101转化成十进制为53，53%5=3，3转化成二进制为11，而在数据传输中，低位在前所以校验位为110。</p>
 <h4 id="三、FPGA数据接收端"><a href="#三、FPGA数据接收端" class="headerlink" title="三、FPGA数据接收端"></a>三、FPGA数据接收端</h4><p>由于uart_rx在某些程序的原理上与uart_tx相似，这里就不做过多解释。</p>
 <h5 id="3-1-uart-rx"><a href="#3-1-uart-rx" class="headerlink" title="3.1 uart_rx"></a>3.1 uart_rx</h5><p>db_out_buf为原始数据</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/2A2C8A46E9BA4CA8A959D7E6801172A6/27711" alt=""></p>
-<p>判断信号<br>其中if语句里db_out_buf==0&amp;&amp;mod==0&amp;&amp;RX==0判断接收到的所有信号是否都为0，如果是则db_error=1。<br><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/055B651C184B4C69B38189230E21579C/27706" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信12.png" alt=""><br>判断信号<br>其中if语句里db_out_buf==0&amp;&amp;mod==0&amp;&amp;RX==0判断接收到的所有信号是否都为0，如果是则db_error=1。<br><img src="/img/FPGA/Xilinx/02_串口通信13.png" alt=""> </p>
 <h5 id="3-2-ctrl-rx"><a href="#3-2-ctrl-rx" class="headerlink" title="3.2 ctrl_rx"></a>3.2 ctrl_rx</h5><p>“act_pos设定是，因为之前只有一个db_act信号来判断是对的，但后来加到了4位，就是把四位读下来。读下来的方式就是差不多移位寄存器，这个方法是郑龙飞当时在计算机网络看到的好像我记得（本来应该是移位后到0011，后来发现不理想，改成了0001）。读到act_reg这四位，且最后一位为1，也就是act_pos=1才算是正确信号。学姐之前是(act_reg==4’b0011)? 1:0,但仿真结果是乱的，改成4‘b0001就不乱了。“</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/4AC304385A414A6DA27CF9C34947F323/27718" alt=""><br>一帧数据成功接收clk_write为高电平。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/86D525DF04F643E79BB2231F7FE965EF/27721" alt=""></p>
-<h5 id="3-3-接收端RTL视图"><a href="#3-3-接收端RTL视图" class="headerlink" title="3.3 接收端RTL视图"></a>3.3 接收端RTL视图</h5><p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/2146636800D5468FA459915C060557A3/27704" alt=""><br><em>图六 接收端RTL视图</em></p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信14.png" alt=""><br>一帧数据成功接收clk_write为高电平。</p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信15.png" alt=""> </p>
+<h5 id="3-3-接收端RTL视图"><a href="#3-3-接收端RTL视图" class="headerlink" title="3.3 接收端RTL视图"></a>3.3 接收端RTL视图</h5><p><img src="/img/FPGA/Xilinx/02_串口通信16.png" alt=""><br><em>图六 接收端RTL视图</em></p>
 <h4 id="四、发送-接收仿真"><a href="#四、发送-接收仿真" class="headerlink" title="四、发送-接收仿真"></a>四、发送-接收仿真</h4><h5 id="4-1-发送和接收端testbench"><a href="#4-1-发送和接收端testbench" class="headerlink" title="4.1 发送和接收端testbench"></a>4.1 发送和接收端testbench</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">`timescale 1 ps/ 1 ps</span><br><span class="line">module uart_vlg_tst();</span><br><span class="line"></span><br><span class="line">reg [5:0] FIFO_NUM;</span><br><span class="line">reg clk;</span><br><span class="line">reg rst_n;</span><br><span class="line">                                             </span><br><span class="line">wire BUSY1;</span><br><span class="line">wire BUSY2;</span><br><span class="line">wire [3:0]  ST;</span><br><span class="line">wire clk_write;</span><br><span class="line">wire [7:0]  db_out;</span><br><span class="line">wire db_out_flag;</span><br><span class="line"></span><br><span class="line">initial  begin     </span><br><span class="line">       clk       	        &lt;=      0;</span><br><span class="line">       FIFO_NUM	&lt;=      0;</span><br><span class="line">       rst_n     	        &lt;=      0;</span><br><span class="line">	#10</span><br><span class="line">       rst_n     	        &lt;=      1;</span><br><span class="line">     end</span><br><span class="line">always #100 if(FIFO_NUM &lt; 50)</span><br><span class="line">						 FIFO_NUM	&lt;=	FIFO_NUM	+ 1&apos;b1;</span><br><span class="line">					else</span><br><span class="line">						 FIFO_NUM	&lt;=	FIFO_NUM;   </span><br><span class="line">always #5 clk    	&lt;=   ~clk; </span><br><span class="line"></span><br><span class="line">wire line_uart;</span><br><span class="line">wire send_done;</span><br><span class="line">reg	[7:0]	db_sim;</span><br><span class="line"></span><br><span class="line">always @ (posedge clk or negedge rst_n)</span><br><span class="line">	if(!rst_n)</span><br><span class="line">		db_sim	&lt;=	&apos;b00110101;</span><br><span class="line">	else if(send_done)</span><br><span class="line">		db_sim	&lt;=	~db_sim;</span><br><span class="line"></span><br><span class="line">wire 	[7:0] db_sim_l;</span><br><span class="line">assign	db_sim_l	=	db_sim;</span><br><span class="line"></span><br><span class="line">ctrl_rx					ctrl_rx_Init</span><br><span class="line">(</span><br><span class="line">	.clk					(clk			),</span><br><span class="line">	.rst_n				(rst_n		),</span><br><span class="line">	.db_act				(db_act		),</span><br><span class="line">	.db_error			 	(db_error		),</span><br><span class="line">				</span><br><span class="line">	.db_out_flag			(db_out_flag	),</span><br><span class="line">	.clk_write				(clk_write		)		</span><br><span class="line">);</span><br><span class="line">uart_rx1					uart_rx1_Init</span><br><span class="line">(</span><br><span class="line">	.clk					(clk			),</span><br><span class="line">	.rst_n				(rst_n		),</span><br><span class="line">	.RX					(line_uart		),	</span><br><span class="line">   	.db_out				(db_out		),</span><br><span class="line">   	.db_act				(db_act		),</span><br><span class="line">  	.db_error				(db_error		),</span><br><span class="line">  	.mod				(mod		),</span><br><span class="line"> 	.BUSY2				(BUSY2		),</span><br><span class="line"> 	.ST					(ST			)					</span><br><span class="line">);</span><br><span class="line">uart_tx				uart_tx_Init</span><br><span class="line">(</span><br><span class="line">	.clk				(clk			),		</span><br><span class="line">	.rst_n			(rst_n		),</span><br><span class="line">	.send_en			(send_en		),				</span><br><span class="line">	.db_in			(db_sim_l	), </span><br><span class="line">	.BUSY1			(BUSY1		),</span><br><span class="line">	.send_done		(send_done	),	</span><br><span class="line">	.TX				(line_uart		)	</span><br><span class="line">);</span><br><span class="line">ctrl_tx				ctrl_tx_Init</span><br><span class="line">(</span><br><span class="line">	.clk				(clk			),		</span><br><span class="line">	.rst_n			(rst_n		),</span><br><span class="line">	.send_done		(send_done	),</span><br><span class="line">	.FIFO_NUM		(FIFO_NUM	),		</span><br><span class="line">	.send_en			(send_en		) 		</span><br><span class="line">);                                                    </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
-<h5 id="4-2-发送-接收端RTL视图"><a href="#4-2-发送-接收端RTL视图" class="headerlink" title="4.2 发送-接收端RTL视图"></a>4.2 发送-接收端RTL视图</h5><p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/F49791D5868D4DDD9BA8495A1A3ECFCB/27703" alt=""><br><em>图七 send-receive RTL视图</em></p>
+<h5 id="4-2-发送-接收端RTL视图"><a href="#4-2-发送-接收端RTL视图" class="headerlink" title="4.2 发送-接收端RTL视图"></a>4.2 发送-接收端RTL视图</h5><p><img src="/img/FPGA/Xilinx/02_串口通信17.png" alt=""><br><em>图七 send-receive RTL视图</em></p>
 <h5 id="4-3-modelsim仿真"><a href="#4-3-modelsim仿真" class="headerlink" title="4.3 modelsim仿真"></a>4.3 modelsim仿真</h5><p>结果如图八所示</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/05B9C254BED9466BB3B54DE19BD10E44/27683" alt=""><br><em>图八 发送端-接收端时序仿真图</em></p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/7CD58A98648B42F3B59C2ACA6FE927A4/27712" alt=""><br>由图可知，当输入数据为00110101时，输出数据也为00110101。</p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信18.png" alt=""><br><em>图八 发送端-接收端时序仿真图</em></p>
+<p><img src="/img/FPGA/Xilinx/02_串口通信19.png" alt=""><br>由图可知，当输入数据为00110101时，输出数据也为00110101。</p>
 
       
     </div>
@@ -632,8 +631,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/20/FPGA/Xilinx/01_物理层抗干扰功能实现/" rel="next" title="01-物理层抗干扰功能实现">
-                <i class="fa fa-chevron-left"></i> 01-物理层抗干扰功能实现
+              <a href="/2018/12/20/FPGA/Xilinx/01_物理层抗干扰功能实现/" rel="next" title="01_物理层抗干扰功能实现">
+                <i class="fa fa-chevron-left"></i> 01_物理层抗干扰功能实现
               </a>
             
           </div>
@@ -852,7 +851,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -861,7 +860,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

@@ -115,22 +115,22 @@
 
 
 
-  <meta name="description" content="01_卷积层【 The latest data ： 2018/05/04 】Yuchen 普通神经网络 卷积神经网络  卷积神经网络组成：  输入层（input） 卷积层（conv） 激活函数（relu） 池化层（pool） 全连接层（fc）  经过卷积得到的图片叫做特征图 在卷积里面 $32\times32\times3$，是指的 $height$、$width$、$depth$，对于 $ima">
+  <meta name="description" content="01_卷积层【 The latest data ： 2018/05/04 】Yuchen 普通神经网络  卷积神经网络   卷积神经网络组成：  输入层（input） 卷积层（conv） 激活函数（relu） 池化层（pool） 全连接层（fc）  经过卷积得到的图片叫做特征图 在卷积里面 $32\times32\times3$，是指的 $height$、$width$、$depth$，对于 $i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="01_卷积层">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/21/Machine Learning/CNN/01_卷积层/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="01_卷积层【 The latest data ： 2018/05/04 】Yuchen 普通神经网络 卷积神经网络  卷积神经网络组成：  输入层（input） 卷积层（conv） 激活函数（relu） 池化层（pool） 全连接层（fc）  经过卷积得到的图片叫做特征图 在卷积里面 $32\times32\times3$，是指的 $height$、$width$、$depth$，对于 $ima">
+<meta property="og:description" content="01_卷积层【 The latest data ： 2018/05/04 】Yuchen 普通神经网络  卷积神经网络   卷积神经网络组成：  输入层（input） 卷积层（conv） 激活函数（relu） 池化层（pool） 全连接层（fc）  经过卷积得到的图片叫做特征图 在卷积里面 $32\times32\times3$，是指的 $height$、$width$、$depth$，对于 $i">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/0805A361D08E42ACA8AF3CF042C7E6C7/13568">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/16ACE2546F1D441D99CDE1072F3EAD1E/13558">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/3E0F79827A9B4542BF4F4919D7C29FAD/13598">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/7CA7E0C623754B06B0808169FFC64169/13603">
-<meta property="og:updated_time" content="2019-02-26T14:10:02.012Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/CNN/01_卷积层1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/CNN/01_卷积层2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/CNN/01_卷积层3.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/CNN/01_卷积层4.png">
+<meta property="og:updated_time" content="2019-03-21T11:18:33.335Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01_卷积层">
-<meta name="twitter:description" content="01_卷积层【 The latest data ： 2018/05/04 】Yuchen 普通神经网络 卷积神经网络  卷积神经网络组成：  输入层（input） 卷积层（conv） 激活函数（relu） 池化层（pool） 全连接层（fc）  经过卷积得到的图片叫做特征图 在卷积里面 $32\times32\times3$，是指的 $height$、$width$、$depth$，对于 $ima">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/0805A361D08E42ACA8AF3CF042C7E6C7/13568">
+<meta name="twitter:description" content="01_卷积层【 The latest data ： 2018/05/04 】Yuchen 普通神经网络  卷积神经网络   卷积神经网络组成：  输入层（input） 卷积层（conv） 激活函数（relu） 池化层（pool） 全连接层（fc）  经过卷积得到的图片叫做特征图 在卷积里面 $32\times32\times3$，是指的 $height$、$width$、$depth$，对于 $i">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/ML/CNN/01_卷积层1.png">
 
 
 
@@ -453,7 +453,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:10:02" itemprop="dateModified" datetime="2019-02-26T22:10:02+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 19:18:33" itemprop="dateModified" datetime="2019-03-21T19:18:33+08:00">2019-03-21</time>
               
             
           </span>
@@ -498,7 +498,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">376</span>
+                <span title="Symbols count in article">380</span>
               
 
               
@@ -533,9 +533,9 @@
 
       
         <h3 id="01-卷积层"><a href="#01-卷积层" class="headerlink" title="01_卷积层"></a>01_卷积层</h3><p><strong>【 The latest data ： 2018/05/04 】Yuchen</strong></p>
-<p>普通神经网络<br><img src="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/0805A361D08E42ACA8AF3CF042C7E6C7/13568" alt=""></p>
+<p>普通神经网络<br><img src="/img/ML/CNN/01_卷积层1.png" alt=""> </p>
 <p>卷积神经网络</p>
-<p><img src="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/16ACE2546F1D441D99CDE1072F3EAD1E/13558" alt=""></p>
+<p><img src="/img/ML/CNN/01_卷积层2.png" alt=""> </p>
 <p>卷积神经网络组成：</p>
 <ul>
 <li>输入层（input）</li>
@@ -547,9 +547,9 @@
 <p>经过卷积得到的图片叫做<strong>特征图</strong></p>
 <p>在卷积里面 $32\times32\times3$，是指的 $height$、$width$、$depth$，对于 $image$ 和 $filter$ 的 $depth$ 要保持一致。</p>
 <p>在进行卷积的时候可以指定 $filter$ 的个数，下图是指定了两个 $filter$</p>
-<p><img src="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/3E0F79827A9B4542BF4F4919D7C29FAD/13598" alt=""></p>
+<p><img src="/img/ML/CNN/01_卷积层3.png" alt=""> </p>
 <p>中间的 6 是指由图1到图2用了 6 个 $filter$ ，10 是指将第一次卷积结果再进行卷积时，用了 10 个 $filter$</p>
-<p><img src="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/7CA7E0C623754B06B0808169FFC64169/13603" alt=""></p>
+<p><img src="/img/ML/CNN/01_卷积层4.png" alt=""> </p>
 <p>上图中 28 24 的计算方法详见《03_卷积核参数分析》</p>
 
       
@@ -825,7 +825,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -834,7 +834,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

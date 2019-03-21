@@ -117,25 +117,25 @@
 
   <meta name="description" content="单光子视频通信物理层抗干扰功能实现-字节填充（C#）【2017.06.19】实现功能： 视频传输中物理层抗干扰功能实现软件平台： VsCode、ubuntu15.10、HEX Editor思路： 字节填充示意图 a) 由于每次压缩的数据大小不一定相同，所以在数据头、尾分别加入SOH、EOT俩个标志位，如图所示。b) 为了防止数据提前接收结束，即在传输的数据中也有SOH、EOT。则在发送数据的关键字">
 <meta property="og:type" content="article">
-<meta property="og:title" content="01-物理层抗干扰功能实现">
+<meta property="og:title" content="01_物理层抗干扰功能实现">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/01_物理层抗干扰功能实现/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="单光子视频通信物理层抗干扰功能实现-字节填充（C#）【2017.06.19】实现功能： 视频传输中物理层抗干扰功能实现软件平台： VsCode、ubuntu15.10、HEX Editor思路： 字节填充示意图 a) 由于每次压缩的数据大小不一定相同，所以在数据头、尾分别加入SOH、EOT俩个标志位，如图所示。b) 为了防止数据提前接收结束，即在传输的数据中也有SOH、EOT。则在发送数据的关键字">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/FCF2F67966DB475CBF6E1D83451E8C02/27714">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/E40307C41C9D4DBCAF6A585BB74B35B1/27682">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/24C03DC1A8944D8C83CEB2E4A5DA66B6/27726">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/49BDC3915F9F4774BA00253133FF8CA7/27722">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/573D174E41424761B176FB24FA7F9560/27727">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/80008A58AC024BECA80F62A36882DB08/27675">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/2BCBCF369D8E461598401655100ED0C1/27679">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/598A2C75490042D7997FF7AAD59ABEF8/27680">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/5F0085378CD642ECAB181072B9B3443A/27719">
-<meta property="og:updated_time" content="2019-02-26T14:07:21.779Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/01_物理层抗干扰功能实现1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/01_物理层抗干扰功能实现2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/01_物理层抗干扰功能实现3.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/01_物理层抗干扰功能实现4.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/01_物理层抗干扰功能实现5.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/01_物理层抗干扰功能实现6.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/01_物理层抗干扰功能实现7.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/01_物理层抗干扰功能实现8.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/01_物理层抗干扰功能实现9.png">
+<meta property="og:updated_time" content="2019-03-21T09:43:51.914Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="01-物理层抗干扰功能实现">
+<meta name="twitter:title" content="01_物理层抗干扰功能实现">
 <meta name="twitter:description" content="单光子视频通信物理层抗干扰功能实现-字节填充（C#）【2017.06.19】实现功能： 视频传输中物理层抗干扰功能实现软件平台： VsCode、ubuntu15.10、HEX Editor思路： 字节填充示意图 a) 由于每次压缩的数据大小不一定相同，所以在数据头、尾分别加入SOH、EOT俩个标志位，如图所示。b) 为了防止数据提前接收结束，即在传输的数据中也有SOH、EOT。则在发送数据的关键字">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/FCF2F67966DB475CBF6E1D83451E8C02/27714">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/01_物理层抗干扰功能实现1.png">
 
 
 
@@ -152,7 +152,7 @@
   };
 </script>
 
-  <title>01-物理层抗干扰功能实现 | Chenyu's Blog</title>
+  <title>01_物理层抗干扰功能实现 | Chenyu's Blog</title>
   
 
 
@@ -416,7 +416,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">01-物理层抗干扰功能实现
+          <h1 class="post-title" itemprop="name headline">01_物理层抗干扰功能实现
               
             
           </h1>
@@ -458,7 +458,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:07:21" itemprop="dateModified" datetime="2019-02-26T22:07:21+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 17:43:51" itemprop="dateModified" datetime="2019-03-21T17:43:51+08:00">2019-03-21</time>
               
             
           </span>
@@ -538,24 +538,24 @@
 
       
         <h3 id="单光子视频通信物理层抗干扰功能实现-字节填充（C-）"><a href="#单光子视频通信物理层抗干扰功能实现-字节填充（C-）" class="headerlink" title="单光子视频通信物理层抗干扰功能实现-字节填充（C#）"></a>单光子视频通信物理层抗干扰功能实现-字节填充（C#）</h3><p>【2017.06.19】<br><strong>实现功能：</strong> 视频传输中物理层抗干扰功能实现<br><strong>软件平台：</strong> VsCode、ubuntu15.10、HEX Editor<br><strong>思路：</strong></p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/FCF2F67966DB475CBF6E1D83451E8C02/27714" alt=""><br><em>字节填充示意图</em></p>
+<p><img src="/img/FPGA/Xilinx/01_物理层抗干扰功能实现1.png" alt=""><br><em>字节填充示意图</em></p>
 <p><strong>a)</strong> 由于每次压缩的数据大小不一定相同，所以在数据头、尾分别加入SOH、EOT俩个标志位，如图所示。<br><strong>b)</strong> 为了防止数据提前接收结束，即在传输的数据中也有SOH、EOT。则在发送数据的关键字之前加一个ESC标志位，用来告知ESC之后传入的微数据位而不是关键字。</p>
 <h4 id="一、编写简单的文件传输程序"><a href="#一、编写简单的文件传输程序" class="headerlink" title="一、编写简单的文件传输程序"></a>一、编写简单的文件传输程序</h4><p>参考《C语言程序设计——Visual C++6.0环境》，来进行简单文件发送和接收的程序编写，以实现单张图片的发送和接收（无字节填充）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	char ch1;</span><br><span class="line">	FILE* fp1,*fp2;</span><br><span class="line">	</span><br><span class="line">	fp1=fopen(&quot;img1.jpg&quot;,&quot;r&quot;);           //打开文件，fopen函数</span><br><span class="line">	fp2=fopen(&quot;img2.jpg&quot;,&quot;w&quot;);</span><br><span class="line">	</span><br><span class="line">	if(fp1==NULL)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;cannot open\n&quot;);</span><br><span class="line">			exit(0);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	ch1=fgetc(fp1);</span><br><span class="line">	</span><br><span class="line">	while(!feof(fp1))                          //检测fp1是否读取结束</span><br><span class="line">		&#123;</span><br><span class="line">			fputc(ch1,fp2);</span><br><span class="line">			ch1=fgetc(fp1);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	fclose(fp1);                                //文件用完要关闭</span><br><span class="line">	fclose(fp2);</span><br><span class="line"></span><br><span class="line">return(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在ubuntu15.10环境中运行如图一所示</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/E40307C41C9D4DBCAF6A585BB74B35B1/27682" alt=""><br><em>图一 单张图片的发送接收（无字节填充）</em></p>
+<p><img src="/img/FPGA/Xilinx/01_物理层抗干扰功能实现2.png" alt=""><br><em>图一 单张图片的发送接收（无字节填充）</em></p>
 <h4 id="二、字节填充-文件发送程序"><a href="#二、字节填充-文件发送程序" class="headerlink" title="二、字节填充/文件发送程序"></a>二、字节填充/文件发送程序</h4><p>由于进行编码后图片已不是原始图像，故直接保存成jpg格式并不能看到编码效果，于是我采用对txt文本文档的数据进行编码测试。<br>现在file1 写入“DEBAFCG”字符串，如图二所示。为了方便观察字节填充效果，在字节填充程序中令SOH=’A’;  EOT=’B’; ESC=’C’;。即对于写入的字符串，ABC都是关键字。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/24C03DC1A8944D8C83CEB2E4A5DA66B6/27726" alt=""><br><em>图二 file1文件内容</em><br>相应字节填充代码如下所示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	char ch1,ch2,ch3,ch4;</span><br><span class="line">	int SOH=&apos;A&apos;;   //开始 </span><br><span class="line">	int EOT=&apos;B&apos;;   //结束 </span><br><span class="line">	int ESC=&apos;C&apos;;   //中间 </span><br><span class="line">	</span><br><span class="line">	// fp1为原始文件，fp2为加工后的文件，fp3为待接收文件,fp4为接收解码处理后的文件</span><br><span class="line">	FILE *fp1,*fp2,*fp3,*fp4;</span><br><span class="line">	</span><br><span class="line">	/****************Code****************/</span><br><span class="line">	fp1=fopen(&quot;img1.jpg&quot;,&quot;r&quot;);</span><br><span class="line">	fp2=fopen(&quot;img2.jpg&quot;,&quot;w&quot;);</span><br><span class="line">	</span><br><span class="line">	if(fp1==NULL)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;cannot open file1\n&quot;);</span><br><span class="line">			exit(0);</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	rewind(fp1);     //fp1的开头</span><br><span class="line">	rewind(fp2);</span><br><span class="line">	fputc(SOH,fp2);  //将SOH给fp2的开头</span><br><span class="line">	ch1=fgetc(fp1);  //得到fp1的数据</span><br><span class="line">		</span><br><span class="line">	while(!feof(fp1))</span><br><span class="line">		&#123;</span><br><span class="line">			if(ch1==SOH||ch1==EOT||ch1==ESC)</span><br><span class="line">				fputc(ESC,fp2);</span><br><span class="line">			fputc(ch1,fp2);</span><br><span class="line">			ch1=fgetc(fp1);</span><br><span class="line">		&#125;</span><br><span class="line">	fputc(EOT,fp2);</span><br><span class="line">	fclose(fp1);</span><br><span class="line">	fclose(fp2); </span><br><span class="line"></span><br><span class="line">	/****************Send-Receive****************/</span><br><span class="line">	fp2=fopen(&quot;img2.jpg&quot;,&quot;r&quot;);</span><br><span class="line">	fp3=fopen(&quot;img3.jpg&quot;,&quot;w&quot;);</span><br><span class="line">	if(fp2==NULL)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;cannot open file2\n&quot;);</span><br><span class="line">			exit(0);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	ch2=fgetc(fp2);</span><br><span class="line">	</span><br><span class="line">	while(!feof(fp2))</span><br><span class="line">		&#123;</span><br><span class="line">			fputc(ch2,fp3);</span><br><span class="line">			ch2=fgetc(fp2);</span><br><span class="line">		&#125;</span><br><span class="line">	fclose(fp2);</span><br><span class="line">	fclose(fp3);</span><br><span class="line">	return(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/FPGA/Xilinx/01_物理层抗干扰功能实现3.png" alt=""><br><em>图二 file1文件内容</em><br>相应字节填充代码如下所示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	char ch1,ch2,ch3,ch4;</span><br><span class="line">	int SOH=&apos;A&apos;;   //开始 </span><br><span class="line">	int EOT=&apos;B&apos;;   //结束 </span><br><span class="line">	int ESC=&apos;C&apos;;   //中间 </span><br><span class="line">	</span><br><span class="line">	// fp1为原始文件，fp2为加工后的文件，fp3为待接收文件,fp4为接收解码处理后的文件</span><br><span class="line">	FILE *fp1,*fp2,*fp3,*fp4;</span><br><span class="line">	</span><br><span class="line">	/****************Code****************/</span><br><span class="line">	fp1=fopen(&quot;img1.jpg&quot;,&quot;r&quot;);</span><br><span class="line">	fp2=fopen(&quot;img2.jpg&quot;,&quot;w&quot;);</span><br><span class="line">	</span><br><span class="line">	if(fp1==NULL)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;cannot open file1\n&quot;);</span><br><span class="line">			exit(0);</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	rewind(fp1);     //fp1的开头</span><br><span class="line">	rewind(fp2);</span><br><span class="line">	fputc(SOH,fp2);  //将SOH给fp2的开头</span><br><span class="line">	ch1=fgetc(fp1);  //得到fp1的数据</span><br><span class="line">		</span><br><span class="line">	while(!feof(fp1))</span><br><span class="line">		&#123;</span><br><span class="line">			if(ch1==SOH||ch1==EOT||ch1==ESC)</span><br><span class="line">				fputc(ESC,fp2);</span><br><span class="line">			fputc(ch1,fp2);</span><br><span class="line">			ch1=fgetc(fp1);</span><br><span class="line">		&#125;</span><br><span class="line">	fputc(EOT,fp2);</span><br><span class="line">	fclose(fp1);</span><br><span class="line">	fclose(fp2); </span><br><span class="line"></span><br><span class="line">	/****************Send-Receive****************/</span><br><span class="line">	fp2=fopen(&quot;img2.jpg&quot;,&quot;r&quot;);</span><br><span class="line">	fp3=fopen(&quot;img3.jpg&quot;,&quot;w&quot;);</span><br><span class="line">	if(fp2==NULL)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;cannot open file2\n&quot;);</span><br><span class="line">			exit(0);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	ch2=fgetc(fp2);</span><br><span class="line">	</span><br><span class="line">	while(!feof(fp2))</span><br><span class="line">		&#123;</span><br><span class="line">			fputc(ch2,fp3);</span><br><span class="line">			ch2=fgetc(fp2);</span><br><span class="line">		&#125;</span><br><span class="line">	fclose(fp2);</span><br><span class="line">	fclose(fp3);</span><br><span class="line">	return(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>程序运行结果如图三所示</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/49BDC3915F9F4774BA00253133FF8CA7/27722" alt=""><br><em>图三 数据进行字节填充后的结果图</em><br>由于原始数据为“DEBAFCG”，经过字节填充应得数据为“ADECBCAFCCGB”，由此可知该字节填充程序符合要求。</p>
+<p><img src="/img/FPGA/Xilinx/01_物理层抗干扰功能实现4.png" alt=""><br><em>图三 数据进行字节填充后的结果图</em><br>由于原始数据为“DEBAFCG”，经过字节填充应得数据为“ADECBCAFCCGB”，由此可知该字节填充程序符合要求。</p>
 <h4 id="三、恢复原始数据"><a href="#三、恢复原始数据" class="headerlink" title="三、恢复原始数据"></a>三、恢复原始数据</h4><p>在发送图片时，对图片进行了字节填充，若想得到原始图片，需要去掉发送端数据中的关键字和标志位。代码如下所示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/****************Decode****************/</span><br><span class="line">	fp3=fopen(&quot;img3.jpg&quot;,&quot;r&quot;);</span><br><span class="line">	fp4=fopen(&quot;img4.jpg&quot;,&quot;w&quot;);</span><br><span class="line">	if(fp3==NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;cannot open file3\n&quot;);</span><br><span class="line">		exit(0);</span><br><span class="line">	&#125;</span><br><span class="line">	rewind(fp3);     //fp3的开头</span><br><span class="line">	ch3=fgetc(fp3);	 //获取SOH</span><br><span class="line">	if(ch3==SOH)</span><br><span class="line">	&#123;</span><br><span class="line">		ch3=fgetc(fp3);  //获取SOH之后的数据</span><br><span class="line">		while(!feof(fp3))</span><br><span class="line">		&#123;</span><br><span class="line">			if(ch3==ESC)</span><br><span class="line">				ch3=fgetc(fp3);	     //地址加1</span><br><span class="line">			fputc(ch3,fp4);</span><br><span class="line">			ch3=fgetc(fp3);</span><br><span class="line">			if(ch3==EOT)</span><br><span class="line">			   break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fclose(fp3);</span><br><span class="line">	fclose(fp4);</span><br></pre></td></tr></table></figure></p>
 <p>程序运行结果如图四所示。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/573D174E41424761B176FB24FA7F9560/27727" alt=""><br><em>图四  file4数据</em><br>此结果与原始数据相同。</p>
+<p><img src="/img/FPGA/Xilinx/01_物理层抗干扰功能实现5.png" alt=""><br><em>图四  file4数据</em><br>此结果与原始数据相同。</p>
 <h4 id="四、文件大小检测"><a href="#四、文件大小检测" class="headerlink" title="四、文件大小检测"></a>四、文件大小检测</h4><p>为了防止文件传输时有数据串丢失，在发送文件之前，应先把文件的大小发送出去，在接收时先接收文件的大小，再接收文件，接收完比较两文件大小是否一致，若不一致则舍去此帧数据。（为了便于观察，在此我将发送和接收的程序放在了一起）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  /***读取原始文件字符数***/</span><br><span class="line">	fseek(fp1,0,SEEK_END);</span><br><span class="line">	fp1_size=ftell(fp1);    </span><br><span class="line">``` </span><br><span class="line">[参考](http://blog.csdn.net/chenglibin1988/article/details/8750480)</span><br></pre></td></tr></table></figure></p>
 <p>/<strong><em>如果原始图片和最终图片大小不一致，则删除接收后的文件</em></strong>/<br>    if(fp4_size!=fp1_size)<br>    remove(“img4.jpg”);<br>```</p>
 <h4 id="五、ubuntu下实现数据传输的物理层抗干扰功能"><a href="#五、ubuntu下实现数据传输的物理层抗干扰功能" class="headerlink" title="五、ubuntu下实现数据传输的物理层抗干扰功能"></a>五、ubuntu下实现数据传输的物理层抗干扰功能</h4><p>测试结果如图五所示，其中img1是原图，img4是接收后的图，pr2和pr3是字节填充后的文件和模拟传输接收后的文件。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/80008A58AC024BECA80F62A36882DB08/27675" alt=""><br><em>图五 物理层抗干扰功能测试</em></p>
+<p><img src="/img/FPGA/Xilinx/01_物理层抗干扰功能实现6.png" alt=""><br><em>图五 物理层抗干扰功能测试</em></p>
 <p>若将图片以十六进制形式打开时，图片的前面字节是图片信息的概要，后面是像素点，若后面少了数据，肉眼很难看出来，所以用HEX Editor软件将图片以十六进制形式打开，对比两图片的信息。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/2BCBCF369D8E461598401655100ED0C1/27679" alt=""><br><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/598A2C75490042D7997FF7AAD59ABEF8/27680" alt=""><br><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/5F0085378CD642ECAB181072B9B3443A/27719" alt=""><br><em>图六 原始图像和最终图像信息对比</em></p>
+<p><img src="/img/FPGA/Xilinx/01_物理层抗干扰功能实现7.png" alt=""><br><img src="/img/FPGA/Xilinx/01_物理层抗干扰功能实现8.png" alt=""><br><img src="/img/FPGA/Xilinx/01_物理层抗干扰功能实现9.png" alt=""><br><em>图六 原始图像和最终图像信息对比</em></p>
 
       
     </div>
@@ -620,8 +620,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/20/FPGA/Xilinx/02_串口通信/" rel="prev" title="02-串口通信">
-                02-串口通信 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/20/FPGA/Xilinx/02_串口通信/" rel="prev" title="02_串口通信">
+                02_串口通信 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -830,7 +830,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -839,7 +839,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

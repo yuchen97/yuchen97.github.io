@@ -115,20 +115,20 @@
 
 
 
-  <meta name="description" content="一、增加自己需要的端口在axi 基本端口clk、rst_n、data三组线基础上添加自己需要端口  二、从PS端向PL端写数据PS端给写到映射地址之后，实际上是写到了axi总线上的S_AXI_WDATA数据总线上面，通过这个数据总线给slv_reg0-4这四个寄存器上面，常用的是定义了4条地址线，可以写到4组寄存器里面，然后将寄存器里面的数据在通过自定义的寄存器写到自己输出端口，再连接到自己定义的">
+  <meta name="description" content="一、增加自己需要的端口在axi 基本端口clk、rst_n、data三组线基础上添加自己需要端口   二、从PS端向PL端写数据PS端给写到映射地址之后，实际上是写到了axi总线上的S_AXI_WDATA数据总线上面，通过这个数据总线给slv_reg0-4这四个寄存器上面，常用的是定义了4条地址线，可以写到4组寄存器里面，然后将寄存器里面的数据在通过自定义的寄存器写到自己输出端口，再连接到自己定义">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10_AXI协议数据收发">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/10_AXI协议数据收发/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="一、增加自己需要的端口在axi 基本端口clk、rst_n、data三组线基础上添加自己需要端口  二、从PS端向PL端写数据PS端给写到映射地址之后，实际上是写到了axi总线上的S_AXI_WDATA数据总线上面，通过这个数据总线给slv_reg0-4这四个寄存器上面，常用的是定义了4条地址线，可以写到4组寄存器里面，然后将寄存器里面的数据在通过自定义的寄存器写到自己输出端口，再连接到自己定义的">
+<meta property="og:description" content="一、增加自己需要的端口在axi 基本端口clk、rst_n、data三组线基础上添加自己需要端口   二、从PS端向PL端写数据PS端给写到映射地址之后，实际上是写到了axi总线上的S_AXI_WDATA数据总线上面，通过这个数据总线给slv_reg0-4这四个寄存器上面，常用的是定义了4条地址线，可以写到4组寄存器里面，然后将寄存器里面的数据在通过自定义的寄存器写到自己输出端口，再连接到自己定义">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/D0A7D9A8212C4C69A2CF243A8BEA5E45/28361">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/91A17082C0CB49D5BE009AF3D257E077/28342">
-<meta property="og:updated_time" content="2019-02-26T14:08:07.450Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/10_AXI协议数据收发1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/10_AXI协议数据收发1.png">
+<meta property="og:updated_time" content="2019-03-21T10:10:50.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="10_AXI协议数据收发">
-<meta name="twitter:description" content="一、增加自己需要的端口在axi 基本端口clk、rst_n、data三组线基础上添加自己需要端口  二、从PS端向PL端写数据PS端给写到映射地址之后，实际上是写到了axi总线上的S_AXI_WDATA数据总线上面，通过这个数据总线给slv_reg0-4这四个寄存器上面，常用的是定义了4条地址线，可以写到4组寄存器里面，然后将寄存器里面的数据在通过自定义的寄存器写到自己输出端口，再连接到自己定义的">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/D0A7D9A8212C4C69A2CF243A8BEA5E45/28361">
+<meta name="twitter:description" content="一、增加自己需要的端口在axi 基本端口clk、rst_n、data三组线基础上添加自己需要端口   二、从PS端向PL端写数据PS端给写到映射地址之后，实际上是写到了axi总线上的S_AXI_WDATA数据总线上面，通过这个数据总线给slv_reg0-4这四个寄存器上面，常用的是定义了4条地址线，可以写到4组寄存器里面，然后将寄存器里面的数据在通过自定义的寄存器写到自己输出端口，再连接到自己定义">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/10_AXI协议数据收发1.png">
 
 
 
@@ -451,7 +451,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:08:07" itemprop="dateModified" datetime="2019-02-26T22:08:07+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 18:10:50" itemprop="dateModified" datetime="2019-03-21T18:10:50+08:00">2019-03-21</time>
               
             
           </span>
@@ -531,12 +531,12 @@
 
       
         <h4 id="一、增加自己需要的端口"><a href="#一、增加自己需要的端口" class="headerlink" title="一、增加自己需要的端口"></a>一、增加自己需要的端口</h4><p>在axi 基本端口clk、rst_n、data三组线基础上添加自己需要端口</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/D0A7D9A8212C4C69A2CF243A8BEA5E45/28361" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/10_AXI协议数据收发1.png" alt=""> </p>
 <h4 id="二、从PS端向PL端写数据"><a href="#二、从PS端向PL端写数据" class="headerlink" title="二、从PS端向PL端写数据"></a>二、从PS端向PL端写数据</h4><p>PS端给写到映射地址之后，实际上是写到了axi总线上的S_AXI_WDATA数据总线上面，通过这个数据总线给slv_reg0-4这四个寄存器上面，常用的是定义了4条地址线，可以写到4组寄存器里面，然后将寄存器里面的数据在通过自定义的寄存器写到自己输出端口，再连接到自己定义的PL端的模块里面。</p>
 <h5 id="2-1-协议本身源码"><a href="#2-1-协议本身源码" class="headerlink" title="2.1 协议本身源码"></a>2.1 协议本身源码</h5><p>以下的代码实现了从arm端写入数据到数据总线，再给了相应的寄存器里面，构建了4条地址线。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">// Implement memory mapped register select and write logic generation</span><br><span class="line">	// The write data is accepted and written to memory mapped registers when</span><br><span class="line">	// axi_awready, S_AXI_WVALID, axi_wready and S_AXI_WVALID are asserted. Write strobes are used to</span><br><span class="line">	// select byte enables of slave registers while writing.</span><br><span class="line">	// These registers are cleared when reset (active low) is applied.</span><br><span class="line">	// Slave register write enable is asserted when valid address and data are available</span><br><span class="line">	// and the slave is ready to accept the write address and write data.</span><br><span class="line">	assign slv_reg_wren = axi_wready &amp;&amp; S_AXI_WVALID &amp;&amp; axi_awready &amp;&amp; S_AXI_AWVALID;</span><br><span class="line"></span><br><span class="line">	always @( posedge S_AXI_ACLK )</span><br><span class="line">	begin</span><br><span class="line">	  if ( S_AXI_ARESETN == 1&apos;b0 )</span><br><span class="line">	    begin</span><br><span class="line">	      slv_reg0 &lt;= 0;</span><br><span class="line">	      slv_reg1 &lt;= 0;</span><br><span class="line">	      slv_reg2 &lt;= 0;</span><br><span class="line">	      slv_reg3 &lt;= 0;</span><br><span class="line">	    end </span><br><span class="line">	  else begin</span><br><span class="line">	    if (slv_reg_wren)</span><br><span class="line">	      begin</span><br><span class="line">	        case ( axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )</span><br><span class="line">	          2&apos;h0:</span><br><span class="line">	            for ( byte_index = 0; byte_index &lt;= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )</span><br><span class="line">	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin</span><br><span class="line">	                // Respective byte enables are asserted as per write strobes </span><br><span class="line">	                // Slave register 0</span><br><span class="line">	                slv_reg0[(byte_index*8) +: 8] &lt;= S_AXI_WDATA[(byte_index*8) +: 8];</span><br><span class="line">	              end  </span><br><span class="line">	          2&apos;h1:</span><br><span class="line">	            for ( byte_index = 0; byte_index &lt;= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )</span><br><span class="line">	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin</span><br><span class="line">	                // Respective byte enables are asserted as per write strobes </span><br><span class="line">	                // Slave register 1</span><br><span class="line">	                slv_reg1[(byte_index*8) +: 8] &lt;= S_AXI_WDATA[(byte_index*8) +: 8];</span><br><span class="line">	              end  </span><br><span class="line">	          2&apos;h2:</span><br><span class="line">	            for ( byte_index = 0; byte_index &lt;= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )</span><br><span class="line">	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin</span><br><span class="line">	                // Respective byte enables are asserted as per write strobes </span><br><span class="line">	                // Slave register 2</span><br><span class="line">	                slv_reg2[(byte_index*8) +: 8] &lt;= S_AXI_WDATA[(byte_index*8) +: 8];</span><br><span class="line">	              end  </span><br><span class="line">	          2&apos;h3:</span><br><span class="line">	            for ( byte_index = 0; byte_index &lt;= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )</span><br><span class="line">	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin</span><br><span class="line">	                // Respective byte enables are asserted as per write strobes </span><br><span class="line">	                // Slave register 3</span><br><span class="line">	                slv_reg3[(byte_index*8) +: 8] &lt;= S_AXI_WDATA[(byte_index*8) +: 8];</span><br><span class="line">	              end  </span><br><span class="line">	          default : begin</span><br><span class="line">	                      slv_reg0 &lt;= slv_reg0;</span><br><span class="line">	                      slv_reg1 &lt;= slv_reg1;</span><br><span class="line">	                      slv_reg2 &lt;= slv_reg2;</span><br><span class="line">	                      slv_reg3 &lt;= slv_reg3;</span><br><span class="line">	                    end</span><br><span class="line">	        endcase</span><br><span class="line">	      end</span><br><span class="line">	  end</span><br><span class="line">	end</span><br></pre></td></tr></table></figure></p>
 <h5 id="2-2-自己添加代码"><a href="#2-2-自己添加代码" class="headerlink" title="2.2 自己添加代码"></a>2.2 自己添加代码</h5><p>新定义自己的寄存器变量，在时序电路里面，给定触发，将数据copy到自己的寄存器里面去，然后将之连接到自己的输出端口上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">reg [31:0]  ps_out1;</span><br><span class="line">        reg [31:0]  ps_out2;</span><br><span class="line">        assign led1 = ps_out1;</span><br><span class="line">        assign led2 = ps_out2;</span><br><span class="line">        </span><br><span class="line">        always @( posedge S_AXI_ACLK )</span><br><span class="line">        begin</span><br><span class="line">              if ( S_AXI_ARESETN == 1&apos;b0 )</span><br><span class="line">                   begin</span><br><span class="line">                        ps_out1&lt;= 12&apos;d0;</span><br><span class="line">                        ps_out2&lt;= 12&apos;d0;</span><br><span class="line">                   end</span><br><span class="line">              else</span><br><span class="line">                   begin</span><br><span class="line">                         ps_out1 &lt;= slv_reg2[31:0];</span><br><span class="line">                         ps_out2 &lt;= slv_reg3[31:0];</span><br><span class="line">                   end</span><br><span class="line">        end</span><br></pre></td></tr></table></figure></p>
 <h4 id="三、从PL端向PS端写数据"><a href="#三、从PL端向PS端写数据" class="headerlink" title="三、从PL端向PS端写数据"></a>三、从PL端向PS端写数据</h4><p>axi协议里面PS从地址中读出的数据是axi读总线上面的数据<br>output wire [C_S_AXI_DATA_WIDTH-1 : 0] S_AXI_RDATA,<br>reg [C_S_AXI_DATA_WIDTH-1 : 0]     axi_rdata;</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/91A17082C0CB49D5BE009AF3D257E077/28342" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/10_AXI协议数据收发1.png" alt=""> </p>
 
       
     </div>
@@ -591,8 +591,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/20/FPGA/Xilinx/09_时钟分频IP核使/" rel="next" title="09_时钟分频IP核使">
-                <i class="fa fa-chevron-left"></i> 09_时钟分频IP核使
+              <a href="/2018/12/20/FPGA/Xilinx/09_时钟分频IP核使/" rel="next" title="09_时钟分频IP核使用">
+                <i class="fa fa-chevron-left"></i> 09_时钟分频IP核使用
               </a>
             
           </div>
@@ -601,8 +601,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/20/FPGA/Xilinx/11_BRAM读写/" rel="prev" title="11-BRAM读写">
-                11-BRAM读写 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/20/FPGA/Xilinx/11_BRAM读写/" rel="prev" title="11_BRAM读写">
+                11_BRAM读写 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -811,7 +811,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -820,7 +820,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

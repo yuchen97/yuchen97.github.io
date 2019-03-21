@@ -115,23 +115,23 @@
 
 
 
-  <meta name="description" content="1. 新建工程，注意选择 2.板子选型直接选zybo，没有从官网下，放到对应文件夹 3.创建一个块设计，block design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置 4.配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错 5.生成自己的IP 6.生成自己的IP后，要注意更新包">
+  <meta name="description" content="1. 新建工程，注意选择  2.板子选型直接选zybo，没有从官网下，放到对应文件夹  3.创建一个块设计，block design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置  4.配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错  5.生成自己的IP  6.生成自己的IP后，要注意更新包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="07_AXI总线建立">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/07_AXI总线建立/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="1. 新建工程，注意选择 2.板子选型直接选zybo，没有从官网下，放到对应文件夹 3.创建一个块设计，block design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置 4.配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错 5.生成自己的IP 6.生成自己的IP后，要注意更新包">
+<meta property="og:description" content="1. 新建工程，注意选择  2.板子选型直接选zybo，没有从官网下，放到对应文件夹  3.创建一个块设计，block design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置  4.配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错  5.生成自己的IP  6.生成自己的IP后，要注意更新包">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/02CAC412EF5240149EBA168F61FE5D40/28286">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/BCEF52CE8D03438B942AF2F179B7DB7C/28292">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/BB1ADC6604AE40DEADF8C5BC93550978/28287">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/3E33D59B830D465CAB8A1807C5E34418/28285">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/DFB0D2742AD749C4ADEA26680186CAC5/28291">
-<meta property="og:updated_time" content="2019-02-26T14:07:51.549Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/07_AXI总线建立1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/07_AXI总线建立2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/07_AXI总线建立3.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/07_AXI总线建立4.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/07_AXI总线建立5.png">
+<meta property="og:updated_time" content="2019-03-21T10:05:40.209Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="07_AXI总线建立">
-<meta name="twitter:description" content="1. 新建工程，注意选择 2.板子选型直接选zybo，没有从官网下，放到对应文件夹 3.创建一个块设计，block design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置 4.配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错 5.生成自己的IP 6.生成自己的IP后，要注意更新包">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/02CAC412EF5240149EBA168F61FE5D40/28286">
+<meta name="twitter:description" content="1. 新建工程，注意选择  2.板子选型直接选zybo，没有从官网下，放到对应文件夹  3.创建一个块设计，block design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置  4.配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错  5.生成自己的IP  6.生成自己的IP后，要注意更新包">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/07_AXI总线建立1.png">
 
 
 
@@ -454,7 +454,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:07:51" itemprop="dateModified" datetime="2019-02-26T22:07:51+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 18:05:40" itemprop="dateModified" datetime="2019-03-21T18:05:40+08:00">2019-03-21</time>
               
             
           </span>
@@ -499,7 +499,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">170</span>
+                <span title="Symbols count in article">175</span>
               
 
               
@@ -533,11 +533,11 @@
       
 
       
-        <h4 id="1-新建工程，注意选择"><a href="#1-新建工程，注意选择" class="headerlink" title="1. 新建工程，注意选择"></a>1. 新建工程，注意选择</h4><p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/02CAC412EF5240149EBA168F61FE5D40/28286" alt=""></p>
-<h4 id="2-板子选型直接选zybo，没有从官网下，放到对应文件夹"><a href="#2-板子选型直接选zybo，没有从官网下，放到对应文件夹" class="headerlink" title="2.板子选型直接选zybo，没有从官网下，放到对应文件夹"></a>2.板子选型直接选zybo，没有从官网下，放到对应文件夹</h4><p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/BCEF52CE8D03438B942AF2F179B7DB7C/28292" alt=""></p>
-<h4 id="3-创建一个块设计，block-design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置"><a href="#3-创建一个块设计，block-design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置" class="headerlink" title="3.创建一个块设计，block design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置"></a>3.创建一个块设计，block design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置</h4><p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/BB1ADC6604AE40DEADF8C5BC93550978/28287" alt=""></p>
-<h4 id="4-配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错"><a href="#4-配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错" class="headerlink" title="4.配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错"></a>4.配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错</h4><p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/3E33D59B830D465CAB8A1807C5E34418/28285" alt=""></p>
-<h4 id="5-生成自己的IP"><a href="#5-生成自己的IP" class="headerlink" title="5.生成自己的IP"></a>5.生成自己的IP</h4><p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/DFB0D2742AD749C4ADEA26680186CAC5/28291" alt=""></p>
+        <h4 id="1-新建工程，注意选择"><a href="#1-新建工程，注意选择" class="headerlink" title="1. 新建工程，注意选择"></a>1. 新建工程，注意选择</h4><p><img src="/img/FPGA/Xilinx/07_AXI总线建立1.png" alt=""> </p>
+<h4 id="2-板子选型直接选zybo，没有从官网下，放到对应文件夹"><a href="#2-板子选型直接选zybo，没有从官网下，放到对应文件夹" class="headerlink" title="2.板子选型直接选zybo，没有从官网下，放到对应文件夹"></a>2.板子选型直接选zybo，没有从官网下，放到对应文件夹</h4><p><img src="/img/FPGA/Xilinx/07_AXI总线建立2.png" alt=""> </p>
+<h4 id="3-创建一个块设计，block-design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置"><a href="#3-创建一个块设计，block-design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置" class="headerlink" title="3.创建一个块设计，block design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置"></a>3.创建一个块设计，block design，然后添加自己需要的IP，这里添加了必须的PS的IP，就是ARM端的硬件配置</h4><p><img src="/img/FPGA/Xilinx/07_AXI总线建立3.png" alt=""> </p>
+<h4 id="4-配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错"><a href="#4-配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错" class="headerlink" title="4.配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错"></a>4.配置arm端的硬件，画线部分，最好导入初始配置文件xml文件，否则容易出错</h4><p><img src="/img/FPGA/Xilinx/07_AXI总线建立4.png" alt=""> </p>
+<h4 id="5-生成自己的IP"><a href="#5-生成自己的IP" class="headerlink" title="5.生成自己的IP"></a>5.生成自己的IP</h4><p><img src="/img/FPGA/Xilinx/07_AXI总线建立5.png" alt=""> </p>
 <h4 id="6-生成自己的IP后，要注意更新包"><a href="#6-生成自己的IP后，要注意更新包" class="headerlink" title="6.生成自己的IP后，要注意更新包"></a>6.生成自己的IP后，要注意更新包</h4>
       
     </div>
@@ -592,8 +592,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/20/FPGA/Xilinx/06_PS端口/" rel="next" title="06-PS端口">
-                <i class="fa fa-chevron-left"></i> 06-PS端口
+              <a href="/2018/12/20/FPGA/Xilinx/06_PS端口/" rel="next" title="06_PS端口">
+                <i class="fa fa-chevron-left"></i> 06_PS端口
               </a>
             
           </div>
@@ -812,7 +812,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -821,7 +821,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

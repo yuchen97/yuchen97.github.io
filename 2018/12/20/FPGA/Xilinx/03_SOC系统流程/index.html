@@ -122,12 +122,12 @@
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="Zybo SOC &amp;amp; Linux 的启动配置实现【2017/10/07】Zybo上电后，首先执行BootROM阶段，该阶段控制初始设备的启动，BootROM是上电复位或暖复位后，处理器所执行的用户不可修改的代码，该代码已经固化到Zybo SOC的BootROM中。之后通过读取SD卡FAT分区，加载并解析BOOT.bin文件，会执行第一级启动引导程序FSBL(First Stage Boot">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/3CD7CEEE98044DD69145137EBA3EFE14/28617">
-<meta property="og:updated_time" content="2019-02-26T14:07:26.539Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/03_SOC系统流程1.png">
+<meta property="og:updated_time" content="2019-03-21T09:49:21.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="03_SOC系统流程">
 <meta name="twitter:description" content="Zybo SOC &amp;amp; Linux 的启动配置实现【2017/10/07】Zybo上电后，首先执行BootROM阶段，该阶段控制初始设备的启动，BootROM是上电复位或暖复位后，处理器所执行的用户不可修改的代码，该代码已经固化到Zybo SOC的BootROM中。之后通过读取SD卡FAT分区，加载并解析BOOT.bin文件，会执行第一级启动引导程序FSBL(First Stage Boot">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/3CD7CEEE98044DD69145137EBA3EFE14/28617">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/03_SOC系统流程1.png">
 
 
 
@@ -450,7 +450,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:07:26" itemprop="dateModified" datetime="2019-02-26T22:07:26+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 17:49:21" itemprop="dateModified" datetime="2019-03-21T17:49:21+08:00">2019-03-21</time>
               
             
           </span>
@@ -495,7 +495,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">465</span>
+                <span title="Symbols count in article">466</span>
               
 
               
@@ -530,7 +530,7 @@
 
       
         <h3 id="Zybo-SOC-amp-Linux-的启动配置实现"><a href="#Zybo-SOC-amp-Linux-的启动配置实现" class="headerlink" title="Zybo SOC &amp; Linux 的启动配置实现"></a>Zybo SOC &amp; Linux 的启动配置实现</h3><p>【2017/10/07】<br>Zybo上电后，首先执行BootROM阶段，该阶段控制初始设备的启动，BootROM是上电复位或暖复位后，处理器所执行的用户不可修改的代码，该代码已经固化到Zybo SOC的BootROM中。<br>之后通过读取SD卡FAT分区，加载并解析BOOT.bin文件，会执行第一级启动引导程序FSBL(First Stage Bootloader)。单个A9核运行通过FSBL(First Stage Bootloader)引导uboot加载，uboot启动后首先加载另一个A9核启动。<br>随后U-Boot将devicetree.dtb的内存地址作为bootm的第三个参数，kernel通过寄存器R2找到device tree。Device tree上的硬件信息将在在Linux启动前加载到内存。内核包含在uImage文件中，通过uboot加载，其缺损配置通过device tree文件加载。<br>内核加载完毕后引导加载SD卡中的EXT4分区中的File system。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/71efc28e8c2b525b4e468c96fb0ea9ac/xmlnote/3CD7CEEE98044DD69145137EBA3EFE14/28617" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/03_SOC系统流程1.png" alt=""> </p>
 
       
     </div>
@@ -585,8 +585,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/20/FPGA/Xilinx/02_串口通信/" rel="next" title="02-串口通信">
-                <i class="fa fa-chevron-left"></i> 02-串口通信
+              <a href="/2018/12/20/FPGA/Xilinx/02_串口通信/" rel="next" title="02_串口通信">
+                <i class="fa fa-chevron-left"></i> 02_串口通信
               </a>
             
           </div>
@@ -805,7 +805,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -814,7 +814,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

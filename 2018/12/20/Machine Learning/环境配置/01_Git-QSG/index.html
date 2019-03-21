@@ -117,18 +117,19 @@
 
   <meta name="description" content="Github/Git Guick Start Guide【 The latest data ： 2018/04/21 】Yuchen 1.官网注册https://github.com/ 2.下载git for windows注意32还是64位，下载链接 https://gitforwindows.org/ 3.下载github文件打开相应的github链接之后，点击 ‘Clone or downl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="01_Git-QSG">
+<meta property="og:title" content="01_Git_QSG">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/20/Machine Learning/环境配置/01_Git-QSG/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="Github/Git Guick Start Guide【 The latest data ： 2018/04/21 】Yuchen 1.官网注册https://github.com/ 2.下载git for windows注意32还是64位，下载链接 https://gitforwindows.org/ 3.下载github文件打开相应的github链接之后，点击 ‘Clone or downl">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a7f4c47da21a6505c8223f5898d8bdc9/xmlnote/E8A50BFEA6E24AB4B775E6D2AA513FB1/8949">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a7f4c47da21a6505c8223f5898d8bdc9/xmlnote/4C6C36D956AF4D2DABDD6463F764C27E/8943">
-<meta property="og:updated_time" content="2019-02-26T14:11:22.769Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/环境配置/01_Git_QSG1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/环境配置/01_Git_QSG2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/环境配置/01_Git_QSG3.png">
+<meta property="og:updated_time" content="2019-03-21T11:53:34.397Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="01_Git-QSG">
+<meta name="twitter:title" content="01_Git_QSG">
 <meta name="twitter:description" content="Github/Git Guick Start Guide【 The latest data ： 2018/04/21 】Yuchen 1.官网注册https://github.com/ 2.下载git for windows注意32还是64位，下载链接 https://gitforwindows.org/ 3.下载github文件打开相应的github链接之后，点击 ‘Clone or downl">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/a7f4c47da21a6505c8223f5898d8bdc9/xmlnote/E8A50BFEA6E24AB4B775E6D2AA513FB1/8949">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/ML/环境配置/01_Git_QSG1.png">
 
 
 
@@ -145,7 +146,7 @@
   };
 </script>
 
-  <title>01_Git-QSG | Chenyu's Blog</title>
+  <title>01_Git_QSG | Chenyu's Blog</title>
   
 
 
@@ -409,7 +410,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">01_Git-QSG
+          <h1 class="post-title" itemprop="name headline">01_Git_QSG
               
             
           </h1>
@@ -451,7 +452,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:11:22" itemprop="dateModified" datetime="2019-02-26T22:11:22+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 19:53:34" itemprop="dateModified" datetime="2019-03-21T19:53:34+08:00">2019-03-21</time>
               
             
           </span>
@@ -496,7 +497,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">617</span>
+                <span title="Symbols count in article">621</span>
               
 
               
@@ -538,10 +539,11 @@
 <pre><code>git clone &lt;https://github.com/....&gt;
 </code></pre><p><strong>注：</strong>&lt;&gt;里是指的 click ‘Clone or download’ 之后出现的链接，实际输入时，不需要&lt;&gt;</p>
 <h4 id="4-更改默认路径"><a href="#4-更改默认路径" class="headerlink" title="4.更改默认路径"></a><strong>4.更改默认路径</strong></h4><p>安装 Git Bash 的时候默认路径是 ‘/c/User/Administrator’, 如果把文件move到别的dir，每次用mv就很麻烦。<br>找到 Git Bash 的快捷方式，右键属性。</p>
+<p><img src="/img/ML/环境配置/01_Git_QSG1.png" alt=""> </p>
 <p>更改路径的时候，只需将‘目标’里的 —cd-to-home删掉，并且把‘起始位置’改成自己设定的路径就ok。<br>更改后属性如下所示：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/a7f4c47da21a6505c8223f5898d8bdc9/xmlnote/E8A50BFEA6E24AB4B775E6D2AA513FB1/8949" alt="更改后属性"></p>
+<p><img src="/img/ML/环境配置/01_Git_QSG2.png" alt="更改后属性"> </p>
 <p>进入 Git Bash 输入pwd(print working directory)可以查看当前路径</p>
-<p><img src="https://note.youdao.com/yws/public/resource/a7f4c47da21a6505c8223f5898d8bdc9/xmlnote/4C6C36D956AF4D2DABDD6463F764C27E/8943" alt="当前路径"></p>
+<p><img src="/img/ML/环境配置/01_Git_QSG3.png" alt="当前路径"> </p>
 <p>即与之前设定路径一致。</p>
 <h4 id="5-退出-Git-Bash"><a href="#5-退出-Git-Bash" class="headerlink" title="5.退出 Git Bash"></a><strong>5.退出 Git Bash</strong></h4><p>直接在命令行输入 logout 即可。</p>
 
@@ -608,8 +610,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/20/Machine Learning/环境配置/02_更改jupyter-notebook路径/" rel="prev" title="02_更改jupyter-notebook路径">
-                02_更改jupyter-notebook路径 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/20/Machine Learning/环境配置/02_更改jupyter-notebook路径/" rel="prev" title="02_更改jupyter_notebook路径">
+                02_更改jupyter_notebook路径 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -818,7 +820,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -827,7 +829,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

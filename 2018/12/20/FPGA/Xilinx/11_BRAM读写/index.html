@@ -115,24 +115,24 @@
 
 
 
-  <meta name="description" content="一、概念简介BRAM全称Block Memory，调试PS与PL侧数据交互，首先考虑使用BRAM方式，操作方便，资源占用量少。 二、关键步骤zynq的IP：打开GP0_interface和GP1_interfacce接口AXI BRAM Controller：2个，端口改为1个Block Memory Generator：1个  地址自动分配好了  在SDK打开地址管理如下  应该是将BRAM分为">
+  <meta name="description" content="一、概念简介BRAM全称Block Memory，调试PS与PL侧数据交互，首先考虑使用BRAM方式，操作方便，资源占用量少。 二、关键步骤zynq的IP：打开GP0_interface和GP1_interfacce接口AXI BRAM Controller：2个，端口改为1个Block Memory Generator：1个   地址自动分配好了   在SDK打开地址管理如下   应该是将BRA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="11-BRAM读写">
+<meta property="og:title" content="11_BRAM读写">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/11_BRAM读写/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="一、概念简介BRAM全称Block Memory，调试PS与PL侧数据交互，首先考虑使用BRAM方式，操作方便，资源占用量少。 二、关键步骤zynq的IP：打开GP0_interface和GP1_interfacce接口AXI BRAM Controller：2个，端口改为1个Block Memory Generator：1个  地址自动分配好了  在SDK打开地址管理如下  应该是将BRAM分为">
+<meta property="og:description" content="一、概念简介BRAM全称Block Memory，调试PS与PL侧数据交互，首先考虑使用BRAM方式，操作方便，资源占用量少。 二、关键步骤zynq的IP：打开GP0_interface和GP1_interfacce接口AXI BRAM Controller：2个，端口改为1个Block Memory Generator：1个   地址自动分配好了   在SDK打开地址管理如下   应该是将BRA">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/C5214B406D9142B99F1B1A11BD0BD4D7/28289">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/F3785AE195FE49D18EB16EF76852C8A2/28344">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/9C01C74E660E4CFF9EDBC49E0D91BE97/28346">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/066FEF5809DD4E48BF97C818943F608C/28345">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/CD6B8818A8934542836E6CB4C23D9F4E/28327">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/9162D5FF617D423C83A4126E860842B2/28357">
-<meta property="og:updated_time" content="2019-02-26T14:08:11.148Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/11_BRAM读写1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/11_BRAM读写2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/11_BRAM读写3.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/11_BRAM读写4.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/11_BRAM读写5.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/11_BRAM读写6.png">
+<meta property="og:updated_time" content="2019-03-21T10:21:52.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="11-BRAM读写">
-<meta name="twitter:description" content="一、概念简介BRAM全称Block Memory，调试PS与PL侧数据交互，首先考虑使用BRAM方式，操作方便，资源占用量少。 二、关键步骤zynq的IP：打开GP0_interface和GP1_interfacce接口AXI BRAM Controller：2个，端口改为1个Block Memory Generator：1个  地址自动分配好了  在SDK打开地址管理如下  应该是将BRAM分为">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/C5214B406D9142B99F1B1A11BD0BD4D7/28289">
+<meta name="twitter:title" content="11_BRAM读写">
+<meta name="twitter:description" content="一、概念简介BRAM全称Block Memory，调试PS与PL侧数据交互，首先考虑使用BRAM方式，操作方便，资源占用量少。 二、关键步骤zynq的IP：打开GP0_interface和GP1_interfacce接口AXI BRAM Controller：2个，端口改为1个Block Memory Generator：1个   地址自动分配好了   在SDK打开地址管理如下   应该是将BRA">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/11_BRAM读写1.png">
 
 
 
@@ -149,7 +149,7 @@
   };
 </script>
 
-  <title>11-BRAM读写 | Chenyu's Blog</title>
+  <title>11_BRAM读写 | Chenyu's Blog</title>
   
 
 
@@ -413,7 +413,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">11-BRAM读写
+          <h1 class="post-title" itemprop="name headline">11_BRAM读写
               
             
           </h1>
@@ -455,7 +455,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:08:11" itemprop="dateModified" datetime="2019-02-26T22:08:11+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 18:21:52" itemprop="dateModified" datetime="2019-03-21T18:21:52+08:00">2019-03-21</time>
               
             
           </span>
@@ -536,15 +536,15 @@
       
         <h4 id="一、概念简介"><a href="#一、概念简介" class="headerlink" title="一、概念简介"></a>一、概念简介</h4><p>BRAM全称Block Memory，调试PS与PL侧数据交互，首先考虑使用BRAM方式，操作方便，资源占用量少。</p>
 <h4 id="二、关键步骤"><a href="#二、关键步骤" class="headerlink" title="二、关键步骤"></a>二、关键步骤</h4><p>zynq的IP：打开GP0_interface和GP1_interfacce接口<br>AXI BRAM Controller：2个，端口改为1个<br>Block Memory Generator：1个</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/C5214B406D9142B99F1B1A11BD0BD4D7/28289" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/11_BRAM读写1.png" alt=""> </p>
 <p>地址自动分配好了</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/F3785AE195FE49D18EB16EF76852C8A2/28344" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/11_BRAM读写2.png" alt=""> </p>
 <p>在SDK打开地址管理如下</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/9C01C74E660E4CFF9EDBC49E0D91BE97/28346" alt=""><br><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/066FEF5809DD4E48BF97C818943F608C/28345" alt=""><br><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/CD6B8818A8934542836E6CB4C23D9F4E/28327" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/11_BRAM读写3.png" alt=""><br><img src="/img/FPGA/Xilinx/11_BRAM读写4.png" alt=""><br><img src="/img/FPGA/Xilinx/11_BRAM读写5.png" alt=""> </p>
 <p>应该是将BRAM分为了两片内存区，每一片8K，但是，但地址4个才能放1个数据，可以放2k个字节数据。</p>
 <h4 id="三、代码调试验证"><a href="#三、代码调试验证" class="headerlink" title="三、代码调试验证"></a>三、代码调试验证</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;xil_io.h&quot; //这个头文件下面包含很重要的 IO 读写函数</span><br><span class="line">#include &quot;xparameters.h&quot; //这个头文件里把硬件的地址映射等参数都写成了宏定义方便使用</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int num;</span><br><span class="line">	int rev;</span><br><span class="line">	xil_printf(&quot;------The test is start...------\n\r&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//XPAR_AXI_BRAM_CTRL_0_S_AXI_BASEADDR 是 axi_bram_ctrl_0的地址</span><br><span class="line">	//Xil_Out32 通过控制 axi_bram_ctrl_0， 向 blk_mem_gen_0 写数据</span><br><span class="line">	//axi_bram_ctrl_0的地址范围是4000_0000到4000_1fff,可以写入2047个字节</span><br><span class="line">	for( num=0; num&lt;2100; num++ )</span><br><span class="line">	&#123;</span><br><span class="line">		Xil_Out32(XPAR_BRAM_0_BASEADDR + num*4, num);</span><br><span class="line">		xil_printf( &quot;The data writen %x is %d \n\r&quot;,XPAR_BRAM_0_BASEADDR + num*4,num);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//	XPAR_AXI_BRAM_CTRL_1_S_AXI_BASEADDR 是 axi_bram_ctrl_1 的地址，Xil_In32</span><br><span class="line">	//通过控制 axi_bram_ctrl_0， 把 blk_mem_gen_0 里的数据读出来</span><br><span class="line">	//PS 和 PL 可以在 blk_mem_gen_0 里共享数据</span><br><span class="line">	for( num=0; num&lt;2100; num++ )</span><br><span class="line">	&#123;</span><br><span class="line">		rev = Xil_In32(XPAR_BRAM_0_BASEADDR + num*4);</span><br><span class="line">		xil_printf( &quot;The data at %x is %d \n\r&quot;,XPAR_BRAM_0_BASEADDR + num*4,rev);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	xil_printf(&quot;------The test is end!------\n\r&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>数据超出地址区就不能写了，否则会覆盖掉</strong></p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/9162D5FF617D423C83A4126E860842B2/28357" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/11_BRAM读写6.png" alt=""> </p>
 
       
     </div>
@@ -609,8 +609,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/20/FPGA/Xilinx/12_数据通路笔记一-DDR-VDMA-VGA/" rel="prev" title="12_数据通路笔记一-DDR-VDMA-VGA">
-                12_数据通路笔记一-DDR-VDMA-VGA <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/20/FPGA/Xilinx/12_数据通路笔记一-DDR-VDMA-VGA/" rel="prev" title="12_数据通路笔记一_DDR_VDMA_VGA">
+                12_数据通路笔记一_DDR_VDMA_VGA <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -819,7 +819,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -828,7 +828,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

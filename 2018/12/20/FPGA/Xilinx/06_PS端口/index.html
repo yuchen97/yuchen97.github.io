@@ -115,21 +115,22 @@
 
 
 
-  <meta name="description" content="输出函数，给32位地址区写入一个32位数据  宏定义AXI输出函数，有基地址+偏移量  先向对应地址开始，每隔四个地址连续写入，写入0x10，0x20，0x30，0x40，然后从写入地方读取值，比较是否一样">
+  <meta name="description" content="输出函数，给32位地址区写入一个32位数据   宏定义AXI输出函数，有基地址+偏移量   先向对应地址开始，每隔四个地址连续写入，写入0x10，0x20，0x30，0x40，然后从写入地方读取值，比较是否一样">
 <meta property="og:type" content="article">
-<meta property="og:title" content="06-PS端口">
+<meta property="og:title" content="06_PS端口">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/06_PS端口/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="输出函数，给32位地址区写入一个32位数据  宏定义AXI输出函数，有基地址+偏移量  先向对应地址开始，每隔四个地址连续写入，写入0x10，0x20，0x30，0x40，然后从写入地方读取值，比较是否一样">
+<meta property="og:description" content="输出函数，给32位地址区写入一个32位数据   宏定义AXI输出函数，有基地址+偏移量   先向对应地址开始，每隔四个地址连续写入，写入0x10，0x20，0x30，0x40，然后从写入地方读取值，比较是否一样">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/F1F059510E344618A86F76994AB83686/28363">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/78A52CE52A8F4555AE5D6A15551CB166/28360">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/E97AEE50223A42A28A67B49AED8DEB5D/28359">
-<meta property="og:updated_time" content="2019-02-26T14:07:47.718Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/06_PS端口1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/06_PS端口2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/06_PS端口3.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/06_PS端口4.png">
+<meta property="og:updated_time" content="2019-03-21T10:04:04.666Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="06-PS端口">
-<meta name="twitter:description" content="输出函数，给32位地址区写入一个32位数据  宏定义AXI输出函数，有基地址+偏移量  先向对应地址开始，每隔四个地址连续写入，写入0x10，0x20，0x30，0x40，然后从写入地方读取值，比较是否一样">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/F1F059510E344618A86F76994AB83686/28363">
+<meta name="twitter:title" content="06_PS端口">
+<meta name="twitter:description" content="输出函数，给32位地址区写入一个32位数据   宏定义AXI输出函数，有基地址+偏移量   先向对应地址开始，每隔四个地址连续写入，写入0x10，0x20，0x30，0x40，然后从写入地方读取值，比较是否一样">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/06_PS端口1.png">
 
 
 
@@ -146,7 +147,7 @@
   };
 </script>
 
-  <title>06-PS端口 | Chenyu's Blog</title>
+  <title>06_PS端口 | Chenyu's Blog</title>
   
 
 
@@ -410,7 +411,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">06-PS端口
+          <h1 class="post-title" itemprop="name headline">06_PS端口
               
             
           </h1>
@@ -452,7 +453,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:07:47" itemprop="dateModified" datetime="2019-02-26T22:07:47+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 18:04:04" itemprop="dateModified" datetime="2019-03-21T18:04:04+08:00">2019-03-21</time>
               
             
           </span>
@@ -497,7 +498,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">105</span>
+                <span title="Symbols count in article">108</span>
               
 
               
@@ -532,11 +533,11 @@
 
       
         <p>输出函数，给32位地址区写入一个32位数据</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/F1F059510E344618A86F76994AB83686/28363" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/06_PS端口1.png" alt=""><br><img src="/img/FPGA/Xilinx/06_PS端口2.png" alt=""> </p>
 <p>宏定义AXI输出函数，有基地址+偏移量</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/78A52CE52A8F4555AE5D6A15551CB166/28360" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/06_PS端口3.png" alt=""> </p>
 <p>先向对应地址开始，每隔四个地址连续写入，写入0x10，0x20，0x30，0x40，然后从写入地方读取值，比较是否一样</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/E97AEE50223A42A28A67B49AED8DEB5D/28359" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/06_PS端口4.png" alt=""> </p>
 
       
     </div>
@@ -591,8 +592,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/20/FPGA/Xilinx/05_zynq-soc-light/" rel="next" title="05_zynq-soc-light">
-                <i class="fa fa-chevron-left"></i> 05_zynq-soc-light
+              <a href="/2018/12/20/FPGA/Xilinx/05_zynq-soc-light/" rel="next" title="05_zynq_soc_light">
+                <i class="fa fa-chevron-left"></i> 05_zynq_soc_light
               </a>
             
           </div>
@@ -786,7 +787,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -795,7 +796,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

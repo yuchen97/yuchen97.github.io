@@ -122,12 +122,12 @@
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="深度学习首先利用无监督学习对每一层进行逐层预训练（Layerwise Pre-Training）去学习特征；每次单独训练一层，并将训练结果作为更高一层的输入；然后到最上层改用监督学习从上到下进行微调（Fine-Tune）去学习模型。 深度学习训练的具体过程如下： （1）使用自下而上的非监督学习（就是从底层开始，一层一层地往顶层训练）。 采用无标定（或者有标定）数据分层训练各层参数，这一步可以看成一">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/92b3f8c162807e32e19577841a0a16c2/xmlnote/4E9DCC3BC25243B7B373B1E7A7FB277E/28881">
-<meta property="og:updated_time" content="2019-02-26T14:11:46.685Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/基础概念/04_DL训练过程1.png">
+<meta property="og:updated_time" content="2019-03-21T12:01:43.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="04_DL训练过程">
 <meta name="twitter:description" content="深度学习首先利用无监督学习对每一层进行逐层预训练（Layerwise Pre-Training）去学习特征；每次单独训练一层，并将训练结果作为更高一层的输入；然后到最上层改用监督学习从上到下进行微调（Fine-Tune）去学习模型。 深度学习训练的具体过程如下： （1）使用自下而上的非监督学习（就是从底层开始，一层一层地往顶层训练）。 采用无标定（或者有标定）数据分层训练各层参数，这一步可以看成一">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/92b3f8c162807e32e19577841a0a16c2/xmlnote/4E9DCC3BC25243B7B373B1E7A7FB277E/28881">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/ML/基础概念/04_DL训练过程1.png">
 
 
 
@@ -450,7 +450,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:11:46" itemprop="dateModified" datetime="2019-02-26T22:11:46+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 20:01:43" itemprop="dateModified" datetime="2019-03-21T20:01:43+08:00">2019-03-21</time>
               
             
           </span>
@@ -535,7 +535,7 @@
 <p>采用无标定（或者有标定）数据分层训练各层参数，这一步可以看成一个无监督训练过程，     是和传统神经网络区别最大的地方，这个过程可以看做是特征学习的过程。<br>先用无标定数据训练隐层的最底层，训练时先学习最底层的参数（这一层可以看作是得到一个使得输出和输入差别最小的三层神经网络的隐层），由于模型能力的限制及稀疏性约束，使得得到的模型能够学习到数据本身的结构，从而得到比输入更具有表示能力的特征；在学习得到第n-1层后，将n-1层的输出作为第n层的输入，训练第n层，由此分别得到各层的参数。</p>
 <p><strong>（2）自顶向下的监督学习，就是通过带标签的数据去训练，误差自顶向下传输，对网络进行微调。</strong></p>
 <p>基于第一步得到的各层参数进一步fine-tune整个多层模型的参数，这一步是一个有监督训练过程；第一步类似于神经网络的随机初始化初值过程，由于深度学习的第一步不是随机初始化，而是通过学习输入数据的结构得到的，因此这个初值更接近全局最优，能够取得更好的结果；所以深度学习效果好很大程度上归功于第一步（特征学习的过程）。<br>此过程如下图所示。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/92b3f8c162807e32e19577841a0a16c2/xmlnote/4E9DCC3BC25243B7B373B1E7A7FB277E/28881" alt=""><br><em>图1 特征学习过程</em></p>
+<p><img src="/img/ML/基础概念/04_DL训练过程1.png" alt=""><br><em>图1 特征学习过程</em></p>
 
       
     </div>
@@ -785,7 +785,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -794,7 +794,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

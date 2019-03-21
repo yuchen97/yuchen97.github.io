@@ -115,37 +115,37 @@
 
 
 
-  <meta name="description" content="一、方案设计发送端 接收端  二、方案分析—-发送端发送端包括硬件和软件两部分、在硬件上实现硬件通路的搭建，软件上通过给DDR里面写数据，从而将数据从硬件通路传递给串口，再到VGA，以下是官方图片  2.1 向DDR写数据 向DDR写数据是在软件上面来实现，但是要注意数据在ddr里面存放的形式，本函数将图片转化为C语言的数组，将数组数据依次写入ddr。由于图片是一个像素32位的形式， 从高到低是a">
+  <meta name="description" content="一、方案设计发送端  接收端   二、方案分析—-发送端发送端包括硬件和软件两部分、在硬件上实现硬件通路的搭建，软件上通过给DDR里面写数据，从而将数据从硬件通路传递给串口，再到VGA，以下是官方图片   2.1 向DDR写数据  向DDR写数据是在软件上面来实现，但是要注意数据在ddr里面存放的形式，本函数将图片转化为C语言的数组，将数组数据依次写入ddr。由于图片是一个像素32位的形式， 从高">
 <meta property="og:type" content="article">
-<meta property="og:title" content="13_数据通路笔记二-通过Bram实现数据接收">
+<meta property="og:title" content="13_数据通路笔记二_通过Bram实现数据接收">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/13_数据通路笔记二-通过Bram实现数据接收/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="一、方案设计发送端 接收端  二、方案分析—-发送端发送端包括硬件和软件两部分、在硬件上实现硬件通路的搭建，软件上通过给DDR里面写数据，从而将数据从硬件通路传递给串口，再到VGA，以下是官方图片  2.1 向DDR写数据 向DDR写数据是在软件上面来实现，但是要注意数据在ddr里面存放的形式，本函数将图片转化为C语言的数组，将数组数据依次写入ddr。由于图片是一个像素32位的形式， 从高到低是a">
+<meta property="og:description" content="一、方案设计发送端  接收端   二、方案分析—-发送端发送端包括硬件和软件两部分、在硬件上实现硬件通路的搭建，软件上通过给DDR里面写数据，从而将数据从硬件通路传递给串口，再到VGA，以下是官方图片   2.1 向DDR写数据  向DDR写数据是在软件上面来实现，但是要注意数据在ddr里面存放的形式，本函数将图片转化为C语言的数组，将数组数据依次写入ddr。由于图片是一个像素32位的形式， 从高">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/8397116A45F14563BAAD1F8F575F8ABD/28358">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/9BA27EC3D3D44634BF630BA44E5EECDB/28367">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/9F65D4BD8DBA4FA9B1A3E147D97C1CDF/28290">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/A4AC4BB730D9476AB6E0FF4FAA9DCE09/28350">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/793C7C03EA104367AD3614CB32404A82/28295">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/07D2DDB9014D4AFE9B83E5BDCC803F5E/28317">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/CAFAA3BFF6B94BEC996B0CAEAFACCDF4/28319">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/BED570B0A4F4440297FD3A59EF0796BB/28315">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/0D52B0D8ABD042E7BC9526F976823B73/28334">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/977DBD1FC20946EA903CEF9E91BC930D/28335">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/36CA4B7216E64B108610CA8A84E9AF6E/28332">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/7E63667FCB714FAE94120938068F06E3/28347">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/67A0448469594010B03B7C2723EB04A6/28369">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/6E4FB20C15884DBAAB23D55C18BF2FE8/28372">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/1C03A356958F417BAB9C3D6F29FBA7F5/28374">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/025D5C6652854BB1AF1EF2E12E2D7C36/28376">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/26512D565C6E4378BC4C626DF1BFAD91/28378">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/D1ACA617CA80485CA1D66861F7EAE4F3/28382">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/08C2BF26273E4A8D9A0EECE340773D63/28381">
-<meta property="og:updated_time" content="2019-02-26T14:08:19.576Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收3.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收4.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收5.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收6.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收7.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收8.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收9.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收10.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收11.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收12.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收13.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收14.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收15.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收16.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收17.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收18.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收19.png">
+<meta property="og:updated_time" content="2019-03-21T10:32:16.904Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="13_数据通路笔记二-通过Bram实现数据接收">
-<meta name="twitter:description" content="一、方案设计发送端 接收端  二、方案分析—-发送端发送端包括硬件和软件两部分、在硬件上实现硬件通路的搭建，软件上通过给DDR里面写数据，从而将数据从硬件通路传递给串口，再到VGA，以下是官方图片  2.1 向DDR写数据 向DDR写数据是在软件上面来实现，但是要注意数据在ddr里面存放的形式，本函数将图片转化为C语言的数组，将数组数据依次写入ddr。由于图片是一个像素32位的形式， 从高到低是a">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/8397116A45F14563BAAD1F8F575F8ABD/28358">
+<meta name="twitter:title" content="13_数据通路笔记二_通过Bram实现数据接收">
+<meta name="twitter:description" content="一、方案设计发送端  接收端   二、方案分析—-发送端发送端包括硬件和软件两部分、在硬件上实现硬件通路的搭建，软件上通过给DDR里面写数据，从而将数据从硬件通路传递给串口，再到VGA，以下是官方图片   2.1 向DDR写数据  向DDR写数据是在软件上面来实现，但是要注意数据在ddr里面存放的形式，本函数将图片转化为C语言的数组，将数组数据依次写入ddr。由于图片是一个像素32位的形式， 从高">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收1.png">
 
 
 
@@ -162,7 +162,7 @@
   };
 </script>
 
-  <title>13_数据通路笔记二-通过Bram实现数据接收 | Chenyu's Blog</title>
+  <title>13_数据通路笔记二_通过Bram实现数据接收 | Chenyu's Blog</title>
   
 
 
@@ -426,7 +426,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">13_数据通路笔记二-通过Bram实现数据接收
+          <h1 class="post-title" itemprop="name headline">13_数据通路笔记二_通过Bram实现数据接收
               
             
           </h1>
@@ -468,7 +468,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:08:19" itemprop="dateModified" datetime="2019-02-26T22:08:19+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 18:32:16" itemprop="dateModified" datetime="2019-03-21T18:32:16+08:00">2019-03-21</time>
               
             
           </span>
@@ -547,31 +547,31 @@
       
 
       
-        <h4 id="一、方案设计"><a href="#一、方案设计" class="headerlink" title="一、方案设计"></a>一、方案设计</h4><p>发送端</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/8397116A45F14563BAAD1F8F575F8ABD/28358" alt=""><br>接收端</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/9BA27EC3D3D44634BF630BA44E5EECDB/28367" alt=""></p>
+        <h4 id="一、方案设计"><a href="#一、方案设计" class="headerlink" title="一、方案设计"></a>一、方案设计</h4><p>发送端<br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收1.png" alt=""> </p>
+<p>接收端</p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收2.png" alt=""> </p>
 <h4 id="二、方案分析—-发送端"><a href="#二、方案分析—-发送端" class="headerlink" title="二、方案分析—-发送端"></a>二、方案分析—-发送端</h4><p>发送端包括硬件和软件两部分、在硬件上实现硬件通路的搭建，软件上通过给DDR里面写数据，从而将数据从硬件通路传递给串口，再到VGA，以下是官方图片</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/9F65D4BD8DBA4FA9B1A3E147D97C1CDF/28290" alt=""></p>
-<h5 id="2-1-向DDR写数据"><a href="#2-1-向DDR写数据" class="headerlink" title="2.1 向DDR写数据"></a>2.1 向DDR写数据</h5><p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/A4AC4BB730D9476AB6E0FF4FAA9DCE09/28350" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收3.png" alt=""> </p>
+<h5 id="2-1-向DDR写数据"><a href="#2-1-向DDR写数据" class="headerlink" title="2.1 向DDR写数据"></a>2.1 向DDR写数据</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收4.png" alt=""> </p>
 <p>向DDR写数据是在软件上面来实现，但是要注意数据在ddr里面存放的形式，本函数将图片转化为C语言的数组，将数组数据依次写入ddr。由于图片是一个像素32位的形式， 从高到低是alpha、r、g、b<br>所以以32位数据做一次处理，写入ddr的数据以r，g，b，a的形式，但是写地址时候注意要偏移4个。写数据时要考虑vga显示是否与之相符合，不符合的话，要进行数据偏移。<br>比如，vga显示是640<em>480</em>25M格式，写数据时候最简单的可以写一张640<em>480的图片过去，这样的话，H_STRIDE取640，像素307200，数组大小是1228800。如果内存放不下，要写一张100</em>75的图片过去，如果ddr放的下，那么图片可以只在100<em>75定义图像数据，其余地方存放黑色数据，那么这个数组就是100</em>75<em>4=30000，所以这个时候H_STRIDE还取640，只不过地址写到99之后，100到639不写数据，默认是00，最后图片会显示黑色，当然也可以自己写入ff，这样其余部分会显示白色。还有一种情况，当ddr存储容量不够，只能存放100</em>75*4=30000个字节数据，这个时候输出的数据流就不会有00，而是全部有效图像数据，这样的话，就要根据vga的扫描地址指针来准确读取有效数据，本实验就是通过这种方式，请看下文接收端。</p>
-<h5 id="2-2-配置vdma的数据通道"><a href="#2-2-配置vdma的数据通道" class="headerlink" title="2.2 配置vdma的数据通道"></a>2.2 配置vdma的数据通道</h5><p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/793C7C03EA104367AD3614CB32404A82/28295" alt=""></p>
+<h5 id="2-2-配置vdma的数据通道"><a href="#2-2-配置vdma的数据通道" class="headerlink" title="2.2 配置vdma的数据通道"></a>2.2 配置vdma的数据通道</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收5.png" alt=""> </p>
 <p>图像数据流从ddr直接通过zynq的hp高速接口接到vdma的输入，协议格式是axi，从vdma输出的数据流是 axi-stream的协议，所以接收模块的输入必须是stream的协议数据，vdma注意参数的配置</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/07D2DDB9014D4AFE9B83E5BDCC803F5E/28317" alt=""><br><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/CAFAA3BFF6B94BEC996B0CAEAFACCDF4/28319" alt=""></p>
-<h5 id="2-3-实现stream的fifo"><a href="#2-3-实现stream的fifo" class="headerlink" title="2.3 实现stream的fifo"></a>2.3 实现stream的fifo</h5><p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/BED570B0A4F4440297FD3A59EF0796BB/28315" alt=""><br><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/0D52B0D8ABD042E7BC9526F976823B73/28334" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收6.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收7.png" alt=""> </p>
+<h5 id="2-3-实现stream的fifo"><a href="#2-3-实现stream的fifo" class="headerlink" title="2.3 实现stream的fifo"></a>2.3 实现stream的fifo</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收8.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收9.png" alt=""> </p>
 <p>当valid和ready同时有效时候，可以读数据出来</p>
-<h5 id="2-4-uart-tx，串口发送模块"><a href="#2-4-uart-tx，串口发送模块" class="headerlink" title="2.4 uart_tx，串口发送模块"></a>2.4 uart_tx，串口发送模块</h5><p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/977DBD1FC20946EA903CEF9E91BC930D/28335" alt=""></p>
+<h5 id="2-4-uart-tx，串口发送模块"><a href="#2-4-uart-tx，串口发送模块" class="headerlink" title="2.4 uart_tx，串口发送模块"></a>2.4 uart_tx，串口发送模块</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收10.png" alt=""> </p>
 <p>串口主要实现一个并行转串行的功能，需要注意：只有当一个并行数据完全转换为串行发送出去之后，然后才能接着转换下一个数据，所以有一个done的信号，而fifo_read_en信号是来自fifo读使能，具体看串口笔记。</p>
-<h4 id="三、方案分析—-接收端"><a href="#三、方案分析—-接收端" class="headerlink" title="三、方案分析—-接收端"></a>三、方案分析—-接收端</h4><p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/36CA4B7216E64B108610CA8A84E9AF6E/28332" alt=""></p>
+<h4 id="三、方案分析—-接收端"><a href="#三、方案分析—-接收端" class="headerlink" title="三、方案分析—-接收端"></a>三、方案分析—-接收端</h4><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收11.png" alt=""> </p>
 <p>接收端暂时比较简单，数据从RX端进来之后，串行转并行，然后将数据存放到bram，然后以读表的方式配合vga将数据从bram中读取出来，总是仿真的不是特别完美。</p>
 <h5 id="3-1-uart-rx接收端"><a href="#3-1-uart-rx接收端" class="headerlink" title="3.1 uart_rx接收端"></a>3.1 uart_rx接收端</h5><p>值得注意的一点就是串行转并行之后，要输出一个标志信号，clk_write，这个信号作为bram的写时钟信号</p>
 <h5 id="3-2-bram端与vga端混合"><a href="#3-2-bram端与vga端混合" class="headerlink" title="3.2 bram端与vga端混合"></a>3.2 bram端与vga端混合</h5><p>外接的接口</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/7E63667FCB714FAE94120938068F06E3/28347" alt=""><br><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/67A0448469594010B03B7C2723EB04A6/28369" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收12.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收13.png" alt=""> </p>
 <p>思路大致如下：<br>由于本款板子的bram是存放不下640<em>480个24位数据的，所以采用发送过来100</em>75<em>4字节的数据，所以会出现一个问题：vga是640</em>480的扫描地址，要让vga扫描到合适的区间时候，显示合适的像素，比如说，当扫描到1-100时候，bram地址要和vga地址相同，而扫描到101-640时候，图像数据就不能输出了，得给出黑色数据，依次类推</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/6E4FB20C15884DBAAB23D55C18BF2FE8/28372" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收14.png" alt=""> </p>
 <p>本实验采取的是，先向bram写一帧数据，写满了之后才允许读数据出来，同时写完之后，才允许vga开始扫描屏幕。<br>下面是对bram写数据</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/1C03A356958F417BAB9C3D6F29FBA7F5/28374" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收15.png" alt=""> </p>
 <p>以下是对bram读数据</p>
-<p><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/025D5C6652854BB1AF1EF2E12E2D7C36/28376" alt=""><br><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/26512D565C6E4378BC4C626DF1BFAD91/28378" alt=""><br><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/D1ACA617CA80485CA1D66861F7EAE4F3/28382" alt=""><br><img src="https://note.youdao.com/yws/public/resource/57f887b13a7d603110c85c139ea88b12/xmlnote/08C2BF26273E4A8D9A0EECE340773D63/28381" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收16.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收17.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收18.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收19.png" alt=""> </p>
 
       
     </div>
@@ -626,8 +626,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/20/FPGA/Xilinx/12_数据通路笔记一-DDR-VDMA-VGA/" rel="next" title="12_数据通路笔记一-DDR-VDMA-VGA">
-                <i class="fa fa-chevron-left"></i> 12_数据通路笔记一-DDR-VDMA-VGA
+              <a href="/2018/12/20/FPGA/Xilinx/12_数据通路笔记一-DDR-VDMA-VGA/" rel="next" title="12_数据通路笔记一_DDR_VDMA_VGA">
+                <i class="fa fa-chevron-left"></i> 12_数据通路笔记一_DDR_VDMA_VGA
               </a>
             
           </div>
@@ -846,7 +846,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -855,7 +855,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

@@ -115,21 +115,21 @@
 
 
 
-  <meta name="description" content="02_得分函数【 The latest data ： 2018/04/27 】Yuchen 1. 问题输入图像是一张像素大小 32X32 ， channel = 3 即 RGB 的图像。 2. 分析假设 image 是 $x$，parameter 是 $W$.根据 $x$、$W$ 组合的得分值，来判断这个 image 属于什么类别。 比如做一个 10 分类任务，即看这张 image 在 10 个类">
+  <meta name="description" content="02_得分函数【 The latest data ： 2018/04/27 】Yuchen 1. 问题输入图像是一张像素大小 32X32 ， channel = 3 即 RGB 的图像。  2. 分析假设 image 是 $x$，parameter 是 $W$.根据 $x$、$W$ 组合的得分值，来判断这个 image 属于什么类别。  比如做一个 10 分类任务，即看这张 image 在 10">
 <meta property="og:type" content="article">
 <meta property="og:title" content="01_得分函数">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/22/Machine Learning/01_得分函数/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="02_得分函数【 The latest data ： 2018/04/27 】Yuchen 1. 问题输入图像是一张像素大小 32X32 ， channel = 3 即 RGB 的图像。 2. 分析假设 image 是 $x$，parameter 是 $W$.根据 $x$、$W$ 组合的得分值，来判断这个 image 属于什么类别。 比如做一个 10 分类任务，即看这张 image 在 10 个类">
+<meta property="og:description" content="02_得分函数【 The latest data ： 2018/04/27 】Yuchen 1. 问题输入图像是一张像素大小 32X32 ， channel = 3 即 RGB 的图像。  2. 分析假设 image 是 $x$，parameter 是 $W$.根据 $x$、$W$ 组合的得分值，来判断这个 image 属于什么类别。  比如做一个 10 分类任务，即看这张 image 在 10">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/318E6852AAD84E79AE836DD6FB8F82AF/13231">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/1BC546A7600843199539AF14273C64C8/13224">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/1DFDA2DC313D4BCC9A23D8E237F21B0C/13226">
-<meta property="og:updated_time" content="2019-03-21T03:20:14.922Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/01_得分函数1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/01_得分函数2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/01_得分函数3.png">
+<meta property="og:updated_time" content="2019-03-21T12:05:12.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01_得分函数">
-<meta name="twitter:description" content="02_得分函数【 The latest data ： 2018/04/27 】Yuchen 1. 问题输入图像是一张像素大小 32X32 ， channel = 3 即 RGB 的图像。 2. 分析假设 image 是 $x$，parameter 是 $W$.根据 $x$、$W$ 组合的得分值，来判断这个 image 属于什么类别。 比如做一个 10 分类任务，即看这张 image 在 10 个类">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/318E6852AAD84E79AE836DD6FB8F82AF/13231">
+<meta name="twitter:description" content="02_得分函数【 The latest data ： 2018/04/27 】Yuchen 1. 问题输入图像是一张像素大小 32X32 ， channel = 3 即 RGB 的图像。  2. 分析假设 image 是 $x$，parameter 是 $W$.根据 $x$、$W$ 组合的得分值，来判断这个 image 属于什么类别。  比如做一个 10 分类任务，即看这张 image 在 10">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/ML/01_得分函数1.png">
 
 
 
@@ -452,7 +452,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-21 11:20:14" itemprop="dateModified" datetime="2019-03-21T11:20:14+08:00">2019-03-21</time>
+                <time title="Modified: 2019-03-21 20:05:12" itemprop="dateModified" datetime="2019-03-21T20:05:12+08:00">2019-03-21</time>
               
             
           </span>
@@ -497,7 +497,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">929</span>
+                <span title="Symbols count in article">932</span>
               
 
               
@@ -532,14 +532,14 @@
 
       
         <h3 id="02-得分函数"><a href="#02-得分函数" class="headerlink" title="02_得分函数"></a>02_得分函数</h3><p><strong>【 The latest data ： 2018/04/27 】Yuchen</strong></p>
-<h4 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h4><p>输入图像是一张像素大小 32X32 ， channel = 3 即 RGB 的图像。<br><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/318E6852AAD84E79AE836DD6FB8F82AF/13231" alt=""></p>
-<h4 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h4><p>假设 image 是 $x$，parameter 是 $W$.<br>根据 $x$、$W$ 组合的得分值，来判断这个 image 属于什么类别。<br><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/1BC546A7600843199539AF14273C64C8/13224" alt=""></p>
+<h4 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h4><p>输入图像是一张像素大小 32X32 ， channel = 3 即 RGB 的图像。<br><img src="/img/ML/01_得分函数1.png" alt=""> </p>
+<h4 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h4><p>假设 image 是 $x$，parameter 是 $W$.<br>根据 $x$、$W$ 组合的得分值，来判断这个 image 属于什么类别。<br><img src="/img/ML/01_得分函数2.png" alt=""> </p>
 <p>比如做一个 10 分类任务，即看这张 image 在 10 个类别中的得分分别是多少</p>
 <p>最终是要得出一个 10x1 的矩阵。</p>
 <p>$f(x,W)=Wx +b$<br>图像由矩阵组成，所以一共有 $32\times32\times3 = 3072$ 个像素点。</p>
 <p>先将像素点拉长，即将矩阵转化成[3072,1]单独一列。</p>
 <p>定义一组权重参数 $W_i$ , 一个 $W$ 和 $x$ 相乘只能得到一个类别的值，所以要有 10 个 $W$ 分别和 $x$ 相乘才能得到 10 个类别的得分。因为 $x$ 是 3072x1，所以 $W$ 应为 10x3072.<br>将所有 $W$ 和 $x$ 相乘后求和则得到 10 个类别的得分值。 $b$ 为偏置项。</p>
-<p><strong>简化理解</strong><br><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/1DFDA2DC313D4BCC9A23D8E237F21B0C/13226" alt=""></p>
+<p><strong>简化理解</strong><br><img src="/img/ML/01_得分函数3.png" alt=""> </p>
 <p>假设该 imgae 是有 4 个 pixels 组成，并得出该 image 在三种类别中的得分值。首先将此 image 的 $2\times2$ 矩阵转化成 $4\times1$ 矩阵。构造一个 $3\times4$ 的 $W$ 。</p>
 <p>单拿出 $W_1$ 来看，$W_1$ 对应的是 cat score.</p>
 <p>$<br> \left[<br> \begin{matrix}<br>   0.2 &amp; -0.5 &amp; 0.1 &amp; 2<br> \end{matrix}<br> \right]<br>$</p>
@@ -819,7 +819,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -828,7 +828,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

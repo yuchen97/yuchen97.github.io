@@ -115,20 +115,20 @@
 
 
 
-  <meta name="description" content="03_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理 exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化处">
+  <meta name="description" content="03_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理  exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="03_softmax分类器">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/22/Machine Learning/03_softmax分类器/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="03_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理 exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化处">
+<meta property="og:description" content="03_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理  exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7E625082BF0543A29A007CE9A6F293BC/13228">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/DEBB6E7A990F4642ABBAD9D41057292B/13223">
-<meta property="og:updated_time" content="2019-03-21T03:22:00.476Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/03_softmax分类器1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/03_softmax分类器2.png">
+<meta property="og:updated_time" content="2019-03-21T12:06:56.224Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="03_softmax分类器">
-<meta name="twitter:description" content="03_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理 exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化处">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7E625082BF0543A29A007CE9A6F293BC/13228">
+<meta name="twitter:description" content="03_softmax分类器【 The latest data ： 2018/04/27 】Yuchen 1. Scores 处理  exp映射 最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。 normalize 归一化">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/ML/03_softmax分类器1.png">
 
 
 
@@ -451,7 +451,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-21 11:22:00" itemprop="dateModified" datetime="2019-03-21T11:22:00+08:00">2019-03-21</time>
+                <time title="Modified: 2019-03-21 20:06:56" itemprop="dateModified" datetime="2019-03-21T20:06:56+08:00">2019-03-21</time>
               
             
           </span>
@@ -496,7 +496,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">417</span>
+                <span title="Symbols count in article">419</span>
               
 
               
@@ -531,7 +531,7 @@
 
       
         <h3 id="03-softmax分类器"><a href="#03-softmax分类器" class="headerlink" title="03_softmax分类器"></a>03_softmax分类器</h3><p><strong>【 The latest data ： 2018/04/27 】Yuchen</strong></p>
-<h4 id="1-Scores-处理"><a href="#1-Scores-处理" class="headerlink" title="1. Scores 处理"></a>1. Scores 处理</h4><p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/7E625082BF0543A29A007CE9A6F293BC/13228" alt=""></p>
+<h4 id="1-Scores-处理"><a href="#1-Scores-处理" class="headerlink" title="1. Scores 处理"></a>1. Scores 处理</h4><p><img src="/img/ML/03_softmax分类器1.png" alt=""> </p>
 <p><strong>exp映射</strong></p>
 <p>最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。</p>
 <p><strong>normalize</strong></p>
@@ -543,7 +543,7 @@
 <p>$L_{car} = - \log(0.87) = 0.06$</p>
 <p>$L_{frog} = - \log(0.00) = \infty$</p>
 <p>loss 值越接近0，对应的 score 越高。原本是 cat 但是权重参数选择有问题。 </p>
-<h4 id="2-最优化"><a href="#2-最优化" class="headerlink" title="2. 最优化"></a>2. 最优化</h4><p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/DEBB6E7A990F4642ABBAD9D41057292B/13223" alt=""></p>
+<h4 id="2-最优化"><a href="#2-最优化" class="headerlink" title="2. 最优化"></a>2. 最优化</h4><p><img src="/img/ML/03_softmax分类器2.png" alt=""> </p>
 
       
     </div>
@@ -818,7 +818,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -827,7 +827,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 

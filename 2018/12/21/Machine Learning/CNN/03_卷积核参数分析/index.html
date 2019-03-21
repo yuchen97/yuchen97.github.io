@@ -115,22 +115,22 @@
 
 
 
-  <meta name="description" content="03_卷积核参数分析【 The latest data ： 2018/05/05 】Yuchen   1. stride在上一篇笔记《02_卷积计算流程》中，计算完一次卷积之后，filter 移动两格，这个叫做 stride。比如假设上图是一个 input 7X7 是空间(spatially)，filter 为 3X3，当 stride = 2 时，输出的是 3X3 特征值，卷积路径如下当 str">
+  <meta name="description" content="03_卷积核参数分析【 The latest data ： 2018/05/05 】Yuchen   1. stride在上一篇笔记《02_卷积计算流程》中，计算完一次卷积之后，filter 移动两格，这个叫做 stride。比如  假设上图是一个 input 7X7 是空间(spatially)，filter 为 3X3，当 stride = 2 时，输出的是 3X3 特征值，卷积路径如下当 s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="03_卷积核参数分析">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/21/Machine Learning/CNN/03_卷积核参数分析/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="03_卷积核参数分析【 The latest data ： 2018/05/05 】Yuchen   1. stride在上一篇笔记《02_卷积计算流程》中，计算完一次卷积之后，filter 移动两格，这个叫做 stride。比如假设上图是一个 input 7X7 是空间(spatially)，filter 为 3X3，当 stride = 2 时，输出的是 3X3 特征值，卷积路径如下当 str">
+<meta property="og:description" content="03_卷积核参数分析【 The latest data ： 2018/05/05 】Yuchen   1. stride在上一篇笔记《02_卷积计算流程》中，计算完一次卷积之后，filter 移动两格，这个叫做 stride。比如  假设上图是一个 input 7X7 是空间(spatially)，filter 为 3X3，当 stride = 2 时，输出的是 3X3 特征值，卷积路径如下当 s">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/B19EC89FB54647C0A7E5DA96C89185AA/13748">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/AE03A68E7472464AACC83CA5B775AACC/13759">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/316FAFA34F14444E9C7A7ABDB22A3CD5/13761">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/62C20B631FD64C6F90F2F02ADA8F06A6/13782">
-<meta property="og:updated_time" content="2019-02-26T14:10:10.292Z">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/CNN/03_卷积核参数分析1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/CNN/03_卷积核参数分析2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/CNN/03_卷积核参数分析3.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/ML/CNN/03_卷积核参数分析4.png">
+<meta property="og:updated_time" content="2019-03-21T11:20:40.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="03_卷积核参数分析">
-<meta name="twitter:description" content="03_卷积核参数分析【 The latest data ： 2018/05/05 】Yuchen   1. stride在上一篇笔记《02_卷积计算流程》中，计算完一次卷积之后，filter 移动两格，这个叫做 stride。比如假设上图是一个 input 7X7 是空间(spatially)，filter 为 3X3，当 stride = 2 时，输出的是 3X3 特征值，卷积路径如下当 str">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/B19EC89FB54647C0A7E5DA96C89185AA/13748">
+<meta name="twitter:description" content="03_卷积核参数分析【 The latest data ： 2018/05/05 】Yuchen   1. stride在上一篇笔记《02_卷积计算流程》中，计算完一次卷积之后，filter 移动两格，这个叫做 stride。比如  假设上图是一个 input 7X7 是空间(spatially)，filter 为 3X3，当 stride = 2 时，输出的是 3X3 特征值，卷积路径如下当 s">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/ML/CNN/03_卷积核参数分析1.png">
 
 
 
@@ -453,7 +453,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-26 22:10:10" itemprop="dateModified" datetime="2019-02-26T22:10:10+08:00">2019-02-26</time>
+                <time title="Modified: 2019-03-21 19:20:40" itemprop="dateModified" datetime="2019-03-21T19:20:40+08:00">2019-03-21</time>
               
             
           </span>
@@ -498,7 +498,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">850</span>
+                <span title="Symbols count in article">854</span>
               
 
               
@@ -533,9 +533,10 @@
 
       
         <h3 id="03-卷积核参数分析"><a href="#03-卷积核参数分析" class="headerlink" title="03_卷积核参数分析"></a>03_卷积核参数分析</h3><p><strong>【 The latest data ： 2018/05/05 】Yuchen</strong>  </p>
-<h4 id="1-stride"><a href="#1-stride" class="headerlink" title="1. stride"></a>1. stride</h4><p>在上一篇笔记《02_卷积计算流程》中，计算完一次卷积之后，filter 移动两格，这个叫做 stride。比如<br><img src="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/B19EC89FB54647C0A7E5DA96C89185AA/13748" alt=""><br>假设上图是一个 input 7X7 是空间(spatially)，filter 为 3X3，当 stride = 2 时，输出的是 3X3 特征值，卷积路径如下<br><img src="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/AE03A68E7472464AACC83CA5B775AACC/13759" alt=""><br>当 stride = 1 时，输出结果是 5X5 特征值，卷积路径如下<br><img src="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/316FAFA34F14444E9C7A7ABDB22A3CD5/13761" alt="">  </p>
+<h4 id="1-stride"><a href="#1-stride" class="headerlink" title="1. stride"></a>1. stride</h4><p>在上一篇笔记《02_卷积计算流程》中，计算完一次卷积之后，filter 移动两格，这个叫做 stride。比如<br><img src="/img/ML/CNN/03_卷积核参数分析1.png" alt=""> </p>
+<p>假设上图是一个 input 7X7 是空间(spatially)，filter 为 3X3，当 stride = 2 时，输出的是 3X3 特征值，卷积路径如下<br><img src="/img/ML/CNN/03_卷积核参数分析2.png" alt=""><br>当 stride = 1 时，输出结果是 5X5 特征值，卷积路径如下<br><img src="/img/ML/CNN/03_卷积核参数分析3.png" alt="">   </p>
 <h4 id="2-Pad"><a href="#2-Pad" class="headerlink" title="2. Pad"></a>2. Pad</h4><p>pad用于解决边缘像素的利用问题，当 pad=1 时，会在原 image 的边缘加一圈 0 。<br>之所以加 0 是因为不想让新加的像素对原数据有影响。<br>比如在 filter 和数据进行卷积的时候，其中有的像素点，在卷积时，可以被多次利用，即第一个 filter 可以和某个像素点内积，第二个也可以，而对于边缘的像素点（尤其是四个角的）而言，它们一般只有一次内积的机会。<br>对于上篇笔记中的输入数据  </p>
-<p><img src="https://note.youdao.com/yws/public/resource/ed6515a181e40cceb1fa6014523a2a5f/xmlnote/62C20B631FD64C6F90F2F02ADA8F06A6/13782" alt=""></p>
+<p><img src="/img/ML/CNN/03_卷积核参数分析4.png" alt=""> </p>
 <p>其实原来输入的 image 是中间 5X5 的，为了使得边缘像素被多多利用，则在原始输入的边缘加上一圈 0.</p>
 <h4 id="3-如何计算输出像素大小"><a href="#3-如何计算输出像素大小" class="headerlink" title="3. 如何计算输出像素大小"></a>3. 如何计算输出像素大小</h4><p>$h_o=\frac{h_i-filter+2pad}{stride}+1$  </p>
 <p>$w_o=\frac{w_i-filter+2pad}{stride}+1$</p>
@@ -817,7 +818,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">395k</span>
+    <span title="Symbols count total">342k</span>
   
 
   
@@ -826,7 +827,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">5:59</span>
+    <span title="Reading time total">5:11</span>
   
 </div>
 
