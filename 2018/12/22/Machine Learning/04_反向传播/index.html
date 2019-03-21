@@ -127,7 +127,7 @@
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/1C82C182E65847E2B2A1BE599882AD0D/13016">
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/E3DD2A6F3901456598BA02D2EAE06F21/13128">
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/2F4FCD0D7000471AACA47B36CBE450BB/13147">
-<meta property="og:updated_time" content="2018-12-22T06:28:57.175Z">
+<meta property="og:updated_time" content="2019-03-21T01:20:49.622Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="04_反向传播">
 <meta name="twitter:description" content="05_反向传播【 The latest data ： 2018/04/30 】Yuchen 1. 简单案例假设有三个数据 $xyz$，将其进行组合，比如是 $f(x,y,z) = (x+y)z$  给定相应的初始值，比如 $x=-2; y=5;z=-4$ 可得如下 计算三个数据对结果的贡献 即求偏导 $\frac{\partial f}{\partial x}=z=-4$ $\frac{\part">
@@ -437,12 +437,24 @@
                 
               
 
-              <time title="Created: 2018-12-22 14:18:30 / Modified: 14:28:57" itemprop="dateCreated datePublished" datetime="2018-12-22T14:18:30+08:00">2018-12-22</time>
+              <time title="Created: 2018-12-22 14:18:30" itemprop="dateCreated datePublished" datetime="2018-12-22T14:18:30+08:00">2018-12-22</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-21 09:20:49" itemprop="dateModified" datetime="2019-03-21T09:20:49+08:00">2019-03-21</time>
               
             
           </span>
@@ -563,12 +575,12 @@
 <p>$y(x)=e^x$</p>
 <p>然后再结合上式和图中数据就好理解了。</p>
 <p>…</p>
-<p>对于图中红色框框里的数据而言，假设 <code>$w_0x_0=q$</code> ，<code>$\frac{\partial q}{\partial w_0}=x_0=-1$</code>, 再用 -1 乘以 q 处的0.2（复合函数求导原则），所以 <code>$w_0$</code> 的影响系数有-0.2。</p>
+<p>对于图中红色框框里的数据而言，假设 $w_0x_0=q$ ，$\frac{\partial q}{\partial w_0}=x_0=-1$, 再用 -1 乘以 q 处的0.2（复合函数求导原则），所以 $w_0$ 的影响系数有-0.2。</p>
 <p><strong>法二</strong></p>
-<p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/E3DD2A6F3901456598BA02D2EAE06F21/13128" alt=""><br>对于此公式 <code>$f(w,x)$</code> 相当于 <code>$\sigma(x)=\frac{1}{1+e^{-x}}$</code> 所以可以将后面的看成 sigmoid function ，将数值代入结果一致。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/E3DD2A6F3901456598BA02D2EAE06F21/13128" alt=""><br>对于此公式 $f(w,x)$ 相当于 $\sigma(x)=\frac{1}{1+e^{-x}}$ 所以可以将后面的看成 sigmoid function ，将数值代入结果一致。</p>
 <p>也可以将上面想象成一个门单元</p>
 <p><img src="https://note.youdao.com/yws/public/resource/a3cbb362d518ee0e322bfe54b4fe306b/xmlnote/2F4FCD0D7000471AACA47B36CBE450BB/13147" alt=""></p>
-<p>加法门单元：偏导都是 1 ；<br>乘法门单元：偏导两元素互换，比如 <code>$z=xy$</code>， <code>$z$</code> 对 <code>$x$</code> 的偏导为 <code>$y$</code>， <code>$z$</code> 对 <code>$y$</code> 的偏导为 <code>$x$</code></p>
+<p>加法门单元：偏导都是 1 ；<br>乘法门单元：偏导两元素互换，比如 $z=xy$， $z$ 对 $x$ 的偏导为 $y$， $z$ 对 $y$ 的偏导为 $x$</p>
 
       
     </div>
