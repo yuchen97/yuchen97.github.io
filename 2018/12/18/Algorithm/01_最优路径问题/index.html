@@ -115,14 +115,15 @@
 
 
 
-  <meta name="description" content="参考文献： 《中国邮递员问题的匹配算法》 1. 问题来源某地区的街道分布如下图所示，图中数字表示街道长度，派出所位于G位，一巡逻车从派出所出发，每条街道至少经过一次，最后回到派出所，试设计一条总长度最短的巡逻路线。  2. 问题解析2.1 法一枚举法枚举法。。。。不需要什么介绍，会排数保证不乱就行。 2.2 法二齐度顶点匹配算法此问题类似于中国邮递员问题，就是说一个邮递员从邮局出发，然后到其所管辖">
+  <meta name="description" content="参考文献： 《中国邮递员问题的匹配算法》 1. 问题来源某地区的街道分布如下图所示，图中数字表示街道长度，派出所位于G位，一巡逻车从派出所出发，每条街道至少经过一次，最后回到派出所，试设计一条总长度最短的巡逻路线。   2. 问题解析2.1 法一枚举法枚举法。。。。不需要什么介绍，会排数保证不乱就行。 2.2 法二齐度顶点匹配算法此问题类似于中国邮递员问题，就是说一个邮递员从邮局出发，然后到其所管">
 <meta property="og:type" content="article">
 <meta property="og:title" content="01_最优路径问题">
 <meta property="og:url" content="https://yuchen97.github.io/2018/12/18/Algorithm/01_最优路径问题/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="参考文献： 《中国邮递员问题的匹配算法》 1. 问题来源某地区的街道分布如下图所示，图中数字表示街道长度，派出所位于G位，一巡逻车从派出所出发，每条街道至少经过一次，最后回到派出所，试设计一条总长度最短的巡逻路线。  2. 问题解析2.1 法一枚举法枚举法。。。。不需要什么介绍，会排数保证不乱就行。 2.2 法二齐度顶点匹配算法此问题类似于中国邮递员问题，就是说一个邮递员从邮局出发，然后到其所管辖">
+<meta property="og:description" content="参考文献： 《中国邮递员问题的匹配算法》 1. 问题来源某地区的街道分布如下图所示，图中数字表示街道长度，派出所位于G位，一巡逻车从派出所出发，每条街道至少经过一次，最后回到派出所，试设计一条总长度最短的巡逻路线。   2. 问题解析2.1 法一枚举法枚举法。。。。不需要什么介绍，会排数保证不乱就行。 2.2 法二齐度顶点匹配算法此问题类似于中国邮递员问题，就是说一个邮递员从邮局出发，然后到其所管">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题1.jpg">
+<meta property="og:image" content="https://yuchen97.github.io/img/ad/01_AD使用的基础规则2.png">
 <meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题2.png">
 <meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题3.png">
 <meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题4.png">
@@ -139,10 +140,10 @@
 <meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题16.png">
 <meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题1.jpg">
 <meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题17.png">
-<meta property="og:updated_time" content="2019-03-21T05:34:20.992Z">
+<meta property="og:updated_time" content="2019-03-21T07:17:50.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01_最优路径问题">
-<meta name="twitter:description" content="参考文献： 《中国邮递员问题的匹配算法》 1. 问题来源某地区的街道分布如下图所示，图中数字表示街道长度，派出所位于G位，一巡逻车从派出所出发，每条街道至少经过一次，最后回到派出所，试设计一条总长度最短的巡逻路线。  2. 问题解析2.1 法一枚举法枚举法。。。。不需要什么介绍，会排数保证不乱就行。 2.2 法二齐度顶点匹配算法此问题类似于中国邮递员问题，就是说一个邮递员从邮局出发，然后到其所管辖">
+<meta name="twitter:description" content="参考文献： 《中国邮递员问题的匹配算法》 1. 问题来源某地区的街道分布如下图所示，图中数字表示街道长度，派出所位于G位，一巡逻车从派出所出发，每条街道至少经过一次，最后回到派出所，试设计一条总长度最短的巡逻路线。   2. 问题解析2.1 法一枚举法枚举法。。。。不需要什么介绍，会排数保证不乱就行。 2.2 法二齐度顶点匹配算法此问题类似于中国邮递员问题，就是说一个邮递员从邮局出发，然后到其所管">
 <meta name="twitter:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题1.jpg">
 
 
@@ -466,7 +467,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-21 13:34:20" itemprop="dateModified" datetime="2019-03-21T13:34:20+08:00">2019-03-21</time>
+                <time title="Modified: 2019-03-21 15:17:50" itemprop="dateModified" datetime="2019-03-21T15:17:50+08:00">2019-03-21</time>
               
             
           </span>
@@ -547,7 +548,7 @@
       
         <p><strong>参考文献：</strong> 《中国邮递员问题的匹配算法》</p>
 <h4 id="1-问题来源"><a href="#1-问题来源" class="headerlink" title="1. 问题来源"></a>1. 问题来源</h4><p>某地区的街道分布如下图所示，图中数字表示街道长度，派出所位于G位，一巡逻车从派出所出发，每条街道至少经过一次，最后回到派出所，试设计一条总长度最短的巡逻路线。</p>
-<p><img src="/img/Algorithm/01_最优路径问题1.jpg" alt=""></p>
+<p><img src="/img/Algorithm/01_最优路径问题1.jpg" alt=""><br><img src="/img/ad/01_AD使用的基础规则2.png" alt=""> </p>
 <h4 id="2-问题解析"><a href="#2-问题解析" class="headerlink" title="2. 问题解析"></a>2. 问题解析</h4><h5 id="2-1-法一枚举法"><a href="#2-1-法一枚举法" class="headerlink" title="2.1 法一枚举法"></a>2.1 法一枚举法</h5><p>枚举法。。。。不需要什么介绍，会排数保证不乱就行。</p>
 <h5 id="2-2-法二齐度顶点匹配算法"><a href="#2-2-法二齐度顶点匹配算法" class="headerlink" title="2.2 法二齐度顶点匹配算法"></a>2.2 法二齐度顶点匹配算法</h5><p>此问题类似于中国邮递员问题，就是说一个邮递员从邮局出发，然后到其所管辖的所有街道投递邮件，最后返回邮局，如果该邮递员必须走遍管辖的所有街道的每一条至少一次，那么怎样选择行走路线才能使得该邮递员的所有行程最短？<br>在此我们采用的是奇度顶点匹配算法来进行求解，总体思路就是找到G图中的偶度顶点，然后只保留奇度顶点，去除偶度顶点，得到一个新图，然后再找出顶点关联的边中，权值最小的边，之后根据配对原则在原图添加重复边，并进行校验。<br>即总体流程图如下：</p>
 <p><img src="/img/Algorithm/01_最优路径问题2.png" alt=""></p>
