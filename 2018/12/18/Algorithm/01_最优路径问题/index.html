@@ -137,9 +137,9 @@
 <meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题14.png">
 <meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题15.png">
 <meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题16.png">
-<meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题1.jpg">
 <meta property="og:image" content="https://yuchen97.github.io/img/Algorithm/01_最优路径问题17.png">
-<meta property="og:updated_time" content="2019-03-21T05:32:01.636Z">
+<meta property="og:updated_time" content="2019-03-21T05:34:20.992Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01_最优路径问题">
 <meta name="twitter:description" content="参考文献： 《中国邮递员问题的匹配算法》 1. 问题来源某地区的街道分布如下图所示，图中数字表示街道长度，派出所位于G位，一巡逻车从派出所出发，每条街道至少经过一次，最后回到派出所，试设计一条总长度最短的巡逻路线。  2. 问题解析2.1 法一枚举法枚举法。。。。不需要什么介绍，会排数保证不乱就行。 2.2 法二齐度顶点匹配算法此问题类似于中国邮递员问题，就是说一个邮递员从邮局出发，然后到其所管辖">
@@ -466,7 +466,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-21 13:32:01" itemprop="dateModified" datetime="2019-03-21T13:32:01+08:00">2019-03-21</time>
+                <time title="Modified: 2019-03-21 13:34:20" itemprop="dateModified" datetime="2019-03-21T13:34:20+08:00">2019-03-21</time>
               
             
           </span>
@@ -595,7 +595,7 @@
 <li>新建图G，G中拥有原图中相同的节点，但没有边；</li>
 <li>将原图中所有的边按权值从小到大排序；</li>
 <li>从权值最小的边开始，如果这条边连接的两个节点于图G中不在同一个连通分量中，则添加这条边到图G中；</li>
-<li>重复3，直至图G中所有的节点都在同一个连通分量中。<h6 id="3-2-2-改题解析"><a href="#3-2-2-改题解析" class="headerlink" title="3.2.2 改题解析"></a>3.2.2 改题解析</h6><img src="/img/Algorithm/01_最优路径问题1.png" alt=""><br>将权值最小的边依次排列：<br>1: (A,B)<br>2: (A,E)<br>3: (E,F)<br>4: (E,I)<br>5: (I,J)<br>6: (C,G)，(B,F)，(G,K)<br>7: (D,H)，(F,J)，(F,G)<br>8: (B,C)，(J,K)<br>9: (C,D)，(H,L)<br>10:(C,H)，(K,L)<br>11:(G,H)<br>12:(F,K)</li>
+<li>重复3，直至图G中所有的节点都在同一个连通分量中。<h6 id="3-2-2-改题解析"><a href="#3-2-2-改题解析" class="headerlink" title="3.2.2 改题解析"></a>3.2.2 改题解析</h6><img src="/img/Algorithm/01_最优路径问题1.jpg" alt=""><br>将权值最小的边依次排列：<br>1: (A,B)<br>2: (A,E)<br>3: (E,F)<br>4: (E,I)<br>5: (I,J)<br>6: (C,G)，(B,F)，(G,K)<br>7: (D,H)，(F,J)，(F,G)<br>8: (B,C)，(J,K)<br>9: (C,D)，(H,L)<br>10:(C,H)，(K,L)<br>11:(G,H)<br>12:(F,K)</li>
 </ul>
 <p>我们根据解题思路选出如图所示的以下几点，得到最小支撑树。</p>
 <p><img src="/img/Algorithm/01_最优路径问题17.png" alt=""><br><a href="https://blog.csdn.net/qq_35644234/article/details/59106779" target="_blank" rel="noopener">代码可参考</a></p>
