@@ -115,17 +115,17 @@
 
 
 
-  <meta name="description" content="之前安装了 hexo-blog-encrypt 对博文进行加密。安装方法详见https://github.com/MikeCoder/hexo-blog-encrypt感谢作者的贡献！  但是最近我新建加密文档之后，在输入密码的时候出现了如下情况：    输入正确密码并点击回车键没任何反应 输入错误密码没有错误提示  发现在 12345678/node_modules/hexo-blog-encr">
+  <meta name="description" content="之前安装了 hexo-blog-encrypt 对博文进行加密。安装方法详见https://github.com/MikeCoder/hexo-blog-encrypt感谢作者的贡献！  但是最近我新建加密文档之后，在输入密码的时候出现了如下情况：    输入正确密码并点击回车键没任何反应 输入错误密码没有错误提示  发现在 12345/node_modules/hexo-blog-encrypt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fix hexo 加密 bug">
 <meta property="og:url" content="https://yuchen97.github.io/2019/03/22/其他/fix hexo 加密 bug/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="之前安装了 hexo-blog-encrypt 对博文进行加密。安装方法详见https://github.com/MikeCoder/hexo-blog-encrypt感谢作者的贡献！  但是最近我新建加密文档之后，在输入密码的时候出现了如下情况：    输入正确密码并点击回车键没任何反应 输入错误密码没有错误提示  发现在 12345678/node_modules/hexo-blog-encr">
+<meta property="og:description" content="之前安装了 hexo-blog-encrypt 对博文进行加密。安装方法详见https://github.com/MikeCoder/hexo-blog-encrypt感谢作者的贡献！  但是最近我新建加密文档之后，在输入密码的时候出现了如下情况：    输入正确密码并点击回车键没任何反应 输入错误密码没有错误提示  发现在 12345/node_modules/hexo-blog-encrypt">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-03-22T06:50:11.189Z">
+<meta property="og:updated_time" content="2019-03-22T07:11:07.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fix hexo 加密 bug">
-<meta name="twitter:description" content="之前安装了 hexo-blog-encrypt 对博文进行加密。安装方法详见https://github.com/MikeCoder/hexo-blog-encrypt感谢作者的贡献！  但是最近我新建加密文档之后，在输入密码的时候出现了如下情况：    输入正确密码并点击回车键没任何反应 输入错误密码没有错误提示  发现在 12345678/node_modules/hexo-blog-encr">
+<meta name="twitter:description" content="之前安装了 hexo-blog-encrypt 对博文进行加密。安装方法详见https://github.com/MikeCoder/hexo-blog-encrypt感谢作者的贡献！  但是最近我新建加密文档之后，在输入密码的时候出现了如下情况：    输入正确密码并点击回车键没任何反应 输入错误密码没有错误提示  发现在 12345/node_modules/hexo-blog-encrypt">
 
 
 
@@ -431,7 +431,7 @@
                 
               
 
-              <time title="Created: 2019-03-22 14:16:40 / Modified: 14:50:11" itemprop="dateCreated datePublished" datetime="2019-03-22T14:16:40+08:00">2019-03-22</time>
+              <time title="Created: 2019-03-22 14:16:40 / Modified: 15:11:07" itemprop="dateCreated datePublished" datetime="2019-03-22T14:16:40+08:00">2019-03-22</time>
             
 
             
@@ -481,7 +481,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">510</span>
+                <span title="Symbols count in article">1.2k</span>
               
 
               
@@ -523,9 +523,63 @@
 <li>输入错误密码没有错误提示</li>
 </ul>
 <p>发现在</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/node_modules/hexo-blog-encrypt/templat.html</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">文件中，引用了第三方 jQuery 文件。</span><br><span class="line"></span><br><span class="line">于是我在</span><br><span class="line">https://cdnjs.com/libraries/jquery</span><br><span class="line">里找到了 templat.html 中所使用的 1.11.3 版本，发现之前链接有所改动，导致加载不出来第三方 jQuery 文件。我将 templat.html 中的</span><br></pre></td></tr></table></figure>
-<p><script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">改成了</span><br></pre></td></tr></table></figure></p>
-<p><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><br>```</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/node_modules/hexo-blog-encrypt/templat.html</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">文件中，引用了第三方 jQuery 文件。templat.html 代码如下：</span><br></pre></td></tr></table></figure>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="">
+    <label for="pass"></label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;"></div>
+<div id="noContentError" style="display: none;"></div>
+<div id="encrypt-blog" style="display:none">
+<p>之前安装了 hexo-blog-encrypt 对博文进行加密。安装方法详见<br><a href="https://github.com/MikeCoder/hexo-blog-encrypt" target="_blank" rel="noopener">https://github.com/MikeCoder/hexo-blog-encrypt</a><br>感谢作者的贡献！</p>
+<hr>
+<p>但是最近我新建加密文档之后，在输入密码的时候出现了如下情况：  </p>
+<ul>
+<li>输入正确密码并点击回车键没任何反应</li>
+<li>输入错误密码没有错误提示</li>
+</ul>
+<p>发现在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/node_modules/hexo-blog-encrypt/templat.html</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">文件中，引用了第三方 jQuery 文件。templat.html 代码如下：</span><br></pre></td></tr></table></figure>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="{{message}}">
+    <label for="pass">{{message}}</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">{{decryptionError}}</div>
+<div id="noContentError" style="display: none;">{{noContentError}}</div>
+<div id="encrypt-blog" style="display:none">
+{{content}}
+</div>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">于是我在</span><br><span class="line">https://cdnjs.com/libraries/jquery</span><br><span class="line">里找到了 templat.html 中所使用的 1.11.3 版本，发现之前链接有所改动，导致加载不出来第三方 jQuery 文件。我将 templat.html 中的</span><br></pre></td></tr></table></figure>
+
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">改成了</span><br></pre></td></tr></table></figure>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<p>```</p>
+<p>原因应该是 第三方库信息更改，之后就 hexo clean &amp; g &amp; d 就 ok 了。有兴趣的可以看下相关链接的源码：<a href="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js" target="_blank" rel="noopener">https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js</a></p>
+
+</div>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">于是我在</span><br><span class="line">https://cdnjs.com/libraries/jquery</span><br><span class="line">里找到了 templat.html 中所使用的 1.11.3 版本，发现之前链接有所改动，导致加载不出来第三方 jQuery 文件。我将 templat.html 中的</span><br></pre></td></tr></table></figure>
+
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">改成了</span><br></pre></td></tr></table></figure>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<p>```</p>
 <p>原因应该是 第三方库信息更改，之后就 hexo clean &amp; g &amp; d 就 ok 了。有兴趣的可以看下相关链接的源码：<a href="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js" target="_blank" rel="noopener">https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js</a></p>
 
       
@@ -785,7 +839,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">6:42</span>
+    <span title="Reading time total">6:43</span>
   
 </div>
 
