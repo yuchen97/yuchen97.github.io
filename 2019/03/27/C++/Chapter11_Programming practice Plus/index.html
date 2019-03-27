@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="11.1代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter11_Programming practice Plus">
+<meta property="og:url" content="https://yuchen97.github.io/2019/03/27/C++/Chapter11_Programming practice Plus/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="11.1代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-27T10:14:02.003Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter11_Programming practice Plus">
+<meta name="twitter:description" content="11.1代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2019/03/27/C++/Chapter11_Programming practice Plus/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Chapter11_Programming practice Plus | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2019/03/27/C++/Chapter11_Programming practice Plus/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Chapter11_Programming practice Plus
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-27 18:11:20 / Modified: 18:14:02" itemprop="dateCreated datePublished" datetime="2019-03-27T18:11:20+08:00">2019-03-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">27k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">24 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="11-1"><a href="#11-1" class="headerlink" title="11.1"></a>11.1</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br></pre></td><td class="code"><pre><span class="line">// vect.h</span><br><span class="line">#ifndef VECT_H_</span><br><span class="line">#define VECT_H_</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">namespace VECTOR</span><br><span class="line">&#123;</span><br><span class="line">    class Vector</span><br><span class="line">    &#123;</span><br><span class="line">        public:</span><br><span class="line">            // RECT for rectangular, POL for Polar modes</span><br><span class="line">            enum Mode &#123;RECT, POL&#125;;</span><br><span class="line">        private:</span><br><span class="line">            double x;       // horizontal value</span><br><span class="line">            double y;       // vertical value</span><br><span class="line">            double mag;     // length of vector</span><br><span class="line">            double ang;     // direction of vector in degrees</span><br><span class="line">            Mode mode;</span><br><span class="line">            // private methods for setting values</span><br><span class="line">            void set_mag();</span><br><span class="line">            void set_ang();</span><br><span class="line">            void set_x();</span><br><span class="line">            void set_y();</span><br><span class="line">        public:</span><br><span class="line">            Vector();</span><br><span class="line">            Vector(double n1, double n2, Mode form=RECT);</span><br><span class="line">            ~Vector();</span><br><span class="line">            void reset(double n1, double n2, Mode form=RECT);</span><br><span class="line">            double xval() const &#123;return x;&#125;     // report x value</span><br><span class="line">            double yval() const &#123;return y;&#125;</span><br><span class="line">            double magval() const &#123;return mag;&#125; // report magnitude</span><br><span class="line">            double angval() const &#123;return ang;&#125;</span><br><span class="line">            void polar_mode();      // set mode to POL</span><br><span class="line">            void rect_mode();       // set mode to RECT</span><br><span class="line">            // operator overloading</span><br><span class="line">            Vector operator+(const Vector &amp;b) const;</span><br><span class="line">            Vector operator-(const Vector &amp;b) const;</span><br><span class="line">            Vector operator-() const;</span><br><span class="line">            Vector operator*(double n) const;</span><br><span class="line">            // friend</span><br><span class="line">            friend Vector operator*(double n, const Vector &amp;a);</span><br><span class="line">            friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Vector &amp;v);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">// vect.cpp</span><br><span class="line">#include &quot;vect.h&quot;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using std::sqrt;</span><br><span class="line">using std::sin;</span><br><span class="line">using std::cos;</span><br><span class="line">using std::atan;</span><br><span class="line">using std::atan2;   // 返回单位是弧度 (-pi, pi]</span><br><span class="line">using std::cout;</span><br><span class="line">namespace VECTOR</span><br><span class="line">&#123;</span><br><span class="line">    // compute degrees in one radian</span><br><span class="line">    // should be about 57.29</span><br><span class="line">    const double Rad_to_deg = 45.0 / atan(1.0);     // 角度*pi/180° = 弧度</span><br><span class="line">    </span><br><span class="line">    // private methods</span><br><span class="line">    // calculates magnitude from x and y</span><br><span class="line">    void Vector::set_mag()</span><br><span class="line">    &#123;</span><br><span class="line">        mag = sqrt(x*x + y*y);</span><br><span class="line">    &#125;</span><br><span class="line">    void Vector::set_ang()</span><br><span class="line">    &#123;</span><br><span class="line">        if (x==0.0 &amp;&amp; y==0.0)</span><br><span class="line">            ang = 0.0;</span><br><span class="line">        else</span><br><span class="line">            ang = atan2(y, x);</span><br><span class="line">    &#125;</span><br><span class="line">    // set x, y from polar coordinate</span><br><span class="line">    void Vector::set_x()</span><br><span class="line">    &#123;</span><br><span class="line">        x = mag*cos(ang);</span><br><span class="line">    &#125;</span><br><span class="line">    void Vector::set_y()</span><br><span class="line">    &#123;</span><br><span class="line">        y = mag*sin(ang);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // public methods</span><br><span class="line">    Vector::Vector()</span><br><span class="line">    &#123;</span><br><span class="line">        x = y = mag = ang = 0.0;</span><br><span class="line">        mode = RECT;</span><br><span class="line">    &#125;</span><br><span class="line">    // construct vector from rectangular coordinates if form is r</span><br><span class="line">    // (the default) or else from polar coordinates if forms is p</span><br><span class="line">    Vector::Vector(double n1, double n2, Mode form)</span><br><span class="line">    &#123;</span><br><span class="line">        mode =  form;</span><br><span class="line">        if (mode == RECT)</span><br><span class="line">        &#123;</span><br><span class="line">            x = n1;</span><br><span class="line">            y = n2;</span><br><span class="line">            set_mag();</span><br><span class="line">            set_ang();</span><br><span class="line">        &#125;</span><br><span class="line">        else if (mode == POL)</span><br><span class="line">        &#123;</span><br><span class="line">            mag = n1;</span><br><span class="line">            ang = n2 / Rad_to_deg;  // 弧度</span><br><span class="line">            set_x();</span><br><span class="line">            set_y();</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; &quot;Incorrect 2rd argument to Vector() -- &quot;;</span><br><span class="line">            cout &lt;&lt; &quot;vector set to 0\n&quot;;</span><br><span class="line">            x = y = mag = ang = 0.0;</span><br><span class="line">            mode = RECT;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // reset vector from rectangular coordinates if form is</span><br><span class="line">    // RECT (the default) or else from polar coordinates if</span><br><span class="line">    // form is POL</span><br><span class="line">    void Vector::reset(double n1, double n2, Mode form)</span><br><span class="line">    &#123;</span><br><span class="line">        mode =  form;</span><br><span class="line">        if (mode == RECT)</span><br><span class="line">        &#123;</span><br><span class="line">            x = n1;</span><br><span class="line">            y = n2;</span><br><span class="line">            set_mag();</span><br><span class="line">            set_ang();</span><br><span class="line">        &#125;</span><br><span class="line">        else if (mode == POL)</span><br><span class="line">        &#123;</span><br><span class="line">            mag = n1;</span><br><span class="line">            ang = n2 / Rad_to_deg;  // 弧度</span><br><span class="line">            set_x();</span><br><span class="line">            set_y();</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; &quot;Incorrect 2rd argument to Vector() -- &quot;;</span><br><span class="line">            cout &lt;&lt; &quot;vector set to 0\n&quot;;</span><br><span class="line">            x = y = mag = ang = 0.0;</span><br><span class="line">            mode = RECT;</span><br><span class="line">        &#125;        </span><br><span class="line">    &#125;</span><br><span class="line">    Vector::~Vector()</span><br><span class="line">    &#123;&#125;</span><br><span class="line">    void Vector::polar_mode()</span><br><span class="line">    &#123;</span><br><span class="line">        mode = POL;</span><br><span class="line">    &#125;</span><br><span class="line">    void Vector::rect_mode()</span><br><span class="line">    &#123;</span><br><span class="line">        mode = RECT;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // operator overloading</span><br><span class="line">    // add two Vectors</span><br><span class="line">    Vector Vector::operator+(const Vector &amp;b) const</span><br><span class="line">    &#123;</span><br><span class="line">        return Vector(x+b.x, y+b.y);</span><br><span class="line">    &#125;</span><br><span class="line">    // subtract Vector b from a</span><br><span class="line">    Vector Vector::operator-(const Vector &amp;b) const</span><br><span class="line">    &#123;</span><br><span class="line">        return Vector(x-b.x, y-b.y);</span><br><span class="line">    &#125;</span><br><span class="line">    // reverse sign of Vector</span><br><span class="line">    Vector Vector::operator-() const</span><br><span class="line">    &#123;</span><br><span class="line">        return Vector(-x, -y);</span><br><span class="line">    &#125;</span><br><span class="line">    // multiplay vector by n</span><br><span class="line">    Vector Vector::operator*(double n) const</span><br><span class="line">    &#123;</span><br><span class="line">        return Vector(n*x, n*y);</span><br><span class="line">    &#125;</span><br><span class="line">    // friend methods</span><br><span class="line">    // multiply n by Vector a</span><br><span class="line">    Vector operator*(double n, const Vector &amp;a)</span><br><span class="line">    &#123;</span><br><span class="line">        return a*n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // display rectangular coordinate if mode is RECT,</span><br><span class="line">    // else display polar coordinates if mode is POL</span><br><span class="line">    std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Vector &amp;v)</span><br><span class="line">    &#123;</span><br><span class="line">        if (v.mode == Vector::RECT)     // 友元不在类作用域内，而在名称空间中，所以只加类限定</span><br><span class="line">            os &lt;&lt; &quot;(x, y) = (&quot; &lt;&lt; v.x &lt;&lt; &quot;, &quot; &lt;&lt; v.y &lt;&lt; &quot;)&quot;;</span><br><span class="line">        else if (v.mode == Vector::POL)</span><br><span class="line">            os &lt;&lt; &quot;(m, a) = (&quot; &lt;&lt; v.mag &lt;&lt; &quot;, &quot; &lt;&lt; v.ang*Rad_to_deg &lt;&lt;&quot;)&quot;;</span><br><span class="line">        else</span><br><span class="line">            os &lt;&lt; &quot;Vector object mode is invalid&quot;;</span><br><span class="line">        return os;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// prj_11_1.cpp</span><br><span class="line">#include &quot;vect.h&quot;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;ctime&gt;        // time() prototype</span><br><span class="line">#include &lt;cstdlib&gt;      // rand(), srand() prototype</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line">    using VECTOR::Vector;</span><br><span class="line">    ofstream fout;</span><br><span class="line">    fout.open(&quot;thewalk.txt&quot;);</span><br><span class="line">    srand(time(0));     // seed random-number generator</span><br><span class="line">    double direction;</span><br><span class="line">    Vector step;</span><br><span class="line">    Vector result(0.0, 0.0);</span><br><span class="line">    unsigned long steps = 0;</span><br><span class="line">    double target;</span><br><span class="line">    double dstep;</span><br><span class="line">    int count = 0;</span><br><span class="line">    cout &lt;&lt; &quot;Enter target distance (q to quit): &quot;;</span><br><span class="line">    while (cin&gt;&gt;target)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;Enter step length: &quot;;</span><br><span class="line">        if (!(cin&gt;&gt;dstep))</span><br><span class="line">            break;</span><br><span class="line">        fout &lt;&lt; &quot;Target Distance: &quot; &lt;&lt; target &lt;&lt; &quot;, Step Size: &quot; &lt;&lt; dstep &lt;&lt; endl; </span><br><span class="line">        while (result.magval() &lt; target)</span><br><span class="line">        &#123;</span><br><span class="line">            fout &lt;&lt; count++ &lt;&lt; &quot;： &quot; &lt;&lt; result &lt;&lt; endl;</span><br><span class="line">            direction = rand() % 360;   // 余数&lt;360°，所以在[0°,360°)之间随机取值</span><br><span class="line">            step.reset(dstep, direction, Vector::POL);</span><br><span class="line">            result = result + step;</span><br><span class="line">            steps++;</span><br><span class="line">        &#125;</span><br><span class="line">        fout &lt;&lt; &quot;After &quot; &lt;&lt; steps &lt;&lt; &quot; steps, the subject &quot;</span><br><span class="line">            &quot;has the following location:\n&quot;;</span><br><span class="line">        fout &lt;&lt; result &lt;&lt; endl;</span><br><span class="line">        result.polar_mode();</span><br><span class="line">        fout &lt;&lt; &quot; or\n&quot; &lt;&lt; result &lt;&lt; endl;</span><br><span class="line">        fout &lt;&lt; &quot;Average outward distance per step = &quot;</span><br><span class="line">            &lt;&lt; result.magval()/steps &lt;&lt; endl;</span><br><span class="line">        steps = 0;</span><br><span class="line">        result.reset(0.0, 0.0);</span><br><span class="line">        cout &lt;&lt; &quot;Enter target distance (q to quit): &quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; &quot;Bye!\n&quot;;</span><br><span class="line">    cin.clear();</span><br><span class="line">    while (cin.get() != &apos;\n&apos;)</span><br><span class="line">        continue;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\prj_11_1.exe</span><br><span class="line">Enter target distance (q to quit): 100</span><br><span class="line">Enter step length: 20</span><br><span class="line">Enter target distance (q to quit): q</span><br><span class="line">Bye!</span><br><span class="line">----------------</span><br><span class="line">thewalk.txt</span><br><span class="line">Target Distance: 100, Step Size: 20</span><br><span class="line">0： (x, y) = (0, 0)</span><br><span class="line">1： (x, y) = (3.81618, -19.6325)</span><br><span class="line">2： (x, y) = (-3.99844, -1.22245)</span><br><span class="line">3： (x, y) = (15.7553, -4.35114)</span><br><span class="line">4： (x, y) = (23.8901, -22.622)</span><br><span class="line">5： (x, y) = (43.3775, -18.123)</span><br><span class="line">6： (x, y) = (46.1609, -37.9284)</span><br><span class="line">7： (x, y) = (27.1398, -31.748)</span><br><span class="line">8： (x, y) = (11.8189, -18.8923)</span><br><span class="line">9： (x, y) = (25.961, -33.0344)</span><br><span class="line">10： (x, y) = (32.4724, -14.1241)</span><br><span class="line">11： (x, y) = (17.6095, -27.5067)</span><br><span class="line">12： (x, y) = (-2.24142, -29.9441)</span><br><span class="line">13： (x, y) = (2.59702, -49.35)</span><br><span class="line">14： (x, y) = (-16.4241, -43.1696)</span><br><span class="line">15： (x, y) = (-33.5675, -53.4704)</span><br><span class="line">16： (x, y) = (-42.6473, -35.6503)</span><br><span class="line">17： (x, y) = (-52.0367, -17.9913)</span><br><span class="line">18： (x, y) = (-45.5253, 0.919061)</span><br><span class="line">19： (x, y) = (-62.4863, -9.67932)</span><br><span class="line">20： (x, y) = (-42.8538, -13.4955)</span><br><span class="line">21： (x, y) = (-38.0153, 5.91041)</span><br><span class="line">22： (x, y) = (-23.8732, -8.23172)</span><br><span class="line">23： (x, y) = (-43.8458, -9.27844)</span><br><span class="line">24： (x, y) = (-35.0783, -27.2543)</span><br><span class="line">25： (x, y) = (-47.9341, -42.5752)</span><br><span class="line">26： (x, y) = (-43.7759, -23.0123)</span><br><span class="line">27： (x, y) = (-63.0944, -28.1886)</span><br><span class="line">28： (x, y) = (-82.8482, -25.06)</span><br><span class="line">29： (x, y) = (-68.4614, -38.9531)</span><br><span class="line">30： (x, y) = (-81.0478, -23.4102)</span><br><span class="line">31： (x, y) = (-95.6748, -9.77023)</span><br><span class="line">32： (x, y) = (-80.8119, -23.1528)</span><br><span class="line">After 33 steps, the subject has the following location:</span><br><span class="line">(x, y) = (-99.7223, -16.6415)</span><br><span class="line"> or</span><br><span class="line">(m, a) = (101.101, -170.526)</span><br><span class="line">Average outward distance per step = 3.06368</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>11.2 略</p>
+<hr>
+<h3 id="11-3"><a href="#11-3" class="headerlink" title="11.3"></a>11.3</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">// vect.h 同 11.1</span><br><span class="line">// vect.cpp 同 11.1 </span><br><span class="line">// prj_11_3.cpp</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;ctime&gt;        // time() prototype</span><br><span class="line">#include &lt;cstdlib&gt;      // rand(), srand() prototype</span><br><span class="line">#include &quot;vect.h&quot;       // .h 最好放在最后一个 include，否则 friend iostream 相关会有报错</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line">    using VECTOR::Vector;</span><br><span class="line">    srand(time(0));     // seed random-number generator</span><br><span class="line">    double direction;</span><br><span class="line">    Vector step;</span><br><span class="line">    Vector result(0.0, 0.0);</span><br><span class="line">    unsigned long steps = 0;</span><br><span class="line">    unsigned long max_steps = 0;</span><br><span class="line">    unsigned long min_steps  = -1;</span><br><span class="line">    unsigned long total_steps = 0;</span><br><span class="line">    double ave_steps = 0.0;</span><br><span class="line">    int N;</span><br><span class="line">    double target;</span><br><span class="line">    double dstep;</span><br><span class="line">    cout &lt;&lt; &quot;Enter target distance (q to quit): &quot;;</span><br><span class="line">    while (cin&gt;&gt;target)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;Enter step length: &quot;;</span><br><span class="line">        if (!(cin&gt;&gt;dstep))</span><br><span class="line">            break;</span><br><span class="line">        cout &lt;&lt; &quot;Enter the test num: &quot;;</span><br><span class="line">        if (!(cin&gt;&gt;N))</span><br><span class="line">            break;</span><br><span class="line">        // 下一轮输入时，对相关参数初始化</span><br><span class="line">        max_steps = 0;</span><br><span class="line">        min_steps = -1;</span><br><span class="line">        total_steps = 0;</span><br><span class="line">        for (int i=1; i&lt;=N; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            steps = 0;</span><br><span class="line">            result.reset(0.0, 0.0);</span><br><span class="line">            while (result.magval() &lt; target)</span><br><span class="line">            &#123;</span><br><span class="line">                direction = rand() % 360;   // 余数&lt;360°，所以在[0°,360°)之间随机取值</span><br><span class="line">                step.reset(dstep, direction, Vector::POL);</span><br><span class="line">                result = result + step;</span><br><span class="line">                steps++;</span><br><span class="line">            &#125;</span><br><span class="line">            total_steps += steps;</span><br><span class="line">            if (steps &gt; max_steps)</span><br><span class="line">                max_steps = steps;</span><br><span class="line">            if (steps &lt; min_steps)      // 这样分开写的好处是，防止后面的 steps 都大于 max，如果是 else 那么 min 不会执行</span><br><span class="line">                min_steps = steps;</span><br><span class="line">        &#125;</span><br><span class="line">        ave_steps = (double)total_steps/N;</span><br><span class="line">        cout &lt;&lt; &quot;the max step is: &quot; &lt;&lt; max_steps &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; &quot;the min step is: &quot; &lt;&lt; min_steps &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; &quot;the ave step is: &quot; &lt;&lt; ave_steps &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; &quot;Enter target distance (q to quit): &quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; &quot;Bye!\n&quot;;</span><br><span class="line">    cin.clear();</span><br><span class="line">    while (cin.get() != &apos;\n&apos;)</span><br><span class="line">        continue;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\prj_11_3.exe</span><br><span class="line">Enter target distance (q to quit): 50</span><br><span class="line">Enter step length: 2</span><br><span class="line">Enter the test num: 2</span><br><span class="line">the max step is: 315</span><br><span class="line">the min step is: 184</span><br><span class="line">the ave step is: 249.5</span><br><span class="line">Enter target distance (q to quit): 50</span><br><span class="line">Enter step length: 2</span><br><span class="line">Enter the test num: 2</span><br><span class="line">the max step is: 378</span><br><span class="line">the min step is: 196</span><br><span class="line">the ave step is: 287</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="11-4"><a href="#11-4" class="headerlink" title="11.4"></a>11.4</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">// mytime.h</span><br><span class="line">#ifndef MYTIME_H_</span><br><span class="line">#define MYTIME_H_</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">class Time</span><br><span class="line">&#123;</span><br><span class="line">    private:</span><br><span class="line">        int hours;</span><br><span class="line">        int minutes;</span><br><span class="line">    public:</span><br><span class="line">        Time();</span><br><span class="line">        Time(int h, int m=0);</span><br><span class="line">        void AddMin(int m);</span><br><span class="line">        void AddHr(int h);</span><br><span class="line">        void Reset(int h=0, int m=0);</span><br><span class="line">        friend Time operator+(const Time &amp;t1, const Time &amp;t2);</span><br><span class="line">        friend Time operator-(const Time &amp;t1, const Time &amp;t2);</span><br><span class="line">        friend Time operator*(const Time &amp;t, double n);</span><br><span class="line">        friend Time operator*(double m, const Time &amp;t)</span><br><span class="line">            &#123;return t*m;&#125;   // inline definition, use t.operator(m)</span><br><span class="line">        friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Time &amp;t);</span><br><span class="line">&#125;;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">// mytime.cpp </span><br><span class="line">#include &quot;mytime.h&quot;</span><br><span class="line">Time::Time()</span><br><span class="line">&#123;</span><br><span class="line">    hours = minutes = 0;</span><br><span class="line">&#125;</span><br><span class="line">Time::Time(int h, int m)</span><br><span class="line">&#123;</span><br><span class="line">    hours = h;</span><br><span class="line">    minutes = m;</span><br><span class="line">&#125;</span><br><span class="line">void Time::AddMin(int m)</span><br><span class="line">&#123;</span><br><span class="line">    minutes += m;</span><br><span class="line">    hours += minutes/60;</span><br><span class="line">    minutes %= 60;</span><br><span class="line">&#125;</span><br><span class="line">void Time::AddHr(int h)</span><br><span class="line">&#123;</span><br><span class="line">    hours += h;</span><br><span class="line">&#125;</span><br><span class="line">void Time::Reset(int h, int m)</span><br><span class="line">&#123;</span><br><span class="line">    hours = h;</span><br><span class="line">    minutes = m;</span><br><span class="line">&#125;</span><br><span class="line">Time operator+(const Time &amp;t1, const Time &amp;t2)</span><br><span class="line">&#123;</span><br><span class="line">    Time sum;</span><br><span class="line">    sum.minutes = t1.minutes + t2.minutes;</span><br><span class="line">    sum.hours = t1.hours + t2.hours + sum.minutes/60;</span><br><span class="line">    sum.minutes %= 60;</span><br><span class="line">    return sum;</span><br><span class="line">&#125;</span><br><span class="line">Time operator-(const Time &amp;t1, const Time &amp;t2)</span><br><span class="line">&#123;</span><br><span class="line">    Time diff;</span><br><span class="line">    int tot1, tot2;</span><br><span class="line">    tot1 = t1.minutes + 60*t1.hours;</span><br><span class="line">    tot2 = t2.minutes + 60*t2.hours;</span><br><span class="line">    diff.minutes = (tot2 - tot1)%60;</span><br><span class="line">    diff.hours = (tot2-tot1)/60;</span><br><span class="line">    return diff;</span><br><span class="line">&#125;</span><br><span class="line">Time operator*(const Time &amp;t, double mult)</span><br><span class="line">&#123;</span><br><span class="line">    Time result;</span><br><span class="line">    long totalminutes = t.hours*mult*60 + t.minutes*mult;</span><br><span class="line">    result.hours = totalminutes/60;</span><br><span class="line">    result.minutes = totalminutes%60;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Time &amp;t)</span><br><span class="line">&#123;</span><br><span class="line">    os &lt;&lt; t.hours &lt;&lt; &quot; hours, &quot; &lt;&lt; t.minutes &lt;&lt; &quot; minutes&quot;;</span><br><span class="line">    return os;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// prj_11_4.cpp</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;mytime.h&quot;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using std::cout;</span><br><span class="line">    using std::endl;</span><br><span class="line">    Time aida(3, 35);</span><br><span class="line">    Time tosca(2, 48);</span><br><span class="line">    Time temp;</span><br><span class="line">    cout &lt;&lt; &quot;Aida and Tosca:\n&quot;;</span><br><span class="line">    cout &lt;&lt; aida &lt;&lt; &quot;; &quot; &lt;&lt; tosca &lt;&lt; endl;</span><br><span class="line">    temp = aida + tosca;        // operator+()</span><br><span class="line">    cout &lt;&lt; &quot;Aida + Tosca: &quot; &lt;&lt; temp &lt;&lt; endl;</span><br><span class="line">    temp = aida*1.17;            // member operator*()</span><br><span class="line">    cout &lt;&lt; &quot;Aida * 1.17: &quot; &lt;&lt; temp &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;10.0 * Tosca: &quot; &lt;&lt; 10.0*tosca &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\prj_11_4.exe</span><br><span class="line">Aida and Tosca:</span><br><span class="line">3 hours, 35 minutes; 2 hours, 48 minutes</span><br><span class="line">Aida + Tosca: 6 hours, 23 minutes</span><br><span class="line">Aida * 1.17: 4 hours, 11 minutes</span><br><span class="line">10.0 * Tosca: 28 hours, 0 minutes</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="11-5"><a href="#11-5" class="headerlink" title="11.5"></a>11.5</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">// stonewt.h</span><br><span class="line">#ifndef STONEWT_H_</span><br><span class="line">#define STONEWT_H_</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">class Stonewt</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        enum Mode &#123;STN, INT_LBS, DB_LBS&#125;;</span><br><span class="line">    private:</span><br><span class="line">        static const int Lbs_per_stn = 14;  // pounds per stone, 1stone(英石)=14lbs(磅)</span><br><span class="line">        int stone;                          // whole stones</span><br><span class="line">        double pds_left;                    // fractional pounds</span><br><span class="line">        double pounds;                      // entire weight in pounds         </span><br><span class="line">        Mode status;              </span><br><span class="line">    public:</span><br><span class="line">        Stonewt(double lbs, Mode m=STN);                // constructor for double pounds</span><br><span class="line">        Stonewt(int stn, double lbs, Mode m=STN);       // constructor for stone, lbs</span><br><span class="line">        Stonewt();                          // default constructor</span><br><span class="line">        ~Stonewt();</span><br><span class="line">        void set_stn() &#123;status = STN;&#125;;</span><br><span class="line">        void set_int_lbs() &#123;status = INT_LBS;&#125;;</span><br><span class="line">        void set_db_lbs() &#123;status = DB_LBS;&#125;;</span><br><span class="line"></span><br><span class="line">        Stonewt operator+(const Stonewt &amp;s) const;</span><br><span class="line">        Stonewt operator-(const Stonewt &amp;s) const;</span><br><span class="line">        Stonewt operator*(double n) const;</span><br><span class="line"></span><br><span class="line">        friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Stonewt &amp;s);      </span><br><span class="line">&#125;;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">// stonewt.cpp</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;stonewt.h&quot;</span><br><span class="line">using std::cout;</span><br><span class="line">// construct Stonewt object from double value</span><br><span class="line">Stonewt::Stonewt(double lbs, Mode m)</span><br><span class="line">&#123;    </span><br><span class="line">    stone = int(lbs)/Lbs_per_stn;</span><br><span class="line">    pds_left = int(lbs) % Lbs_per_stn + lbs - int(lbs); // because double lbs</span><br><span class="line">    pounds = lbs;</span><br><span class="line">    status = m;</span><br><span class="line">&#125;</span><br><span class="line">// construct Stonewt object from stone, double values</span><br><span class="line">Stonewt::Stonewt(int stn, double lbs, Mode m)</span><br><span class="line">&#123;</span><br><span class="line">    stone = stn;</span><br><span class="line">    pds_left = lbs;</span><br><span class="line">    pounds = stn*Lbs_per_stn + lbs;</span><br><span class="line">    status = m;</span><br><span class="line">&#125;</span><br><span class="line">Stonewt::Stonewt()  // default constructor, wt=0</span><br><span class="line">&#123;</span><br><span class="line">    stone = pounds = pds_left = 0;</span><br><span class="line">    status = STN;</span><br><span class="line">&#125;</span><br><span class="line">Stonewt::~Stonewt() // destructor</span><br><span class="line">&#123;&#125;</span><br><span class="line">Stonewt Stonewt::operator+(const Stonewt &amp;s) const</span><br><span class="line">&#123;</span><br><span class="line">    return Stonewt(pounds + s.pounds);</span><br><span class="line">&#125;</span><br><span class="line">Stonewt Stonewt::operator-(const Stonewt &amp;s) const</span><br><span class="line">&#123;</span><br><span class="line">    return Stonewt(pounds - s.pounds);</span><br><span class="line">&#125;</span><br><span class="line">Stonewt Stonewt::operator*(double n) const</span><br><span class="line">&#123;</span><br><span class="line">    return Stonewt(pounds * n);</span><br><span class="line">&#125;</span><br><span class="line">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Stonewt &amp;s)</span><br><span class="line">&#123;</span><br><span class="line">    if (s.status == Stonewt::STN)</span><br><span class="line">        os &lt;&lt; s.stone &lt;&lt; &quot; stone, &quot; &lt;&lt; s.pds_left &lt;&lt; &quot; pounds\n&quot;;</span><br><span class="line">    else if (s.status == Stonewt::DB_LBS)</span><br><span class="line">        os &lt;&lt; s.pounds &lt;&lt; &quot; db_pounds\n&quot;;</span><br><span class="line">    else if (s.status == Stonewt::INT_LBS)</span><br><span class="line">        os &lt;&lt; int(s.pounds) &lt;&lt; &quot; int_pounds\n&quot;;    </span><br><span class="line">    return os;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// prj_11_5.cpp</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;stonewt.h&quot;</span><br><span class="line">using std::cout;</span><br><span class="line">using std::endl;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    Stonewt s1; // 0 stone, 0 pounds</span><br><span class="line">    Stonewt s2(1.5, Stonewt::DB_LBS);   // 1.5 db_pounds</span><br><span class="line">    Stonewt s3 = Stonewt(1, 0.5, Stonewt::INT_LBS); // 1*14+0.5 = 14.5 -&gt; 14 ini_pounds</span><br><span class="line">    cout &lt;&lt; &quot;initial s1: &quot; &lt;&lt; s1 </span><br><span class="line">        &lt;&lt; &quot;initial s2: &quot; &lt;&lt; s2</span><br><span class="line">        &lt;&lt; &quot;initial s3: &quot; &lt;&lt; s3;</span><br><span class="line">    s1 = s1 + s2;   </span><br><span class="line">    s1.set_db_lbs(); // 1.5 db_pounds</span><br><span class="line">    cout &lt;&lt; &quot;s1 + s2(db_lbs): &quot; &lt;&lt; s1;</span><br><span class="line">    s1.set_int_lbs();</span><br><span class="line">    cout &lt;&lt; &quot;s1 + s2(int_lbs): &quot; &lt;&lt; s1;</span><br><span class="line">    cout &lt;&lt; &quot;s3 - s2: &quot; &lt;&lt; s3-s2;   // 临时变量，默认 STN</span><br><span class="line">    cout &lt;&lt; &quot;s1*2: &quot; &lt;&lt; s1*2;       // 同上</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\prj_11_5.exe</span><br><span class="line">initial s1: 0 stone, 0 pounds</span><br><span class="line">initial s2: 1.5 db_pounds</span><br><span class="line">initial s3: 14 int_pounds</span><br><span class="line">s1 + s2(db_lbs): 1.5 db_pounds</span><br><span class="line">s1 + s2(int_lbs): 1 int_pounds</span><br><span class="line">s3 - s2: 0 stone, 13 pounds</span><br><span class="line">s1*2: 0 stone, 3 pounds</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="11-6"><a href="#11-6" class="headerlink" title="11.6"></a>11.6</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line">// stonewt.h</span><br><span class="line">#ifndef STONEWT_H_</span><br><span class="line">#define STONEWT_H_</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">class Stonewt</span><br><span class="line">&#123;</span><br><span class="line">    private:</span><br><span class="line">        static const int Lbs_per_stn = 14;  // pounds per stone, 1stone(英石)=14lbs(磅)</span><br><span class="line">        int stone;                          // whole stones</span><br><span class="line">        double pds_left;                    // fractional pounds</span><br><span class="line">        double pounds;                      // entire weight in pounds                    </span><br><span class="line">    public:</span><br><span class="line">        Stonewt(double lbs);                // constructor for double pounds</span><br><span class="line">        Stonewt(int stn, double lbs);       // constructor for stone, lbs</span><br><span class="line">        Stonewt();                          // default constructor</span><br><span class="line">        ~Stonewt();</span><br><span class="line">        bool operator&gt;(const Stonewt &amp;s) const</span><br><span class="line">        &#123;return pounds &gt; s.pounds;&#125;;</span><br><span class="line">        bool operator&lt;(const Stonewt &amp;s) const</span><br><span class="line">        &#123;return pounds &lt; s.pounds;&#125;;</span><br><span class="line">        bool operator&gt;=(const Stonewt &amp;s) const</span><br><span class="line">        &#123;return pounds &gt;= s.pounds;&#125;;</span><br><span class="line">        bool operator&lt;=(const Stonewt &amp;s) const</span><br><span class="line">        &#123;return pounds &lt;= s.pounds;&#125;;</span><br><span class="line">        bool operator==(const Stonewt &amp;s) const</span><br><span class="line">        &#123;return pounds == s.pounds;&#125;;</span><br><span class="line">        bool operator!=(const Stonewt &amp;s) const</span><br><span class="line">        &#123;return pounds != s.pounds;&#125;;   </span><br><span class="line">        void show_lbs() const;</span><br><span class="line">        void show_stn() const;      </span><br><span class="line">&#125;;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">// stonewt.cpp</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;stonewt.h&quot;</span><br><span class="line">using std::cout;</span><br><span class="line">// construct Stonewt object from double value</span><br><span class="line">Stonewt::Stonewt(double lbs)</span><br><span class="line">&#123;    </span><br><span class="line">    stone = int(lbs)/Lbs_per_stn;</span><br><span class="line">    pds_left = int(lbs) % Lbs_per_stn + lbs - int(lbs); // because double lbs</span><br><span class="line">    pounds = lbs;</span><br><span class="line">&#125;</span><br><span class="line">// construct Stonewt object from stone, double values</span><br><span class="line">Stonewt::Stonewt(int stn, double lbs)</span><br><span class="line">&#123;</span><br><span class="line">    stone = stn;</span><br><span class="line">    pds_left = lbs;</span><br><span class="line">    pounds = stn*Lbs_per_stn + lbs;</span><br><span class="line">&#125;</span><br><span class="line">Stonewt::Stonewt()  // default constructor, wt=0</span><br><span class="line">&#123;</span><br><span class="line">    stone = pounds = pds_left = 0;</span><br><span class="line">&#125;</span><br><span class="line">Stonewt::~Stonewt() // destructor</span><br><span class="line">&#123;&#125;</span><br><span class="line">void Stonewt::show_lbs() const</span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; stone &lt;&lt; &quot; stone, &quot; &lt;&lt; pds_left &lt;&lt; &quot; pounds\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">void Stonewt::show_stn() const</span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; pounds &lt;&lt; &quot; pounds\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// prj_11_6.cpp</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;stonewt.h&quot;</span><br><span class="line">using std::cout;</span><br><span class="line">using std::endl;</span><br><span class="line">using std::cin;</span><br><span class="line">const int LEN = 6;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    // Stonewt arr[LEN] = &#123;1.5, 2.5, 3.5&#125;;</span><br><span class="line">    Stonewt arr[LEN] = </span><br><span class="line">    &#123;</span><br><span class="line">        Stonewt(1, 0.5),</span><br><span class="line">        Stonewt(2, 0.5),</span><br><span class="line">        Stonewt(13, 0.5)</span><br><span class="line">    &#125;;</span><br><span class="line">    double value_pounds;</span><br><span class="line">    Stonewt max = arr[0];</span><br><span class="line">    Stonewt min = arr[0];</span><br><span class="line">    Stonewt ele = Stonewt(11, 0.0);</span><br><span class="line">    int cnt=0;</span><br><span class="line">    for (int i=3; i&lt;LEN; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;Enter the value: &quot;;</span><br><span class="line">        cin &gt;&gt; value_pounds;        // 11*14 = 154</span><br><span class="line">        arr[i] = Stonewt(value_pounds);</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i=0; i&lt;LEN; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        if (arr[i] &gt; max)</span><br><span class="line">            max = arr[i];</span><br><span class="line">        else if (arr[i] &lt; min)</span><br><span class="line">            min = arr[i];</span><br><span class="line">        if(arr[i] &gt;= ele)</span><br><span class="line">            cnt++;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; &quot;the max is: &quot;;</span><br><span class="line">    max.show_lbs();</span><br><span class="line">    cout &lt;&lt; &quot;the min is: &quot;;</span><br><span class="line">    min.show_lbs();</span><br><span class="line">    cout &lt;&lt; &quot;the num of value&gt;=11 is: &quot; &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\prj_11_6.exe</span><br><span class="line">Enter the value: 154</span><br><span class="line">Enter the value: 200</span><br><span class="line">Enter the value: 14</span><br><span class="line">the max is: 14 stone, 4 pounds</span><br><span class="line">the min is: 1 stone, 0 pounds</span><br><span class="line">the num of value&gt;=11 is: 3</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="11-7"><a href="#11-7" class="headerlink" title="11.7"></a>11.7</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">// complex0.h</span><br><span class="line">// a = (A, Bi), c = (C, Di)</span><br><span class="line">// addition: a+c = (A+C, (B+D)i)</span><br><span class="line">// Subtraction: a-c = (A-C, (B-C)i)</span><br><span class="line">// multiplication: a*c = (A*C-B*D, (A*D+B*C)i)</span><br><span class="line">// multiplication: x*c = (x*C, x*Di), x is real</span><br><span class="line">// Conjugate: ~a = (A, -Bi)</span><br><span class="line">#ifndef COMPLEX0_H_</span><br><span class="line">#define COMPLEX0_H_</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">class Complex</span><br><span class="line">&#123;</span><br><span class="line">    private:</span><br><span class="line">        double real;</span><br><span class="line">        double imag;</span><br><span class="line">    public:</span><br><span class="line">        Complex();</span><br><span class="line">        Complex(double n, double m);</span><br><span class="line">        ~Complex();</span><br><span class="line">        Complex operator+(const Complex &amp;cmp) const;</span><br><span class="line">        Complex operator-(const Complex &amp;cmp) const;</span><br><span class="line">        Complex operator*(const Complex &amp;cmp) const;</span><br><span class="line">        Complex operator~() const;    </span><br><span class="line">        friend Complex operator*(double n, const Complex &amp;cmp);   </span><br><span class="line">        friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Complex &amp;cmp);</span><br><span class="line">        friend std::istream &amp; operator&gt;&gt;(std::istream &amp;os, Complex &amp;cmp);</span><br><span class="line">&#125;;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">// complex0.cpp</span><br><span class="line">//#include &lt;iostream&gt;</span><br><span class="line">#include &quot;complex0.h&quot;</span><br><span class="line">Complex::Complex()</span><br><span class="line">&#123;</span><br><span class="line">    real = 0.0;</span><br><span class="line">    imag = 0.0;</span><br><span class="line">&#125;</span><br><span class="line">Complex::Complex(double n, double m)</span><br><span class="line">&#123;</span><br><span class="line">    real = n;</span><br><span class="line">    imag = m;</span><br><span class="line">&#125;</span><br><span class="line">Complex::~Complex()</span><br><span class="line">&#123;&#125;</span><br><span class="line">// addition: a+c = (A+C, (B+D)i)</span><br><span class="line">Complex Complex::operator+(const Complex &amp;cmp) const</span><br><span class="line">&#123;</span><br><span class="line">    return Complex(real+cmp.real, imag+cmp.imag);</span><br><span class="line">&#125;</span><br><span class="line">// Subtraction: a-c = (A-C, (B-C)i)</span><br><span class="line">Complex Complex::operator-(const Complex &amp;cmp) const</span><br><span class="line">&#123;</span><br><span class="line">    return Complex(real-cmp.real, imag-cmp.imag);</span><br><span class="line">&#125;</span><br><span class="line">// multiplication: a*c = (A*C-B*D, (A*D+B*C)i)</span><br><span class="line">Complex Complex::operator*(const Complex &amp;cmp) const</span><br><span class="line">&#123;</span><br><span class="line">    Complex mul;</span><br><span class="line">    mul.real = real*cmp.real - imag*cmp.imag;</span><br><span class="line">    mul.imag = real*cmp.imag + imag*cmp.real;</span><br><span class="line">    return mul;</span><br><span class="line">&#125;</span><br><span class="line">// multiplication: x*c = (x*C, x*Di), x is real</span><br><span class="line">Complex operator*(double n, const Complex &amp;cmp)</span><br><span class="line">&#123;</span><br><span class="line">    return Complex(n*cmp.real, n*cmp.imag);</span><br><span class="line">&#125;</span><br><span class="line">// Conjugate: ~a = (A, -Bi)</span><br><span class="line">Complex Complex::operator~() const</span><br><span class="line">&#123;</span><br><span class="line">    return Complex(real, -imag);</span><br><span class="line">&#125;</span><br><span class="line">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Complex &amp;cmp)</span><br><span class="line">&#123;</span><br><span class="line">    os &lt;&lt; &quot;(&quot; &lt;&lt; cmp.real &lt;&lt; &quot;, &quot; &lt;&lt; cmp.imag &lt;&lt; &quot;i)&quot;;</span><br><span class="line">    return os;</span><br><span class="line">&#125;</span><br><span class="line">std::istream &amp; operator&gt;&gt;(std::istream &amp;is, Complex &amp;cmp)   // 输入不能 const</span><br><span class="line">&#123;</span><br><span class="line">    std::cout &lt;&lt; &quot;real: &quot;;</span><br><span class="line">    is &gt;&gt; cmp.real;</span><br><span class="line">    if (!is)        // 如果不加，最后输入 q 的时候，还会在输出 imaginary: </span><br><span class="line">        return is;</span><br><span class="line">    std::cout &lt;&lt; &quot;imaginary: &quot;;</span><br><span class="line">    is &gt;&gt; cmp.imag;</span><br><span class="line">    return is;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// prj_11_7.cpp</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;complex0.h&quot;       // to avoid confusion with complex.h</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    Complex a(3.0, 4.0);    // initialize to (3,4i)</span><br><span class="line">    Complex c;</span><br><span class="line">    cout &lt;&lt; &quot;Enter a complex number (q to quit):\n&quot;;</span><br><span class="line">    while (cin &gt;&gt; c)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;c is &quot; &lt;&lt; c &lt;&lt; &quot;\n&quot;;</span><br><span class="line">        cout &lt;&lt; &quot;complex conjugate is &quot; &lt;&lt; ~c &lt;&lt; &quot;\n&quot;;</span><br><span class="line">        cout &lt;&lt; &quot;a is &quot; &lt;&lt; a &lt;&lt; &quot;\n&quot;;</span><br><span class="line">        cout &lt;&lt; &quot;a + c is &quot; &lt;&lt; a+c &lt;&lt; &quot;\n&quot;;</span><br><span class="line">        cout &lt;&lt; &quot;a - c is &quot; &lt;&lt; a-c &lt;&lt; &quot;\n&quot;;</span><br><span class="line">        cout &lt;&lt; &quot;a * c is &quot; &lt;&lt; a*c &lt;&lt; &quot;\n&quot;;</span><br><span class="line">        cout &lt;&lt; &quot;2 * c is &quot; &lt;&lt; 2*c &lt;&lt; &quot;\n&quot;;</span><br><span class="line">        cout &lt;&lt; &quot;Enter a comlex number (q to quit):\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; &quot;Done!\n&quot;;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\prj_11_7.exe</span><br><span class="line">Enter a complex number (q to quit):</span><br><span class="line">real: 10</span><br><span class="line">imaginary: 12</span><br><span class="line">c is (10, 12i)</span><br><span class="line">complex conjugate is (10, -12i)</span><br><span class="line">a is (3, 4i)</span><br><span class="line">a + c is (13, 16i)</span><br><span class="line">a - c is (-7, -8i)</span><br><span class="line">a * c is (-18, 76i)</span><br><span class="line">2 * c is (20, 24i)</span><br><span class="line">Enter a comlex number (q to quit):</span><br><span class="line">real: q</span><br><span class="line">Done!</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/25/其他/矩阵求导/" rel="next" title="矩阵求导">
+                <i class="fa fa-chevron-left"></i> 矩阵求导
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">99</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1"><span class="nav-number">1.</span> <span class="nav-text">11.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3"><span class="nav-number">2.</span> <span class="nav-text">11.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4"><span class="nav-number">3.</span> <span class="nav-text">11.4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-5"><span class="nav-number">4.</span> <span class="nav-text">11.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-6"><span class="nav-number">5.</span> <span class="nav-text">11.6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-7"><span class="nav-number">6.</span> <span class="nav-text">11.7</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">471k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">7:08</span>
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+<!--<span id="busuanzi_container_site_uv">
+    总访问量<span id="busuanzi_value_site_uv"></span>次
+</span>-->
+
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2019/03/27/C++/Chapter11_Programming practice Plus/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
