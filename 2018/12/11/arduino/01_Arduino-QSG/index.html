@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -186,7 +186,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -215,7 +215,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -386,20 +386,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/11/arduino/01_Arduino-QSG/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -455,7 +455,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/arduino/" itemprop="url" rel="index"><span itemprop="name">arduino</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/arduino/" itemprop="url" rel="index"><span itemprop="name">arduino</span></a></span>
 
                 
                 
@@ -540,7 +540,7 @@
 <p>不想写了，算了还是继续写点吧，看都看了。。。。</p>
 <p><strong>constrain(x,a,b);</strong><br>百度翻译是驱使，强迫，束缚的意思及物动词。<br>此函数需要三个参数，这里x就是指的被约束的数，a是最小值，b是最大值。如果最小值小于a，则返回a。大于b则返回b。。。。感觉智商被欺骗了。<br>这个可以用到RGB灯里面，比如<strong>analogWrite(redPin,constrain(red,0,255));</strong></p>
 <p><strong>random(min,max);</strong><br>百度翻译是随机的意思。<br>在MATLAB也用过这个函数，用来产生随机数。min是随机数的最小值，max最大值。<br>到这里插个别的，数码管我们都知道有共阴和共阳，省赛一般是是共阴。同样RGB灯也有共阴和共阳两种。。。我日想起来李安老师的wifi小夜灯了。。。百度了下</p>
-<p><img src="https://note.youdao.com/yws/public/resource/7775cbafead0a7aff0bfc08242457087/xmlnote/B7A6041437D04C13880314889218A1D7/24720" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/7775cbafead0a7aff0bfc08242457087/xmlnote/B7A6041437D04C13880314889218A1D7/24720" alt></p>
 <p>共阳RGB就是把正极拉到一个公共引脚，其他三个端则是负极。上<br>图是可以看出，外表上共阴共阳没有任何区别。然而在使用上是有区别的，区别分为以下两点：<br>（1）接线中的改变，共阳的话，共用端需要接5V，而不是GND，否则LED不能被点亮。<br>（2）第二点就是，在颜色的调配上，与共阴是完全相反的。<br>举个例子：共阴RGB显示红色为R-255，G-0，B-0。然而共阳则完全相反，RGB数值是<br>R-0, G-255, B-255。</p>
 <p><strong>tone</strong><br>百度翻译是语气，音色，调子。<br>在arduino中一般和这个相关的有三个函数</p>
 <ul>
@@ -689,7 +689,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -843,7 +843,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -852,7 +852,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -872,7 +872,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

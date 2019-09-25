@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -186,7 +186,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -215,7 +215,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -386,20 +386,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/21/Machine Learning/基础概念/04_DL训练过程/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -467,7 +467,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
 
                 
                 
@@ -535,7 +535,7 @@
 <p>采用无标定（或者有标定）数据分层训练各层参数，这一步可以看成一个无监督训练过程，     是和传统神经网络区别最大的地方，这个过程可以看做是特征学习的过程。<br>先用无标定数据训练隐层的最底层，训练时先学习最底层的参数（这一层可以看作是得到一个使得输出和输入差别最小的三层神经网络的隐层），由于模型能力的限制及稀疏性约束，使得得到的模型能够学习到数据本身的结构，从而得到比输入更具有表示能力的特征；在学习得到第n-1层后，将n-1层的输出作为第n层的输入，训练第n层，由此分别得到各层的参数。</p>
 <p><strong>（2）自顶向下的监督学习，就是通过带标签的数据去训练，误差自顶向下传输，对网络进行微调。</strong></p>
 <p>基于第一步得到的各层参数进一步fine-tune整个多层模型的参数，这一步是一个有监督训练过程；第一步类似于神经网络的随机初始化初值过程，由于深度学习的第一步不是随机初始化，而是通过学习输入数据的结构得到的，因此这个初值更接近全局最优，能够取得更好的结果；所以深度学习效果好很大程度上归功于第一步（特征学习的过程）。<br>此过程如下图所示。</p>
-<p><img src="/img/ML/基础概念/04_DL训练过程1.png" alt=""><br><em>图1 特征学习过程</em></p>
+<p><img src="/img/ML/基础概念/04_DL训练过程1.png" alt><br><em>图1 特征学习过程</em></p>
 
       
     </div>
@@ -655,7 +655,7 @@
 
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -793,7 +793,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -802,7 +802,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -822,7 +822,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -187,7 +187,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -216,7 +216,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -387,20 +387,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/19/FPGA/Altera/PCIe/04_PCIe-Configurations-Datasheet/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -468,7 +468,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
 
                 
                 
@@ -531,16 +531,16 @@
 
       
         <p><strong>【2018/04/18】</strong></p>
-<p><strong>Reference:</strong> <cyclone v="" hard="" ip="" for="" pci="" express="" user="" guide=""></cyclone></p>
+<p><strong>Reference:</strong> <cyclone v hard ip for pci express user guide></cyclone></p>
 <h4 id="一、Cyclone-V-Hard-IP-forPCIe包含的层"><a href="#一、Cyclone-V-Hard-IP-forPCIe包含的层" class="headerlink" title="一、Cyclone V Hard IP forPCIe包含的层"></a>一、Cyclone V Hard IP forPCIe包含的层</h4><p>The Cyclone V Hard IP for PCI Express includes a full hard IP implementation（实施）of the<br>PCI Express stack（堆栈） including the following layers:</p>
 <p>■ Physical (PHY)   &nbsp;      //物理<br>■ Physical Media Attachment (PMA)  &nbsp;      //物理介质附件<br>■ Physical Coding Sublayer (PCS)    &nbsp;  //物理编码子层<br>■ Media Access Control (MAC)    &nbsp;     //媒体访问控制<br>■ Data Link Layer (DL)            &nbsp;     //数据链路层<br>■ Transaction Layer (TL)    &nbsp;      //事务层</p>
 <h4 id="二、充分利用，实现自定义Hard-IP"><a href="#二、充分利用，实现自定义Hard-IP" class="headerlink" title="二、充分利用，实现自定义Hard IP"></a>二、充分利用，实现自定义Hard IP</h4><p>Optimized（最佳化的，尽量充分利用） for Altera devices, the Cyclone V Hard IP for PCI Express supports all memory, I/O, configuration, and message transactions. It has a highly optimized Application Layer interface to achieve maximum effective throughput（生产量，吞吐量）. You can customize（定做，自定义） the Hard IP to meet（满足） your design requirements using either <strong>the MegaWizard Plug-In Manager or the Qsys design flow.</strong></p>
 <p>quartus ii里的IP Core和Qsys design flow都可以自定义Hard IP。</p>
 <h4 id="三、PCIe-Link"><a href="#三、PCIe-Link" class="headerlink" title="三、PCIe Link"></a>三、PCIe Link</h4><p>Figure 1–1 shows a PCI Express link between two Cyclone V FPGAs. One is<br>configured as a Root Port（根端口） and the other as an Endpoint（端点，末端）.</p>
 <p><strong>Root Port’s alias is RP.</strong><br><strong>Endpoint’s alias is EP.</strong></p>
-<p><img src="/img/FPGA/Altera/PCIe/04_PCIe_Configurations_Datasheet1.png" alt=""> </p>
+<p><img src="/img/FPGA/Altera/PCIe/04_PCIe_Configurations_Datasheet1.png" alt> </p>
 <p>Figure 1–2 shows a PCI Express link between two Altera FPGAs. One is configured as a Root Port and the other as a multi-function（多功能） Endpoint. The FPGA serves（作为，充当，担任） as a custom（习惯，风俗，定制的） I/O hub for the host CPU. In the Cyclone V FPGA, each peripheral（外设） is treated as a function with its own set of（一组，一副） Configuration Space registers. Eight multiplexed（多路复用） functions operate（运行，运转，操作） using a single PCI Express link.</p>
-<p><img src="/img/FPGA/Altera/PCIe/04_PCIe_Configurations_Datasheet2.png" alt=""> </p>
+<p><img src="/img/FPGA/Altera/PCIe/04_PCIe_Configurations_Datasheet2.png" alt> </p>
 
       
     </div>
@@ -669,7 +669,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -823,7 +823,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -832,7 +832,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -852,7 +852,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

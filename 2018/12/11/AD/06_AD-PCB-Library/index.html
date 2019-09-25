@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -209,7 +209,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -238,7 +238,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -409,20 +409,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/11/AD/06_AD-PCB-Library/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -490,7 +490,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Altium-Designer/" itemprop="url" rel="index"><span itemprop="name">Altium Designer</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Altium-Designer/" itemprop="url" rel="index"><span itemprop="name">Altium Designer</span></a></span>
 
                 
                 
@@ -554,21 +554,21 @@
       
         <p><strong>【2017-07-28】chenyu</strong></p>
 <h4 id="一、简易按键PCB-Library绘制"><a href="#一、简易按键PCB-Library绘制" class="headerlink" title="一、简易按键PCB Library绘制"></a>一、简易按键PCB Library绘制</h4><h5 id="1-1-新建文件找到零点"><a href="#1-1-新建文件找到零点" class="headerlink" title="1.1 新建文件找到零点"></a>1.1 新建文件找到零点</h5><p>File_&gt;New_&gt;Library_&gt;PCB Library，快捷键 Ctrl+End 可以直接找到零点</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library1.png" alt=""> </p>
-<h5 id="1-2-Pad参数配置"><a href="#1-2-Pad参数配置" class="headerlink" title="1.2 Pad参数配置"></a>1.2 Pad参数配置</h5><p><img src="/img/01_AD/06_AD_PCB_Library2.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library1.png" alt> </p>
+<h5 id="1-2-Pad参数配置"><a href="#1-2-Pad参数配置" class="headerlink" title="1.2 Pad参数配置"></a>1.2 Pad参数配置</h5><p><img src="/img/01_AD/06_AD_PCB_Library2.png" alt> </p>
 <p><strong>Place Pad</strong> 放置焊盘，其中30mil指的是内径，60mil指的是外径。<br><strong>shape</strong>可以更改焊盘形状。<br><strong>Layer</strong>可以设置焊盘在哪一层，其中Multi-Layer是指的从顶层一直穿过极板到达底层。因为这个是要做按键的PCB，而按键的引脚肯定是要从板子穿过去的。<br><strong>Electrical Type</strong> ：Load 负载；Terminator 终端；Source 源。<br>在此界面中可以用 <strong>Ctrl+Q</strong> 来进行英制单位和米制单位的切换。</p>
 <p>选择Top Overlay 丝印层（顶层上面的层）<br>4个过孔，8个元件（4个过孔，4条线）</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library3.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library3.png" alt> </p>
 <h4 id="二、手动绘制TCN75的PCB"><a href="#二、手动绘制TCN75的PCB" class="headerlink" title="二、手动绘制TCN75的PCB"></a>二、手动绘制TCN75的PCB</h4><p>右下角的 Dimensions：inches(mm)，意思是对于图片上的标号，括号外的是英制，括号内的是米制单位。</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library4.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library4.png" alt> </p>
 <p>表贴元器件，贴在顶层。不需要穿孔，所以在 Layer 中可选用 Top layer。在设计的时候通常要将焊盘设计的长一些，如果大小和实际一样，那么焊接的时候，很可能没地方放置电烙铁，一般长1mm就ok。因为图中的宽是10mil，长是0.7mm。两个值，上面的是最大值，下面的是最小值。</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library5.png" alt=""><br><img src="/img/01_AD/06_AD_PCB_Library6.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library5.png" alt><br><img src="/img/01_AD/06_AD_PCB_Library6.png" alt> </p>
 <p>这里可以更改格子的大小。</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library7.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library7.png" alt> </p>
 <p>选中 两个（shift）可以右键点 Align 进行排列。<br>Reports里面的Measure Distance（Ctrl+M）可以对距离进行测量。    根据测量情况再进行修改。</p>
 <h4 id="三、利用封装向导绘制PCB-Library"><a href="#三、利用封装向导绘制PCB-Library" class="headerlink" title="三、利用封装向导绘制PCB Library"></a>三、利用封装向导绘制PCB Library</h4><h5 id="3-1-常用封装介绍及选择"><a href="#3-1-常用封装介绍及选择" class="headerlink" title="3.1 常用封装介绍及选择"></a>3.1 常用封装介绍及选择</h5><p>如果是手工操作是比较麻烦，可以用封装向导来做，比较方便。<br>Tools_&gt;Component Wizard</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library8.png" alt=""><br><img src="/img/01_AD/06_AD_PCB_Library9.png" alt=""> </p>
-<p><strong>常见封装类型</strong><br><img src="/img/01_AD/06_AD_PCB_Library10.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library8.png" alt><br><img src="/img/01_AD/06_AD_PCB_Library9.png" alt> </p>
+<p><strong>常见封装类型</strong><br><img src="/img/01_AD/06_AD_PCB_Library10.png" alt> </p>
 <ul>
 <li><p><strong>Ball Grid Arrays(BGA)   BGA球栅阵列封装</strong><br>球栅阵列（Ball Grid Array，简称BGA）封装技术为应用在集成电路上的一种表面黏着技术，此技术常用来永久固定如微处理器之类的的装置。BGA封装能提供比其他如双列直插封装（Dual in-line package）或四侧引脚扁平封装（Quad Flat Package）所容纳更多的接脚，整个装置的底部表面可全作为接脚使用，而不是只有周围可使用，比起周围限定的封装类型还能具有更短的平均导线长度，以具备更佳的高速效能 。<br>球栅阵列（Ball Grid Array,简称BGA）封装是在封装体基板的底部制作阵列，焊球作为电路的I/O端与印刷线路板（PCB）互接。采用该项技术封装的器件是一种表面贴装型器件。<br>BGA(Ball Grid Array),简称BGA,译为球形触点阵列封装，也可译为“球栅阵列”或“网络焊球阵列”和“球面阵”等等。它是在基板的背面按阵列方式制出球形触点作为引脚，在基板正面装配LSI（部分BGA芯片与引出端在基板同一面）是多引脚LSI用的一种表面贴装型封装。</p>
 </li>
@@ -578,41 +578,41 @@
 <li><strong>Dual In-line Packages(DIP)     DIP双列直插封装</strong></li>
 <li><strong>Edge Connectors     边连接器封装</strong></li>
 </ul>
-<p><img src="/img/01_AD/06_AD_PCB_Library11.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library11.png" alt> </p>
 <ul>
 <li><strong>Leadless Chip Carriers(LCC)    LCC无引线芯片载体封装</strong><br>LCC封装，Leadless Chip Carriers，的形式是为了针对无针脚芯片封装设计的，这种封装采用贴片式封装，它的引脚在芯片边缘地步向内弯曲，紧贴芯片，减小了安装体积。但是这种芯片的缺点是使用时调试和焊接都非常麻烦，一般设计时都不直接焊接到印制线路板上，而是使用PGA封装的结构的引脚转换座焊接到印制线路板上，再将LCC封装的芯片安装到引脚转换座的LCC结构形式的安装槽中，这样的芯片就可随时拆卸，便于调试 。</li>
 <li><strong>Pin Grid Arrays(PGA)    PGA 引脚网格阵列封装</strong><br>PGA封装，英文全称为(Pin Grid Array Package)，中文含义叫插针网格阵列封装技术，由这种技术封装的芯片内外有多个方阵形的插针，每个方阵形插针沿芯片的四周间隔一定距离排列，根据管脚数目的多少，可以围成2～5圈。安装时，将芯片插入专门的PGA插座。</li>
 </ul>
-<p><img src="/img/01_AD/06_AD_PCB_Library12.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library12.png" alt> </p>
 <ul>
 <li><strong>Quad Packs(QUAD)      QUAD四边引出扁平封装</strong></li>
 <li><strong>Resistors    电阻封装</strong></li>
 <li><strong>Small Outline Packages(SOP)     SOP小尺寸封装</strong></li>
 </ul>
-<p><img src="/img/01_AD/06_AD_PCB_Library13.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library13.png" alt> </p>
 <ul>
 <li><strong>Staggered Ball Grid Arrays(SBGA)    SBGA交错球栅阵列封装</strong></li>
 <li><strong>Staggered Pin Grid Arrays(SPGA)    SPGA交错引脚网格阵列封装</strong></li>
 </ul>
 <p>由于芯片手册显示的是SOP封装，所以在此选择SOP</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library14.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library14.png" alt> </p>
 <h5 id="3-2-根据datasheet来配置PCB"><a href="#3-2-根据datasheet来配置PCB" class="headerlink" title="3.2 根据datasheet来配置PCB"></a>3.2 根据datasheet来配置PCB</h5><p>根据datasheet修改焊盘长宽。宽度可以取最大值（16mil），此芯片封装的引脚长度最大是28mil，如果是机器焊接，则无所谓，但如果是手工，那就尽量选大一点。比如改成80mil（1mil=0.0254mm）</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library15.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library15.png" alt> </p>
 <p>这样就设置好了一个焊盘的参数。<br>由datasheet可知，焊盘中心的距离是26mil，两列焊盘中心的距离<br>（197+189）/2=192mil  (28+16)/2=22mil （122+114）/2=118mil，(192-118)/2-22=15mil但之前将焊盘长度加到了80mil，(15+80/2+118/2)*2=228mil，所以两排焊盘的间距是228mil。或者，原本是192-22=170mil，增加了80-22=58mil，170+58=228mil。</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library16.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library16.png" alt> </p>
 <p>然后再设置外框的线条宽度，默认是10mil。然后再设置焊盘的个数。</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library17.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library17.png" alt> </p>
 <p>由于这两点之间的距离是192-22*2=148mil</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library18.png" alt=""><br><img src="/img/01_AD/06_AD_PCB_Library19.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library18.png" alt><br><img src="/img/01_AD/06_AD_PCB_Library19.png" alt> </p>
 <p>实测也是148mil，所以引脚可以焊上，且留出了多余的焊盘，供电烙铁上锡。</p>
 <h4 id="四、利用IPC封装向导"><a href="#四、利用IPC封装向导" class="headerlink" title="四、利用IPC封装向导"></a>四、利用IPC封装向导</h4><p>如果设计一种QUAD的封装，用PCB向导就比较麻烦了。比如给如下信息。MSP430F149</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library20.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library20.png" alt> </p>
 <p>在用PCB向导的时候，好多数据都需要自己计算，而且还麻烦，上图中给的数据好多都是间接使用，效率较低。<br>Tools_&gt;IPC Compliant Footprint Wizard<br>IPC是印制电路板的一种标准。<br>plastic quad flatpack可知其为PQFP封装，所以选择</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library21.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library21.png" alt> </p>
 <p>根据datasheet设定参数</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library22.png" alt=""><br><img src="/img/01_AD/06_AD_PCB_Library23.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library22.png" alt><br><img src="/img/01_AD/06_AD_PCB_Library23.png" alt> </p>
 <p>最后可以生成效果图。</p>
-<p><img src="/img/01_AD/06_AD_PCB_Library24.png" alt=""> </p>
+<p><img src="/img/01_AD/06_AD_PCB_Library24.png" alt> </p>
 <p>Edit_&gt;Set reference，可以更改参考点的位置</p>
 <p>AD_集成库的制作<br>File_&gt;New_&gt;Project_&gt;Integrated Library</p>
 
@@ -743,7 +743,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -897,7 +897,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -906,7 +906,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -926,7 +926,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

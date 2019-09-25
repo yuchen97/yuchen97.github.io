@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -205,7 +205,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -234,7 +234,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -405,20 +405,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/11/AD/05_AD-Schematic-Library/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -486,7 +486,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Altium-Designer/" itemprop="url" rel="index"><span itemprop="name">Altium Designer</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Altium-Designer/" itemprop="url" rel="index"><span itemprop="name">Altium Designer</span></a></span>
 
                 
                 
@@ -550,9 +550,9 @@
       
         <p><strong>【2017-07-27】chenyu</strong></p>
 <p>原理图库 schematic library<br>PCB库  footprint library</p>
-<p>Schematic Library<br>下面以TCN75（两线串行温度传感器和热监控器）为例<br><img src="/img/01_AD/05_AD_Schematic_Library1.png" alt=""> </p>
-<p>File_&gt;New_&gt;Library_&gt;Schematic Library<br>右键    Option 可对当前界面的属性进行设置。<br>操作时先从右下角的SCH中点开SCH Library，方便操作。<br><img src="/img/01_AD/05_AD_Schematic_Library2.png" alt=""> </p>
-<p>绘制矩形框 Rectangle<br>放置引脚Place Pin<br><img src="/img/01_AD/05_AD_Schematic_Library3.png" alt=""><br><img src="/img/01_AD/05_AD_Schematic_Library4.png" alt=""> </p>
+<p>Schematic Library<br>下面以TCN75（两线串行温度传感器和热监控器）为例<br><img src="/img/01_AD/05_AD_Schematic_Library1.png" alt> </p>
+<p>File_&gt;New_&gt;Library_&gt;Schematic Library<br>右键    Option 可对当前界面的属性进行设置。<br>操作时先从右下角的SCH中点开SCH Library，方便操作。<br><img src="/img/01_AD/05_AD_Schematic_Library2.png" alt> </p>
+<p>绘制矩形框 Rectangle<br>放置引脚Place Pin<br><img src="/img/01_AD/05_AD_Schematic_Library3.png" alt><br><img src="/img/01_AD/05_AD_Schematic_Library4.png" alt> </p>
 <p>字母上面的横线可以加\，比如Display name中R\S\T\然后引脚上就会显示RST上面有横线。</p>
 <ul>
 <li><strong>Designator</strong> 标号</li>
@@ -567,21 +567,21 @@
 </li>
 </ul>
 <p>Description下面有一个Hide，选中之后代表引脚隐藏。比如这样就意味着引脚默认隐藏且连接到GND</p>
-<p><img src="/img/01_AD/05_AD_Schematic_Library5.png" alt=""> </p>
+<p><img src="/img/01_AD/05_AD_Schematic_Library5.png" alt> </p>
 <p>Symbols里面的inside可以设置标号，比如    </p>
-<p><img src="/img/01_AD/05_AD_Schematic_Library6.png" alt=""><br><img src="/img/01_AD/05_AD_Schematic_Library7.png" alt=""><br><img src="/img/01_AD/05_AD_Schematic_Library8.png" alt=""><br><img src="/img/01_AD/05_AD_Schematic_Library9.png" alt=""><br><img src="/img/01_AD/05_AD_Schematic_Library10.png" alt=""> </p>
+<p><img src="/img/01_AD/05_AD_Schematic_Library6.png" alt><br><img src="/img/01_AD/05_AD_Schematic_Library7.png" alt><br><img src="/img/01_AD/05_AD_Schematic_Library8.png" alt><br><img src="/img/01_AD/05_AD_Schematic_Library9.png" alt><br><img src="/img/01_AD/05_AD_Schematic_Library10.png" alt> </p>
 <p>Electrical Type中 由于在此SDA指的是串行数据，所以是IO。SCL是clock所以是input。INT/CMPTR是中断，所以是output。GND属于power。A1 A2指的是地址，IIC要选择这个地址，所以是输入。<br>如果想省事的话，electrical type全都选成 Passive。</p>
-<p><img src="/img/01_AD/05_AD_Schematic_Library11.png" alt=""> </p>
+<p><img src="/img/01_AD/05_AD_Schematic_Library11.png" alt> </p>
 <p>当放置引脚的时候，引脚的标号会自增1。我们也可以对此进行修改，Tool_&gt;Schematic Preferences</p>
-<p><img src="/img/01_AD/05_AD_Schematic_Library12.png" alt=""><br><img src="/img/01_AD/05_AD_Schematic_Library13.png" alt=""><br><img src="/img/01_AD/05_AD_Schematic_Library14.png" alt=""><br><img src="/img/01_AD/05_AD_Schematic_Library15.png" alt=""><br><img src="/img/01_AD/05_AD_Schematic_Library16.png" alt=""> </p>
+<p><img src="/img/01_AD/05_AD_Schematic_Library12.png" alt><br><img src="/img/01_AD/05_AD_Schematic_Library13.png" alt><br><img src="/img/01_AD/05_AD_Schematic_Library14.png" alt><br><img src="/img/01_AD/05_AD_Schematic_Library15.png" alt><br><img src="/img/01_AD/05_AD_Schematic_Library16.png" alt> </p>
 <p>其实也可以按字母顺序改变，只需把Primary，Secondary修改就ok。</p>
-<p><img src="/img/01_AD/05_AD_Schematic_Library17.png" alt=""> </p>
+<p><img src="/img/01_AD/05_AD_Schematic_Library17.png" alt> </p>
 <p><strong>Default Designator</strong><br>芯片一般是U<br>电阻一般是R<br>电容一般是C<br>电感一般是L<br><strong>Default Comment</strong> 默认注释，由于是用来做TCN75，所以在此写入TCN75.<br>点击此界面左下角的Edit Pins</p>
-<p><img src="/img/01_AD/05_AD_Schematic_Library18.png" alt=""> </p>
+<p><img src="/img/01_AD/05_AD_Schematic_Library18.png" alt> </p>
 <p>这边可以直接对引脚进行操作和修改。<br>随后将VCC和GND隐藏</p>
-<p><img src="/img/01_AD/05_AD_Schematic_Library19.png" alt=""> </p>
+<p><img src="/img/01_AD/05_AD_Schematic_Library19.png" alt> </p>
 <p>另外对于引脚比较多的芯片，一张原理图装不下，就算装下了，这么多引脚有时候看着很麻烦。而此相当于把一个大的元器件，拆分成多个块，每个不同的块，放在原理图里面，分别对其进行设置。<br>Tool_&gt;New Part，然后分别对这两个Part进行引脚绘制。</p>
-<p><img src="/img/01_AD/05_AD_Schematic_Library20.png" alt=""> </p>
+<p><img src="/img/01_AD/05_AD_Schematic_Library20.png" alt> </p>
 
       
     </div>
@@ -701,7 +701,7 @@
 
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -839,7 +839,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -848,7 +848,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -868,7 +868,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

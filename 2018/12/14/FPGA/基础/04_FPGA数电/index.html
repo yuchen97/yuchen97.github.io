@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -198,7 +198,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -227,7 +227,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -398,20 +398,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/14/FPGA/基础/04_FPGA数电/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -479,7 +479,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
 
                 
                 
@@ -543,14 +543,14 @@
       
         <p>常用的存储电路有两类：锁存器、触发器<br>采用电平触发方式的叫锁存器、采用脉冲边沿触发方式的叫触发器</p>
 <h4 id="1-锁存器（Latch）"><a href="#1-锁存器（Latch）" class="headerlink" title="1. 锁存器（Latch）"></a>1. 锁存器（Latch）</h4><p>是数字电路中的一种具有记忆功能的逻辑元件，锁存器对脉冲电平敏感的存储单元电路，它只在输入脉冲的高电平（或低电平）期间对输入信号敏感并改变状态。</p>
-<p><strong>RS锁存器</strong>是构成所有复杂的锁存器和复杂的触发器的基础<br><img src="/img/FPGA/基础/04_FPGA数电1.png" alt=""><br><img src="/img/FPGA/基础/04_FPGA数电2.png" alt=""> </p>
-<p><strong>S:set  R：reset  D：data</strong><br>锁存器的状态就是根据Q来命名的，当Q=0，则称锁存器为0状态；当Q=1，则称锁存器为1状态。<br>RS锁存器之所以被称为锁存器是因为它能够将电路的状态锁住，当下一刻锁存器的位置位端或者复位端的激励信号突然消失，锁存器任然能够保持之前的状态工作。<br>图4.3表示S或R为0时，有激励信号。<br><img src="/img/FPGA/基础/04_FPGA数电3.png" alt=""><br><img src="/img/FPGA/基础/04_FPGA数电4.png" alt=""> </p>
-<p><strong>要禁止S、R同时为1 的情况，因为此时Q’ Q 都为0，加入下一个时刻时，SR信号消失变成0，则会有先后变化，所以此时输出就会混乱。不定是指的下一个时刻的输出信号。</strong><br>门控RS锁存器（钟控RS触发器）<br><img src="/img/FPGA/基础/04_FPGA数电5.png" alt=""><br><img src="/img/FPGA/基础/04_FPGA数电6.png" alt=""><br><img src="/img/FPGA/基础/04_FPGA数电7.png" alt=""><br><img src="/img/FPGA/基础/04_FPGA数电8.png" alt=""><br><img src="/img/FPGA/基础/04_FPGA数电9.png" alt=""> </p>
+<p><strong>RS锁存器</strong>是构成所有复杂的锁存器和复杂的触发器的基础<br><img src="/img/FPGA/基础/04_FPGA数电1.png" alt><br><img src="/img/FPGA/基础/04_FPGA数电2.png" alt> </p>
+<p><strong>S:set  R：reset  D：data</strong><br>锁存器的状态就是根据Q来命名的，当Q=0，则称锁存器为0状态；当Q=1，则称锁存器为1状态。<br>RS锁存器之所以被称为锁存器是因为它能够将电路的状态锁住，当下一刻锁存器的位置位端或者复位端的激励信号突然消失，锁存器任然能够保持之前的状态工作。<br>图4.3表示S或R为0时，有激励信号。<br><img src="/img/FPGA/基础/04_FPGA数电3.png" alt><br><img src="/img/FPGA/基础/04_FPGA数电4.png" alt> </p>
+<p><strong>要禁止S、R同时为1 的情况，因为此时Q’ Q 都为0，加入下一个时刻时，SR信号消失变成0，则会有先后变化，所以此时输出就会混乱。不定是指的下一个时刻的输出信号。</strong><br>门控RS锁存器（钟控RS触发器）<br><img src="/img/FPGA/基础/04_FPGA数电5.png" alt><br><img src="/img/FPGA/基础/04_FPGA数电6.png" alt><br><img src="/img/FPGA/基础/04_FPGA数电7.png" alt><br><img src="/img/FPGA/基础/04_FPGA数电8.png" alt><br><img src="/img/FPGA/基础/04_FPGA数电9.png" alt> </p>
 <p><strong>D锁存器</strong> 以及其他锁存器都存在空翻现象，引起空翻现象是由锁存器的结构导致。空翻是一种有害现象，使得时序电路不能按时钟节拍工作，造成系统的误动作。为了解决这一现象，便在锁存器的基础上设计出了触发器。</p>
-<h4 id="2-触发器（Flip-Flop）"><a href="#2-触发器（Flip-Flop）" class="headerlink" title="2. 触发器（Flip-Flop）"></a>2. 触发器（Flip-Flop）</h4><p>是数字电路中一种具有记忆功能的逻辑元件。触发器对边沿脉冲敏感的存储单元电路，它只在脉冲的上升沿（或下降沿）瞬间改变其状态。<br><img src="/img/FPGA/基础/04_FPGA数电10.png" alt=""><br><img src="/img/FPGA/基础/04_FPGA数电11.png" alt=""> </p>
+<h4 id="2-触发器（Flip-Flop）"><a href="#2-触发器（Flip-Flop）" class="headerlink" title="2. 触发器（Flip-Flop）"></a>2. 触发器（Flip-Flop）</h4><p>是数字电路中一种具有记忆功能的逻辑元件。触发器对边沿脉冲敏感的存储单元电路，它只在脉冲的上升沿（或下降沿）瞬间改变其状态。<br><img src="/img/FPGA/基础/04_FPGA数电10.png" alt><br><img src="/img/FPGA/基础/04_FPGA数电11.png" alt> </p>
 <p>D锁存器和D触发器的逻辑功能是一样的，只不过他们的触发方式不同。<br>D触发器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module Flip-Flop</span><br><span class="line">(clk_50M,rst_n,D,Q,);</span><br><span class="line">input 	clk_50M;</span><br><span class="line">input 	rst_n;</span><br><span class="line">input 	D;</span><br><span class="line">output reg Q;</span><br><span class="line">always@(posedge clk_50M or negedge rst_n)</span><br><span class="line">begin</span><br><span class="line">if(!rst_n)</span><br><span class="line">Q&lt;=1&apos;b0;</span><br><span class="line">else</span><br><span class="line">Q&lt;=D;</span><br><span class="line">end</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
-<h4 id="3-寄存器"><a href="#3-寄存器" class="headerlink" title="3. 寄存器"></a>3. 寄存器</h4><p>是由多个触发器组成，能存储一位二进制码的时序电路叫做触发器，能够存储多位二进制码的时序电路称为寄存器。<br><img src="/img/FPGA/基础/04_FPGA数电12.png" alt=""> </p>
-<h4 id="4-计数器"><a href="#4-计数器" class="headerlink" title="4. 计数器"></a>4. 计数器</h4><p><img src="/img/FPGA/基础/04_FPGA数电13.png" alt=""><br>模十六加法计数器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">module digital_counter</span><br><span class="line">(clk_50M,rst_n);</span><br><span class="line">input  		clk_50M;</span><br><span class="line">input 		 rst_n;</span><br><span class="line">reg	[3:0] 	time_cnt;</span><br><span class="line">reg 	[3:0] 	time_cnt_n;</span><br><span class="line">alwasy@(posedge clk_50M or negedge rst_n)</span><br><span class="line">begin</span><br><span class="line">if(!rst_n)</span><br><span class="line">time_cnt&lt;=4&apos;b0;</span><br><span class="line">else</span><br><span class="line">time_cnt&lt;=time_cnt_n;</span><br><span class="line">end</span><br><span class="line">always@(*)</span><br><span class="line">begin</span><br><span class="line">if(time_cnt==4&apos;hf)</span><br><span class="line">time_cnt_n=4&apos;b0;</span><br><span class="line">else</span><br><span class="line">time_cnt_n=time_cnt+1&apos;b1;</span><br><span class="line">end</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-寄存器"><a href="#3-寄存器" class="headerlink" title="3. 寄存器"></a>3. 寄存器</h4><p>是由多个触发器组成，能存储一位二进制码的时序电路叫做触发器，能够存储多位二进制码的时序电路称为寄存器。<br><img src="/img/FPGA/基础/04_FPGA数电12.png" alt> </p>
+<h4 id="4-计数器"><a href="#4-计数器" class="headerlink" title="4. 计数器"></a>4. 计数器</h4><p><img src="/img/FPGA/基础/04_FPGA数电13.png" alt><br>模十六加法计数器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">module digital_counter</span><br><span class="line">(clk_50M,rst_n);</span><br><span class="line">input  		clk_50M;</span><br><span class="line">input 		 rst_n;</span><br><span class="line">reg	[3:0] 	time_cnt;</span><br><span class="line">reg 	[3:0] 	time_cnt_n;</span><br><span class="line">alwasy@(posedge clk_50M or negedge rst_n)</span><br><span class="line">begin</span><br><span class="line">if(!rst_n)</span><br><span class="line">time_cnt&lt;=4&apos;b0;</span><br><span class="line">else</span><br><span class="line">time_cnt&lt;=time_cnt_n;</span><br><span class="line">end</span><br><span class="line">always@(*)</span><br><span class="line">begin</span><br><span class="line">if(time_cnt==4&apos;hf)</span><br><span class="line">time_cnt_n=4&apos;b0;</span><br><span class="line">else</span><br><span class="line">time_cnt_n=time_cnt+1&apos;b1;</span><br><span class="line">end</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -679,7 +679,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -833,7 +833,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -842,7 +842,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -862,7 +862,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

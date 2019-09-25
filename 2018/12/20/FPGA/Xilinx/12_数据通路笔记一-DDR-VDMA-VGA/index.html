@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -193,7 +193,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -222,7 +222,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -393,20 +393,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/12_数据通路笔记一-DDR-VDMA-VGA/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -474,7 +474,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
 
                 
                 
@@ -536,20 +536,20 @@
       
 
       
-        <h4 id="一、方案设计"><a href="#一、方案设计" class="headerlink" title="一、方案设计"></a>一、方案设计</h4><p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA1.png" alt=""> </p>
-<h4 id="二、zynq结构框图"><a href="#二、zynq结构框图" class="headerlink" title="二、zynq结构框图"></a>二、zynq结构框图</h4><p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA2.png" alt=""><br>可以看出视频或者图像处理的基本思路是从PS端或者PL端做视频输入，从PL端输入要先经过VDMA这个数据通路进入PS，然后再PS端对数据进行存储或者显示处理，或者进行图像的滤波、边缘检测等等，进行算法上的处理。</p>
+        <h4 id="一、方案设计"><a href="#一、方案设计" class="headerlink" title="一、方案设计"></a>一、方案设计</h4><p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA1.png" alt> </p>
+<h4 id="二、zynq结构框图"><a href="#二、zynq结构框图" class="headerlink" title="二、zynq结构框图"></a>二、zynq结构框图</h4><p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA2.png" alt><br>可以看出视频或者图像处理的基本思路是从PS端或者PL端做视频输入，从PL端输入要先经过VDMA这个数据通路进入PS，然后再PS端对数据进行存储或者显示处理，或者进行图像的滤波、边缘检测等等，进行算法上的处理。</p>
 <h4 id="三、具体思路"><a href="#三、具体思路" class="headerlink" title="三、具体思路"></a>三、具体思路</h4><p>在这个实验里面主要分为硬件和软件两个部分，在FPGA里面配置硬件，在ps的开发环境里面写软件，实现对硬件的初始化以及向DDR里面写图像数据，然后硬件就会自动驱动vga将图片显示在显示屏上面。</p>
 <h4 id="四、硬件系统搭建"><a href="#四、硬件系统搭建" class="headerlink" title="四、硬件系统搭建"></a>四、硬件系统搭建</h4><p><strong>配置zynq的PS部分资源</strong><br>我只配置了uart1部分以及开启了HP0接口，注意这个电压一定要正确</p>
-<p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA3.png" alt=""><br><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA4.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA3.png" alt><br><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA4.png" alt> </p>
 <p><strong>配置vdma</strong><br>由于我只需要vdma的读通道，所以只使能了一个通道，用来3个帧缓存，那个memory最好用32，深度1024</p>
-<p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA5.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA5.png" alt> </p>
 <p>这里用到了同步信号，为了配合vga，所以用来额外的同步信号fsync，来自vga模块</p>
-<p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA6.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA6.png" alt> </p>
 <p><strong>配置stream_2_vga这个fifo</strong><br>这个模块模仿例程建立的，看例程吧，本质上是一个fifo，但是得使用stream协议，具体就是把vdma出来的stream数据接到了这个fifo进行输出缓存，并取了32位数据的高24位RGB。fifo写使能由tvalid信号以及自身的一些信号控制，vdma的tready信号由fifo的满信号控制，保证一直有效，当valid有效，数据就能进入fifo，fifo读信号由vga模块的使能信号决定。</p>
 <p><strong>配置整体时序部分以及vga的驱动</strong><br>通过axi_lite总线对vga进行了寄存器配置，可以在ps的软件窗口对vga输出的分辨率进行控制（但是时钟已经确定，改不了了），具体看代码。</p>
-<p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA7.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA7.png" alt> </p>
 <h4 id="五、软件部分"><a href="#五、软件部分" class="headerlink" title="五、软件部分"></a>五、软件部分</h4><p>软件部分就是要对vdma的3个桢存初始化、vdma寄存器写数据初始化，vga初始化，然后向ddr的地址写入图像数据就可以了</p>
-<h4 id="六、实验结果"><a href="#六、实验结果" class="headerlink" title="六、实验结果"></a>六、实验结果</h4><p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA8.png" alt=""> </p>
+<h4 id="六、实验结果"><a href="#六、实验结果" class="headerlink" title="六、实验结果"></a>六、实验结果</h4><p><img src="/img/FPGA/Xilinx/12_数据通路笔记一_DDR_VDMA_VGA8.png" alt> </p>
 <h4 id="七、实验中遇到问题"><a href="#七、实验中遇到问题" class="headerlink" title="七、实验中遇到问题"></a>七、实验中遇到问题</h4><p>本实验中最初遇到了一个问题，输出图像是4个小模块，后来经过思考发现应该是fifo的读取时钟和vga的时钟必须一样，原本fifo读时钟是100M，vga是25M，但是当fifo送入4个数据时候，vga这边只接受到了1个，因此会失败</p>
 <h4 id="八、附软件代码"><a href="#八、附软件代码" class="headerlink" title="八、附软件代码"></a>八、附软件代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &quot;platform.h&quot;</span><br><span class="line">#include &quot;xparameters.h&quot;</span><br><span class="line">#include &quot;xil_io.h&quot;</span><br><span class="line">#include &quot;lite_2_vtc.h&quot;</span><br><span class="line">#include &quot;sleep.h&quot;</span><br><span class="line"></span><br><span class="line">#define VTC_BASEADDR XPAR_LITE_2_VTC_V1_0_0_BASEADDR		//控制vga的axilite接口地址</span><br><span class="line">#define DDR_BASEADDR        0x00000000						//DDR首地址</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#define VDMA_BASEADDR       XPAR_AXI_VDMA_0_BASEADDR		//控制vdma的axilite接口地址</span><br><span class="line">#define H_STRIDE            640</span><br><span class="line">#define H_ACTIVE            640</span><br><span class="line">#define V_ACTIVE            480</span><br><span class="line">//#define pi					3.14159265358</span><br><span class="line">//#define COUNTS_PER_SECOND	(XPAR_CPU_CORTEXA9_CORE_CLOCK_FREQ_HZ)/64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#define VIDEO_LENGTH  (H_STRIDE*V_ACTIVE)</span><br><span class="line">#define VIDEO_BASEADDR0 DDR_BASEADDR + 0x2000000</span><br><span class="line">#define VIDEO_BASEADDR1 DDR_BASEADDR + 0x3000000</span><br><span class="line">#define VIDEO_BASEADDR2 DDR_BASEADDR + 0x4000000</span><br><span class="line"></span><br><span class="line">//函数声明</span><br><span class="line">void Xil_DCacheFlush(void);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 所有数据格式 为 RGBA，低位的透明度暂不起作用</span><br><span class="line">extern const unsigned char gImage_beauty1[1729536];</span><br><span class="line">extern const unsigned char gImage_mm[1228800];</span><br><span class="line">extern const unsigned char gImage_miz702[600000];</span><br><span class="line">extern const unsigned char gImage_miz702_rgba[600000];</span><br><span class="line">extern const unsigned char gImage_photo2[1228800];</span><br><span class="line"></span><br><span class="line">//就是给DDR里面放数据进去</span><br><span class="line">void show_img(u32 x, u32 y, u32 disp_base_addr, const unsigned char * addr, u32 size_x, u32 size_y)</span><br><span class="line">&#123;</span><br><span class="line">	//计算图片 左上角坐标</span><br><span class="line">	u32 i=0;</span><br><span class="line">	u32 j=0;</span><br><span class="line">	u32 r,g,b;</span><br><span class="line"></span><br><span class="line">	u32 start_addr=disp_base_addr;							//disp_base_addr地址是DDR的首地址</span><br><span class="line">	start_addr = disp_base_addr + 4*x + y*4*H_STRIDE;		//写入图片的首地址，DDR基地址加上自己设定的偏移</span><br><span class="line">	</span><br><span class="line">	for(j=0;j&lt;size_y;j++)				//xsize和ysize是啥</span><br><span class="line">	&#123;</span><br><span class="line">		for(i=0;i&lt;size_x;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			b = *(addr+(i+j*size_x)*4+0);		//取图片的第一个地址开始，因为是4个像素点，最低位是alpla</span><br><span class="line">			g = *(addr+(i+j*size_x)*4+1);</span><br><span class="line">			r = *(addr+(i+j*size_x)*4+2);</span><br><span class="line">			Xil_Out32((start_addr+(i+j*H_STRIDE)*4),((r&lt;&lt;24)|(g&lt;&lt;16)|(b&lt;&lt;8)|0x0));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	Xil_DCacheFlush();		//冲洗所有数据</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	//u32 i;</span><br><span class="line">   // init_platform();</span><br><span class="line"></span><br><span class="line">   //for(i=0;i&lt;1228800;i++)</span><br><span class="line">   // &#123;</span><br><span class="line">   // 	Xil_Out32(VIDEO_BASEADDR0+i,0x07e000);</span><br><span class="line">   // &#125;</span><br><span class="line">	//Xil_DCacheFlush();</span><br><span class="line"></span><br><span class="line">	//各种显示 相关的参数</span><br><span class="line">	</span><br><span class="line">//0011，使能VDMA通道运行，循环切换缓存页</span><br><span class="line">	Xil_Out32((VDMA_BASEADDR + 0x000), 0x00000003); 		// enable circular mode</span><br><span class="line">	</span><br><span class="line">//0x5c-0x98用于存放桢存起始地址，因为用了3个缓存区，所以存放3个起始地址</span><br><span class="line">	Xil_Out32((VDMA_BASEADDR + 0x05c), VIDEO_BASEADDR0); 	// start address</span><br><span class="line">	Xil_Out32((VDMA_BASEADDR + 0x060), VIDEO_BASEADDR0); 	// start address</span><br><span class="line">	Xil_Out32((VDMA_BASEADDR + 0x064), VIDEO_BASEADDR0); 	// start address</span><br><span class="line"></span><br><span class="line">//水平方向跨度，640为什么要乘以4？？	</span><br><span class="line">	Xil_Out32((VDMA_BASEADDR + 0x058), (H_STRIDE*4)); 		// h offset (2048 * 4) bytes</span><br><span class="line">	</span><br><span class="line">//每一行需要有多少字节传输，由于是RGB+A，一个像素是4个字节，因此640*4</span><br><span class="line">	Xil_Out32((VDMA_BASEADDR + 0x054), (H_ACTIVE*4)); 		// h size (1920 * 4) bytes</span><br><span class="line">	</span><br><span class="line">//当CR寄存器使能了之后，必须在最后设置该寄存器，低13位代表多少行</span><br><span class="line">	Xil_Out32((VDMA_BASEADDR + 0x050), V_ACTIVE); 			// v size (1080)</span><br><span class="line">	</span><br><span class="line">	// VGA时序参数，应做成查表的方式，以使用户接口更加和谐</span><br><span class="line">	</span><br><span class="line">//设置行总像素数和总行数，行数不是600？？</span><br><span class="line">	// VGA时序参数，应做成查表的方式，以使用户接口更加和谐</span><br><span class="line">	LITE_2_VTC_mWriteReg(VTC_BASEADDR,LITE_2_VTC_S00_AXI_SLV_REG1_OFFSET,((803&lt;&lt;16)|525));	// 设置行总像素数和总行数</span><br><span class="line">	LITE_2_VTC_mWriteReg(VTC_BASEADDR,LITE_2_VTC_S00_AXI_SLV_REG2_OFFSET,((96&lt;&lt;16)|2));		// 设置行场同步头长度</span><br><span class="line">	LITE_2_VTC_mWriteReg(VTC_BASEADDR,LITE_2_VTC_S00_AXI_SLV_REG3_OFFSET,((48&lt;&lt;16)|33));	// 设置行、场前肩</span><br><span class="line">	LITE_2_VTC_mWriteReg(VTC_BASEADDR,LITE_2_VTC_S00_AXI_SLV_REG4_OFFSET,((640&lt;&lt;16)|480));	// 设置行、场后肩</span><br><span class="line"></span><br><span class="line">	LITE_2_VTC_mWriteReg(VTC_BASEADDR,LITE_2_VTC_S00_AXI_SLV_REG0_OFFSET,0x04);	// 更新时序寄存器参数</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">	//show_img(0,0,VIDEO_BASEADDR0,&amp;gImage_photo2[0],640,480);</span><br><span class="line"></span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		//自定义640*480的图片</span><br><span class="line">		show_img(0,0,VIDEO_BASEADDR0,&amp;gImage_photo2[0],640,480);</span><br><span class="line">		//sleep(3);</span><br><span class="line"></span><br><span class="line">		//官方给的图片</span><br><span class="line">		/*show_img(0,0,VIDEO_BASEADDR0,&amp;gImage_beauty1[0],563,768);</span><br><span class="line">		sleep(3);</span><br><span class="line"></span><br><span class="line">		//官方给的640*480</span><br><span class="line">		show_img(0,0,VIDEO_BASEADDR0,&amp;gImage_mm[0],640,480);</span><br><span class="line">		sleep(3);</span><br><span class="line"></span><br><span class="line">		//官方给的</span><br><span class="line">		show_img(0,0,VIDEO_BASEADDR0,&amp;gImage_miz702_rgba[0],375,400);</span><br><span class="line">		sleep(3);</span><br><span class="line"></span><br><span class="line">		show_img(0,0,VIDEO_BASEADDR0,&amp;gImage_miz702[0],375,400);</span><br><span class="line">		sleep(3);*/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
@@ -679,7 +679,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -833,7 +833,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -842,7 +842,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -862,7 +862,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -188,7 +188,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -217,7 +217,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -388,20 +388,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/17/FPGA/Altera/09_亚稳态/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -469,7 +469,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
 
                 
                 
@@ -532,7 +532,7 @@
 
       
         <p><a href="http://xilinx.eetrend.com/blog/11703" target="_blank" rel="noopener">http://xilinx.eetrend.com/blog/11703</a></p>
-<p>tsh：建立时间<br>th：保持时间<br><img src="/img/FPGA/Altera/09_亚稳态1.png" alt=""><br><img src="/img/FPGA/Altera/09_亚稳态2.png" alt=""><br><img src="/img/FPGA/Altera/09_亚稳态3.png" alt=""> </p>
+<p>tsh：建立时间<br>th：保持时间<br><img src="/img/FPGA/Altera/09_亚稳态1.png" alt><br><img src="/img/FPGA/Altera/09_亚稳态2.png" alt><br><img src="/img/FPGA/Altera/09_亚稳态3.png" alt> </p>
 <p>建立时间：是指时钟触发器上升沿到来之前，数据稳定不变的时间。如果建立时间不够，则数据不能在这个时钟进入触发器。<br>保持时间：是指时钟触发器上升沿到来之后，数据保持不变的时间。如果保持时间不够，则数据同样不能被打入触发器。<br>由于PCB走线时，存在分布电感和电容，所以几纳秒的毛刺将被自然滤除，而在PLD内部决无分布电感和电容，所以在PLD/FPGA设计中，竞争和冒险问题将变的较为突出。<br>信号在FPGA内通过连线和逻辑单元时，都会产生延时。延时产生的原因：①：连线的长短和逻辑单元的数目 ，②：受器件的制造工艺、工作电压、温度等条件的影响， 所 以在信号变化的瞬间，组合逻辑的输出有先后顺序，往往会产生一些尖峰的信号，这些信号称为毛刺。如果有毛刺，该电路称为冒险电路。只由内部电路决定。<br>亚稳态产生的概率：概率 = （建立时间 + 保持时间）/ 采集时钟周期。</p>
 
       
@@ -653,7 +653,7 @@
 
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -791,7 +791,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -800,7 +800,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -820,7 +820,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

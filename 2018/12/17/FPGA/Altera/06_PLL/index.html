@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -188,7 +188,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -217,7 +217,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -388,20 +388,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/17/FPGA/Altera/06_PLL/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -469,7 +469,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
 
                 
                 
@@ -539,17 +539,17 @@
 <li>多用 PLL</li>
 </ul>
 <p>Cyclone IV E 器件仅包含通用 PLL。<br>通用 PLL 用于 FPGA 结构及外设 ( 例如：外部存储器接口 ) 中的通用应用，而多用 PLL则用于同步收发器模块。如果多用 PLL 未用于收发器时钟，则可用于通用时钟。<br>Cyclone IV GX 器件最多可包含八个通用 PLL 和多用 PLL，而 Cyclone IV E 器件最多可有四个通用 PLL。</p>
-<p><img src="/img/FPGA/Altera/06_PLL内部结构1.png" alt=""><br><em>cyclone IV E    PLL结构图</em></p>
+<p><img src="/img/FPGA/Altera/06_PLL内部结构1.png" alt><br><em>cyclone IV E    PLL结构图</em></p>
 <h5 id="1-1-鉴频鉴相器-Phase-Frequency-Detector-PFD"><a href="#1-1-鉴频鉴相器-Phase-Frequency-Detector-PFD" class="headerlink" title="1.1 鉴频鉴相器(Phase Frequency Detector,PFD)"></a>1.1 鉴频鉴相器(Phase Frequency Detector,PFD)</h5><p>决定系统的精度和稳定度，检测频率差和相位差让大家跟上节奏。</p>
 <h5 id="1-2-电荷泵（Charge-Pump，CP）"><a href="#1-2-电荷泵（Charge-Pump，CP）" class="headerlink" title="1.2 电荷泵（Charge Pump，CP）"></a>1.2 电荷泵（Charge Pump，CP）</h5><p>为系统提供了宽的频率捕捉范围和快速的锁定能力。基本原理是给电容充电，把电容从充电电路取下以隔离充进的电荷，然后接到另一个电路上。传递刚才隔离的电荷。形象的把此看作装了电子的水桶。从一个大水箱把这个桶装满。关闭水龙头，然后把桶倒进一个大水箱里。开关电容式电压变换器，是利用“快速”或“泵送”的电容，可以使输入电压升高或降低，也可以产生负电压。</p>
 <h5 id="1-3-环路滤波（Loop-filter，LP）"><a href="#1-3-环路滤波（Loop-filter，LP）" class="headerlink" title="1.3 环路滤波（Loop filter，LP）"></a>1.3 环路滤波（Loop filter，LP）</h5><p>一定要有环路滤波器的，不然鉴相器输出的是脉冲信号，必需经过环路滤波器，把高次成份滤除，类似积分电路一样，得到一个相对平滑的信号去控制VCO工作，如果是不停跳变的脉冲，锁相环输出根本无法稳定，就全乱套了。</p>
 <h5 id="1-4-VCO-电压控制振荡器"><a href="#1-4-VCO-电压控制振荡器" class="headerlink" title="1.4 VCO(电压控制振荡器)"></a>1.4 VCO(电压控制振荡器)</h5><p>指输出频率与输入控制电压有对应关系的振荡电路，振荡器的工作状态或振荡回路的元件参数受输入控制电压的控制，就可以构成一个压控振荡器。</p>
 <p>相器用来鉴别输入信号Ui与输出信号Uo之间的相位差，并输出误差电压Ud。Ud 中的噪声和干扰成分被低通性质的环路滤波器滤除，形成压控振荡器（VCO）的控制电压Uc。Uc作用于压控振荡器的结果是把它的输出振荡频率fo拉向环路输入信号频率fi ，当二者相等时，环路被锁定 ，称为入锁。维持锁定的直流控制电压由鉴相器提供，因此鉴相器的两个输入信号间留有一定的相位差。</p>
 <h4 id="2-锁相环的工作原理："><a href="#2-锁相环的工作原理：" class="headerlink" title="2. 锁相环的工作原理："></a>2. 锁相环的工作原理：</h4><p><strong>1.</strong> 压控振荡器的输出经过采集并分频；<br><strong>2.</strong> 和基准信号同时输入鉴相器；<br><strong>3.</strong> 鉴相器通过比较上述两个信号的频率差，然后输出一个直流脉冲电压；<br><strong>4.</strong> 控制VCO，使它的频率改变；<br><strong>5.</strong> 这样经过一个很短的时间，VCO 的输出就会稳定于某一期望值。 </p>
-<p>Cyclone IV 器件的每个 PLL 均支持一个单端时钟输出或者一个差分时钟输出。只有 C0输出计数器才能驱动专用的外部时钟输出，而无需遍历 GCLK, 如图图 5-11 所示。 其它输出计数器可以通过 GCLK 来驱动其它 I/O 管脚。<br><img src="/img/FPGA/Altera/06_PLL内部结构2.png" alt=""><br><em>PLL的外部时钟输出</em></p>
+<p>Cyclone IV 器件的每个 PLL 均支持一个单端时钟输出或者一个差分时钟输出。只有 C0输出计数器才能驱动专用的外部时钟输出，而无需遍历 GCLK, 如图图 5-11 所示。 其它输出计数器可以通过 GCLK 来驱动其它 I/O 管脚。<br><img src="/img/FPGA/Altera/06_PLL内部结构2.png" alt><br><em>PLL的外部时钟输出</em></p>
 <p><strong>(1)</strong> 这些外部时钟使能信号仅在使用 ALTCLKCTRL 宏功能的时候有效。<br><strong>(2)</strong> PLL#_CLKOUTp 与 PLL#_CLKOUTn 管脚是两用 I/O 管脚，可用作一个单端时钟输出或者一个差分时钟输出。 当将这两个管脚都用作单端 I/O 时 , 其中一个可用作时钟输出，而另一个可配置为普通用户 I/O。<br>差分输出对的每一个管脚的相位差了 180°。Quartus II 软件将设计中的 NOT gate 布局到 I/O 单元，对于差分输出对中的另一个管脚，实现了 180° 相位。时钟输出管脚对支持作为标准输出管脚的同一 I/O 标准</p>
 <h4 id="3-时钟的乘法与除法"><a href="#3-时钟的乘法与除法" class="headerlink" title="3. 时钟的乘法与除法"></a>3. 时钟的乘法与除法</h4><p>每一个 Cyclone IV PLL 均采用 M/(N* 后缩放计数器 ) 缩放因子为 PLL 输出端口提供时钟合成输出。输入时钟由预缩放因子 N 分频 , 然后乘以反馈因子 M。控制环路驱动 VCO以匹配 fIN (M/N)。每一个输出端口均有一个唯一的后缩放计数器，对高频 VCO 进行分频。对于不同频率的多个 PLL 输出，VCO 值是输出频率的最小公倍数，以满足其频率规格。例如，如果一个 PLL 所要求的输出频率是 33 和 66 MHz, 那么 Quartus II 软件会将VCO 设置为 660 MHz(33 和 66 MHz 在 VCO 频率范围内的最小公倍数 )。然后，后放大计数器会降低每个输出端口的 VCO 频率。<br>每一个 PLL 上均有一个预缩放计数器 N 和一个乘法计数器 M，范围从 1 到 512。由于计数器 N 仅用于计算分频，因此该计数器不使用占空比控制。此外，每个 PLL 上有五个用于驱动 GCLK 或外部时钟输出的通用后缩放计数器。这些后缩放计数器的范围从 1 到512，并具有 50% 的占空比设置。后缩放计数器的范围从 1 到 256，具有非 50% 的占空比设置。设计所选择的高 / 低计数值的总和，将用于给定计数器分频值的选择。Quartus II 软件根据输入到 ALTPLL 宏功能的输入频率、乘法和除法值来自动选择相应的缩放因子。</p>
-<h4 id="4-后缩放计数器的级联"><a href="#4-后缩放计数器的级联" class="headerlink" title="4. 后缩放计数器的级联"></a>4. 后缩放计数器的级联</h4><p>Cyclone IV 器件的 PLL 支持后缩放计数器的级联，以生成大于 512 的计数器。 这是通过将一个 C 计数器的输出送至下一个 C 计数器的输入来实现的，如图 5-16 所示。<br><img src="/img/FPGA/Altera/06_PLL内部结构3.png" alt=""><br>当通过级联计数器来实现高频 VCO 时钟的更大分频时，级联的计数器作为单个计数器运行，并具有单个计数器设置的乘积。<br>例如，如果 C0 = 4 和 C1 = 2, 则级联的值是 C0 × C1 = 8。</p>
+<h4 id="4-后缩放计数器的级联"><a href="#4-后缩放计数器的级联" class="headerlink" title="4. 后缩放计数器的级联"></a>4. 后缩放计数器的级联</h4><p>Cyclone IV 器件的 PLL 支持后缩放计数器的级联，以生成大于 512 的计数器。 这是通过将一个 C 计数器的输出送至下一个 C 计数器的输入来实现的，如图 5-16 所示。<br><img src="/img/FPGA/Altera/06_PLL内部结构3.png" alt><br>当通过级联计数器来实现高频 VCO 时钟的更大分频时，级联的计数器作为单个计数器运行，并具有单个计数器设置的乘积。<br>例如，如果 C0 = 4 和 C1 = 2, 则级联的值是 C0 × C1 = 8。</p>
 <h4 id="5-可编程占空比"><a href="#5-可编程占空比" class="headerlink" title="5. 可编程占空比"></a>5. 可编程占空比</h4><p>可编程占空比功能使 PLL 能够生成具有可变占空比的时钟输出，PLL 后缩放计数器支持这一功能。通过后缩放计数器的高 / 低时间计数设置来实现占空比设置。Quartus II软件使用输入频率和目的倍频 / 分频比率来确定占空比的选择。后缩放计数器的值决定了占空周期的精度，该精度定义为 50% 除以后缩放计数器的值。例如，如果 C0 计数器的值为 10, 则 5% 的步长可用于 5% 到 90% 之间的占空比的选择。<br><strong>PLL 控制信号</strong><br>可以通过使用 pfdena, areset 和 locked 信号来观测和控制 PLL 的操作以及重同步。</p>
 
       
@@ -679,7 +679,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -833,7 +833,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -842,7 +842,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -862,7 +862,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

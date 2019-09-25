@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -187,7 +187,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -216,7 +216,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -387,20 +387,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/21/Machine Learning/Tensorflow/04_tf构造线性回归模型/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -468,7 +468,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
 
                 
                 
@@ -532,11 +532,11 @@
       
         <h3 id="04-tf构造线性回归模型"><a href="#04-tf构造线性回归模型" class="headerlink" title="04_tf构造线性回归模型"></a>04_tf构造线性回归模型</h3><p><strong>【 The latest data ： 2018/04/25 】Yuchen</strong></p>
 <p>做一个 y = wx + b 的直线，在这条直线附近随机生成一些数据点， 然后让 tf 建立回归模型，去学习一下什么参数（w, b）可以更好的拟合这些数据点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import tensorflow as tf</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line"># 随机生成1000个点，围绕在 y = 0.1 x+0.3 的直线圆周</span><br><span class="line">num_points = 1000</span><br><span class="line">vectors_set = []</span><br><span class="line">for i in range(num_points):</span><br><span class="line">    # x1 是横坐标，进行随机高斯初始化</span><br><span class="line">    # 生成以 0 为均值，0.55 为标准差的高斯数据</span><br><span class="line">    x1 = np.random.normal(0.0, 0.55)</span><br><span class="line">    </span><br><span class="line">    # y1 是要构成的回归模型</span><br><span class="line">    # 0.1 相当于 w，0.相当于 b，这俩值是随便给的，先假设这样一个回归模型</span><br><span class="line">    # w 一般是取 0.1</span><br><span class="line">    # 在 y1 上加小范围的浮动</span><br><span class="line">    y1 =x1 * 0.1 + 0.3 + np.random.normal(0.0, 0.03)</span><br><span class="line">    vectors_set.append([x1, y1])</span><br><span class="line">    </span><br><span class="line"># 生成一些样本</span><br><span class="line">x_data = [v[0] for v in vectors_set]</span><br><span class="line">y_data = [v[1] for v in vectors_set]</span><br><span class="line"></span><br><span class="line">plt.scatter(x_data, y_data, c=&apos;r&apos;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/ML/Tensorflow/04_tf构造线性回归模型1.png" alt=""> </p>
+<p><img src="/img/ML/Tensorflow/04_tf构造线性回归模型1.png" alt> </p>
 <p><strong>训练相应模型</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># 生成 1 维的 W 矩阵，取值是[-1, 1]之间的随机数</span><br><span class="line"># 用 variables 做随机初始化</span><br><span class="line">W = tf.Variable(tf.random_uniform([1], -1.0, 1.0), name=&apos;W&apos;)</span><br><span class="line"></span><br><span class="line"># 生成 1 维的 b 矩阵。初始值是 0</span><br><span class="line"># 对于 b 一般是常量初始化</span><br><span class="line">b = tf.Variable(tf.zeros([1]), name=&apos;b&apos;)</span><br><span class="line"></span><br><span class="line"># 经过计算得出预估值 y</span><br><span class="line"># 建立回归模型</span><br><span class="line">y = W * x_data + b</span><br><span class="line"></span><br><span class="line"># 以预估值 y 和实际值 y_data 之间的均方误差作为损失</span><br><span class="line"># tf.square(y - y_data) 预测值和真实值之间的方差</span><br><span class="line"># tf.reduce_mean 算均值</span><br><span class="line">loss = tf.reduce_mean(tf.square(y - y_data), name=&apos;loss&apos;)</span><br><span class="line"></span><br><span class="line"># 采用梯度下降法来优化参数</span><br><span class="line"># 调用 tf 里的 train 模块</span><br><span class="line"># Gradient Descent Optimizer 梯度下降优化器</span><br><span class="line"># 0.5 是指的学习率</span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(0.5)</span><br><span class="line"></span><br><span class="line"># 训练的过程就是最小化这个误差值</span><br><span class="line">train = optimizer.minimize(loss, name=&apos;train&apos;)</span><br><span class="line"></span><br><span class="line">sess = tf.Session()</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">sess.run(init)</span><br><span class="line"></span><br><span class="line"># 初始化的 W 和 b 是多少</span><br><span class="line">print(&quot;W = &quot;, sess.run(W), &quot;b =&quot;, sess.run(b), &quot;loss =&quot;, sess.run(loss))</span><br><span class="line"></span><br><span class="line"># 执行 20 次训练</span><br><span class="line">for step in range(20):</span><br><span class="line">    sess.run(train)</span><br><span class="line">    # 输出 20 次训练好的 W 和 b</span><br><span class="line">    print(&quot;W = &quot;, sess.run(W), &quot;b =&quot;, sess.run(b), &quot;loss =&quot;, sess.run(loss))</span><br></pre></td></tr></table></figure></p>
 <p>output<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">W =  [0.02984929] b = [0.] loss = 0.0920841</span><br><span class="line">W =  [0.04887171] b = [0.29933354] loss = 0.0017074235</span><br><span class="line">W =  [0.06614324] b = [0.29961988] loss = 0.0012087016</span><br><span class="line">W =  [0.07773802] b = [0.29987988] loss = 0.0009838862</span><br><span class="line">W =  [0.08552286] b = [0.30005443] loss = 0.00088254147</span><br><span class="line">W =  [0.09074968] b = [0.3001716] loss = 0.000836856</span><br><span class="line">W =  [0.09425902] b = [0.3002503] loss = 0.0008162616</span><br><span class="line">W =  [0.09661523] b = [0.30030313] loss = 0.0008069778</span><br><span class="line">W =  [0.09819721] b = [0.3003386] loss = 0.0008027928</span><br><span class="line">W =  [0.09925937] b = [0.3003624] loss = 0.00080090604</span><br><span class="line">W =  [0.09997252] b = [0.30037838] loss = 0.0008000556</span><br><span class="line">W =  [0.10045133] b = [0.30038914] loss = 0.0007996723</span><br><span class="line">W =  [0.10077281] b = [0.30039635] loss = 0.00079949945</span><br><span class="line">W =  [0.10098865] b = [0.30040118] loss = 0.00079942134</span><br><span class="line">W =  [0.10113357] b = [0.30040443] loss = 0.00079938624</span><br><span class="line">W =  [0.10123087] b = [0.3004066] loss = 0.0007993705</span><br><span class="line">W =  [0.1012962] b = [0.30040807] loss = 0.0007993633</span><br><span class="line">W =  [0.10134006] b = [0.30040905] loss = 0.00079936004</span><br><span class="line">W =  [0.10136952] b = [0.3004097] loss = 0.0007993587</span><br><span class="line">W =  [0.10138929] b = [0.30041015] loss = 0.000799358</span><br><span class="line">W =  [0.10140257] b = [0.30041045] loss = 0.0007993578</span><br></pre></td></tr></table></figure></p>
 <p><strong>将模型print出来</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x_data,y_data,c=&apos;r&apos;)</span><br><span class="line">plt.plot(x_data,sess.run(W)*x_data+sess.run(b))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/ML/Tensorflow/04_tf构造线性回归模型2.png" alt=""> </p>
+<p><img src="/img/ML/Tensorflow/04_tf构造线性回归模型2.png" alt> </p>
 
       
     </div>
@@ -665,7 +665,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -819,7 +819,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -828,7 +828,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -848,7 +848,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

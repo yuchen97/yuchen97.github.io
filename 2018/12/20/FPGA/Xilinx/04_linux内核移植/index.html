@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -203,7 +203,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -232,7 +232,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -403,20 +403,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/04_linux内核移植/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -484,7 +484,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
 
                 
                 
@@ -564,41 +564,41 @@
 </ul>
 <p><strong>ftp：</strong> 底层走的是TCP协议，比较复杂<br><strong>tftp：</strong> 精简的udp协议。</p>
 <p>uboot启动时会进入倒计时，如果倒计时时间内没有受到按键信息，那么自动执行启动命令。这个等待时间（启动延迟）称作：bootdelay。以环境变量的形式存在于uboot</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植1.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植1.png" alt> </p>
 <p>alias</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植2.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植2.png" alt></p>
 <p>在X86环境下编译的build和在arm下的abc（都是编译的1.c这个hellow word简单c程序）</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植3.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植3.png" alt></p>
 <p>abc在当前不可运行，因为abc是arm环境下的</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植4.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植4.png" alt></p>
 <p>物理层连接好之后，再检查网络层是否正常工作，让板子去ping PC（linux）的IP，而不是PCping板子的IP。因为PC ping 板子，板子可能会收到了信息，但由于比较精简可能不会有回复。</p>
 <p>在putty中将uboot的ipaddr、linux、以太网三者设置为同一个网段</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植5.png" alt=""><br><img src="/img/FPGA/Xilinx/04_linux内核移植6.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植5.png" alt><br><img src="/img/FPGA/Xilinx/04_linux内核移植6.png" alt></p>
 <p>Ethernet : 192.168.11.120<br>Linux eth1 : 192.168.11.110<br>uboot : 192.168.11.111<br>显示is alive表示网络层工作正常，若出现not alive 可以再查一下uboot的ipaddr</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植7.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植7.png" alt></p>
 <p>传输层<br>tftp ：精简的udp协议。数据层量很少，只有source port（源端）、destination port（目标端）、check kernel（校验核）。<br>ftp ：底层走的是TCP协议，比较复杂<br>在tftp中 Client 为开发板，Sever 为PC<br>tftpd可在windows下安装也可在linux下安装，但linux下安装的时候出现了好多问题，于是就在Windows下装了。<br>tftpd ip 和 Ethernet ip一致</p>
 <p>md 20008000  md memory display</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植8.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植8.png" alt></p>
 <p>severip为 Ethernet ip</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植9.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植9.png" alt></p>
 <p>tftp 20008000 a.txt<interrupt>,在输完前面的东西之后按Ctrl+C，可以显示interrupt意思是把a.txt下载下来。再去传输，当看到done和多少字节时代表传输成功。<br>查看相应地址可以看到a.txt中的数据已经传输进去</interrupt></p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植10.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植10.png" alt></p>
 <p>硬件外面是内核，内核外面是shell，用户通过shell来访问kernel进而访问hardware。shell是应用程序，应用程序需要在某文件运行，比如Windows下的C、D等盘。在linux中运行shell需要一个目录要存，而目录要挂载到根，因为有了根才能进行更下一步操作。 </p>
 <p>root：启动的根文件系统在哪个设备；<br>init：内核启动后，第一个可执行文件init进程从哪里来；<br>console：内核启动时，使用哪个设备作为控制台。<br>kernel启动的三大条件：bootm命令的支持，bootm是把uImage的头给解析出来，把kernel加载到内存使其可以运行；kernel的运行还需要启动参数（root init console） 但根文件系统没有，导致用户没法交互；文件系统的部署（NFS、Ramdisk）。</p>
 <p>Ramdisk：借助内存，在内存中把文件系统的数据介质下载进去，然后用kernel去指到这个地址；<br>NFS:利用网线来跟服务器介质进行交互。<br>开发的时候一般用NFS，成品一般是用Ramdisk。</p>
 <p>内存的基地址是0X2000_0000，0X20008000一般是用来放kernel。所以ramdisk的地址要在0x20008000+kernel大小之后再偏移。所以干脆直接把文件系统放在内存的高地址。<br>ramdisk：root=/dev/ram、initrd=0x21000000,8M(example)、init=/linuxrc、console=ttySCA0(PC上的串口0),115200</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植11.png" alt=""><br><br><br><br><br><img src="/img/FPGA/Xilinx/04_linux内核移植12.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植11.png" alt><br><br><br><br><br><img src="/img/FPGA/Xilinx/04_linux内核移植12.png" alt></p>
 <p>tcl这样输<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd E:/vivado_buffer/xillinux-eval-zybo-2.0a</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植13.png" alt=""><br><img src="/img/FPGA/Xilinx/04_linux内核移植14.png" alt=""><br><img src="/img/FPGA/Xilinx/04_linux内核移植15.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植13.png" alt><br><img src="/img/FPGA/Xilinx/04_linux内核移植14.png" alt><br><img src="/img/FPGA/Xilinx/04_linux内核移植15.png" alt></p>
 <p>source输<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source E:/vivado_buffer/xillinux-eval-zybo-2.0a/blockdesign/xillydemo-vivado.tcl</span><br></pre></td></tr></table></figure></p>
 <p><br><br><br></p>
 <p>uboot<br>编译uboot的文件（比如u-boot-2010.10），之后会生成</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植16.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植16.png" alt></p>
 <p>在此主要讲uboot和uboot.bin的区别</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植17.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植17.png" alt></p>
 <p>uboot（图中绿色的）：<br>编译的过程一般是把.c文件编译成.o，比如（start.c→start.o，board.c→board.o等等），链接器会通过链接命令把所有的.o文件拼接起来，拼成一个不带后缀的uboot文件，这个uboot一般比较大，图中的为905k左右，里面不只包含运行的代码而且还包含了很多调试信息，比如段的信息、原始的代码信息、标号信息、地址信息等。所以这个文件不能直接copy到板子上运行。若想在板子上运行则要把一些调试等信息去掉，而生成一个纯粹的uboot.bin。里面没有任何调试和注释信息。</p>
 <p>分析时可对uboot先进行反汇编</p>
-<p><img src="/img/FPGA/Xilinx/04_linux内核移植18.png" alt=""></p>
+<p><img src="/img/FPGA/Xilinx/04_linux内核移植18.png" alt></p>
 <p><br><br><br></p>
 <p>boot-loader有多种，我们选用的是uboot<br>从putty打开的那个属于ubot</p>
 <p>根文件系统是linux内核启动以后第一个加载的文件系统，包含了内核启动的基本文件和程序。同时也是其他系统启动后挂载的载体。直接输入mount可以看挂载了哪些系统。</p>
@@ -721,7 +721,7 @@
 
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -859,7 +859,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -868,7 +868,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -888,7 +888,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

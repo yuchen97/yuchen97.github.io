@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -190,7 +190,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -219,7 +219,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -390,20 +390,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2019/03/27/数据结构/01_最大子序列和/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -471,7 +471,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
 
                 
                 
@@ -555,12 +555,12 @@
 <p>所以最后程序输出结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">The max sub sequence sum is: 7</span><br></pre></td></tr></table></figure></p>
 <h4 id="2-2-解法2——-O-NlogN"><a href="#2-2-解法2——-O-NlogN" class="headerlink" title="2.2 解法2——$O(NlogN)$"></a>2.2 解法2——$O(NlogN)$</h4><p>分而治之，将此问题拆分，即最大子序列和可能在三个地方出现：或者整个出现在输入数据的左半部，或者整个出现在右半部，或者跨越输入数据的中部从而占据左右两半部分。<br>前两种情况，可以用递归依次求解。最后一种情况可通过求出前半部分的最大和以及后半部分最大和而得到，然后将其相加。<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">const int N = 8;</span><br><span class="line">int MaxSubSum3(const int A[], int Left, int Right);</span><br><span class="line">int Max3(int a, int b, int c);</span><br><span class="line">int MaxSubSum(const int A[], int N);</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line">    int A[N] = &#123;-1, 3, -2, 4, -6, 1, 6, -1&#125;;</span><br><span class="line">    cout &lt;&lt; &quot;The max sub sequence sum is: \n&quot; </span><br><span class="line">        &lt;&lt; MaxSubSum(A, N) &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int MaxSubSum3(const int A[], int Left, int Right)</span><br><span class="line">&#123;</span><br><span class="line">    int Center, CenterLeft_Sum=0, CenterRight_Sum=0;</span><br><span class="line">    int CenterLeft_MaxSum = 0, CenterRight_MaxSum = 0;</span><br><span class="line">    int Left_MaxSum, Right_MaxSum;</span><br><span class="line">    if (Left == Right)  // 此时子序列只有一个元素，当该元素非负时，它就是最大和子序列</span><br><span class="line">        //if (A[Left] &gt; 0)</span><br><span class="line">            return A[Left];</span><br><span class="line">        //else</span><br><span class="line">        //    return 0;</span><br><span class="line">    // 递归，左右两边最大和子序列</span><br><span class="line">    Center = (Left + Right)/2;</span><br><span class="line">    Left_MaxSum = MaxSubSum3(A, Left, Center);</span><br><span class="line">    Right_MaxSum = MaxSubSum3(A, Center+1, Right);</span><br><span class="line">    // 包含两边跨越中间的最大和子序列</span><br><span class="line">    for (int i=Center; i&gt;=Left; i--)    // 左扫</span><br><span class="line">    &#123;</span><br><span class="line">        CenterLeft_Sum += A[i];</span><br><span class="line">        if (CenterLeft_Sum &gt; CenterLeft_MaxSum)</span><br><span class="line">            CenterLeft_MaxSum = CenterLeft_Sum;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i=Center+1; i&lt;=Right; i++)    // 右扫</span><br><span class="line">    &#123;</span><br><span class="line">        CenterRight_Sum += A[i];</span><br><span class="line">        if (CenterRight_Sum &gt; CenterRight_MaxSum)</span><br><span class="line">            CenterRight_MaxSum = CenterRight_Sum;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; &quot;lef &quot; &lt;&lt; Left_MaxSum </span><br><span class="line">        &lt;&lt; &quot;; ri &quot; &lt;&lt; Right_MaxSum </span><br><span class="line">        &lt;&lt; &quot;; ce &quot; &lt;&lt; CenterLeft_MaxSum+CenterRight_MaxSum &lt;&lt; std::endl;</span><br><span class="line">    return Max3(Left_MaxSum, Right_MaxSum, CenterLeft_MaxSum+CenterRight_MaxSum);</span><br><span class="line">&#125;</span><br><span class="line">int Max3(int a, int b, int c)</span><br><span class="line">&#123;</span><br><span class="line">    int max;</span><br><span class="line">    max = a &gt; b ? a : b;</span><br><span class="line">    max = max &gt; c ? max : c;</span><br><span class="line">    return max;</span><br><span class="line">&#125;</span><br><span class="line">int MaxSubSum(const int A[], int N)    // 封装</span><br><span class="line">&#123;</span><br><span class="line">    return MaxSubSum3(A, 0, N-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>整体思路如下：</p>
-<p><img src="/img/数据结构/01_最大子序列和4.PNG" alt=""> </p>
+<p><img src="/img/数据结构/01_最大子序列和4.PNG" alt> </p>
 <p>输出结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">The max sub sequence sum is:</span><br><span class="line">lef -1; ri 3; ce 3</span><br><span class="line">lef -2; ri 4; ce 4</span><br><span class="line">lef 3; ri 4; ce 5</span><br><span class="line">lef -6; ri 1; ce 1</span><br><span class="line">lef 6; ri -1; ce 6</span><br><span class="line">lef 1; ri 6; ce 7</span><br><span class="line">lef 5; ri 7; ce 6</span><br><span class="line">7</span><br></pre></td></tr></table></figure></p>
 <p><strong>复杂度T(N)</strong><br>总体复杂度设为 T(N)，左边迭代复杂度 = 右边 = T(N/2)，跨越中部占据两边的复杂度为 O(N)。<br>$T(N)=T(N/2)+T(N/2)+c\cdot N \\<br>=2[T(N/2^2)+T(N/2^2)+\frac{c\cdot N}{2}]+c\cdot N \\<br>= 2^2T(N/2^2)+2cN \\<br>··· \\<br>= 2^kT(N/2^k)+kcN, 2^k=N \\<br>= 2^kO(1)+ckN \\<br>= O(N logN)$</p>
 <h4 id="2-3-解法3——-O-N"><a href="#2-3-解法3——-O-N" class="headerlink" title="2.3 解法3——$O(N)$"></a>2.3 解法3——$O(N)$</h4><p>逐步计算累加子序列和，如果小于 0 抛弃，在累加中不断更新 MaxSum 的值。<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">const int N = 8;</span><br><span class="line">int MaxSubSum(const int A[], int N);</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    using namespace std;</span><br><span class="line">    int A[N] = &#123;-1, 3, -2, 4, -6, 1, 6, -1&#125;;</span><br><span class="line">    cout &lt;&lt; &quot;The max sub sequence sum is: \n&quot; </span><br><span class="line">        &lt;&lt; MaxSubSum(A, N) &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">int MaxSubSum(const int A[], int N)    </span><br><span class="line">&#123;</span><br><span class="line">    int ThisSum = 0, MaxSum = 0;</span><br><span class="line">    for (int i=0; i&lt;N; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ThisSum += A[i];</span><br><span class="line">        if (ThisSum &gt; MaxSum)</span><br><span class="line">        &#123;</span><br><span class="line">            std::cout &lt;&lt; &quot;This: &quot; &lt;&lt; ThisSum</span><br><span class="line">                &lt;&lt; &quot;; Max: &quot; &lt;&lt; MaxSum &lt;&lt; std::endl; </span><br><span class="line">            MaxSum = ThisSum;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (ThisSum &lt; 0)   // 当子列和为负，抛弃</span><br><span class="line">            ThisSum = 0;</span><br><span class="line">    &#125;</span><br><span class="line">    return MaxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>整体思路如下图所示：</p>
-<p><img src="/img/数据结构/01_最大子序列和5.PNG" alt=""> </p>
+<p><img src="/img/数据结构/01_最大子序列和5.PNG" alt> </p>
 <p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Buffer\C++_code&gt; .\test.exe</span><br><span class="line">The max sub sequence sum is:</span><br><span class="line">This: -1; Max: 0</span><br><span class="line">This: 3; Max: 0</span><br><span class="line">This: 1; Max: 3</span><br><span class="line">This: 5; Max: 3</span><br><span class="line">This: -1; Max: 5</span><br><span class="line">This: 1; Max: 5</span><br><span class="line">This: 7; Max: 5</span><br><span class="line">This: 6; Max: 7</span><br><span class="line">7</span><br></pre></td></tr></table></figure></p>
 
       
@@ -690,7 +690,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -844,7 +844,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -853,7 +853,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -873,7 +873,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

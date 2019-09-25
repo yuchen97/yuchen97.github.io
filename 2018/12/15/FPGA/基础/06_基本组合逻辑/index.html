@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -189,7 +189,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -218,7 +218,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -389,20 +389,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/15/FPGA/基础/06_基本组合逻辑/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -470,7 +470,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
 
                 
                 
@@ -532,10 +532,10 @@
       
 
       
-        <p><img src="/img/FPGA/基础/06_基本组合逻辑1.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module Driver_v1</span><br><span class="line">(</span><br><span class="line">       input                   [ 0:0]     DATA_IN_A                                     ,//(i)     [ 2]        Data a input</span><br><span class="line">       output        	  [ 0:0]     DATA_OUT_B                                 //(o)     [ 4]        Data c output</span><br><span class="line">);</span><br><span class="line">       assign          DATA_OUT_B             =     DATA_IN_A;</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/FPGA/基础/06_基本组合逻辑2.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">module Odd Parity_v1</span><br><span class="line">(</span><br><span class="line">       input            [ 7:0]     DATA_IN                                           ,//(i)     [ 8]        Data 8 bit a input</span><br><span class="line">       output          [ 0:0]     ODD_FLAG                                      ,//(o)    [ 1]        Odd output</span><br><span class="line">       output          [ 0:0]     EVEN_FLAG                                      //(o)   [ 1]        Even output</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line">       assign          ODD_FLAG         =     ^DATA_IN;</span><br><span class="line">       assign          EVEN_FLAG        =     ~ODD_FLAG;</span><br><span class="line">      </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/FPGA/基础/06_基本组合逻辑3.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module multiple_fan_out _v1</span><br><span class="line">(</span><br><span class="line">       input             [ 3:0]     DATA_IN                                                    ,//(i)     [ 4]        Data 4 bit</span><br><span class="line">                                                                                   </span><br><span class="line">       output          [ 0:0]     FAN_OUT_PART1                                      ,//(o)   [ 1]        PART1 output</span><br><span class="line">       output          [ 0:0]     FAN_OUT_PART2                                      ,//(o)   [ 1]        PART2 output</span><br><span class="line">       output          [ 1:0]     FAN_OUT_PART3                                      ,//(o)   [ 2]        PART3 output</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line">       assign          FAN_OUT_PART1              =     DATA_IN[0];</span><br><span class="line">       assign          FAN_OUT_PART2              =     DATA_IN[1];</span><br><span class="line">       assign          FAN_OUT_PART3              =     DATA_IN[3:2];</span><br><span class="line">      </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/FPGA/基础/06_基本组合逻辑4.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">module combine_v1</span><br><span class="line">(</span><br><span class="line">       input                   [ 0:0]     DATA_IN_PART1                          ,//(i)     [ 1]        Data a input</span><br><span class="line">       input                   [ 0:0]     DATA_IN_PART2                          ,//(i)     [ 1]        Data b input</span><br><span class="line">       input                   [ 1:0]                                                          ,//(I)      [ 2]       Data c output</span><br><span class="line">        output                [ 3:0]     COMB_OUT</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line">       assign          COMB_OUT[0]           =     DATA_IN_PART1;</span><br><span class="line">       assign          COMB_OUT[1]           =     DATA_IN_PART2;</span><br><span class="line">       assign          COMB_OUT[3:2] =     DATA_IN_PART3;</span><br><span class="line">      </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
+        <p><img src="/img/FPGA/基础/06_基本组合逻辑1.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module Driver_v1</span><br><span class="line">(</span><br><span class="line">       input                   [ 0:0]     DATA_IN_A                                     ,//(i)     [ 2]        Data a input</span><br><span class="line">       output        	  [ 0:0]     DATA_OUT_B                                 //(o)     [ 4]        Data c output</span><br><span class="line">);</span><br><span class="line">       assign          DATA_OUT_B             =     DATA_IN_A;</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/FPGA/基础/06_基本组合逻辑2.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">module Odd Parity_v1</span><br><span class="line">(</span><br><span class="line">       input            [ 7:0]     DATA_IN                                           ,//(i)     [ 8]        Data 8 bit a input</span><br><span class="line">       output          [ 0:0]     ODD_FLAG                                      ,//(o)    [ 1]        Odd output</span><br><span class="line">       output          [ 0:0]     EVEN_FLAG                                      //(o)   [ 1]        Even output</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line">       assign          ODD_FLAG         =     ^DATA_IN;</span><br><span class="line">       assign          EVEN_FLAG        =     ~ODD_FLAG;</span><br><span class="line">      </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/FPGA/基础/06_基本组合逻辑3.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module multiple_fan_out _v1</span><br><span class="line">(</span><br><span class="line">       input             [ 3:0]     DATA_IN                                                    ,//(i)     [ 4]        Data 4 bit</span><br><span class="line">                                                                                   </span><br><span class="line">       output          [ 0:0]     FAN_OUT_PART1                                      ,//(o)   [ 1]        PART1 output</span><br><span class="line">       output          [ 0:0]     FAN_OUT_PART2                                      ,//(o)   [ 1]        PART2 output</span><br><span class="line">       output          [ 1:0]     FAN_OUT_PART3                                      ,//(o)   [ 2]        PART3 output</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line">       assign          FAN_OUT_PART1              =     DATA_IN[0];</span><br><span class="line">       assign          FAN_OUT_PART2              =     DATA_IN[1];</span><br><span class="line">       assign          FAN_OUT_PART3              =     DATA_IN[3:2];</span><br><span class="line">      </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/FPGA/基础/06_基本组合逻辑4.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">module combine_v1</span><br><span class="line">(</span><br><span class="line">       input                   [ 0:0]     DATA_IN_PART1                          ,//(i)     [ 1]        Data a input</span><br><span class="line">       input                   [ 0:0]     DATA_IN_PART2                          ,//(i)     [ 1]        Data b input</span><br><span class="line">       input                   [ 1:0]                                                          ,//(I)      [ 2]       Data c output</span><br><span class="line">        output                [ 3:0]     COMB_OUT</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line">       assign          COMB_OUT[0]           =     DATA_IN_PART1;</span><br><span class="line">       assign          COMB_OUT[1]           =     DATA_IN_PART2;</span><br><span class="line">       assign          COMB_OUT[3:2] =     DATA_IN_PART3;</span><br><span class="line">      </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -655,7 +655,7 @@
 
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -793,7 +793,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -802,7 +802,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -822,7 +822,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

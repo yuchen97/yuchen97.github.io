@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -203,7 +203,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -232,7 +232,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -403,20 +403,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/05_zynq-soc-light/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -484,7 +484,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
 
                 
                 
@@ -556,46 +556,46 @@
 <h4 id="1-制作BOOT-BIN"><a href="#1-制作BOOT-BIN" class="headerlink" title="1. 制作BOOT,BIN"></a>1. 制作BOOT,BIN</h4><p>boot.bin =  fsbl.elf + uboot.elf + system.bit.<br>首先完成system.bit的搭建。</p>
 <p>用官方给的xillydemo工程，可参考以下文件。<br>链接：<a href="https://pan.baidu.com/s/1TdHkrjEiYFDxScewaddNoQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1TdHkrjEiYFDxScewaddNoQ</a> 密码：6dhn</p>
 <p>通过tcl建立硬件工程</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light1.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light1.png" alt> </p>
 <p>蓝色有空格<br>在工程中添加my_led_ip_0，自动连接之后在相应的输出点击右键可以添加端口，如下所示</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light2.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light2.png" alt> </p>
 <p>根据添加的ip进行原工程相应.v文件的更改。编译之后生成bitstream。</p>
 <h4 id="2-fsbl-elf"><a href="#2-fsbl-elf" class="headerlink" title="2. fsbl.elf"></a>2. fsbl.elf</h4><p>直接参考Miz702 ZYNQ开发教程的《第十章ZYNQ制作UBOOT》。</p>
 <h4 id="3-uboot"><a href="#3-uboot" class="headerlink" title="3. uboot"></a>3. uboot</h4><p>直接参考Miz702 ZYNQ开发教程（LINUX）的《第三章LINUX下的uboot的修改和编译》和配套视频讲解，在此之前需要搭建linux下的交叉编译环境。具体请看之前的linux下的交叉编译环境搭建的笔记。</p>
 <p>用uboot、fsbl生成boot.bin文件保留以备用。</p>
 <h4 id="4-devicetree-dtb"><a href="#4-devicetree-dtb" class="headerlink" title="4. devicetree.dtb"></a>4. devicetree.dtb</h4><h4 id="5-uimage"><a href="#5-uimage" class="headerlink" title="5. uimage"></a>5. uimage</h4><p>直接参考《Getting Started with ZYBO》</p>
 <p>将</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light3.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light3.png" alt> </p>
 <p>放入SD Card，注意跳线帽接在SD端。<br>用putty软件打开进行参数修改。</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light4.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light4.png" alt> </p>
 <p>修改好串口对应参数</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light5.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light5.png" alt> </p>
 <p>上电之后如图</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light6.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light6.png" alt> </p>
 <p>按下开发板上的PS-RESET进行复位</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light7.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light7.png" alt> </p>
 <p>ls，找到对应的.c文件<br>（注 新建文件可以用mkdir 比如</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light8.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light8.png" alt> </p>
 <p>rm -rf XX可删除文件<br>注：若删除时出现 Permission denied 的提示，可以在命令前加sudo 即:sudo rm -rf 文件夹的名字，即可删除。<br>提醒：使用这个rm -rf的时候一定要格外小心，linux没有回收站的。rm还有更多的其他参数和用法，具体参数用法使用man rm查看。<br>说明：<br>-r 向下递归，不管有多少级目录，一并删除<br>-f 直接强行删除，不作任何提示的意思</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light9.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light9.png" alt> </p>
 <p>nano文本编辑器，比vi/vim简单</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light10.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light10.png" alt> </p>
 <p>.c文件在Desktop_&gt;tyqxilinx里<br>01_linux_led.c内容如下（偷懒，前两个图从网站上截的，后一个是putty，两个程序连起来就是了）<br>资料参考：<a href="http://blog.csdn.net/zhaoxinfan/article/details/73824232" target="_blank" rel="noopener">http://blog.csdn.net/zhaoxinfan/article/details/73824232</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdint.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;sys/stat.h&gt;</span><br><span class="line">#include &lt;sys/mman.h&gt;</span><br><span class="line"> </span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;fcntl.h&gt;</span><br><span class="line"> </span><br><span class="line">#define PAGE_SIZE  ((size_t)getpagesize())</span><br><span class="line">#define PAGE_MASK ((uint64_t) (long)~(PAGE_SIZE - 1))</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">void Xil_Out32(uint64_t phyaddr, uint32_t val)</span><br><span class="line">&#123;</span><br><span class="line">	int fd;</span><br><span class="line">	volatile uint8_t *map_base;</span><br><span class="line">	uint64_t base = phyaddr &amp; PAGE_MASK;</span><br><span class="line">	uint64_t pgoffset = phyaddr &amp; (~PAGE_MASK);</span><br><span class="line"> </span><br><span class="line">	if((fd = open(&quot;/dev/mem&quot;, O_RDWR | O_SYNC)) == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		perror(&quot;open /dev/mem:&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	map_base = mmap(NULL, PAGE_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED,</span><br><span class="line">			fd, base);</span><br><span class="line">	if(map_base == MAP_FAILED)</span><br><span class="line">	&#123;</span><br><span class="line">		perror(&quot;mmap:&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	*(volatile uint32_t *)(map_base + pgoffset) = val; </span><br><span class="line">	close(fd);</span><br><span class="line">	munmap((void *)map_base, PAGE_SIZE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light13.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light13.png" alt> </p>
 <p>ctrl + x 可以退出</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light14.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light14.png" alt> </p>
 <p>对其进行交叉编译时，需要把opencv_compile.sh（在Desktop_&gt;xilnx里）放在对应的文件夹下。</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light15.png" alt=""><br><img src="/img/FPGA/Xilinx/05_zynq_soc_light16.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light15.png" alt><br><img src="/img/FPGA/Xilinx/05_zynq_soc_light16.png" alt> </p>
 <p>打开之后可以看到其内容</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light17.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light17.png" alt> </p>
 <p>需要把待编译的文件改成所需编译的.c文件</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light18.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light18.png" alt> </p>
 <p>执行编译</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light19.png" alt=""><br>（出错的，此文件编译有误）</p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light19.png" alt><br>（出错的，此文件编译有误）</p>
 <p>关机shutdown 其中shutdown -P 1是指的一分钟之后系统关机。</p>
-<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light20.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/05_zynq_soc_light20.png" alt> </p>
 
       
     </div>
@@ -724,7 +724,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -878,7 +878,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -887,7 +887,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -907,7 +907,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

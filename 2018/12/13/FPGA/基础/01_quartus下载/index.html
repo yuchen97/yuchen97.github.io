@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -190,7 +190,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -219,7 +219,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -390,20 +390,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/13/FPGA/基础/01_quartus下载/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -471,7 +471,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
 
                 
                 
@@ -536,10 +536,10 @@
         <h3 id="Quartus-下载"><a href="#Quartus-下载" class="headerlink" title="Quartus 下载"></a>Quartus 下载</h3><p><strong>【2018-04-11】chenyu</strong></p>
 <h4 id="1-quartus16-1下载"><a href="#1-quartus16-1下载" class="headerlink" title="1. quartus16.1下载"></a>1. quartus16.1下载</h4><p><a href="http://dl.altera.com/16.1/?edition=standard&amp;platform=windows&amp;download_manager=direct&amp;direct_download=1&amp;version_number=16.1&amp;description=Quartus+Prime+Standard+Edition+Software+%28Device+support+not+included%29&amp;download_method=download&amp;filesize=4669788160&amp;direct_file=Quartus-16.1.0.196-windows.tar" target="_blank" rel="noopener">下载地址</a></p>
 <p>进入之后可看到如下界面（需要注册一下Intel账号，右上角登录。很简单，分分钟搞定）</p>
-<p><img src="/img/FPGA/基础/01_quartus下载1.png" alt=""><br><img src="/img/FPGA/基础/01_quartus下载2.png" alt="">  </p>
+<p><img src="/img/FPGA/基础/01_quartus下载1.png" alt><br><img src="/img/FPGA/基础/01_quartus下载2.png" alt>  </p>
 <p><strong>注：由于complete比较大，但几乎包含所有device。</strong><br><strong>想节省时间和空间建议下载轻量版，device可以根据所需要求下载。</strong></p>
-<h4 id="2-device下载（如果下载完整版可以忽略）"><a href="#2-device下载（如果下载完整版可以忽略）" class="headerlink" title="2. device下载（如果下载完整版可以忽略）"></a>2. device下载（如果下载完整版可以忽略）</h4><p>注：本项目暂用DE2-115开发板，cyclone IV，EP4CE115F29<br>还是上文提到的那个网站，找到“独立文件”<br><img src="/img/FPGA/基础/01_quartus下载3.png" alt=""><br>在“独立文件中”找到cyclone IV support进行下载。<br><img src="/img/FPGA/基础/01_quartus下载4.png" alt="">  </p>
-<h4 id="3-Device添加"><a href="#3-Device添加" class="headerlink" title="3. Device添加"></a>3. Device添加</h4><p>软件安装好之后，在windows_&gt;Intel FPGA 16.1_&gt;Quartus Prime16.1 Device install中进行device添加。<br><img src="/img/FPGA/基础/01_quartus下载5.png" alt="">  </p>
+<h4 id="2-device下载（如果下载完整版可以忽略）"><a href="#2-device下载（如果下载完整版可以忽略）" class="headerlink" title="2. device下载（如果下载完整版可以忽略）"></a>2. device下载（如果下载完整版可以忽略）</h4><p>注：本项目暂用DE2-115开发板，cyclone IV，EP4CE115F29<br>还是上文提到的那个网站，找到“独立文件”<br><img src="/img/FPGA/基础/01_quartus下载3.png" alt><br>在“独立文件中”找到cyclone IV support进行下载。<br><img src="/img/FPGA/基础/01_quartus下载4.png" alt>  </p>
+<h4 id="3-Device添加"><a href="#3-Device添加" class="headerlink" title="3. Device添加"></a>3. Device添加</h4><p>软件安装好之后，在windows_&gt;Intel FPGA 16.1_&gt;Quartus Prime16.1 Device install中进行device添加。<br><img src="/img/FPGA/基础/01_quartus下载5.png" alt>  </p>
 
       
     </div>
@@ -668,7 +668,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -822,7 +822,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -831,7 +831,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -851,7 +851,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

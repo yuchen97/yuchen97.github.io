@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -196,7 +196,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -225,7 +225,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -396,20 +396,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/17/FPGA/Altera/PCIe/03_Transceivers/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -477,7 +477,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
 
                 
                 
@@ -540,7 +540,7 @@
 
       
         <p>the structure of the cyclone 4 GX transceiver<br>transceiver channel for the cyclone 4 GX device</p>
-<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers1.png" alt=""> </p>
+<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers1.png" alt> </p>
 <ul>
 <li><strong>PIPE Interface</strong><br>为PCIE的接口用于连接PCIE controller和PCIE PHY（物理层）， controller用PIPE接口发送并行数给PHY用于并串转换等操作， PHY把串并转换得到的并行数通过PIPE接口送给controller。<br>transmitter channel PCS（物理编码子层）</li>
 <li><strong>TX Phase Compensation FIFO</strong><br>发送相位补偿FIFO<br>PCIE接收端为了能并行处理数据，必须要去除通道与通道的相位偏移，此动作称为链路的相位补偿，具体方法是通过微调芯片内部的自动延迟电路来实现的。PCIE规范要求，在发送端需要拥有1.5ns的Deskew补偿能力，在接收端需要拥有20ns的补偿能力。所以PCIE总线对个通道的走线长度约束非常宽松，不需要像并行总线那样做等长处理。</li>
@@ -553,29 +553,29 @@
 <p>每个收发器通道均由一个发送数据通路和一个接收数据通路组成。每个数据通路又由<br>以下两部分构成：<br>■ 物理介质附加子层 (PMA)— 包括 I/O 缓冲器的模拟电路、时钟数据恢复 (CDR)、 串行<br>器 / 解串器 (SERDES) 以及用于优化串行数据通道性能的可编程预加重与均衡。<br>■ 物理编码子层(PCS)—包括兼容所支持协议的收发器中的数字功能的硬核逻辑实现。<br>FPGA 架构中的输出并行数据通过发送器 PCS 和 PMA 进行传输，并作为串行数据被发<br>送。接收到的输入串行数据通过接收器 PMA 和 PCS 传输到 FPGA 架构中。该收发器支持<br>下面的接口宽度：<br>■ FPGA 架构收发器 PCS—8、10、16 和 20 bit<br>■ PMA-PCS—8 或 10 bit</p>
 <h4 id="4-Transmitter-Channel-Datapath-发送通道数据通路"><a href="#4-Transmitter-Channel-Datapath-发送通道数据通路" class="headerlink" title="4. Transmitter Channel Datapath 发送通道数据通路"></a>4. Transmitter Channel Datapath 发送通道数据通路</h4><p>TX相位补偿FIFO、字节串行器、8B/10B编码器、串行器、发送器输出缓冲器</p>
 <h5 id="4-1-TX相位补偿FIFO"><a href="#4-1-TX相位补偿FIFO" class="headerlink" title="4.1 TX相位补偿FIFO"></a>4.1 TX相位补偿FIFO</h5><p>当 ( 直接地或通过 PIPE 和 PCIe 硬核 IP) 连接发送通道至 FPGA 架构时，TX 相位补偿FIFO 对低速并行时钟与 FPGA 架构接口时钟之间的相位差异进行补偿。FIFO 为 4 个字深，有 2 到 3 个并行时钟周期间的延迟。 图 1-4 显示了 TX 相位补偿 FIFO 的结构框图。</p>
-<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers2.png" alt=""> </p>
+<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers2.png" alt> </p>
 <h5 id="4-2-字节串行器"><a href="#4-2-字节串行器" class="headerlink" title="4.2 字节串行器"></a>4.2 字节串行器</h5><p>字节串行器平分输入数据位宽，在满足最大 FPGA 架构频率限制的同时，实现了发送通道在更高的数据速率下运行。在那些超过最大 FPGA 架构收发器接口时钟频率限制的配置中，该模块是必需的，反之是可选的。<br>举例说明，在不使用字节串行器的情况下，当一个 EP4CGX150 发送通道运行在 3.125Gbps 时，FPGA 架构频率为 312.5 MHz (3.125 Gbps/10)。该实现违反了频率限制，从而没有被支持。当使用字节串行器时，3.125 Gbps 的通道操作是被支持的，其中的FPGA 架构频率为 156.25 MHz (3.125 Gbps/20)。<br>字节串行器首先转发最低有效位，然后转发最高有效位。</p>
 <h5 id="4-3-8B-10B-编码器"><a href="#4-3-8B-10B-编码器" class="headerlink" title="4.3 8B/10B 编码器"></a>4.3 8B/10B 编码器</h5><p>可选的 8B/10B 编码器从 8-bit 数据以及 1-bit 控制标识符中生成具有正确差异的10-bit 代码组。</p>
-<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers3.png" alt=""> </p>
+<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers3.png" alt> </p>
 <h5 id="4-4-串行器"><a href="#4-4-串行器" class="headerlink" title="4.4 串行器"></a>4.4 串行器</h5><p>串行器将发送器 PCS 上的低速并行 8-bit 或者 10-bit 数据转换成发送器输出缓冲器的高速串行数据。串行器运用一个 1/2 串行数据速率的高速时钟。 串行器传输顺序是从LSB 到 MSB。</p>
-<h5 id="4-5-发送器输出缓冲器"><a href="#4-5-发送器输出缓冲器" class="headerlink" title="4.5 发送器输出缓冲器"></a>4.5 发送器输出缓冲器</h5><p><img src="/img/FPGA/Altera/PCIe/03_Transceivers4.png" alt=""> </p>
+<h5 id="4-5-发送器输出缓冲器"><a href="#4-5-发送器输出缓冲器" class="headerlink" title="4.5 发送器输出缓冲器"></a>4.5 发送器输出缓冲器</h5><p><img src="/img/FPGA/Altera/PCIe/03_Transceivers4.png" alt> </p>
 <h4 id="5-Receiver-Channel-Datapath接收通道数据通路"><a href="#5-Receiver-Channel-Datapath接收通道数据通路" class="headerlink" title="5. Receiver Channel Datapath接收通道数据通路"></a>5. Receiver Channel Datapath接收通道数据通路</h4><p>接收器输入缓冲器、时钟数据恢复、解串器、字对齐器、去斜移FIFO、速率匹配FIFO、8B/10B解码器、字节解串器、字节顺序、RX相位补偿FIFO。</p>
-<h5 id="5-1-接收器输入缓冲器"><a href="#5-1-接收器输入缓冲器" class="headerlink" title="5.1 接收器输入缓冲器"></a>5.1 接收器输入缓冲器</h5><p><img src="/img/FPGA/Altera/PCIe/03_Transceivers5.png" alt=""><br><em>接收器输入缓冲器结构图</em></p>
+<h5 id="5-1-接收器输入缓冲器"><a href="#5-1-接收器输入缓冲器" class="headerlink" title="5.1 接收器输入缓冲器"></a>5.1 接收器输入缓冲器</h5><p><img src="/img/FPGA/Altera/PCIe/03_Transceivers5.png" alt><br><em>接收器输入缓冲器结构图</em></p>
 <p><strong>接收器输入缓冲器支持以下特性：</strong><br>■ 可编程均衡 — 将输入信号的高频增益提升到 7 dB。这将对传输介质的低通滤波效应进行补偿。所要求的高频增益量取决于物理介质的损耗特性。<br>■ 可编程 DC 增益 — 对整个频谱中的输入信号提供高达 6 dBDC 增益设置的均等提升。<br>■ 可编程差分OCT—对100 Ω或150 Ω的已校准OC提供0.82 V的片上接收器共模电压。当禁用 OCT 来使用外部匹配电阻时，此共模电压将处于三态。<br>■ 偏移校准 — 对模拟偏移电压进行校准，这些偏移电压由均衡阶段以及 CDR 电路中的正负差分信号间的工艺变化所导致。<br>■ 信号检测 — 通过内置的信号阈值检测电路，来检测接收器输入缓冲器上出现的信号电平是否超过了相应的阈值。 此电路有一个滞后响应，过滤掉由传输介质中的 ISI效应以及高频损耗所导致的高频振铃。 rx_signaldetect 信号的置位表明了检测的开始。只有当 8B/10B 编码器 / 解码器模块使能时，才可使用信号检查功能。反之，rx_signaldetect 信号将被强制拉高，并旁路信号检测功能。</p>
 <h5 id="5-2-时钟数据恢复"><a href="#5-2-时钟数据恢复" class="headerlink" title="5.2 时钟数据恢复"></a>5.2 时钟数据恢复</h5><p>每个接收通道均有一个独立的 CDR 单元，用于将时钟从输入串行数据流中恢复。高速恢复时钟用于同步解串器，实现已接收的输入数据从串行到平行的转换，而低速恢复时钟用于同步接收器 PCS 模块。</p>
-<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers6.png" alt=""> </p>
+<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers6.png" alt> </p>
 <p>每个 CDR 单元均从相邻于收发器模块的两个多用锁相环 (PLL) 中的一个获取参考时钟。<br>CDR 运作原理是通过使用相位检测器来跟踪输入数据，并从相位内插器单元找到最佳的<br>采样相位。CDR 操作是由 LTR/LTD 控制器模块控制的</p>
 <h5 id="5-3-解串器"><a href="#5-3-解串器" class="headerlink" title="5.3 解串器"></a>5.3 解串器</h5><p>解串器从接收器输入缓冲器中接收到的串行数据转换成 8 或 10-bit 并行数据。假定所接收到串行数据是从 LSB 到 MSB。解串器采用 CDR 上的高速恢复时钟，运行在串行数据速率一半的频率。</p>
 <h5 id="5-4-对齐器"><a href="#5-4-对齐器" class="headerlink" title="5.4 对齐器"></a>5.4 对齐器</h5><p>字对齐器接收解串器中的并行数据，并根据链路同步期间接收到的预定义对齐码型来存储字边界。字对齐支持三个可选的模式。</p>
-<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers7.png" alt=""> </p>
+<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers7.png" alt> </p>
 <h5 id="5-5-去斜移-FIFO"><a href="#5-5-去斜移-FIFO" class="headerlink" title="5.5 去斜移 FIFO"></a>5.5 去斜移 FIFO</h5><p>此模块仅适用于 XAUI 协议，用于对齐四个通道，以满足 40 UI (12.8 ns) 的最大斜移要求 ( 从四个通道的收发器中所看到的 )。去斜移操作兼容于 IEEE P802.3ae 规范的48 条所指定的 PCS 去斜移状态机图。<br>去斜移电路包括四个通道的每一个中的 16-word 深度去斜移 FIFO，以及用于控制每个通道中的去斜移 FIFO 读写操作的收发器模块中央控制单元中的控制逻辑。</p>
 <h5 id="5-6-速率匹配-FIFO"><a href="#5-6-速率匹配-FIFO" class="headerlink" title="5.6 速率匹配 FIFO"></a>5.6 速率匹配 FIFO</h5><p>在异步系统中，上游发送器和本地接收器可以由独立参考时钟提供时钟。当进行从恢复时钟域 ( 与上游发送器参考时钟相同 ) 到本地接收器参考时钟域的锁存时 , 几百个ppm 排序上的频率差异能够损坏数据。</p>
-<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers8.png" alt=""><br><em>速率匹配FIFO结构框图</em><br>速率匹配 FIFO 对上游发送器与本地接收器时钟之间高达 ±300 ppm ( 总共 600 ppm)的小时钟频率差异进行补偿，通过执行以下功能来实现该补偿：<br>■ 当本地接收器参考时钟频率大于上游发送器参考时钟频率时，插入跳过符号。<br>■ 当本地接收器参考时钟频率小于上游发送器参考时钟频率时，删除跳过符号。<br>20-word 深的速率匹配 FIFO 和逻辑根据 ppm 差异对跳过符号的插入与删除进行控制。字对齐器同步状态 (rx_syncstatus) 置位后开始操作。</p>
+<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers8.png" alt><br><em>速率匹配FIFO结构框图</em><br>速率匹配 FIFO 对上游发送器与本地接收器时钟之间高达 ±300 ppm ( 总共 600 ppm)的小时钟频率差异进行补偿，通过执行以下功能来实现该补偿：<br>■ 当本地接收器参考时钟频率大于上游发送器参考时钟频率时，插入跳过符号。<br>■ 当本地接收器参考时钟频率小于上游发送器参考时钟频率时，删除跳过符号。<br>20-word 深的速率匹配 FIFO 和逻辑根据 ppm 差异对跳过符号的插入与删除进行控制。字对齐器同步状态 (rx_syncstatus) 置位后开始操作。</p>
 <h5 id="5-7-8B-10B-解码器"><a href="#5-7-8B-10B-解码器" class="headerlink" title="5.7 8B/10B 解码器"></a>5.7 8B/10B 解码器</h5><p>8B/10B 解码器接收 10-bit 数据，并将其解码成一个 8-bit 数据和一个 1-bit 控制标识符。</p>
-<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers9.png" alt=""> </p>
+<p><img src="/img/FPGA/Altera/PCIe/03_Transceivers9.png" alt> </p>
 <h5 id="5-8-字节解串器"><a href="#5-8-字节解串器" class="headerlink" title="5.8 字节解串器"></a>5.8 字节解串器</h5><p>字节解串器将 FPGA 架构的并行数据宽度增加一倍的同时，对 FPGA 架构收发器接口频率减半。<br>举例说明，当对运行在 3.125 Gbps，解串因子为 10 的 EP4CGX150 接收通道进行操作时，接收器 PCS 数据通路运行在 312.5 MHz。将数据转送至 FPGA 架构之前，字节解串器将运行在 312.5 MHz 的 10-bit 数据转换成运行在 156.25 MHz 的 20-bit 数据。</p>
 <h5 id="5-9-字节顺序"><a href="#5-9-字节顺序" class="headerlink" title="5.9 字节顺序"></a>5.9 字节顺序</h5><p>在 16 或者 20-bit FPGA 架构收发器接口中，字节解串器接收一个数据字节 (8 或 10 位)，并将其解串成两个数据字节 (16 或 20 位 )。根据接收器 PCS 逻辑何时复位，字节解串器输出端上的字节顺序可能与发送数据的原始字节顺序不匹配。由字节解串导致的字节不对称是不可预测的，因为它取决于复位时字节解码器正在接收哪一个字节。</p>
-<h5 id="5-10-RX-相位补偿-FIFO"><a href="#5-10-RX-相位补偿-FIFO" class="headerlink" title="5.10 RX 相位补偿 FIFO"></a>5.10 RX 相位补偿 FIFO</h5><p>当连接接收通道至 FPGA 架构时 ( 直接地或通过 PIPE 和 PCIe 硬核 IP)，RX 相位补偿FIFO 对并行接收器时钟与 FPGA 架构接口时钟之间的相位差异进行补偿。FIFO 为四个字深，具有两到三个并行时钟周期之间的延迟。<br><img src="/img/FPGA/Altera/PCIe/03_Transceivers10.png" alt=""><br><img src="/img/FPGA/Altera/PCIe/03_Transceivers11.png" alt=""> </p>
+<h5 id="5-10-RX-相位补偿-FIFO"><a href="#5-10-RX-相位补偿-FIFO" class="headerlink" title="5.10 RX 相位补偿 FIFO"></a>5.10 RX 相位补偿 FIFO</h5><p>当连接接收通道至 FPGA 架构时 ( 直接地或通过 PIPE 和 PCIe 硬核 IP)，RX 相位补偿FIFO 对并行接收器时钟与 FPGA 架构接口时钟之间的相位差异进行补偿。FIFO 为四个字深，具有两到三个并行时钟周期之间的延迟。<br><img src="/img/FPGA/Altera/PCIe/03_Transceivers10.png" alt><br><img src="/img/FPGA/Altera/PCIe/03_Transceivers11.png" alt> </p>
 <p>协议实现的收发器功能模式</p>
 
       
@@ -705,7 +705,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -859,7 +859,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -868,7 +868,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -888,7 +888,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

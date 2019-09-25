@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -225,7 +225,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -254,7 +254,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -425,20 +425,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/12/基础硬件/03_运放十坑/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -494,7 +494,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/基础硬件/" itemprop="url" rel="index"><span itemprop="name">基础硬件</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/基础硬件/" itemprop="url" rel="index"><span itemprop="name">基础硬件</span></a></span>
 
                 
                 
@@ -560,68 +560,68 @@
 <h4 id="1、运放十坑之一——轨到轨"><a href="#1、运放十坑之一——轨到轨" class="headerlink" title="1、运放十坑之一——轨到轨"></a>1、运放十坑之一——轨到轨</h4><p>运放输出电压到不了电源轨的这种明坑踩了后，我选择了轨到轨的运放，哈哈，这样运放终于可以输出到电源轨了。高兴的背后是一个隐蔽大坑等着我：</p>
 <p>看看我常用的某公司对轨到轨运放产品的介绍：“高速(&gt;50MHz)轨到轨运算放大器支持以更低的电源电压、更接近供电轨的摆幅和更宽的动态范围工作。”看到没有：<br>“以更低的电源电压、更接近供电轨的摆幅和更宽的动态范围工作。”<br>“更接近供电轨的摆幅”<br>“更接近”<br>“接近”<br>。。。</p>
 <p>看一个轨到轨运放的手册：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/67BE1C3E21034FF5A8555872C6E39A1D/24861" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/67BE1C3E21034FF5A8555872C6E39A1D/24861" alt></p>
 <p>输出电压的确是到不了电源的5V，why？<br>运放的输出级可以简化为下面这种的结构形式：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/3D4BC7418CA7452991F27FAF8D362BB6/24863" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/3D4BC7418CA7452991F27FAF8D362BB6/24863" alt></p>
 <p>由于MOS管有导通电阻，当流过电流时，导致了电压降，因此，当负载越大时，导通压降越大，输出电压越不能达到轨。</p>
 <p>所以说，轨到轨运放不是完全的可以使输出到达电源值，要使用的时候，还需要看负载和温度（影响导通电阻阻值）的关系来决定输出能达到多大电压。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/EEA730C1B80C4C718193A005B98EFD29/24841" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/EEA730C1B80C4C718193A005B98EFD29/24841" alt></p>
 <h4 id="2、运放十坑之二——不可忽略的输入偏置电流"><a href="#2、运放十坑之二——不可忽略的输入偏置电流" class="headerlink" title="2、运放十坑之二——不可忽略的输入偏置电流"></a>2、运放十坑之二——不可忽略的输入偏置电流</h4><p>设计了一个分压电路，理论上输入1V，输出2V，可是一测，总是多了近6,7百个mV。这要是进12位3V量程ADC，可是要吃掉600多个码。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/062E90675BC44BB296ECEDD2F5E7DCF2/24851" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/062E90675BC44BB296ECEDD2F5E7DCF2/24851" alt></p>
 <p>原来<strong>运放正向输入端和反向输入端由于TVS漏电流和管子输入偏置电流，导致了两个输入端存在输入偏置电流</strong>（而且由于没有任何一个器件和另外一个器件一模一样，这两者输入偏置电流还不尽相同）；<strong>这两个偏置电流会与外部电阻一起形成偏置电压后，输出到后端，形成误差。</strong>如果你不巧选择了一个基于BJT设计的运放，它具有较大的输入偏置电流，就会造成很大的后级误差。如下图这种运放，真是“岂止于大，简直是莽”。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/9C2668737AD94819976A503D26556812/24877" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/9C2668737AD94819976A503D26556812/24877" alt></p>
 <p>下面假设，两个输入端的输入偏置电流相同。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/4B4F034559EC4BCD8D16F69D3E6CF679/24852" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/4B4F034559EC4BCD8D16F69D3E6CF679/24852" alt></p>
 <p>对于，正向输入端来说，Ib+带来偏置电压几乎等于0，而对于反向输入端来说，Ib-带来的偏置电压等于350mV（计算时，假设Vout接地，相当于R1//R2）。因此，需要的是在正向输入端增加一个电阻，来补偿反向输入端带来的误差。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/1D02FC2EF1C34B5F852909CA767F93AD/24848" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/1D02FC2EF1C34B5F852909CA767F93AD/24848" alt></p>
 <p>正如前文所述，<strong>正反相输入偏置电流不尽相同，补偿只能减小失调电压，而正反相输入偏置电流差也称为失调电流。</strong>在进行高精度或小信号采样时，可以选用低失调电流运放，因为<strong>加入补偿电阻，也代入了一个新的噪声源，要慎重加入。</strong></p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/9EFBC758B08E4AA591389B35EC0E4217/24871" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/9EFBC758B08E4AA591389B35EC0E4217/24871" alt></p>
 <p>偏置电流是运放的主要误差之一，在之后的坑中，还会介绍一些影响后级的误差源。</p>
 <h4 id="3、运放十坑之三——快速下降的PSRR"><a href="#3、运放十坑之三——快速下降的PSRR" class="headerlink" title="3、运放十坑之三——快速下降的PSRR"></a>3、运放十坑之三——快速下降的PSRR</h4><p>当我是个菜鸟工程师的时候，做运放设计从来不考虑PSRR，当听说过PSRR之后，每次选运放都会在成本控制基础上选择一个有较高PSRR的运放。</p>
 <p>比如这款运放PSRR达到了160dB：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/419809DE1EA74994814CBAA214577152/24874" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/419809DE1EA74994814CBAA214577152/24874" alt></p>
 <p>根据计算公式：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/4DEE219691444C46AC393D3FF5ED35FC/24878" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/4DEE219691444C46AC393D3FF5ED35FC/24878" alt></p>
 <p>即使电源电压在4.5V-5.5V区间内发生变化，电源对运放输出的影响只有10nV。</p>
 <p>很可惜，<strong>这个指标是指电源电压的直流变化，而不包括电源电压交流的变化（如纹波），在交流情况下，这个指标会发生非常大的恶化。</strong>Spec.里面提到的只是直流变化，交流变化在后面图示里面，一般情况下，非资深工程师对待图示都是滑滑地翻过去。<br>如果运放电路使用了开关电源，又没有把去耦、滤波做得很好的话，后级输入精度会受到极大的影响。来看，同一款运放的交流PSRR。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/5E086D3BD48D48828CE42B7706A5646E/24842" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/5E086D3BD48D48828CE42B7706A5646E/24842" alt></p>
 <p>对于500kHz开关频率的纹波，PSRR+恶化到只有50dB，假设纹波大小为100mV，那么对于后级的影响恶化会达到0.3mV。对于很多小信号采集的应用来说，这个误差是不可接受的。<strong>因此，有些应用场景甚至会在运放电源入口做一个低通滤波（请注意电阻功耗和电阻热噪声）。</strong></p>
 <h4 id="4、运放十坑之四——乱加的补偿电容"><a href="#4、运放十坑之四——乱加的补偿电容" class="headerlink" title="4、运放十坑之四——乱加的补偿电容"></a>4、运放十坑之四——乱加的补偿电容</h4><p>以前有个“老工程师”对我说，反馈电路加个电容，电路就不会震荡。一看到“震荡”这么高大上的词语，我当场就懵逼了，以后所有的电路都并一个小电容，这样才professional。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/B7D77212B0D044CBAB1645A725D48E7D/24849" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/B7D77212B0D044CBAB1645A725D48E7D/24849" alt></p>
 <p>直到一天，我要放大一个100kHz（运气很好，频率还没有太高，不然电压反馈运放都没法玩）的信号，也是按照经验并上一个电容，然后。。。信号再也没有正常。。。因为，并上了这个电容反馈阻抗对于100kHz的信号变成了只有不到200Ω，导致放大系数变化。</p>
 <p><strong>然，这还不是关键，问题在于：真的需要一个补偿电容吗？</strong></p>
 <p>首先，运放内部存在一个极点（把它想成就是RC低通造成的），它会造成相位的改变，最大到-90°：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/79F3667E521D4F628742D720E5412CDC/24858" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/79F3667E521D4F628742D720E5412CDC/24858" alt></p>
 <p>如果再增加一个极点呢，它又会再次对相位进行改变，最大还可以增加到90°：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/C2B3385FF2DF4211B478E6870699FA23/24862" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/C2B3385FF2DF4211B478E6870699FA23/24862" alt></p>
 <p>这样相位就到了-180°，这有什么问题呢？那就是“震荡”。看一下电压负反馈运放的增益：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/9195839F763F48F6B25774ECC468AA96/24880" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/9195839F763F48F6B25774ECC468AA96/24880" alt></p>
 <p><strong>当某些频率点上的环路增益Aβ等于1，而相位为-180°的时候，这时，Vout/Vin会变成无穷大，电路就不稳定了。因此，当外部增加一个零点时，运放就会在某些频率点进入震荡，</strong>比如引脚上的分布电容，如下图：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/F47C3F2F4299485B8CEFFB358A5ED3AD/24846" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/F47C3F2F4299485B8CEFFB358A5ED3AD/24846" alt></p>
 <p>这时，我们<strong>并上一个电容，相当于人为引入一个零点，把拉下去的相位，拉上来</strong>，但是，这个分布电容一般很小，使得它环路增益Aβ等于1的位置非常远，在这么远的频点上，运放早就不能正常工作了。而看手册这个运放自身在100k的时候，相位余量相当的高，超过了90°，完全不需要增加额外的补偿电容。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/0335D0AC5A4A47B29163BDA919D3F540/24843" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/0335D0AC5A4A47B29163BDA919D3F540/24843" alt></p>
 <p>因此，对于具体情况，要具体分析，不能被“老工程师”带着跑了。</p>
 <h4 id="5、运放十坑之五——被冤枉的共模输入范围"><a href="#5、运放十坑之五——被冤枉的共模输入范围" class="headerlink" title="5、运放十坑之五——被冤枉的共模输入范围"></a>5、运放十坑之五——被冤枉的共模输入范围</h4><p>以前遇到过一个问题，前级运放放大后，再由运放跟随进ADC，进ADC的信号是0.3V-1.5V。感觉是个很简单的电路，但是后面实测这颗工作电压为单电源5V的运放，有部分板卡在输出1.5V左右的时候，它的输出值并没有完全跟随到输入值，而低于比1.5V的信号，跟随都没问题，但是一旦接近就不对。</p>
 <p>当然，这个问题就上了硬件组的会议，最后讨论的结果是：“这个运放有问题，我们要找厂商嚎盘，但是我们是xx企业，别个又不得理我们，这样吧，我们换一个其它公司的运放”。不幸的是，我们冤枉了一颗运放，并且没有找到问题原因，幸运的是，在没有完全弄清原理的前提下，我们碰巧选到了一颗可以正常工作的运放。</p>
-<p>来看下这款运放的一个指标，运放共模输入范围：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/310FB79F71674BB68EFCD99BAF6EAB18/24866" alt=""><br><strong>运放共模输入范围是运放输入电压的一个区间，它表征的是运放能够线性工作的区间，即输入电压共模值在这个区间内，当输入电压发生变化时，输出电压能够线性的发生变化。</strong></p>
+<p>来看下这款运放的一个指标，运放共模输入范围：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/310FB79F71674BB68EFCD99BAF6EAB18/24866" alt><br><strong>运放共模输入范围是运放输入电压的一个区间，它表征的是运放能够线性工作的区间，即输入电压共模值在这个区间内，当输入电压发生变化时，输出电压能够线性的发生变化。</strong></p>
 <p>对于跟随电路，由于存在负反馈，基本上可认为正相输入端电压和负相输入端电压是同一个值，而这颗运放在5V供电时，它的共模输入范围是-0.1V至1.5V。因此，当输入电压在1.5V左右的时候，运放就存在不能正常线性跟随的情况。</p>
 <p>为什么不能跟随呢？来看一个三极管放大电路，它也是运放的组成部分之一，来进行举例说明。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/FA80FAA2D8364082BED626DFF75C2C2D/24854" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/FA80FAA2D8364082BED626DFF75C2C2D/24854" alt></p>
 <p>当输入的Vb发生变化时，Ie就会随着Vb发生相应的变化，从而引起Vc的变化，这就是跟随。若Vb继续增大到，使得Vc=Vcc-Ie x Rc计算值为负数的时候，而实际上Ie x Rc并不能超过Vcc，这时放大电路达到饱和甚至电流反相，导致输出电压固定或削峰或反向等。</p>
 <h4 id="6、运放十坑之六——不可忽略的压摆率"><a href="#6、运放十坑之六——不可忽略的压摆率" class="headerlink" title="6、运放十坑之六——不可忽略的压摆率"></a>6、运放十坑之六——不可忽略的压摆率</h4><p>做1pps驱动电路，要求上升沿≤5ns，FPGA输出的信号用运放跟随增强驱动后，发现上升沿达不到要求。为什么呢？因为没有考虑到一个重要的指标，压摆率。压摆率是指：输入为阶跃信号时，闭环放大器的输出电压时间变化率的平均值。即<strong>输入一个理想的阶跃信号，输出会是一个带斜率信号，这个信号的爬升速率就是压摆率。</strong></p>
-<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/34BFF1EB9DE6427E8F54C5441A6DBAE7/24860" alt=""><br>看一下这个运放的压摆率：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/AC13CB8E51EF4B59AB6D0AC6CD9C0301/24868" alt=""><br>根本达不到要求啊，5ns只能爬升20mV，所以，上升沿根本达不到设计需求。怎么办呢？后期飞线增加了一个脉冲增强电路。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/0257E97EE023401E88A5D7BF435592E1/24850" alt=""><br>脉冲增强电路C4和R4，相当于一个微分电路C4和RL（当C x RL远小于压摆率时间）加一个直流电阻R4，使得负载RL上的信号边沿变得更加陡峭。分析一下：<br>a.电容C4与RL形成分压电路，根据下图的计算公式，C4上电压的变化率等于RL上的电压值。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/E192C036598F4F34ABFA8EE065329CFB/24875" alt=""><br>b.那么假设电容电压变化率在0-τ范围内是几乎不变化的，那么负载RL上面的电压也是几乎不变的，一旦电容开始充电（电压发生变化），负载RL的电压就上升到顶点。记为波形1，如下图。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/09F39D2DA95B45AD9798E3AD8D852BB8/24879" alt=""><br>c.然后在电容充电结束后开始下落，为了解决没有变化率就没有电压的问题，增加一个直流电阻R4维持波形，它是一个直通波形，也就是原始波形，记为波形2。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/717E14D8F1164C50AAD4D93108B33F0E/24881" alt=""><br>d.两个波形合在一起后，由于波形1，波形2的上升沿得到极大增强，从而使得合成波形上升沿得以改善。</p>
-<h4 id="7、运放十坑之七——电流反馈型运放的反馈电阻"><a href="#7、运放十坑之七——电流反馈型运放的反馈电阻" class="headerlink" title="7、运放十坑之七——电流反馈型运放的反馈电阻"></a>7、运放十坑之七——电流反馈型运放的反馈电阻</h4><p>为了扩大外部驱动能力，一般会在最后一级增加一个跟随电路，选择电流反馈运放-CFA增加运放的输出带宽。好简单哦，可惜你就是调不出来。还是先看图吧。好简单哦，可惜你就是调不出来。还是先看图吧。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/60AA2B003D7545958273B884902B8795/24872" alt=""><br>什么电源轨、共模输入范围、增益积带宽、带载能力、压摆率。。。我全都考虑了啊，还是不对呢？<br>因为，<strong>CFA和VFA（电压反馈运放）不一样</strong>，读书时学的运放，基本上老师都是拿VFA进行举例和讲解。下图是CFA运放的模型：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/AA9F49B5FA6642868CC218E6020AEC03/24869" alt=""><br>它与VFA区别是，<strong>输入端不再是两个都虚断，反相输入电阻ZB是个非常小的值，但又绝对不能认为是零；它的开环增益Gout不再是非常大，而是约等于1；它的跨阻Z可以认为是无穷大。</strong></p>
-<p>因此，CFA的跟随电路的电路模型如下：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/3C47CE2D16F14896B00E8649CF22549E/24870" alt=""><br>解出Aβ等于：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/DF016C0C1C904D9E82ACF9939E373CF5/24876" alt=""><br>它的闭环增益是：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/4248A692B1144ED8944D550B77371034/24883" alt=""><br>当没有反馈电阻ZF的时候，A约等于1，ZF趋近于0，Aβ趋近于无穷，增益趋近于0，和想要的跟随电路完全不一样，也就是网上常说的“CFA不加反馈电阻就没信号”。（没找到这句话，忘记是在哪里看到的了，只能看下CFA手册上对反馈电阻的介绍）<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/4019E242C2444C9386BC156F62D0210A/24859" alt=""><br>因此，要增加一个反馈电阻，电路就会正常工作了。<br>PS：上面推导计算有技巧，只能从Aβ进行计算推导，因为CFA的计算前提是<strong>反相输入电阻ZB是个非常小的值；它的跨阻Z可以认为是无穷大，所以，要在求极限是找到一个单一变量，如果按照最终表达进行求极限，一个函数，三个变量（ZF趋近于0，ZB趋近于0，Z趋近于无穷），没法玩，如下图。</strong><br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/DE032B2D657A49309830287A912244CC/24865" alt=""><br>8、运放十坑之八——失效的AD620<br>在我读大学的年代，仪用放大器绝对是一个高X格的词语，在那个还常见三运放搭差分运放的年代，仪放是超高共模抑制比、高温度稳定性的代名词，正相反相两个电压差一减，就得到了结果，这绝对是一个采集EEG信号（脑电波(Electroencephalogram,EEG)是一种使用电生理指标记录大脑活动得方法）的好东西啊。</p>
-<p>由于EEG信号幅度很小，加上前级放大，也不过1V左右，因此，屡试不爽也没什么问题。后来要做一个工业现场信号检测，就不正常了。还是先看图吧：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/78C6A46A9A3C47E8BC11F015177F326A/24856" alt=""></p>
+<p><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/34BFF1EB9DE6427E8F54C5441A6DBAE7/24860" alt><br>看一下这个运放的压摆率：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/AC13CB8E51EF4B59AB6D0AC6CD9C0301/24868" alt><br>根本达不到要求啊，5ns只能爬升20mV，所以，上升沿根本达不到设计需求。怎么办呢？后期飞线增加了一个脉冲增强电路。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/0257E97EE023401E88A5D7BF435592E1/24850" alt><br>脉冲增强电路C4和R4，相当于一个微分电路C4和RL（当C x RL远小于压摆率时间）加一个直流电阻R4，使得负载RL上的信号边沿变得更加陡峭。分析一下：<br>a.电容C4与RL形成分压电路，根据下图的计算公式，C4上电压的变化率等于RL上的电压值。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/E192C036598F4F34ABFA8EE065329CFB/24875" alt><br>b.那么假设电容电压变化率在0-τ范围内是几乎不变化的，那么负载RL上面的电压也是几乎不变的，一旦电容开始充电（电压发生变化），负载RL的电压就上升到顶点。记为波形1，如下图。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/09F39D2DA95B45AD9798E3AD8D852BB8/24879" alt><br>c.然后在电容充电结束后开始下落，为了解决没有变化率就没有电压的问题，增加一个直流电阻R4维持波形，它是一个直通波形，也就是原始波形，记为波形2。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/717E14D8F1164C50AAD4D93108B33F0E/24881" alt><br>d.两个波形合在一起后，由于波形1，波形2的上升沿得到极大增强，从而使得合成波形上升沿得以改善。</p>
+<h4 id="7、运放十坑之七——电流反馈型运放的反馈电阻"><a href="#7、运放十坑之七——电流反馈型运放的反馈电阻" class="headerlink" title="7、运放十坑之七——电流反馈型运放的反馈电阻"></a>7、运放十坑之七——电流反馈型运放的反馈电阻</h4><p>为了扩大外部驱动能力，一般会在最后一级增加一个跟随电路，选择电流反馈运放-CFA增加运放的输出带宽。好简单哦，可惜你就是调不出来。还是先看图吧。好简单哦，可惜你就是调不出来。还是先看图吧。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/60AA2B003D7545958273B884902B8795/24872" alt><br>什么电源轨、共模输入范围、增益积带宽、带载能力、压摆率。。。我全都考虑了啊，还是不对呢？<br>因为，<strong>CFA和VFA（电压反馈运放）不一样</strong>，读书时学的运放，基本上老师都是拿VFA进行举例和讲解。下图是CFA运放的模型：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/AA9F49B5FA6642868CC218E6020AEC03/24869" alt><br>它与VFA区别是，<strong>输入端不再是两个都虚断，反相输入电阻ZB是个非常小的值，但又绝对不能认为是零；它的开环增益Gout不再是非常大，而是约等于1；它的跨阻Z可以认为是无穷大。</strong></p>
+<p>因此，CFA的跟随电路的电路模型如下：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/3C47CE2D16F14896B00E8649CF22549E/24870" alt><br>解出Aβ等于：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/DF016C0C1C904D9E82ACF9939E373CF5/24876" alt><br>它的闭环增益是：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/4248A692B1144ED8944D550B77371034/24883" alt><br>当没有反馈电阻ZF的时候，A约等于1，ZF趋近于0，Aβ趋近于无穷，增益趋近于0，和想要的跟随电路完全不一样，也就是网上常说的“CFA不加反馈电阻就没信号”。（没找到这句话，忘记是在哪里看到的了，只能看下CFA手册上对反馈电阻的介绍）<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/4019E242C2444C9386BC156F62D0210A/24859" alt><br>因此，要增加一个反馈电阻，电路就会正常工作了。<br>PS：上面推导计算有技巧，只能从Aβ进行计算推导，因为CFA的计算前提是<strong>反相输入电阻ZB是个非常小的值；它的跨阻Z可以认为是无穷大，所以，要在求极限是找到一个单一变量，如果按照最终表达进行求极限，一个函数，三个变量（ZF趋近于0，ZB趋近于0，Z趋近于无穷），没法玩，如下图。</strong><br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/DE032B2D657A49309830287A912244CC/24865" alt><br>8、运放十坑之八——失效的AD620<br>在我读大学的年代，仪用放大器绝对是一个高X格的词语，在那个还常见三运放搭差分运放的年代，仪放是超高共模抑制比、高温度稳定性的代名词，正相反相两个电压差一减，就得到了结果，这绝对是一个采集EEG信号（脑电波(Electroencephalogram,EEG)是一种使用电生理指标记录大脑活动得方法）的好东西啊。</p>
+<p>由于EEG信号幅度很小，加上前级放大，也不过1V左右，因此，屡试不爽也没什么问题。后来要做一个工业现场信号检测，就不正常了。还是先看图吧：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/78C6A46A9A3C47E8BC11F015177F326A/24856" alt></p>
 <p>采集4-20mA电流，得到1V-5V电压差，放大2倍后进入后级ADC。为了防止电阻功耗过高，R128，R129，R130三个电阻采用了并联取值的方式，最终取到了250Ω这个值。</p>
 <p>分析一下，正相输入端2V-10V，符合器件输入范围（VCC-1.4V），反相输入端1V-5V，我加了负电，那更是符合了；然后看放大倍数2倍，Vmax=10V，也符合器件输出范围（VCC-1.4V）；电源、放大倍数、去耦等等都没有问题。<strong>这是一个显得没有任何错误的原理图，但是实际上，它会在高输入电压值时发生错误。</strong></p>
-<p>看下仪放的内部原理，就明白了（这里选一个手上有的资料，非AD620的内部原理，其实仪放原理都差不多）<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/F9A5DEF204874EFD9E03F946D63AF132/24847" alt=""><br><strong>正相输入电压和反相输入电压体现在仪放内部的R2处，而真正进行输出的电压，是由V1out和V2out体现的，换一句话说，最终增加的电压值平分为两份，一份由V1out提供，它会比V1高，另外一份由V2out提供，它会比V2低。</strong></p>
+<p>看下仪放的内部原理，就明白了（这里选一个手上有的资料，非AD620的内部原理，其实仪放原理都差不多）<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/F9A5DEF204874EFD9E03F946D63AF132/24847" alt><br><strong>正相输入电压和反相输入电压体现在仪放内部的R2处，而真正进行输出的电压，是由V1out和V2out体现的，换一句话说，最终增加的电压值平分为两份，一份由V1out提供，它会比V1高，另外一份由V2out提供，它会比V2低。</strong></p>
 <p>再看原理图，在20mA的时候，Vin+达到了10V，Vin-是5V，放大2倍，在仪放内部需要将Vin+放大到12.5V。这已经超过了仪放供电电压，因此，是绝对不可能正常工作的。</p>
 <h4 id="9、运放十坑之九——ADC的采样时间被运放拖累"><a href="#9、运放十坑之九——ADC的采样时间被运放拖累" class="headerlink" title="9、运放十坑之九——ADC的采样时间被运放拖累"></a>9、运放十坑之九——ADC的采样时间被运放拖累</h4><p>ADC采集信号，信号稳定的时候，很准确；信号变化的时候，数据不稳定。当然了，ADC有采样时间，软件工程师也知道，他采了10次，只取后5次，但是数据还是有不稳定的状态。让硬件来看电路，硬件工程师说，电路当然没有问题了，全是从别人那里扣来的，怎么在我这就有问题了？</p>
-<p>先看ADC的指标Tcycmin=500ns和Tacqmin=80ns，这是颗SAR型ADC，速度能上Mbps，还算挺快的。所以，它连续采样10次，所用时间也才10μs左右。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/696A2529021042758F253DE6833D6DA9/24857" alt=""><br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/B873CA7C23334F3BB81E73095CCBBF35/24882" alt=""></p>
-<p><strong>而运放从信号输入到输出，并不是一个无延时的过程，而是一个有延时还带震荡的过程，同时，这个过程的时间还会因为后级线路的PCB设计而增大。</strong>如下图：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/95C0E477D4864EFB8169D6A214844F07/24886" alt=""><br>看一下运放的指标，当4V时，达到0.01%，时间为5.1μs，此时带来的波动误差是0.4mV，而在4V范围内，一个16位ADC的1LSB为0.06mV。误差可以吃掉6,7个码字，如果再加上分布电容和走线电阻，这个时间会进一步增加，使得后级稳定时间增长，从而导致误差变得更加的大。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/E48A227906CE494B8226F4BCF5D2F394/24888" alt=""><br>后来，软件工程师调低了采样率，增加了采集时间，问题得以解决。</p>
+<p>先看ADC的指标Tcycmin=500ns和Tacqmin=80ns，这是颗SAR型ADC，速度能上Mbps，还算挺快的。所以，它连续采样10次，所用时间也才10μs左右。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/696A2529021042758F253DE6833D6DA9/24857" alt><br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/B873CA7C23334F3BB81E73095CCBBF35/24882" alt></p>
+<p><strong>而运放从信号输入到输出，并不是一个无延时的过程，而是一个有延时还带震荡的过程，同时，这个过程的时间还会因为后级线路的PCB设计而增大。</strong>如下图：<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/95C0E477D4864EFB8169D6A214844F07/24886" alt><br>看一下运放的指标，当4V时，达到0.01%，时间为5.1μs，此时带来的波动误差是0.4mV，而在4V范围内，一个16位ADC的1LSB为0.06mV。误差可以吃掉6,7个码字，如果再加上分布电容和走线电阻，这个时间会进一步增加，使得后级稳定时间增长，从而导致误差变得更加的大。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/E48A227906CE494B8226F4BCF5D2F394/24888" alt><br>后来，软件工程师调低了采样率，增加了采集时间，问题得以解决。</p>
 <h4 id="10、运放十坑之十——被遗忘的功耗"><a href="#10、运放十坑之十——被遗忘的功耗" class="headerlink" title="10、运放十坑之十——被遗忘的功耗"></a>10、运放十坑之十——被遗忘的功耗</h4><p>做过一款板卡，功耗要求很严格，因此，设计完成后，就画了电源树，计算了每个器件的功耗，没有超，然后投版，调试，一上电，功耗超标。</p>
-<p>后面一检查，发现是运放功耗计算的时候出现了问题，下图这样的运放电路用了5个。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/12DB52A555194913B7F9D14445803EE7/24890" alt=""><br>由于是直流驱动，在计算的时候，只考虑了运放本身的静态功耗，PD=15V x 4.2mA =63mW，按照最大静态功耗来考虑，功耗余量还绰绰有余。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/9061FDEA4CAE4D7EBCDCCB50D5CF502E/24892" alt=""><br><strong>实际上，忽略了一个重要的功率消耗点：运放供电电压15V到输出电压（1V-4.5V）之间的电压差，全部在运放里面消耗了，按照最大压差计算，一个电路就消耗140mW。</strong>这种耗散功率，以前从来没有考虑过，所以，全部都选择性的忽略了，当遇到功耗要求紧张的需求时，问题就暴露出来了。</p>
+<p>后面一检查，发现是运放功耗计算的时候出现了问题，下图这样的运放电路用了5个。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/12DB52A555194913B7F9D14445803EE7/24890" alt><br>由于是直流驱动，在计算的时候，只考虑了运放本身的静态功耗，PD=15V x 4.2mA =63mW，按照最大静态功耗来考虑，功耗余量还绰绰有余。<br><img src="https://note.youdao.com/yws/public/resource/de8d27eac7e83ca013865cbf29b59acd/xmlnote/9061FDEA4CAE4D7EBCDCCB50D5CF502E/24892" alt><br><strong>实际上，忽略了一个重要的功率消耗点：运放供电电压15V到输出电压（1V-4.5V）之间的电压差，全部在运放里面消耗了，按照最大压差计算，一个电路就消耗140mW。</strong>这种耗散功率，以前从来没有考虑过，所以，全部都选择性的忽略了，当遇到功耗要求紧张的需求时，问题就暴露出来了。</p>
 <p>后面改版的时候，选择了低电压给运放供电，减少了耗散功耗，满足了指标要求。</p>
 
       
@@ -751,7 +751,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -905,7 +905,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -914,7 +914,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -934,7 +934,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

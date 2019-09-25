@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -204,7 +204,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -233,7 +233,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -404,20 +404,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/20/FPGA/Xilinx/13_数据通路笔记二-通过Bram实现数据接收/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -485,7 +485,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
 
                 
                 
@@ -547,31 +547,31 @@
       
 
       
-        <h4 id="一、方案设计"><a href="#一、方案设计" class="headerlink" title="一、方案设计"></a>一、方案设计</h4><p>发送端<br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收1.png" alt=""> </p>
+        <h4 id="一、方案设计"><a href="#一、方案设计" class="headerlink" title="一、方案设计"></a>一、方案设计</h4><p>发送端<br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收1.png" alt> </p>
 <p>接收端</p>
-<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收2.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收2.png" alt> </p>
 <h4 id="二、方案分析—-发送端"><a href="#二、方案分析—-发送端" class="headerlink" title="二、方案分析—-发送端"></a>二、方案分析—-发送端</h4><p>发送端包括硬件和软件两部分、在硬件上实现硬件通路的搭建，软件上通过给DDR里面写数据，从而将数据从硬件通路传递给串口，再到VGA，以下是官方图片</p>
-<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收3.png" alt=""> </p>
-<h5 id="2-1-向DDR写数据"><a href="#2-1-向DDR写数据" class="headerlink" title="2.1 向DDR写数据"></a>2.1 向DDR写数据</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收4.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收3.png" alt> </p>
+<h5 id="2-1-向DDR写数据"><a href="#2-1-向DDR写数据" class="headerlink" title="2.1 向DDR写数据"></a>2.1 向DDR写数据</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收4.png" alt> </p>
 <p>向DDR写数据是在软件上面来实现，但是要注意数据在ddr里面存放的形式，本函数将图片转化为C语言的数组，将数组数据依次写入ddr。由于图片是一个像素32位的形式， 从高到低是alpha、r、g、b<br>所以以32位数据做一次处理，写入ddr的数据以r，g，b，a的形式，但是写地址时候注意要偏移4个。写数据时要考虑vga显示是否与之相符合，不符合的话，要进行数据偏移。<br>比如，vga显示是640<em>480</em>25M格式，写数据时候最简单的可以写一张640<em>480的图片过去，这样的话，H_STRIDE取640，像素307200，数组大小是1228800。如果内存放不下，要写一张100</em>75的图片过去，如果ddr放的下，那么图片可以只在100<em>75定义图像数据，其余地方存放黑色数据，那么这个数组就是100</em>75<em>4=30000，所以这个时候H_STRIDE还取640，只不过地址写到99之后，100到639不写数据，默认是00，最后图片会显示黑色，当然也可以自己写入ff，这样其余部分会显示白色。还有一种情况，当ddr存储容量不够，只能存放100</em>75*4=30000个字节数据，这个时候输出的数据流就不会有00，而是全部有效图像数据，这样的话，就要根据vga的扫描地址指针来准确读取有效数据，本实验就是通过这种方式，请看下文接收端。</p>
-<h5 id="2-2-配置vdma的数据通道"><a href="#2-2-配置vdma的数据通道" class="headerlink" title="2.2 配置vdma的数据通道"></a>2.2 配置vdma的数据通道</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收5.png" alt=""> </p>
+<h5 id="2-2-配置vdma的数据通道"><a href="#2-2-配置vdma的数据通道" class="headerlink" title="2.2 配置vdma的数据通道"></a>2.2 配置vdma的数据通道</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收5.png" alt> </p>
 <p>图像数据流从ddr直接通过zynq的hp高速接口接到vdma的输入，协议格式是axi，从vdma输出的数据流是 axi-stream的协议，所以接收模块的输入必须是stream的协议数据，vdma注意参数的配置</p>
-<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收6.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收7.png" alt=""> </p>
-<h5 id="2-3-实现stream的fifo"><a href="#2-3-实现stream的fifo" class="headerlink" title="2.3 实现stream的fifo"></a>2.3 实现stream的fifo</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收8.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收9.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收6.png" alt><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收7.png" alt> </p>
+<h5 id="2-3-实现stream的fifo"><a href="#2-3-实现stream的fifo" class="headerlink" title="2.3 实现stream的fifo"></a>2.3 实现stream的fifo</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收8.png" alt><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收9.png" alt> </p>
 <p>当valid和ready同时有效时候，可以读数据出来</p>
-<h5 id="2-4-uart-tx，串口发送模块"><a href="#2-4-uart-tx，串口发送模块" class="headerlink" title="2.4 uart_tx，串口发送模块"></a>2.4 uart_tx，串口发送模块</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收10.png" alt=""> </p>
+<h5 id="2-4-uart-tx，串口发送模块"><a href="#2-4-uart-tx，串口发送模块" class="headerlink" title="2.4 uart_tx，串口发送模块"></a>2.4 uart_tx，串口发送模块</h5><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收10.png" alt> </p>
 <p>串口主要实现一个并行转串行的功能，需要注意：只有当一个并行数据完全转换为串行发送出去之后，然后才能接着转换下一个数据，所以有一个done的信号，而fifo_read_en信号是来自fifo读使能，具体看串口笔记。</p>
-<h4 id="三、方案分析—-接收端"><a href="#三、方案分析—-接收端" class="headerlink" title="三、方案分析—-接收端"></a>三、方案分析—-接收端</h4><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收11.png" alt=""> </p>
+<h4 id="三、方案分析—-接收端"><a href="#三、方案分析—-接收端" class="headerlink" title="三、方案分析—-接收端"></a>三、方案分析—-接收端</h4><p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收11.png" alt> </p>
 <p>接收端暂时比较简单，数据从RX端进来之后，串行转并行，然后将数据存放到bram，然后以读表的方式配合vga将数据从bram中读取出来，总是仿真的不是特别完美。</p>
 <h5 id="3-1-uart-rx接收端"><a href="#3-1-uart-rx接收端" class="headerlink" title="3.1 uart_rx接收端"></a>3.1 uart_rx接收端</h5><p>值得注意的一点就是串行转并行之后，要输出一个标志信号，clk_write，这个信号作为bram的写时钟信号</p>
 <h5 id="3-2-bram端与vga端混合"><a href="#3-2-bram端与vga端混合" class="headerlink" title="3.2 bram端与vga端混合"></a>3.2 bram端与vga端混合</h5><p>外接的接口</p>
-<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收12.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收13.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收12.png" alt><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收13.png" alt> </p>
 <p>思路大致如下：<br>由于本款板子的bram是存放不下640<em>480个24位数据的，所以采用发送过来100</em>75<em>4字节的数据，所以会出现一个问题：vga是640</em>480的扫描地址，要让vga扫描到合适的区间时候，显示合适的像素，比如说，当扫描到1-100时候，bram地址要和vga地址相同，而扫描到101-640时候，图像数据就不能输出了，得给出黑色数据，依次类推</p>
-<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收14.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收14.png" alt> </p>
 <p>本实验采取的是，先向bram写一帧数据，写满了之后才允许读数据出来，同时写完之后，才允许vga开始扫描屏幕。<br>下面是对bram写数据</p>
-<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收15.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收15.png" alt> </p>
 <p>以下是对bram读数据</p>
-<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收16.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收17.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收18.png" alt=""><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收19.png" alt=""> </p>
+<p><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收16.png" alt><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收17.png" alt><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收18.png" alt><br><img src="/img/FPGA/Xilinx/13_数据通路笔记二_通过Bram实现数据接收19.png" alt> </p>
 
       
     </div>
@@ -700,7 +700,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -854,7 +854,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -863,7 +863,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -883,7 +883,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

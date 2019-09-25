@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -189,7 +189,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -218,7 +218,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -389,20 +389,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/20/Machine Learning/基础概念/02_机器学习概念/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -470,7 +470,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
 
                 
                 
@@ -534,14 +534,14 @@
       
         <p><strong>什么是机器学习？</strong><br>——机器学习就是通过算法，使得机器能从大量历史数据中学习规律，从而对新的样本做智能识别或对未来做预测。</p>
 <h4 id="1-监督学习（Supervised-Learning）"><a href="#1-监督学习（Supervised-Learning）" class="headerlink" title="1.监督学习（Supervised Learning）"></a>1.监督学习（Supervised Learning）</h4><p>监督学习是机器学习中一种典型的学习方法，监督式学习可以理解为有人在旁边看着你学习，随时纠正学习中的错误。即对错误学习给予惩罚，对正确的学习给予奖励。<br>在监督学习中，所有输入数据都被称为“训练数据”，每组数据其实由两个部分构成：正确的训练集和错误的训练集，这两部分训练集最好在数量上相等，并且样本数量足够全，能覆盖到最多的情况。之后将训练这些数据并将识别或预测结果与实际的人为标定过的“训练数据”作比较，不断地调整模型，直到模型的预测结果达到一个预测的准确率。</p>
-<p><img src="/img/ML/基础概念/02_机器学习概念1.png" alt=""><br><em>图１　监督学习示意图</em></p>
+<p><img src="/img/ML/基础概念/02_机器学习概念1.png" alt><br><em>图１　监督学习示意图</em></p>
 <h4 id="2-非监督学习（Unsupervised-Learning）"><a href="#2-非监督学习（Unsupervised-Learning）" class="headerlink" title="2.非监督学习（Unsupervised Learning）"></a>2.非监督学习（Unsupervised Learning）</h4><p>没有“人”在旁边监督你学习，没有标定好的训练数据，也没有告诉模型哪些数据是正确的，哪些是不正确的。在非监督式学习中，学习模型是为了推断出数据的一些内在结构。很常见的应用场景包括关联规则的学习及类聚等。<br>比如，将苹果和香蕉混在一起，并没有告诉模型苹果和香蕉的特征，而是让模型自己去做类聚学习，有可能学习出来很多种类别，除了特征相差较大的苹果和香蕉两种不同的水果外，还能发现某些苹果和香蕉的特殊品种，这种发现就是由算法自己找出来的。</p>
-<p><img src="/img/ML/基础概念/02_机器学习概念2.png" alt=""><br><em>图２　非监督学习示意图</em></p>
+<p><img src="/img/ML/基础概念/02_机器学习概念2.png" alt><br><em>图２　非监督学习示意图</em></p>
 <p>非监督式学习中的常见算法包括<strong>Apriori算法</strong>及<strong>K-Means算法</strong>。<br><strong>Apriori算法</strong>是一种挖掘关联规则的频繁项集算法，其核心思想是通过候选集生成和情节的向下封闭检测两个阶段来挖掘频繁项集。<br><strong>K-means算法</strong>是硬聚类算法，是典型的基于原型的目标函数聚类方法的代表，它是数据点到原型的某种距离作为优化的目标函数，利用函数求极值的方法得到迭代运算的调整规则。K-means算法以欧式距离作为相似度测度，它是求对应某一初始聚类中心向量V最优分类，使得评价指标J最小。算法采用误差平方和准则函数作为聚类准则函数。</p>
 <h4 id="3-强化学习（Reinforcement-Learning-RL）"><a href="#3-强化学习（Reinforcement-Learning-RL）" class="headerlink" title="3.强化学习（Reinforcement Learning,RL）"></a>3.强化学习（Reinforcement Learning,RL）</h4><p>强化学习其实就是一个连续决策的过程，如下图所示。传统的机器学习中的有监督学习是给定一些标注数据，学习一个好的函数，对未知数据做出很好的决策。但是有时候，    你并不知道标注是什么，即一开始不知道什么是“好”的结果，所以ＲＬ不是给定标注，而是给定一个<strong>回报函数</strong>，这个回报函数决定当前状态得到什么样的结果（”好“还是”坏“），数学本质是一个马尔科夫决策过程。最终目的是决策过程中整体地回报函数期望最优。<br>过程有点像监督学习，只是标注数据不是预先准备好的，而通过一个过程来回地调整并给出是所谓的“标注数据”，这个过程就是强化学习。</p>
-<p><img src="/img/ML/基础概念/02_机器学习概念3.png" alt=""><br><em>图３　强化学习示意图</em></p>
+<p><img src="/img/ML/基础概念/02_机器学习概念3.png" alt><br><em>图３　强化学习示意图</em></p>
 <p>人工神经网络和深度学习都属于机器学习的一种，如下图所示。深度学习是神经网络的一个大分支，深度学习的基本结构是深度神经网络。</p>
-<p><img src="/img/ML/基础概念/02_机器学习概念4.png" alt=""><br><em>图４　深度学习所处位置示意图</em></p>
+<p><img src="/img/ML/基础概念/02_机器学习概念4.png" alt><br><em>图４　深度学习所处位置示意图</em></p>
 
       
     </div>
@@ -670,7 +670,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -824,7 +824,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -833,7 +833,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -853,7 +853,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

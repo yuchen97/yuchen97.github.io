@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -208,7 +208,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -237,7 +237,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -408,20 +408,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/11/AD/07_AD-ATmega16最小系统绘制/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -489,7 +489,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Altium-Designer/" itemprop="url" rel="index"><span itemprop="name">Altium Designer</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Altium-Designer/" itemprop="url" rel="index"><span itemprop="name">Altium Designer</span></a></span>
 
                 
                 
@@ -552,49 +552,49 @@
 
       
         <p>ATmega16最小系统原理图如图一所示。<br>注：此最小系统只是作为熟悉用AD绘制原理图的一种手段，只有DAC\蜂鸣器模块。</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制1.png" alt=""><br><em>图1 ATmega16最小系统整体原理图</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制1.png" alt><br><em>图1 ATmega16最小系统整体原理图</em></p>
 <h4 id="一、模块介绍"><a href="#一、模块介绍" class="headerlink" title="一、模块介绍"></a>一、模块介绍</h4><h5 id="1-1-阻容复位"><a href="#1-1-阻容复位" class="headerlink" title="1.1 阻容复位"></a>1.1 阻容复位</h5><p>上电之前由电容两端电压不突变可知电容上端电压为0，即低电平复位。上电之后，电容上端电压为高电平。复位端不使能。</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制2.png" alt=""><br><em>图2 阻容复位电路图</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制2.png" alt><br><em>图2 阻容复位电路图</em></p>
 <h5 id="1-2-晶振"><a href="#1-2-晶振" class="headerlink" title="1.2 晶振"></a>1.2 晶振</h5><p>晶振两边的谐振电容也称负载电容。XTAL是晶振的意思。<br>晶体外壳所标注的频率，既不是串联谐振频率也不是并联谐振频率，而是在外接负载电容时测定的频率，数值介于串联谐振频率与并联谐振频率之间。<br>当然，你也可以这样理解：<br>晶振的标称值在测试时有一个“负载电容”的条件，在工作时满足这个条件，振荡频率才与标称值一致,也就是说，只有连接合适的电容才能满足晶振的起振要求，晶振才能正常工作。</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制3.png" alt=""><br><em>图3 晶振</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制3.png" alt><br><em>图3 晶振</em></p>
 <p>这条线可以用网络标号来替代，后面那张图也可以理解成阻容电路和Reset相连。用Edit里面的BreakWire可以断线，相当于一个针对线的橡皮擦。</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制4.png" alt=""><br><em>图4</em><br><img src="/img/01_AD/07_AD_ATmega16最小系统绘制5.png" alt=""><br><em>图5</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制4.png" alt><br><em>图4</em><br><img src="/img/01_AD/07_AD_ATmega16最小系统绘制5.png" alt><br><em>图5</em></p>
 <h5 id="1-3-数字电源，模拟电源AVCC"><a href="#1-3-数字电源，模拟电源AVCC" class="headerlink" title="1.3 数字电源，模拟电源AVCC"></a>1.3 数字电源，模拟电源AVCC</h5><p>由于数字和模拟电源不能直接相连，所以在这里加了一个电感滤波<br><a href="http://www.dzsc.com/data/2016-5-13/109709.html" target="_blank" rel="noopener">电感滤波讲解</a></p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制6.png" alt=""><br><em>图6 数字VCC和模拟VCC</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制6.png" alt><br><em>图6 数字VCC和模拟VCC</em></p>
 <p>并联的电容器C在输入电压升高时，给电容器充电，可把部分能量存储在电容器中。而当输入电压降低时，电容两端电压以指数规律放电，就可以把存储的能量释放出来。经过滤波电路向负载放电，负载上得到的输出电压就比较平滑，起到了平波作用。若采用电感滤波，当输入电压增高时，与负载串联的电感L中的电流增加，因此电感L将存储部分磁场能量，当电流减小时，又将能量释放出来，使负载电流变得平滑，因此，电感L也有平波作用。<br>利用储能元件电感器L的电流不能突变的特点，在整流电路的负载回路中串联一个电感，使输出电流波形较为平滑。因为电感对直流的阻抗小，交流的阻抗大，因此能够得到较好的滤波效果而直流损失小。电感滤波缺点是体积大,成本高。</p>
 <h5 id="1-4-模拟地数字地"><a href="#1-4-模拟地数字地" class="headerlink" title="1.4 模拟地数字地"></a>1.4 模拟地数字地</h5><p>AREF为ADC的参考电压，属于模拟量，但之前介绍过模拟地和数字地不能直接相连，所以重新放置了一个GND，由于此GND和数字GND的网络名称要不一致，所以将其改成AGND</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制7.png" alt=""><br><em>图7 模拟地和数字地</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制7.png" alt><br><em>图7 模拟地和数字地</em></p>
 <p>采用0欧姆电阻单点接地，将数字地和模拟地相连，至于为什么这样相连，详见《AD_数字模拟地》</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制8.png" alt=""><br><em>图8 单点接地</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制8.png" alt><br><em>图8 单点接地</em></p>
 <h4 id="二、常用功能"><a href="#二、常用功能" class="headerlink" title="二、常用功能"></a>二、常用功能</h4><h5 id="2-1-Drag-amp-Move"><a href="#2-1-Drag-amp-Move" class="headerlink" title="2.1 Drag &amp; Move"></a>2.1 Drag &amp; Move</h5><p>将这几个脚连在一起，可以一个一个直接连</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制9.png" alt=""><br><em>图9</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制9.png" alt><br><em>图9</em></p>
 <p>也可以先将他俩对在一起，然后再 Drag</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制10.png" alt=""><br><em>图10</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制10.png" alt><br><em>图10</em></p>
 <p>也可以用总线来连接 Place Bus，绘制总线之后别忘了画总线入口。但是这样不能保证PA0是和D0相连，所以可以再加上一个网络标号。名字可以随便取，但一定要有中括号，而且中括号两个数字之间要有两个点。之后再对每一个引脚进行网络标号的放置。</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制11.png" alt=""><br><em>图11</em><br>拖动元器件时，如果是选中直接拖动，则引脚连线会断掉，这是 Move 但如果按住 Ctrl 再拖动则不会断，这是 Drag。</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制12.png" alt=""><br><em>图12</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制11.png" alt><br><em>图11</em><br>拖动元器件时，如果是选中直接拖动，则引脚连线会断掉，这是 Move 但如果按住 Ctrl 再拖动则不会断，这是 Drag。</p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制12.png" alt><br><em>图12</em></p>
 <p>单击之后按住 shift 直接拖动元器件，相当于复制。或者直接 Ctrl+C </p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制13.png" alt=""><br><em>图13</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制13.png" alt><br><em>图13</em></p>
 <p><strong>注释</strong><br>注释的时候不用一个一个的去注释，可以直接点击Tools里面有一个自动注释</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制14.png" alt=""><br><em>图14</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制14.png" alt><br><em>图14</em></p>
 <h5 id="2-2-PCB约束"><a href="#2-2-PCB约束" class="headerlink" title="2.2 PCB约束"></a>2.2 PCB约束</h5><p>Place_&gt;Directive_&gt;Parameter Set可以添加针对PCB设计的约束条件。</p>
 <h5 id="2-3-元器件排列"><a href="#2-3-元器件排列" class="headerlink" title="2.3 元器件排列"></a>2.3 元器件排列</h5><p>如果要对这些元器件进行排序，虽然可以手动，一个一个排，但是很慢。</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制15.png" alt=""><br><em>图15</em><br>可点击这里来对其进行排序</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制16.png" alt=""><br><em>图16</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制15.png" alt><br><em>图15</em><br>可点击这里来对其进行排序</p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制16.png" alt><br><em>图16</em></p>
 <h5 id="2-5-观察者模式"><a href="#2-5-观察者模式" class="headerlink" title="2.5 观察者模式"></a>2.5 观察者模式</h5><p>右下角SCH_&gt;sheet，进入观察者模式，可方便看全图</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制17.png" alt=""><br><em>图17</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制17.png" alt><br><em>图17</em></p>
 <h5 id="2-6-更改封装"><a href="#2-6-更改封装" class="headerlink" title="2.6 更改封装"></a>2.6 更改封装</h5><p>比如现在所有的电容都是RAD-0.3的直插式封装，要求把所有的此类型的电容封装全部改成贴片式6-0805封装，如果一个一个改是非常麻烦，为此可以用以下方法</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制18.png" alt=""><br><em>图18</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制18.png" alt><br><em>图18</em></p>
 <p>选择其中一个电容元器件，右键点击Find Similar Objects…，或者在Edit里面查找，也可以直接点 shift+F，都可以弹出相应界面。在此是以RAD-0.3封装的电容为例。</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制19.png" alt=""><br><em>图19</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制19.png" alt><br><em>图19</em></p>
 <p>将这两项改成 same， 之后会弹出</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制20.png" alt=""><br><em>图20</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制20.png" alt><br><em>图20</em></p>
 <p>Ctrl+A全部选中，然后修改成</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制21.png" alt=""><br><em>图21</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制21.png" alt><br><em>图21</em></p>
 <p>之后点击右下角的 clear，再次回到原界面。双击电容之后可以看到，所有此类型的电容全部改成了6-0805封装。</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制22.png" alt=""><br><em>图22</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制22.png" alt><br><em>图22</em></p>
 <p>还有一种方法可以快速更改封装Tools_&gt;Footprint Manager,选中之后右面界面有编辑，可以直接改封装。其中右侧是打对号的，代表当前封装，鼠标右键可以select。或者在左侧界面 Current Footprint 里直接修改。改完之后别忘了点击右下角的Accept</p>
-<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制23.png" alt=""><br><em>图23</em></p>
+<p><img src="/img/01_AD/07_AD_ATmega16最小系统绘制23.png" alt><br><em>图23</em></p>
 <h5 id="2-7-他人的原理图添加到库"><a href="#2-7-他人的原理图添加到库" class="headerlink" title="2.7 他人的原理图添加到库"></a>2.7 他人的原理图添加到库</h5><p>如果是打开的别人的原理图，想把其他人原理图的东西添加到自己的库<br>Design_&gt;Make Schematic Library </p>
 
       
@@ -724,7 +724,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -878,7 +878,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -887,7 +887,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -907,7 +907,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

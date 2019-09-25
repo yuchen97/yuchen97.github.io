@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -187,7 +187,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -216,7 +216,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -387,20 +387,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/22/Machine Learning/03_softmax分类器/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -468,7 +468,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
 
                 
                 
@@ -531,7 +531,7 @@
 
       
         <h3 id="03-softmax分类器"><a href="#03-softmax分类器" class="headerlink" title="03_softmax分类器"></a>03_softmax分类器</h3><p><strong>【 The latest data ： 2018/04/27 】Yuchen</strong></p>
-<h4 id="1-Scores-处理"><a href="#1-Scores-处理" class="headerlink" title="1. Scores 处理"></a>1. Scores 处理</h4><p><img src="/img/ML/03_softmax分类器1.png" alt=""> </p>
+<h4 id="1-Scores-处理"><a href="#1-Scores-处理" class="headerlink" title="1. Scores 处理"></a>1. Scores 处理</h4><p><img src="/img/ML/03_softmax分类器1.png" alt> </p>
 <p><strong>exp映射</strong></p>
 <p>最左侧数据是根据 $Wx^T + b$ 求出的得分值，由于一些 score 之间的差距很小，比如 5.1 和 3.2 为此我们将得出的 scores 做 $exp$ 即 $e^x$ 的幂，将微小差异放大，可得中间的那个一组数据。</p>
 <p><strong>normalize</strong></p>
@@ -543,7 +543,7 @@
 <p>$L_{car} = - \log(0.87) = 0.06$</p>
 <p>$L_{frog} = - \log(0.00) = \infty$</p>
 <p>loss 值越接近0，对应的 score 越高。原本是 cat 但是权重参数选择有问题。 </p>
-<h4 id="2-最优化"><a href="#2-最优化" class="headerlink" title="2. 最优化"></a>2. 最优化</h4><p><img src="/img/ML/03_softmax分类器2.png" alt=""> </p>
+<h4 id="2-最优化"><a href="#2-最优化" class="headerlink" title="2. 最优化"></a>2. 最优化</h4><p><img src="/img/ML/03_softmax分类器2.png" alt> </p>
 
       
     </div>
@@ -672,7 +672,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -826,7 +826,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -835,7 +835,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -855,7 +855,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -193,7 +193,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -222,7 +222,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -393,20 +393,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/11/AD/04_AD分层次设计/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -474,7 +474,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Altium-Designer/" itemprop="url" rel="index"><span itemprop="name">Altium Designer</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Altium-Designer/" itemprop="url" rel="index"><span itemprop="name">Altium Designer</span></a></span>
 
                 
                 
@@ -539,11 +539,11 @@
         <p><strong>【2017-7-27】chenyu</strong></p>
 <p>如果工程比较大，一张A4的原理图装不下，可以更改原理图的大小，或者是进行分页。<br>在不同的子图写同一个网络标号，那么这两个对应的引脚就会相连。或者也可以采用分层次方法来对原理图进行设计。</p>
 <p>分层次方法设计项目有两种：从上到下，从下到上。</p>
-<h4 id="一、从上到下"><a href="#一、从上到下" class="headerlink" title="一、从上到下"></a>一、从上到下</h4><h5 id="1-1-顶层"><a href="#1-1-顶层" class="headerlink" title="1.1 顶层"></a>1.1 顶层</h5><h6 id="1-1-1-建立-sheet-symbol，或者-Place-gt-Sheet-symbol"><a href="#1-1-1-建立-sheet-symbol，或者-Place-gt-Sheet-symbol" class="headerlink" title="1.1.1 建立 sheet symbol，或者 Place_&gt;Sheet symbol"></a>1.1.1 建立 sheet symbol，或者 Place_&gt;Sheet symbol</h6><p><img src="/img/01_AD/04_AD分层次设计1.png" alt=""><br><img src="/img/01_AD/04_AD分层次设计2.png" alt=""> </p>
-<h6 id="1-1-2-添加入口-sheet-entry"><a href="#1-1-2-添加入口-sheet-entry" class="headerlink" title="1.1.2 添加入口 sheet entry"></a>1.1.2 添加入口 sheet entry</h6><p><img src="/img/01_AD/04_AD分层次设计3.png" alt=""><br>SDA串行数据，并修改属性，设置为双向IO。SCL输入信号。INT/CMP 输出信号。在IO Type里面<br><img src="/img/01_AD/04_AD分层次设计4.png" alt=""><br><img src="/img/01_AD/04_AD分层次设计5.png" alt=""> </p>
-<h6 id="1-1-3-连接端口。其他直接用-Wire连接，RB-0-7-用总线相连，并放置总线标志符。"><a href="#1-1-3-连接端口。其他直接用-Wire连接，RB-0-7-用总线相连，并放置总线标志符。" class="headerlink" title="1.1.3 连接端口。其他直接用 Wire连接，RB[0..7]用总线相连，并放置总线标志符。"></a>1.1.3 连接端口。其他直接用 Wire连接，RB[0..7]用总线相连，并放置总线标志符。</h6><p><img src="/img/01_AD/04_AD分层次设计6.png" alt=""> </p>
-<h5 id="1-2-子层"><a href="#1-2-子层" class="headerlink" title="1.2 子层"></a>1.2 子层</h5><h6 id="1-2-1-由顶层直接生成子层，可对着相应的模块点击-右键-gt-Sheet-Symbol-Actions-gt-Create-Sheet-From-Symbol。比如对-Senor进行操作。会自动生成此Sch文件"><a href="#1-2-1-由顶层直接生成子层，可对着相应的模块点击-右键-gt-Sheet-Symbol-Actions-gt-Create-Sheet-From-Symbol。比如对-Senor进行操作。会自动生成此Sch文件" class="headerlink" title="1.2.1 由顶层直接生成子层，可对着相应的模块点击 右键_&gt;Sheet Symbol Actions_&gt;Create Sheet From Symbol。比如对 Senor进行操作。会自动生成此Sch文件"></a>1.2.1 由顶层直接生成子层，可对着相应的模块点击 右键_&gt;Sheet Symbol Actions_&gt;Create Sheet From Symbol。比如对 Senor进行操作。会自动生成此Sch文件</h6><p><img src="/img/01_AD/04_AD分层次设计7.png" alt=""> </p>
-<h6 id="1-2-2-然后再在子层绘制相应的原理图即可。"><a href="#1-2-2-然后再在子层绘制相应的原理图即可。" class="headerlink" title="1.2.2 然后再在子层绘制相应的原理图即可。"></a>1.2.2 然后再在子层绘制相应的原理图即可。</h6><h6 id="1-2-3-最后可用-Design-gt-Synchronize-Sheet-Entries-and-Ports-进行子层和顶层的引脚匹配检查。"><a href="#1-2-3-最后可用-Design-gt-Synchronize-Sheet-Entries-and-Ports-进行子层和顶层的引脚匹配检查。" class="headerlink" title="1.2.3 最后可用 Design_&gt;Synchronize Sheet Entries and Ports 进行子层和顶层的引脚匹配检查。"></a>1.2.3 最后可用 Design_&gt;Synchronize Sheet Entries and Ports 进行子层和顶层的引脚匹配检查。</h6><h4 id="二、从下至上"><a href="#二、从下至上" class="headerlink" title="二、从下至上"></a>二、从下至上</h4><h5 id="1-先把子层的原理图画好，注意Port的添加。"><a href="#1-先把子层的原理图画好，注意Port的添加。" class="headerlink" title="1. 先把子层的原理图画好，注意Port的添加。"></a>1. 先把子层的原理图画好，注意Port的添加。</h5><h5 id="2-然后新建一个原理图，用来画顶层。在新建的原理图中，右键-gt-Sheet-Actions-gt-Create-Sheet-Symbol-From-Sheet-or-HDL。然后会自动生成顶层相应的-Symbol。接线，不要忘了总线的网络标号，最后再进行检查。"><a href="#2-然后新建一个原理图，用来画顶层。在新建的原理图中，右键-gt-Sheet-Actions-gt-Create-Sheet-Symbol-From-Sheet-or-HDL。然后会自动生成顶层相应的-Symbol。接线，不要忘了总线的网络标号，最后再进行检查。" class="headerlink" title="2. 然后新建一个原理图，用来画顶层。在新建的原理图中，右键_&gt;Sheet Actions_&gt;Create Sheet Symbol From Sheet or HDL。然后会自动生成顶层相应的 Symbol。接线，不要忘了总线的网络标号，最后再进行检查。"></a>2. 然后新建一个原理图，用来画顶层。在新建的原理图中，右键_&gt;Sheet Actions_&gt;Create Sheet Symbol From Sheet or HDL。然后会自动生成顶层相应的 Symbol。接线，不要忘了总线的网络标号，最后再进行检查。</h5><p>如果从顶层想看某一个子层，可以点击这个上下按键来进行查阅。<br><img src="/img/01_AD/04_AD分层次设计8.png" alt=""><br>将原理图生成PDF，可在File_&gt;Smart PDF</p>
+<h4 id="一、从上到下"><a href="#一、从上到下" class="headerlink" title="一、从上到下"></a>一、从上到下</h4><h5 id="1-1-顶层"><a href="#1-1-顶层" class="headerlink" title="1.1 顶层"></a>1.1 顶层</h5><h6 id="1-1-1-建立-sheet-symbol，或者-Place-gt-Sheet-symbol"><a href="#1-1-1-建立-sheet-symbol，或者-Place-gt-Sheet-symbol" class="headerlink" title="1.1.1 建立 sheet symbol，或者 Place_&gt;Sheet symbol"></a>1.1.1 建立 sheet symbol，或者 Place_&gt;Sheet symbol</h6><p><img src="/img/01_AD/04_AD分层次设计1.png" alt><br><img src="/img/01_AD/04_AD分层次设计2.png" alt> </p>
+<h6 id="1-1-2-添加入口-sheet-entry"><a href="#1-1-2-添加入口-sheet-entry" class="headerlink" title="1.1.2 添加入口 sheet entry"></a>1.1.2 添加入口 sheet entry</h6><p><img src="/img/01_AD/04_AD分层次设计3.png" alt><br>SDA串行数据，并修改属性，设置为双向IO。SCL输入信号。INT/CMP 输出信号。在IO Type里面<br><img src="/img/01_AD/04_AD分层次设计4.png" alt><br><img src="/img/01_AD/04_AD分层次设计5.png" alt> </p>
+<h6 id="1-1-3-连接端口。其他直接用-Wire连接，RB-0-7-用总线相连，并放置总线标志符。"><a href="#1-1-3-连接端口。其他直接用-Wire连接，RB-0-7-用总线相连，并放置总线标志符。" class="headerlink" title="1.1.3 连接端口。其他直接用 Wire连接，RB[0..7]用总线相连，并放置总线标志符。"></a>1.1.3 连接端口。其他直接用 Wire连接，RB[0..7]用总线相连，并放置总线标志符。</h6><p><img src="/img/01_AD/04_AD分层次设计6.png" alt> </p>
+<h5 id="1-2-子层"><a href="#1-2-子层" class="headerlink" title="1.2 子层"></a>1.2 子层</h5><h6 id="1-2-1-由顶层直接生成子层，可对着相应的模块点击-右键-gt-Sheet-Symbol-Actions-gt-Create-Sheet-From-Symbol。比如对-Senor进行操作。会自动生成此Sch文件"><a href="#1-2-1-由顶层直接生成子层，可对着相应的模块点击-右键-gt-Sheet-Symbol-Actions-gt-Create-Sheet-From-Symbol。比如对-Senor进行操作。会自动生成此Sch文件" class="headerlink" title="1.2.1 由顶层直接生成子层，可对着相应的模块点击 右键_&gt;Sheet Symbol Actions_&gt;Create Sheet From Symbol。比如对 Senor进行操作。会自动生成此Sch文件"></a>1.2.1 由顶层直接生成子层，可对着相应的模块点击 右键_&gt;Sheet Symbol Actions_&gt;Create Sheet From Symbol。比如对 Senor进行操作。会自动生成此Sch文件</h6><p><img src="/img/01_AD/04_AD分层次设计7.png" alt> </p>
+<h6 id="1-2-2-然后再在子层绘制相应的原理图即可。"><a href="#1-2-2-然后再在子层绘制相应的原理图即可。" class="headerlink" title="1.2.2 然后再在子层绘制相应的原理图即可。"></a>1.2.2 然后再在子层绘制相应的原理图即可。</h6><h6 id="1-2-3-最后可用-Design-gt-Synchronize-Sheet-Entries-and-Ports-进行子层和顶层的引脚匹配检查。"><a href="#1-2-3-最后可用-Design-gt-Synchronize-Sheet-Entries-and-Ports-进行子层和顶层的引脚匹配检查。" class="headerlink" title="1.2.3 最后可用 Design_&gt;Synchronize Sheet Entries and Ports 进行子层和顶层的引脚匹配检查。"></a>1.2.3 最后可用 Design_&gt;Synchronize Sheet Entries and Ports 进行子层和顶层的引脚匹配检查。</h6><h4 id="二、从下至上"><a href="#二、从下至上" class="headerlink" title="二、从下至上"></a>二、从下至上</h4><h5 id="1-先把子层的原理图画好，注意Port的添加。"><a href="#1-先把子层的原理图画好，注意Port的添加。" class="headerlink" title="1. 先把子层的原理图画好，注意Port的添加。"></a>1. 先把子层的原理图画好，注意Port的添加。</h5><h5 id="2-然后新建一个原理图，用来画顶层。在新建的原理图中，右键-gt-Sheet-Actions-gt-Create-Sheet-Symbol-From-Sheet-or-HDL。然后会自动生成顶层相应的-Symbol。接线，不要忘了总线的网络标号，最后再进行检查。"><a href="#2-然后新建一个原理图，用来画顶层。在新建的原理图中，右键-gt-Sheet-Actions-gt-Create-Sheet-Symbol-From-Sheet-or-HDL。然后会自动生成顶层相应的-Symbol。接线，不要忘了总线的网络标号，最后再进行检查。" class="headerlink" title="2. 然后新建一个原理图，用来画顶层。在新建的原理图中，右键_&gt;Sheet Actions_&gt;Create Sheet Symbol From Sheet or HDL。然后会自动生成顶层相应的 Symbol。接线，不要忘了总线的网络标号，最后再进行检查。"></a>2. 然后新建一个原理图，用来画顶层。在新建的原理图中，右键_&gt;Sheet Actions_&gt;Create Sheet Symbol From Sheet or HDL。然后会自动生成顶层相应的 Symbol。接线，不要忘了总线的网络标号，最后再进行检查。</h5><p>如果从顶层想看某一个子层，可以点击这个上下按键来进行查阅。<br><img src="/img/01_AD/04_AD分层次设计8.png" alt><br>将原理图生成PDF，可在File_&gt;Smart PDF</p>
 
       
     </div>
@@ -672,7 +672,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -826,7 +826,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -835,7 +835,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -855,7 +855,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

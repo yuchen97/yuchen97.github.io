@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -193,7 +193,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -222,7 +222,7 @@
         hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
         560ms ease-in-out}}</style>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -393,20 +393,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2018/12/21/Machine Learning/CNN/06_CNN和Pooling的FP和BP/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
       <meta itemprop="description" content="chenyu110197@gmail.com">
       <meta itemprop="image" content="/images/image_touxiang.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Chenyu's Blog">
     </span>
 
@@ -474,7 +474,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
 
                 
                 
@@ -538,23 +538,23 @@
       
         <h3 id="06-CNN和Pooling的前向与反向传播"><a href="#06-CNN和Pooling的前向与反向传播" class="headerlink" title="06_CNN和Pooling的前向与反向传播"></a>06_CNN和Pooling的前向与反向传播</h3><p><strong>【 The latest data ： 2018/05/10 】Yuchen</strong>  </p>
 <h4 id="1-卷积"><a href="#1-卷积" class="headerlink" title="1. 卷积"></a>1. 卷积</h4><h5 id="1-1-卷积层的前向传播"><a href="#1-1-卷积层的前向传播" class="headerlink" title="1.1 卷积层的前向传播"></a>1.1 卷积层的前向传播</h5><p>本质是计算了一个 $wx+b$。</p>
-<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP1.png" alt=""> </p>
+<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP1.png" alt> </p>
 <p>x [n,channel,height,width]，n 是输入样本的编号，每次输入是一个 batch 一个 batch 输入的，所以 0 是指取一个 batch 里面第一个参数。<br>可以看到 c = 0,1,2，所以原图为彩色图像，从左至右依次是 R、B、G。<br>由于是用了 3 个 filter 进行特征提取，所以得到了三张 activations maps。<br>filter 的 depth 要和前一项输入的 depth 一致。</p>
-<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP2.png" alt=""> </p>
+<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP2.png" alt> </p>
 <h5 id="1-2-卷积层的反向传播"><a href="#1-2-卷积层的反向传播" class="headerlink" title="1.2 卷积层的反向传播"></a>1.2 卷积层的反向传播</h5><p>反向传播详见之前笔记《05_反向传播》<a href="http://note.youdao.com/noteshare?id=afe6fca00a42630d2617a32394ccb9b0&amp;sub=8F38B78C84E84FB8BCAEE589EC0E1A52" target="_blank" rel="noopener">http://note.youdao.com/noteshare?id=afe6fca00a42630d2617a32394ccb9b0&amp;sub=8F38B78C84E84FB8BCAEE589EC0E1A52</a></p>
 <p>假设前向传播之后，$out=xw+b$。<br>由于反向传播的目的是更新权重参数 $w$，找到最优值。所以要计算 $dw$ 的值。<br>假设上一层传来的梯度是 $dout$，然后再用上层传来的梯度乘以自身的梯度（当前输入）。 $w$ 的自身梯度就是对 $w$ 求偏导，即 $x$，所以<br>$dw=dout\cdot x$</p>
-<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP3.png" alt=""><br>对于前向传播而言， filter 乘以对应区域会得到一个数值，而反向传播是将得到的这个数值和对应的区域相乘。</p>
-<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP4.png" alt=""> </p>
+<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP3.png" alt><br>对于前向传播而言， filter 乘以对应区域会得到一个数值，而反向传播是将得到的这个数值和对应的区域相乘。</p>
+<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP4.png" alt> </p>
 <h6 id="1-2-1-一个区域相乘"><a href="#1-2-1-一个区域相乘" class="headerlink" title="1.2.1 一个区域相乘"></a>1.2.1 一个区域相乘</h6><p>对于上图，其中 dout[0,0,0] 是指最上面 dout[0,:,:] 中的一个数值，<br>x[0,0,:3,:3]，为 x[index,0层depth,取了从0-3的区域，取了从0-3的区域]，也就是说 x[0,0,:3,:3] 指的就是中间第一张图的左上角 3X3 区域。</p>
 <h6 id="1-2-2-区域移动"><a href="#1-2-2-区域移动" class="headerlink" title="1.2.2 区域移动"></a>1.2.2 区域移动</h6><p>stride = 2，当移动一个位置时，此时 dout[0,0,1]，而与之相乘的是 x[0,0,:3,2:5]。<br>所以<br>$dw[0,0,:,:]=x[0,0,:3,:3]<em>dout[0,0,0]+x[0,0,:3,2:5]</em>dout[0,0,1]+…+x[0,0,6:9,6:9]*dout[0,3,3]$<br>就是 dout[0,:,:] 与 x[0,0,:,:] 相卷积的结果，即第一层深度的 <code>$dw$</code>。由于 x 是三通道的，所以只算三组就可以。<br>最上面可以看到不只是一个 dout，如果算其他的 dout，算法和这个一样，当然最后输出的 dw[0,0,:,:]也要改成对应的值，比如用 dout[1,:,:] 去算，结果是 dw[1,0,:,:]。</p>
 <h4 id="2-池化层"><a href="#2-池化层" class="headerlink" title="2. 池化层"></a>2. 池化层</h4><p>对于 pooling 而言，它没有权重参数，所以相对简单一点。<br>只针对左下角 2x2 数据而言，其他类似。  </p>
 <h5 id="2-1-max-pooling"><a href="#2-1-max-pooling" class="headerlink" title="2.1 max pooling"></a>2.1 max pooling</h5><p><strong>Forward propagation</strong></p>
-<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP5.png" alt=""> </p>
+<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP5.png" alt> </p>
 <p><strong>Back propagation</strong></p>
-<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP6.png" alt=""> </p>
+<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP6.png" alt> </p>
 <p>反向传播时，最大值对应的位置保持原值不变，其余值为0</p>
-<h5 id="2-2-mean-pooling"><a href="#2-2-mean-pooling" class="headerlink" title="2.2 mean pooling"></a>2.2 mean pooling</h5><p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP7.png" alt=""> </p>
-<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP8.png" alt=""><br>反向传播时，将前向传播得到的值直接均分。</p>
+<h5 id="2-2-mean-pooling"><a href="#2-2-mean-pooling" class="headerlink" title="2.2 mean pooling"></a>2.2 mean pooling</h5><p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP7.png" alt> </p>
+<p><img src="/img/ML/CNN/06_CNN和Pooling的FP和BP8.png" alt><br>反向传播时，将前向传播得到的值直接均分。</p>
 
       
     </div>
@@ -683,7 +683,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
             
@@ -837,7 +837,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">529k</span>
+    <span title="Symbols count total">448k</span>
   
 
   
@@ -846,7 +846,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">6:47</span>
   
 </div>
 
@@ -866,7 +866,7 @@
 <!--end-->
 
 <!--
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 
