@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Number of Islands( Assignment1-8OJ )Problem descriptionGiven a 2d $m\times n$ grid map of ‘1’s (land) and ‘0’s (water), count the number of islands. An island is surrounded by water and is formed by c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Number of Islands( Assignment1-8OJ).md">
+<meta property="og:url" content="https://yuchen97.github.io/2019/10/12/Bu_Algorithm/Number of Islands( Assignment1-8OJ )/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="Number of Islands( Assignment1-8OJ )Problem descriptionGiven a 2d $m\times n$ grid map of ‘1’s (land) and ‘0’s (water), count the number of islands. An island is surrounded by water and is formed by c">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://yuchen97.github.io/img/Numberisland1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/Numberisland2.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/Numberisland1.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/Numberisland3.png">
+<meta property="og:image" content="https://yuchen97.github.io/img/Numberisland4.png">
+<meta property="og:updated_time" content="2019-10-12T04:39:40.709Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Number of Islands( Assignment1-8OJ).md">
+<meta name="twitter:description" content="Number of Islands( Assignment1-8OJ )Problem descriptionGiven a 2d $m\times n$ grid map of ‘1’s (land) and ‘0’s (water), count the number of islands. An island is surrounded by water and is formed by c">
+<meta name="twitter:image" content="https://yuchen97.github.io/img/Numberisland1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2019/10/12/Bu_Algorithm/Number of Islands( Assignment1-8OJ )/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Number of Islands( Assignment1-8OJ).md | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2019/10/12/Bu_Algorithm/Number of Islands( Assignment1-8OJ )/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Number of Islands( Assignment1-8OJ).md
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-10-12 12:26:12 / Modified: 12:39:40" itemprop="dateCreated datePublished" datetime="2019-10-12T12:26:12+08:00">2019-10-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bu-Algorithm/" itemprop="url" rel="index"><span itemprop="name">Bu_Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">7.7k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">7 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Number-of-Islands-Assignment1-8OJ"><a href="#Number-of-Islands-Assignment1-8OJ" class="headerlink" title="Number of Islands( Assignment1-8OJ )"></a>Number of Islands( Assignment1-8OJ )</h3><h4 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h4><p>Given a 2d <code>$m\times n$</code> grid map of ‘1’s (land) and ‘0’s (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.(1≤m≤1000, 1≤n≤1000)</p>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>Line 1: m and n<br>Line 2: ‘1’ or ‘0’ in grid and split by spaces</p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>Line 1: number of islands.</p>
+<h4 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 5</span><br><span class="line">1 1 0 0 1</span><br><span class="line">0 1 0 1 1</span><br><span class="line">1 1 1 0 0</span><br><span class="line">0 0 0 0 1</span><br></pre></td></tr></table></figure>
+<h4 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+<p>简单来说，海岛问题，计算出所有岛屿的数目，注意题目里的邻接大陆不包括斜方向。如果说用暴力方法，每一个 ‘0’ 或 ‘1’ 都要去计算的话，这样每个点都要考虑上下左右四个方向，抛开重复的计算量，怎么确保哪些 ‘1’ 连在一起也是个问题。所以自然想到的方法就是 <strong>DFS</strong> 和 <strong>BFS</strong>，下面就对这两种方法进行介绍。  </p>
+<h4 id="一、DFS"><a href="#一、DFS" class="headerlink" title="一、DFS"></a>一、DFS</h4><p>什么是 DFS？DFS 是深度优先搜索（Depth-first search）。<strong>详细可参照《算法导论》第22章基本的图算法内容</strong>。DFS 是只要有可能就要在图中尽量深入，总是对最近才发现的结点 $v$ 的出发边进行探索，直到该结点的所有出发边都被发现为止。如果 $v$ 所有的边都被发现，那么搜索回溯到 $v$ 的前驱结点（类似于父亲结点），然后再去搜索该前驱结点的出发边，一直到源结点可以达到的所有结点都被发现为止。以下图来进行说明：</p>
+<p><img src="/img/Numberisland1.png" alt></p>
+<p>假设源节点是 $A$ ，我们要找到结点 $F$ ，采用 DFS 时，它会从沿着以下路径遍历：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A-&gt;B-&gt;D-&gt;B-&gt;E-&gt;H-&gt;E-&gt;I-&gt;E-&gt;B-&gt;A-&gt;C-&gt;F</span><br></pre></td></tr></table></figure></p>
+<p>那么结合 DFS 的这个特征以及岛屿数量问题，我们有如下代码：<br><a href="/download/CountIslands.cpp">下面三个源码点击下载</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">/*********************************************************************************</span><br><span class="line">  *Copyright(C),xxx-xxx</span><br><span class="line">  *FileName:   CountIslands.cpp</span><br><span class="line">  *Author:  xxx</span><br><span class="line">  *Version:  1.0</span><br><span class="line">  *Date:  2019/10/11</span><br><span class="line">  *Description:  the question of water and land, and count the number of the island</span><br><span class="line">                (only consider horizontally or vertically)</span><br><span class="line">  *Others:  Assignment1_8(OJ)</span><br><span class="line">  *Code List: </span><br><span class="line">     1. dfs</span><br><span class="line">     2. bfs with visit</span><br><span class="line">     3. bfs</span><br><span class="line">  *History:  </span><br><span class="line">     1.Date: 2019/10/11</span><br><span class="line">       Author: xxx</span><br><span class="line">       Modification: create</span><br><span class="line">     2.…………</span><br><span class="line"></span><br><span class="line">**********************************************************************************/</span><br><span class="line">// dfs</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">// 因为都是 0 1，采用 bool 类型节省空间</span><br><span class="line">// 为了防止数组下标越界，将其长度设置为比题目要求稍微大点</span><br><span class="line">bool map[1010][1010];   </span><br><span class="line"></span><br><span class="line">void SelectDirection(bool (*map)[1010], int row, int col, int m, int n)</span><br><span class="line">&#123;</span><br><span class="line">    if(row &lt; 0 || row &gt; m-1 || col &lt; 0 || col &gt; n - 1)  // 结束dfs的边界条件</span><br><span class="line">        return;</span><br><span class="line">    if(map[row][col] == 1)  // 遇到 &apos;1&apos; 时，将它变成 &apos;0&apos;，防止再次遍历</span><br><span class="line">        map[row][col] = 0;</span><br><span class="line">    else</span><br><span class="line">        return;</span><br><span class="line">    </span><br><span class="line">    // 朝上下左右四个方向进行递归</span><br><span class="line">    SelectDirection(map, row-1, col, m, n);</span><br><span class="line">    SelectDirection(map, row+1, col, m, n);</span><br><span class="line">    SelectDirection(map, row, col-1, m, n);</span><br><span class="line">    SelectDirection(map, row, col+1, m, n);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int FindIslandAndCount(bool (*map)[1010], int row, int col)</span><br><span class="line">&#123;</span><br><span class="line">    int cnt = 0;</span><br><span class="line">    for(int i=0; i&lt;row; ++i)</span><br><span class="line">        for(int j=0; j&lt;col; ++j)</span><br><span class="line">            if(map[i][j] == 1)  // 如果遇到 &apos;1&apos;，执行 dfs 将 &apos;1&apos; 置 &apos;0&apos;，说明遇到island，计数加一</span><br><span class="line">            &#123;</span><br><span class="line">                SelectDirection(map, i, j, row, col);</span><br><span class="line">                ++cnt;</span><br><span class="line">            &#125;    </span><br><span class="line">    return cnt;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int row, col;</span><br><span class="line">    scanf(&quot;%d %d&quot;, &amp;row, &amp;col);</span><br><span class="line">    for(int i=0; i&lt;row; ++i)</span><br><span class="line">        for(int j=0; j&lt;col; ++j)</span><br><span class="line">            scanf(&quot;%d&quot;, &amp;map[i][j]);</span><br><span class="line"></span><br><span class="line">    int cnt = FindIslandAndCount(map, row, col);</span><br><span class="line">    printf(&quot;%d&quot;, cnt);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面代码可以用下图来解释，其中”黑点”代表’1’，也就是 land，”白点”代表’0’也就是 water。</p>
+<p><img src="/img/Numberisland2.png" alt></p>
+<p>但是这样做，在 OJ 时后面几个样例会 MLE（Memory Limit Exceeded，内存超限），是因为空间复杂度较大，爆栈，也就是说上面的递归太“深”了。在课程的 OJ 上只能 score95，最后一个样例不通过。那么解决的办法要么把递归改成循环，要么就用下面介绍的 BFS（实际中我采用了 BFS 算法）。  </p>
+<h4 id="二、BFS"><a href="#二、BFS" class="headerlink" title="二、BFS"></a>二、BFS</h4><p>BFS 是广度优先搜索（Breadth-first search），同样在《算法导论》的章节也有详细介绍，较好的解释是“白、灰、黑涂色”以及“走迷宫最短路径”问题。在给定源节点 $s$ 之后，该算法可以将已发现结点和未发现结点之间的边界，沿着广度反向向外扩展。也就是说，算法在发现所有距离源节点<code>$s$</code>为<code>$k$</code>的所有结点之后，才会发现距离源节点 $s$ 为 $k+1$ 的其他结点。</p>
+<p><img src="/img/Numberisland1.png" alt></p>
+<p>假设源节点是 $A$ ，我们要找到结点 $F$ ，对于上图采用 BFS 时，它会从沿着以下路径遍历，每次遍历会对结点数据进行存储：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A-&gt;B-&gt;C-&gt;B-&gt;D-&gt;E-&gt;C-&gt;F</span><br></pre></td></tr></table></figure></p>
+<p>那么结合 BFS 的这个特征以及岛屿数量问题，我们有如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">// bfs</span><br><span class="line">// Vs = Vsource 起点</span><br><span class="line">// Vn = Vnow 当前点</span><br><span class="line">// Va = Vadjacent 当前点的相邻点</span><br><span class="line">// dir = direction 四个方向</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// bfs 用 visit</span><br><span class="line">// 初始时 visit 为 0，当被访问时置 1</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">struct Node&#123;</span><br><span class="line">    int x, y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">bool visit[1010][1010];</span><br><span class="line">bool grid[1010][1010];</span><br><span class="line">int dir[4][2] = &#123;&#123;1, 0&#125;, &#123;-1, 0&#125;, &#123;0, 1&#125;, &#123;0, -1&#125;&#125;; // 四个方向</span><br><span class="line"></span><br><span class="line">void BFS(Node Vs, bool (*visit)[1010], int row, int col)</span><br><span class="line">&#123;</span><br><span class="line">    Node Vn, Va;</span><br><span class="line">    queue&lt;Node&gt; q;</span><br><span class="line">    q.push(Vs); // 源节点加入队列</span><br><span class="line">    visit[Vs.x][Vs.y] = true;   // 源节点对应坐标 visit 置 1，表示被访问过</span><br><span class="line">    </span><br><span class="line">    while (!q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        Vn = q.front(); // 将最前面的值取出</span><br><span class="line">        q.pop();    // 取出值后，将最前面的值删除</span><br><span class="line">        for(int i=0; i&lt;4; ++i)  // 四个方向进行遍历</span><br><span class="line">        &#123;</span><br><span class="line">            Va = Node(&#123;Vn.x + dir[i][0], Vn.y + dir[i][1]&#125;); // 邻接结点的坐标位置</span><br><span class="line"></span><br><span class="line">            if(Va.x &lt; 0 || Va.x &gt; row-1 || Va.y &lt; 0 || Va.y &gt; col -1) // 如果该方向到达边界，执行下一个方向</span><br><span class="line">                continue;</span><br><span class="line">            if(grid[Va.x][Va.y] == 0)   // 如果此方向结点值是 0，继续下一个方向</span><br><span class="line">                continue;</span><br><span class="line"></span><br><span class="line">            if(grid[Va.x][Va.y] == 1 &amp;&amp; visit[Va.x][Va.y] == false) // 此方向结点是 1，并且没有被访问</span><br><span class="line">            &#123;</span><br><span class="line">                q.push(Va); // 将此接点加入队列</span><br><span class="line">                visit[Va.x][Va.y] = true; // 访问置 1</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int FindIslandAndCount(bool (*grid)[1010], bool (*visit)[1010], int row, int col)</span><br><span class="line">&#123;</span><br><span class="line">    int cnt = 0;</span><br><span class="line">    for(int i=0; i&lt;row; ++i)</span><br><span class="line">        for(int j=0; j&lt;col; ++j)</span><br><span class="line">            if(grid[i][j] == 1 &amp;&amp; visit[i][j] == false) // 如果结点值是 1 且没被访问</span><br><span class="line">            &#123;</span><br><span class="line">                BFS(&#123;i, j&#125;, visit, row, col);</span><br><span class="line">                ++cnt;</span><br><span class="line">            &#125;    </span><br><span class="line">    return cnt;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int row, col;</span><br><span class="line">    scanf(&quot;%d %d&quot;, &amp;row, &amp;col);</span><br><span class="line">    for(int i=0; i&lt;row; ++i)</span><br><span class="line">        for(int j=0; j&lt;col; ++j)</span><br><span class="line">            visit[i][j] = false;</span><br><span class="line">    for(int i=0; i&lt;row; ++i)</span><br><span class="line">        for(int j=0; j&lt;col; ++j)</span><br><span class="line">            scanf(&quot;%d&quot;, &amp;grid[i][j]);</span><br><span class="line"></span><br><span class="line">    int cnt = FindIslandAndCount(grid, visit, row, col);</span><br><span class="line">    printf(&quot;%d&quot;, cnt);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>还是以上面的“海岛图”进行说明。</p>
+<p><img src="/img/Numberisland3.png" alt></p>
+<p>坐标 (0, 0) 的点的值是 0，所以不执行 BFS。坐标 (0, 1) 加入队列，将队列首值取出并删除，循环查找 (0, 1) 是 4 个方向，(0, 2) 满足要求，将其加入队列，并 visit 置 1。while 为真，将 (0, 2) 取出并删除，查寻 (0, 2) 四个方向点，发现 (0, 1) == 1，但 visit == 1，继续下一个方向，然后将 (1, 2) 和 (0, 3) 加入队列。一直到队列为空，结束循环。</p>
+<p><img src="/img/Numberisland4.png" alt></p>
+<p>但是在此程序中，我们又重新开辟了一个 bool visit[1010][1010] 数组，占用了一定的空间，如果不加 visit 要怎么处理？可以参考 DFS，将遍历过的 1 置 0. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">// bfs 不用 visit</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">struct Node&#123;</span><br><span class="line">    int x, y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">bool grid[1010][1010];</span><br><span class="line">int dir[4][2] = &#123;&#123;1, 0&#125;, &#123;-1, 0&#125;, &#123;0, 1&#125;, &#123;0, -1&#125;&#125;; // 四个方向</span><br><span class="line">void BFS(Node Vs, int row, int col)</span><br><span class="line">&#123;</span><br><span class="line">    Node Vn, Va;</span><br><span class="line">    queue&lt;Node&gt; q;</span><br><span class="line">    q.push(Vs);</span><br><span class="line">    </span><br><span class="line">    while (!q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        Vn = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line">        for(int i=0; i&lt;4; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            Va = Node(&#123;Vn.x + dir[i][0], Vn.y + dir[i][1]&#125;);</span><br><span class="line"></span><br><span class="line">            if(Va.x &lt; 0 || Va.x &gt; row-1 || Va.y &lt; 0 || Va.y &gt; col -1)</span><br><span class="line">                continue;</span><br><span class="line"></span><br><span class="line">            if(grid[Va.x][Va.y] == 1)   // 为 1 入队列，置 0</span><br><span class="line">            &#123;</span><br><span class="line">                q.push(Va);</span><br><span class="line">                grid[Va.x][Va.y] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">                continue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int FindIslandAndCount(bool (*grid)[1010], int row, int col)</span><br><span class="line">&#123;</span><br><span class="line">    int cnt = 0;</span><br><span class="line">    for(int i=0; i&lt;row; ++i)</span><br><span class="line">        for(int j=0; j&lt;col; ++j)</span><br><span class="line">            if(grid[i][j] == 1)</span><br><span class="line">            &#123;</span><br><span class="line">                BFS(&#123;i, j&#125;, row, col);</span><br><span class="line">                ++cnt;</span><br><span class="line">            &#125;    </span><br><span class="line">    return cnt;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int row, col;</span><br><span class="line">    scanf(&quot;%d %d&quot;, &amp;row, &amp;col);</span><br><span class="line"></span><br><span class="line">    for(int i=0; i&lt;row; ++i)</span><br><span class="line">        for(int j=0; j&lt;col; ++j)</span><br><span class="line">            scanf(&quot;%d&quot;, &amp;grid[i][j]);</span><br><span class="line"></span><br><span class="line">    int cnt = FindIslandAndCount(grid, row, col);</span><br><span class="line">    printf(&quot;%d&quot;, cnt);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>BFS 没有用递归，不用担心爆栈问题，可以 AC。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/10/test-md/" rel="next" title="test.md">
+                <i class="fa fa-chevron-left"></i> test.md
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">115</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Number-of-Islands-Assignment1-8OJ"><span class="nav-number">1.</span> <span class="nav-text">Number of Islands( Assignment1-8OJ )</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-description"><span class="nav-number">1.1.</span> <span class="nav-text">Problem description</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input"><span class="nav-number">1.2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output"><span class="nav-number">1.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Input"><span class="nav-number">1.4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Output"><span class="nav-number">1.5.</span> <span class="nav-text">Sample Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、DFS"><span class="nav-number">1.6.</span> <span class="nav-text">一、DFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、BFS"><span class="nav-number">1.7.</span> <span class="nav-text">二、BFS</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">461k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">6:59</span>
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+<!--<span id="busuanzi_container_site_uv">
+    总访问量<span id="busuanzi_value_site_uv"></span>次
+</span>-->
+
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2019/10/12/Bu_Algorithm/Number of Islands( Assignment1-8OJ )/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.staticfile.org/MathJax/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+    overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
