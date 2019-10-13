@@ -115,24 +115,24 @@
 
 
 
-  <meta name="description" content="The Kth Number( OJ1 )Problem descriptionFind the kth largest element in an unsorted array A . Note that it is the kth largest element in the sorted order, not the kth distinct element. The range of le">
+  <meta name="description" content="Majority Element( Assignment1-7OJ, DC OJ A )Problem descriptionGiven an array of size n, find the majority element. The majority element is the element that appears more than $\lfloor n/2 \rfloor$ tim">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The Kth Number( OJ1 ).md">
-<meta property="og:url" content="https://yuchen97.github.io/2019/10/12/Bu_Algorithm/The Kth Number( OJ1 )/index.html">
+<meta property="og:title" content="Majority Element--OJ_DC_A.md">
+<meta property="og:url" content="https://yuchen97.github.io/2019/10/12/Bu_Algorithm/Majority Element--OJ_DC_A/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="The Kth Number( OJ1 )Problem descriptionFind the kth largest element in an unsorted array A . Note that it is the kth largest element in the sorted order, not the kth distinct element. The range of le">
+<meta property="og:description" content="Majority Element( Assignment1-7OJ, DC OJ A )Problem descriptionGiven an array of size n, find the majority element. The majority element is the element that appears more than $\lfloor n/2 \rfloor$ tim">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-12T13:49:05.833Z">
+<meta property="og:updated_time" content="2019-10-13T06:58:53.172Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Kth Number( OJ1 ).md">
-<meta name="twitter:description" content="The Kth Number( OJ1 )Problem descriptionFind the kth largest element in an unsorted array A . Note that it is the kth largest element in the sorted order, not the kth distinct element. The range of le">
+<meta name="twitter:title" content="Majority Element--OJ_DC_A.md">
+<meta name="twitter:description" content="Majority Element( Assignment1-7OJ, DC OJ A )Problem descriptionGiven an array of size n, find the majority element. The majority element is the element that appears more than $\lfloor n/2 \rfloor$ tim">
 
 
 
 
 
 
-  <link rel="canonical" href="https://yuchen97.github.io/2019/10/12/Bu_Algorithm/The Kth Number( OJ1 )/">
+  <link rel="canonical" href="https://yuchen97.github.io/2019/10/12/Bu_Algorithm/Majority Element--OJ_DC_A/">
 
 
 
@@ -142,7 +142,7 @@
   };
 </script>
 
-  <title>The Kth Number( OJ1 ).md | Chenyu's Blog</title>
+  <title>Majority Element--OJ_DC_A.md | Chenyu's Blog</title>
   
 
 
@@ -389,7 +389,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2019/10/12/Bu_Algorithm/The Kth Number( OJ1 )/">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2019/10/12/Bu_Algorithm/Majority Element--OJ_DC_A/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChenYu">
@@ -406,7 +406,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">The Kth Number( OJ1 ).md
+          <h1 class="post-title" itemprop="name headline">Majority Element--OJ_DC_A.md
               
             
           </h1>
@@ -431,12 +431,24 @@
                 
               
 
-              <time title="Created: 2019-10-12 21:46:54 / Modified: 21:49:05" itemprop="dateCreated datePublished" datetime="2019-10-12T21:46:54+08:00">2019-10-12</time>
+              <time title="Created: 2019-10-12 20:59:33" itemprop="dateCreated datePublished" datetime="2019-10-12T20:59:33+08:00">2019-10-12</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-13 14:58:53" itemprop="dateModified" datetime="2019-10-13T14:58:53+08:00">2019-10-13</time>
               
             
           </span>
@@ -481,7 +493,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">2.5k</span>
+                <span title="Symbols count in article">3.4k</span>
               
 
               
@@ -495,7 +507,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">2 mins.</span>
+                <span title="Reading time">3 mins.</span>
               
             </div>
           
@@ -515,15 +527,26 @@
       
 
       
-        <h3 id="The-Kth-Number-OJ1"><a href="#The-Kth-Number-OJ1" class="headerlink" title="The Kth Number( OJ1 )"></a>The Kth Number( OJ1 )</h3><h4 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h4><p>Find the kth largest element in an unsorted array A . Note that it is the kth largest element in the sorted order, not the kth distinct element. The range of length of A is N(1≤N≤5,000,000) and the element (integer) in A is no bigger than 10,000,00000.</p>
-<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>Line 1: the length of the unsorted array A and the index k. </p>
-<p>Line 2: the all elements in array A and split by spaces</p>
-<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>Line 1: A single integer that is the kth largest element in an unsorted array A.</p>
-<h4 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input 1"></a>Sample Input 1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">8 2</span><br><span class="line">1 3 5 7 4 2 6 8</span><br></pre></td></tr></table></figure>
-<h4 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output 1"></a>Sample Output 1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure>
-<h4 id="Sample-Input-2"><a href="#Sample-Input-2" class="headerlink" title="Sample Input 2"></a>Sample Input 2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">8 2</span><br><span class="line">1 1 2 2 3 3 4 4</span><br></pre></td></tr></table></figure>
-<h4 id="Sample-Output-2"><a href="#Sample-Output-2" class="headerlink" title="Sample Output 2"></a>Sample Output 2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
-<p>无序数组且每个值不一定唯一，找出第 k 大的元素。运用快排思想，将大的丢到左边，小的丢到右边。<br>时间复杂度是 $T(n) = O(n)$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">/*********************************************************************************</span><br><span class="line">  *Copyright(C),xxx-xxx</span><br><span class="line">  *FileName:   TheKthNumber.cpp</span><br><span class="line">  *Author:  xx</span><br><span class="line">  *Version:  1.0</span><br><span class="line">  *Date:  2019/09/08</span><br><span class="line">  *Description:  the kth largest number in an unsort array</span><br><span class="line">  *Others:  test0 (OJ1)</span><br><span class="line">  *Code List: </span><br><span class="line">     1. topk</span><br><span class="line">  *History:  </span><br><span class="line">     1.Date: 2019/09/09</span><br><span class="line">       Author: xx</span><br><span class="line">       Modification: create</span><br><span class="line">     2.…………</span><br><span class="line"></span><br><span class="line">**********************************************************************************/</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">int data[5000010]; // 防止溢出</span><br><span class="line"></span><br><span class="line">int Partition(int data[], int length, int start, int end)</span><br><span class="line">&#123;</span><br><span class="line">    int index = 0;</span><br><span class="line">    int large = start - 1;</span><br><span class="line">    for(index = start; index &lt; end; ++index)</span><br><span class="line">    &#123;</span><br><span class="line">        if(data[index] &gt; data[end])</span><br><span class="line">        &#123;</span><br><span class="line">            ++large;</span><br><span class="line">            if(large != index)</span><br><span class="line">            &#123;</span><br><span class="line">                int tmp;</span><br><span class="line">                tmp = data[large];</span><br><span class="line">                data[large] = data[index];</span><br><span class="line">                data[index] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ++large;</span><br><span class="line">    int tmp;</span><br><span class="line">    tmp = data[large];</span><br><span class="line">    data[large] = data[end];    </span><br><span class="line">    data[end] = tmp;</span><br><span class="line">    return large;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int length, k;</span><br><span class="line"></span><br><span class="line">    scanf(&quot;%d&quot;, &amp;length);</span><br><span class="line">    scanf(&quot;%d&quot;, &amp;k);</span><br><span class="line">    for(int i = 0; i &lt; length; ++i)</span><br><span class="line">        scanf(&quot;%d&quot;, &amp;data[i]);</span><br><span class="line"></span><br><span class="line">    int start = 0;</span><br><span class="line">    int end = length - 1;</span><br><span class="line">    while (true)</span><br><span class="line">    &#123;</span><br><span class="line">        int pos = Partition(data, length, start, end);</span><br><span class="line">        if(k - 1 == pos)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;%d&quot;,data[pos]);</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        if(k - 1 &gt; pos)</span><br><span class="line">            start = pos + 1;</span><br><span class="line">        else</span><br><span class="line">            end = pos - 1;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="Majority-Element-Assignment1-7OJ-DC-OJ-A"><a href="#Majority-Element-Assignment1-7OJ-DC-OJ-A" class="headerlink" title="Majority Element( Assignment1-7OJ, DC OJ A )"></a>Majority Element( Assignment1-7OJ, DC OJ A )</h3><h4 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h4><p>Given an array of size n, find the majority element. The majority element is the element that appears more than $\lfloor n/2 \rfloor$ times.</p>
+<p>You may assume that the array is non-empty and the majority element always exist in the array.</p>
+<p>The range of length of array is n(1≤n≤5,000,000) and the element (integer) in array is no bigger than 10,000,00000.</p>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>Line 1: the length of array.</p>
+<p>Line 2: the all elements in array and split by spaces</p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>Line 1: A single integer that is the majority element.</p>
+<h4 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input 1"></a>Sample Input 1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">2 3 2</span><br></pre></td></tr></table></figure>
+<h4 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output 1"></a>Sample Output 1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<h4 id="Sample-Input-2"><a href="#Sample-Input-2" class="headerlink" title="Sample Input 2"></a>Sample Input 2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">7</span><br><span class="line">2 1 2 2 3 3 2</span><br></pre></td></tr></table></figure>
+<h4 id="Sample-Output-2"><a href="#Sample-Output-2" class="headerlink" title="Sample Output 2"></a>Sample Output 2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<p>找出数组中最多的那个值，而且该值的数量大于数组实际数据长度的一半。<br>有三种方法去想这个问题。</p>
+<p><a href="/download/CFindtheMajorityElemen.cpp">源码点击下载</a></p>
+<h4 id="一、最直接想法"><a href="#一、最直接想法" class="headerlink" title="一、最直接想法"></a>一、最直接想法</h4><p>如果数组是排好序列的，直接输出中间值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">int arr[5000010];</span><br><span class="line"></span><br><span class="line">int Partition(int* arr, int start, int end)</span><br><span class="line">&#123;</span><br><span class="line">    sort(arr, n);</span><br><span class="line">    return arr[n/2];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>该方法首先对数组进行快排，然后再找到数组的中间值，虽然比较好想，但是时间复杂度较高 $O(nlogn)$，因为快排 $T(n) = 2T(n/2) + O(n) = O(nlogn)$ ，详细步骤见 <a href="http://chenyu97.cn/2019/10/13/Bu_Algorithm/%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E7%AE%97%E6%B3%95%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6/" target="_blank" rel="noopener">如何计算算法复杂度</a> 这篇文章。</p>
+<h4 id="二、改进"><a href="#二、改进" class="headerlink" title="二、改进"></a>二、改进</h4><p>由于在 topk 问题中，有 O(n) 算法可以得到数组中任意第 k 大的数字。所以可以在数组中任意选取一个数字，为了省事，我就直接去了最后一个数，其实这种方法并不好，容易造成较差的复杂度，建议随机取。这里不建议采用卜老师上课讲的 $[\frac{n}{4},\frac{3n}{4}]$ 区间查找，因为数组中的数不是完全独立的，比如 $\{2, 2, 1, 1, 2, 1, 1\}$。关于卜老师的这个选取 <strong>pivot</strong> 的方法，后面找机会补上。由于我们不需要将数组进行全部按序排列，因为只是要得到数组的中位数就行。</p>
+<p>选好随机数之后调整顺序，比它小的在左边，大的在右边，如果排序后下标刚好n/2，那么该数就是中位数。若大于n/2，那么中位数在它左边，反之在右边。用这种方法递归时只递归一半，所以总的时间复杂度是 $T(n) = T(n/2) + O(n) = O(n)$。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">// QuickSort thinking and complexity O(n)</span><br><span class="line">int Partition(int* arr, int start, int end) // 和快排差不多</span><br><span class="line">&#123;</span><br><span class="line">    int small = start-1;</span><br><span class="line">    for(int index=start; index&lt;end-1; ++index)</span><br><span class="line">    &#123;</span><br><span class="line">        if(arr[index] &lt; arr[end-1])</span><br><span class="line">        &#123;</span><br><span class="line">            ++small;</span><br><span class="line">            if(small != index)</span><br><span class="line">            &#123;</span><br><span class="line">                int temp = arr[index];</span><br><span class="line">                arr[index] = arr[small];</span><br><span class="line">                arr[small] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int temp = arr[end-1];</span><br><span class="line">    arr[end-1] = arr[++small];</span><br><span class="line">    arr[small] = temp;</span><br><span class="line">    return small;</span><br><span class="line">&#125;</span><br><span class="line">int FindtheMajorElement(int* arr, int n)</span><br><span class="line">&#123;</span><br><span class="line">    int mid = n &gt;&gt; 1;</span><br><span class="line">    int start = 0;</span><br><span class="line">    int end = n;</span><br><span class="line">    int index = Partition(arr, start, end); // O(n)</span><br><span class="line">    while(index != mid) // T(n/2)</span><br><span class="line">    &#123;</span><br><span class="line">        if(index &lt; mid)</span><br><span class="line">        &#123;</span><br><span class="line">            start = index+1;</span><br><span class="line">            index = Partition(arr, start, end);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            end = index-1;</span><br><span class="line">            index = Partition(arr, start, end);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int result = arr[index];</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="三、根据数组特点"><a href="#三、根据数组特点" class="headerlink" title="三、根据数组特点"></a>三、根据数组特点</h4><p>由于 Majority Element 是数组中数目最多的数，那么其他的数出现的总和还不如一半。在遍历数组时，可以保存两个值，一个是数组的一个元素的值，一个是该值出现的次数。</p>
+<p>如果连续出现一个数，那么该数出现的次数一直加，直到出现其他数时，该计数值开始减，直到减到 0 为止。然后下一个数开始加一。由于 Majority Element 最多，所以遍历结束后，如果计数值不为0时的元素，一定是 Majority Element。</p>
+<p>因为只执行一次循环遍历，所以时间复杂度是 $T(n) = O(n)$。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/ Easy and complexity O(n)</span><br><span class="line">int FindtheMajorElement(int* arr, int n)</span><br><span class="line">&#123;</span><br><span class="line">    int majorelement;</span><br><span class="line">    int times = 0;</span><br><span class="line">    for(int i=0; i&lt;n; ++i)    // majority element占一半以上，所以先加后减完最后剩的肯定是 majorelement</span><br><span class="line">    &#123;</span><br><span class="line">        //printf(&quot;test %d&quot;,arr[i]);</span><br><span class="line">        if(times==0)</span><br><span class="line">        &#123;</span><br><span class="line">            majorelement = arr[i];</span><br><span class="line">            times = 1;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(majorelement==arr[i])</span><br><span class="line">        &#123;</span><br><span class="line">            ++times;    // majorelement与下一个相同就加，否则就减</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            --times;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return majorelement;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -578,8 +601,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/12/Bu_Algorithm/Majority Element( Assignment1-7OJ )/" rel="next" title="Majority Element( Assignment1-7OJ ).md">
-                <i class="fa fa-chevron-left"></i> Majority Element( Assignment1-7OJ ).md
+              <a href="/2019/10/12/Bu_Algorithm/Number of Islands--OJ_DC_B/" rel="next" title="Number of Islands--OJ_DC_B.md">
+                <i class="fa fa-chevron-left"></i> Number of Islands--OJ_DC_B.md
               </a>
             
           </div>
@@ -588,8 +611,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/12/Bu_Algorithm/Count Inversion--OJ1B/" rel="prev" title="Count Inversion--OJ1B.md">
-                Count Inversion--OJ1B.md <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/12/Bu_Algorithm/The Kth Number--OJ1A/" rel="prev" title="The Kth Number--OJ1A.md">
+                The Kth Number--OJ1A.md <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -771,7 +794,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Kth-Number-OJ1"><span class="nav-number">1.</span> <span class="nav-text">The Kth Number( OJ1 )</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-description"><span class="nav-number">1.1.</span> <span class="nav-text">Problem description</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input"><span class="nav-number">1.2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output"><span class="nav-number">1.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Input-1"><span class="nav-number">1.4.</span> <span class="nav-text">Sample Input 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Output-1"><span class="nav-number">1.5.</span> <span class="nav-text">Sample Output 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Input-2"><span class="nav-number">1.6.</span> <span class="nav-text">Sample Input 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Output-2"><span class="nav-number">1.7.</span> <span class="nav-text">Sample Output 2</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Majority-Element-Assignment1-7OJ-DC-OJ-A"><span class="nav-number">1.</span> <span class="nav-text">Majority Element( Assignment1-7OJ, DC OJ A )</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-description"><span class="nav-number">1.1.</span> <span class="nav-text">Problem description</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input"><span class="nav-number">1.2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output"><span class="nav-number">1.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Input-1"><span class="nav-number">1.4.</span> <span class="nav-text">Sample Input 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Output-1"><span class="nav-number">1.5.</span> <span class="nav-text">Sample Output 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Input-2"><span class="nav-number">1.6.</span> <span class="nav-text">Sample Input 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Output-2"><span class="nav-number">1.7.</span> <span class="nav-text">Sample Output 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、最直接想法"><span class="nav-number">1.8.</span> <span class="nav-text">一、最直接想法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、改进"><span class="nav-number">1.9.</span> <span class="nav-text">二、改进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、根据数组特点"><span class="nav-number">1.10.</span> <span class="nav-text">三、根据数组特点</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -978,7 +1001,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2019/10/12/Bu_Algorithm/The Kth Number( OJ1 )/'
+        refer: '2019/10/12/Bu_Algorithm/Majority Element--OJ_DC_A/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];
