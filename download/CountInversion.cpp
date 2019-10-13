@@ -22,21 +22,21 @@ long long int Merge(int* data, int* tmp_data, int left, int mid, int right) // C
     int i = mid;
     int j = right;
     long long int cnt = 0;
-    while(i >= left && j >= mid + 1)    // 计算满足要求的逆序对数
+    while(i >= left && j >= mid + 1)    // count the number of inverison
     {
-        if(data[i] - data[j] > data[j] + data[j])   // 将data[i]>3data[j]改成左边形式可以节省空间 
+        if(data[i] - data[j] > data[j] + data[j])   // use ai-aj>aj+aj can save some memory instead of ai>3aj 
         {
-            cnt += j - mid;     // 如果是满足要求的逆序对，计数+j-mid，因为left和right都是递增排序的
-            i--;                // i 指向上一个数组元素
+            cnt += j - mid;     // if it satisfies the requirement, cnt=cnt+j-mid. Because left and right sequences are increment
+            i--;                // i point to the previous array element
         }    
         else
-            j--;                // j 指向上一个元素
+            j--;                // j point to the previous array element
     }
 
     i = mid;
     j = right;    
     int tmp_right = right;
-    while(i >= left && j >= mid + 1)  // 将 left 和 right 两边的递增序列重新组合成一个新的递增序列
+    while(i >= left && j >= mid + 1)  // Reassemble the incremental sequences on both left and right into a new incremental sequence
     {
         if(data[i] > data[j])
         {
@@ -47,12 +47,12 @@ long long int Merge(int* data, int* tmp_data, int left, int mid, int right) // C
     }
 
 
-    while (i >= left)       // 将其余未比较的元素也附加上
+    while (i >= left)       // Attach the remaining uncompared elements
        tmp_data[tmp_right--] = data[i--];
     while (j >= mid + 1) 
        tmp_data[tmp_right--] = data[j--];
  
-    for(int i=left; i <= right; ++i)   // tmp_data 与 data 交换
+    for(int i=left; i <= right; ++i)   // tmp_data changes with data
         data[i] = tmp_data[i];
    
     
@@ -67,7 +67,7 @@ long long int InversePairs(int* data, int* tmp_data, int left, int right)   // D
 {
     long long int cnt = 0;
     
-    if(left < right)    // left >= right 时结束递归
+    if(left < right)    // when left >= right end recursion
     {
         int mid = (left + right)/2;
         cnt += InversePairs(data, tmp_data, left, mid); 
@@ -80,7 +80,7 @@ long long int InversePairs(int* data, int* tmp_data, int left, int right)   // D
 
 int main()
 {
-    ios::sync_with_stdio(false);   // 提速 
+    ios::sync_with_stdio(false);   // Speed up 
 	int len;
     int data[100010];
 

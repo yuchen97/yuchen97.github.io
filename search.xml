@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[汇总--Algorithnm Design and Analysis.md]]></title>
     <url>%2F2019%2F10%2F13%2FBu_Algorithm%2F%E6%B1%87%E6%80%BB--Algorithm%20Design%20and%20Analysis%2F</url>
-    <content type="text"><![CDATA[国科大卜老师的《算法分析与设计》，是国科大算法课里最好的一门。由于在 b站上有卜老师算法课的相关内容，顾本篇文章只对重点问题、作业和OJ进行了分析汇总，如果疑问或建议请及时指出，谢谢。 （持续更。。。） 0. OJ 劝退题由于选课人数具多，故第一节课就布置了两道 OJ 题，以劝退没有算法基础的同学。 A. The Kth Number详细题目及分析可参考文章 The Kth Number( OJ1 )/#more)源码点击下载 B. Count Inversion详细题目及分析可参考文章Count Inversion( OJ2 )/#more)源码点击下载 1. Divide and Conquer1.1 Assignment11.2 OJ]]></content>
+    <content type="text"><![CDATA[国科大卜老师的《算法分析与设计》，是国科大算法课里最好的一门。由于在 b站上有卜老师算法课的相关内容，顾本篇文章只对重点问题、作业和OJ进行了分析汇总，如果疑问或建议请及时指出，谢谢。 （持续更。。。） 0. OJ 劝退题由于选课人数具多，故第一节课就布置了两道 OJ 题，以劝退没有算法基础的同学。 A. The Kth Number详细题目及分析可参考文章 The Kth Number—OJ1A源码点击下载 B. Count Inversion详细题目及分析可参考文章Count Inversion—OJ1B源码点击下载 1. Divide and Conquer1.1 Assignment1（1-6）详细题目其中 1-6 题是写伪代码、子图、正确性和复杂度，题目 6 选 3。第 1-5 题个人详细做法Assignment1。第 6 题详见文章Count Inversion—OJ1B 1.2 Assignment1 OJ（7-8） A. Majority Element详细题目及分析可参考文章 Majority Element—OJ_DC_A源码点击下载 B. Number of Islands详细题目及分析可参考文章 Number of Islands—OJ_DC_B源码点击下载]]></content>
       <categories>
         <category>Bu_Algorithm</category>
       </categories>

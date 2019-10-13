@@ -65,13 +65,13 @@ int main()
 
 /*****
 // bfs
-// Vs = Vsource 起点
-// Vn = Vnow 当前点
-// Va = Vadjacent 当前点的相邻点
-// dir = direction 四个方向
+// Vs = Vsource 
+// Vn = Vnow 
+// Va = Vadjacent 
+// dir = direction 
 
 
-// bfs 用 visit
+// bfs and visit
 #include <cstdio>
 #include <queue>
 using namespace std;
@@ -81,7 +81,7 @@ struct Node{
 
 bool visit[1010][1010];
 bool grid[1010][1010];
-int dir[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // 四个方向
+int dir[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // four directions
 
 void BFS(Node Vs, bool (*visit)[1010], int row, int col)
 {
@@ -138,7 +138,7 @@ int main()
     printf("%d", cnt);
 }
 *****/
-// bfs 不用 visit
+// bfs not visit
 #include <cstdio>
 #include <queue>
 using namespace std;
@@ -147,7 +147,7 @@ struct Node{
 };
 
 bool grid[1010][1010];
-int dir[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // 四个方向
+int dir[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // four directions
 void BFS(Node Vs, int row, int col)
 {
     Node Vn, Va;

@@ -7,11 +7,11 @@
   *Description:  The majority element is the element that appears more than 
                 \lfloor n/2 \rfloor times.
   *Others:  Assignment1_7(OJ)
-  *Code List:  //主要函数列表，每条记录应包含函数名及功能简要说明
+  *Code List:  
      1. QuickSort->n/2 and O(nlogn)
      2. Topk and O(n)
      3. Using array features and O(n)
-  *History:  //修改历史记录列表，每条修改记录应包含修改日期、修改者及修改内容简介
+  *History: 
      1.Date: 2019/10/11
        Author: chenyu
        Modification: create
