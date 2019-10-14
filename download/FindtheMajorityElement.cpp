@@ -98,6 +98,14 @@ int FindtheMajorElement(int* arr, int n)
             --times;
         }
     }
+
+    for(int i=0; i<n; ++i)
+    if(majorelement == numbers[i])
+        cnt++;
+    if(cnt > n/2)
+        return majorelement;
+    else
+        return 0;
     return majorelement;
 }
 
@@ -111,3 +119,11 @@ int main()
     printf("%d", majorelement);
     return 0;
 }
+
+
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers) {
+    
+    }
+};
