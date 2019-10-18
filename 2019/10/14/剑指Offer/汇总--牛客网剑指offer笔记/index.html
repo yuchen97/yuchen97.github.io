@@ -122,7 +122,7 @@
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="汇总—牛客网剑指offer笔记1. 二维数组中的查找代码如下，主要是对 for 循环之前的 if 语句进行了一些分析。1234567891011121314151617bool Find(int target, vector&amp;lt;vector&amp;lt;int&amp;gt; &amp;gt; array) &amp;#123;       int row = array.size();       int col = a">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-16T14:43:09.322Z">
+<meta property="og:updated_time" content="2019-10-18T10:30:06.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇总--牛客网剑指offer笔记.md">
 <meta name="twitter:description" content="汇总—牛客网剑指offer笔记1. 二维数组中的查找代码如下，主要是对 for 循环之前的 if 语句进行了一些分析。1234567891011121314151617bool Find(int target, vector&amp;lt;vector&amp;lt;int&amp;gt; &amp;gt; array) &amp;#123;       int row = array.size();       int col = a">
@@ -448,7 +448,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-10-16 22:43:09" itemprop="dateModified" datetime="2019-10-16T22:43:09+08:00">2019-10-16</time>
+                <time title="Modified: 2019-10-18 18:30:06" itemprop="dateModified" datetime="2019-10-18T18:30:06+08:00">2019-10-18</time>
               
             
           </span>
@@ -493,7 +493,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">2.7k</span>
+                <span title="Symbols count in article">4.3k</span>
               
 
               
@@ -507,7 +507,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">2 mins.</span>
+                <span title="Reading time">4 mins.</span>
               
             </div>
           
@@ -543,7 +543,23 @@
 <p>在初始化头结点时，我一开始是这样写的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* pRoot;</span><br><span class="line">pRoot-&gt;left = pRoot-&gt;right = nullptr;</span><br><span class="line">pRoot-&gt;val = pre[0];</span><br></pre></td></tr></table></figure></p>
 <p>其实是错误的，首先在创建指针时，一定要对它进行初始化，它不会自动分配内存，更不会默认指向 null 的，它指向的地址是随机的，有时候是不合法的。那么既然定义了这样一个不合法的指针，那后面两句其实已经在非法访问其他内存了，可能会造成其他程序内存损坏，异常死机等。</p>
 <p>所以在创建指针时可以用 malloc 申请一块动态内存空间，或者直接 new 申请动态内存空间。在这里我直接使用的 new，注意在个程序里最后不需要再进行 delete，因为这个二叉树是重建的，是之前没有的，所以 new 之后不需要 delete。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* pRoot=new TreeNode(pre[0]);</span><br></pre></td></tr></table></figure></p>
-
+<h4 id="5-用两个栈实现队列"><a href="#5-用两个栈实现队列" class="headerlink" title="5. 用两个栈实现队列"></a>5. 用两个栈实现队列</h4><h4 id="6-旋转数组的最小数字"><a href="#6-旋转数组的最小数字" class="headerlink" title="6.    旋转数组的最小数字"></a>6.    旋转数组的最小数字</h4><p>注意题目要求，是<strong>非递减</strong>排序的数组旋转，而不是递增数组，所以可能会有重复。</p>
+<h4 id="7-斐波那契数列"><a href="#7-斐波那契数列" class="headerlink" title="7. 斐波那契数列"></a>7. 斐波那契数列</h4><p>不要直接用递归，有太多的重复计算，复杂度为指数次。这里可以用尾递归或循环的方法来解决，在程序里由于函数输入参数的原理，我选择的是循环方法，但是这里想介绍一下尾递归。它在递归时不调用新的栈，只是在原来的栈上进行更新。<br>哦，对了还要说一点，牛客里的 Fibonacci 是 F(1)=1, F(2)=1, F(3)=2 这种顺序的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int Fibonacci(int n, int first, int second)&#123;</span><br><span class="line">    if(n &lt; 3)</span><br><span class="line">        return 1;</span><br><span class="line">    return Fibonacci(n-1, second, first+second);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="8-跳台阶"><a href="#8-跳台阶" class="headerlink" title="8. 跳台阶"></a>8. 跳台阶</h4><h4 id="9-变态跳台阶"><a href="#9-变态跳台阶" class="headerlink" title="9. 变态跳台阶"></a>9. 变态跳台阶</h4><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。有三种方法，后两个方法原理一致，三个的复杂度都为<code>$O(n)$</code>。</p>
+<p><strong>法一——打表</strong><br>根据题意递推公式为：<br><code>$F(n)=\begin{cases}
+        1, &amp; n=1\\
+        F(n-1)+F(n-2)+\cdots +F(1) + 1, &amp; n&gt;1
+    \end{cases}$</code></p>
+<p>其中当 <code>$n&gt;1$</code> 时式子中的 1 为一步跳到 n 级台阶。由于有重复计算，可以进行打表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">int jumpFloorII(int number) &#123;</span><br><span class="line">    if(number &lt; 1)</span><br><span class="line">        return 0;</span><br><span class="line"></span><br><span class="line">    int value_dic[number+1];</span><br><span class="line">    for (int i=0; i&lt;number+1; ++i)&#123;</span><br><span class="line">        value_dic[i] = 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(number == 1) &#123; return 1; &#125;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    for(int i=1; i&lt;number; ++i)&#123;</span><br><span class="line">        if(value_dic[i] == 0)</span><br><span class="line">            value_dic[i] = jumpFloorII(i);</span><br><span class="line">        ans += value_dic[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return ans += 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>法二——化简递推公式，递归</strong></p>
+<p>不用打表，增加了效率，减少了计算时间。<br>当 <code>$n&gt;1$</code> 时，<br><code>$F(n) = F(n-1) + F(n-2) +\cdots +F(1) + 1$</code><br><code>$F(n-1) = F(n-2) + F(n-3) +\cdots +F(1) + 1$</code><br>所以 <code>$F(n) = 2*F(n-1)$</code></p>
+<p>原公式可以化为<br><code>$F(n)=\begin{cases}
+        1, &amp; n=1\\
+        2*F(n-1), &amp; n&gt;1
+    \end{cases}$</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(number &lt; 1)</span><br><span class="line">    return 0;</span><br><span class="line">if(number == 1)</span><br><span class="line">    return 1;</span><br><span class="line">return 2*jumpFloorII(number-1);</span><br></pre></td></tr></table></figure></p>
+<p><strong>法三——移位，递归</strong></p>
+<p>根据法二中化简出来的公式，由于乘以 2 相当于右移 1 位，所以可以用移位计算提高效率。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(number &lt; 1)</span><br><span class="line">    return 0;</span><br><span class="line">return 1 &lt;&lt; (number-1);</span><br></pre></td></tr></table></figure></p>
+<h4 id="10-矩形覆盖"><a href="#10-矩形覆盖" class="headerlink" title="10. 矩形覆盖"></a>10. 矩形覆盖</h4>
       
     </div>
 
@@ -786,7 +802,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#汇总—牛客网剑指offer笔记"><span class="nav-number">1.</span> <span class="nav-text">汇总—牛客网剑指offer笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-二维数组中的查找"><span class="nav-number">1.1.</span> <span class="nav-text">1. 二维数组中的查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-替换空格"><span class="nav-number">1.2.</span> <span class="nav-text">2. 替换空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-从尾到头打印链表"><span class="nav-number">1.3.</span> <span class="nav-text">3. 从尾到头打印链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-重建二叉树"><span class="nav-number">1.4.</span> <span class="nav-text">4. 重建二叉树</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#汇总—牛客网剑指offer笔记"><span class="nav-number">1.</span> <span class="nav-text">汇总—牛客网剑指offer笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-二维数组中的查找"><span class="nav-number">1.1.</span> <span class="nav-text">1. 二维数组中的查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-替换空格"><span class="nav-number">1.2.</span> <span class="nav-text">2. 替换空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-从尾到头打印链表"><span class="nav-number">1.3.</span> <span class="nav-text">3. 从尾到头打印链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-重建二叉树"><span class="nav-number">1.4.</span> <span class="nav-text">4. 重建二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-用两个栈实现队列"><span class="nav-number">1.5.</span> <span class="nav-text">5. 用两个栈实现队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-旋转数组的最小数字"><span class="nav-number">1.6.</span> <span class="nav-text">6.    旋转数组的最小数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-斐波那契数列"><span class="nav-number">1.7.</span> <span class="nav-text">7. 斐波那契数列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-跳台阶"><span class="nav-number">1.8.</span> <span class="nav-text">8. 跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-变态跳台阶"><span class="nav-number">1.9.</span> <span class="nav-text">9. 变态跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-矩形覆盖"><span class="nav-number">1.10.</span> <span class="nav-text">10. 矩形覆盖</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -823,7 +839,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">477k</span>
+    <span title="Symbols count total">479k</span>
   
 
   
@@ -832,7 +848,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">7:14</span>
+    <span title="Reading time total">7:15</span>
   
 </div>
 
