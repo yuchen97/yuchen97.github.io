@@ -122,7 +122,7 @@
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="汇总—牛客网剑指offer笔记1. 二维数组中的查找代码如下，主要是对 for 循环之前的 if 语句进行了一些分析。1234567891011121314151617bool Find(int target, vector&amp;lt;vector&amp;lt;int&amp;gt; &amp;gt; array) &amp;#123;       int row = array.size();       int col = a">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-18T10:38:30.686Z">
+<meta property="og:updated_time" content="2019-10-19T16:27:00.853Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇总--牛客网剑指offer笔记.md">
 <meta name="twitter:description" content="汇总—牛客网剑指offer笔记1. 二维数组中的查找代码如下，主要是对 for 循环之前的 if 语句进行了一些分析。1234567891011121314151617bool Find(int target, vector&amp;lt;vector&amp;lt;int&amp;gt; &amp;gt; array) &amp;#123;       int row = array.size();       int col = a">
@@ -448,7 +448,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-10-18 18:38:30" itemprop="dateModified" datetime="2019-10-18T18:38:30+08:00">2019-10-18</time>
+                <time title="Modified: 2019-10-20 00:27:00" itemprop="dateModified" datetime="2019-10-20T00:27:00+08:00">2019-10-20</time>
               
             
           </span>
@@ -493,7 +493,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">4.3k</span>
+                <span title="Symbols count in article">5.1k</span>
               
 
               
@@ -507,7 +507,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">4 mins.</span>
+                <span title="Reading time">5 mins.</span>
               
             </div>
           
@@ -553,7 +553,20 @@
 <p>原公式可以化为<br>$F(n)=\begin{cases}<br>        1, &amp; n=1\\<br>        2*F(n-1), &amp; n&gt;1<br>    \end{cases}$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(number &lt; 1)</span><br><span class="line">    return 0;</span><br><span class="line">if(number == 1)</span><br><span class="line">    return 1;</span><br><span class="line">return 2*jumpFloorII(number-1);</span><br></pre></td></tr></table></figure></p>
 <p><strong>法三——移位，递归</strong></p>
 <p>根据法二中化简出来的公式，由于乘以 2 相当于右移 1 位，所以可以用移位计算提高效率。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(number &lt; 1)</span><br><span class="line">    return 0;</span><br><span class="line">return 1 &lt;&lt; (number-1);</span><br></pre></td></tr></table></figure></p>
-<h4 id="10-矩形覆盖"><a href="#10-矩形覆盖" class="headerlink" title="10. 矩形覆盖"></a>10. 矩形覆盖</h4>
+<h4 id="10-矩形覆盖"><a href="#10-矩形覆盖" class="headerlink" title="10. 矩形覆盖"></a>10. 矩形覆盖</h4><h4 id="11-二进制中1的个数"><a href="#11-二进制中1的个数" class="headerlink" title="11. 二进制中1的个数"></a>11. 二进制中1的个数</h4><p>要注意这么几点：</p>
+<ul>
+<li>输入的数可能包含负数</li>
+<li>负数一般用补码表示，右移最高位置一<br>做这个题的时候，第一反应可能是将输入的数据右移然后逐次和 1 比较，结果为 1 时计数加一。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">while(n)&#123;</span><br><span class="line">    if(n &amp; 1)</span><br><span class="line">        ++cnt;</span><br><span class="line">    n = n &gt;&gt; 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>但是输入可能有负数，而且右移时最高位置一，最后会有 0xFFFFFFFF（32位）或者 0xFFFFFFFF（64位），因为 int 在本地是 4 bytes，所以就会造成死循环。</p>
+<p><strong>法一</strong></p>
+<p>不妨我们换个角度去思考，既然对 n 右移并与 1 比较不行，为什么不将 1 左移并与 n 比较呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int cnt = 0;</span><br><span class="line">int flag = 1;</span><br><span class="line">while(flag)&#123;</span><br><span class="line">    if(n &amp; flag != 0)</span><br><span class="line">        ++cnt;</span><br><span class="line">    flag = flag &lt;&lt; 1;</span><br><span class="line">&#125;</span><br><span class="line">return cnt;</span><br></pre></td></tr></table></figure></p>
+<p>那么上面这个例子会一直输出 32，因为 != 的<strong>优先级</strong>比 &amp; 高！！！所以 if 里一直是真，直到 flag 全部左移出去。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if((n &amp; flag) != 0) 或者 if(n &amp; flag) 就可以</span><br></pre></td></tr></table></figure></p>
+<p>这种方法虽然好，但是每次都有比较 32 次。</p>
+<p><strong>法二</strong></p>
+<p>将一个整数减一时，是把最右边的 1 变成 0，如果它右边还有 0，就将所有的 0 变成 1，然后左边保持不变。然后再与原整数做位与运算，这样每次都会少一个 1 ，就可以得到原数有多少 1。 1110-1 == 1101， 1110 &amp; 1101 == 1100。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int cnt = 0;</span><br><span class="line">while(n)&#123;</span><br><span class="line">    ++cnt;</span><br><span class="line">    n = (n-1)&amp;n;</span><br><span class="line">&#125;</span><br><span class="line">return cnt;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -796,7 +809,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#汇总—牛客网剑指offer笔记"><span class="nav-number">1.</span> <span class="nav-text">汇总—牛客网剑指offer笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-二维数组中的查找"><span class="nav-number">1.1.</span> <span class="nav-text">1. 二维数组中的查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-替换空格"><span class="nav-number">1.2.</span> <span class="nav-text">2. 替换空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-从尾到头打印链表"><span class="nav-number">1.3.</span> <span class="nav-text">3. 从尾到头打印链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-重建二叉树"><span class="nav-number">1.4.</span> <span class="nav-text">4. 重建二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-用两个栈实现队列"><span class="nav-number">1.5.</span> <span class="nav-text">5. 用两个栈实现队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-旋转数组的最小数字"><span class="nav-number">1.6.</span> <span class="nav-text">6.    旋转数组的最小数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-斐波那契数列"><span class="nav-number">1.7.</span> <span class="nav-text">7. 斐波那契数列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-跳台阶"><span class="nav-number">1.8.</span> <span class="nav-text">8. 跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-变态跳台阶"><span class="nav-number">1.9.</span> <span class="nav-text">9. 变态跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-矩形覆盖"><span class="nav-number">1.10.</span> <span class="nav-text">10. 矩形覆盖</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#汇总—牛客网剑指offer笔记"><span class="nav-number">1.</span> <span class="nav-text">汇总—牛客网剑指offer笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-二维数组中的查找"><span class="nav-number">1.1.</span> <span class="nav-text">1. 二维数组中的查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-替换空格"><span class="nav-number">1.2.</span> <span class="nav-text">2. 替换空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-从尾到头打印链表"><span class="nav-number">1.3.</span> <span class="nav-text">3. 从尾到头打印链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-重建二叉树"><span class="nav-number">1.4.</span> <span class="nav-text">4. 重建二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-用两个栈实现队列"><span class="nav-number">1.5.</span> <span class="nav-text">5. 用两个栈实现队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-旋转数组的最小数字"><span class="nav-number">1.6.</span> <span class="nav-text">6.    旋转数组的最小数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-斐波那契数列"><span class="nav-number">1.7.</span> <span class="nav-text">7. 斐波那契数列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-跳台阶"><span class="nav-number">1.8.</span> <span class="nav-text">8. 跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-变态跳台阶"><span class="nav-number">1.9.</span> <span class="nav-text">9. 变态跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-矩形覆盖"><span class="nav-number">1.10.</span> <span class="nav-text">10. 矩形覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-二进制中1的个数"><span class="nav-number">1.11.</span> <span class="nav-text">11. 二进制中1的个数</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -833,7 +846,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">479k</span>
+    <span title="Symbols count total">480k</span>
   
 
   
@@ -842,7 +855,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">7:15</span>
+    <span title="Reading time total">7:16</span>
   
 </div>
 
