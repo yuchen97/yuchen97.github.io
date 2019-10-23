@@ -18,7 +18,7 @@
 class Solution {
 public:
      int  NumberOf1(int n) {
-         ///*****法一
+         ///***** method 1
          int cnt = 0;
          int flag = 1;
          while(flag){
@@ -28,7 +28,7 @@ public:
          }
          return cnt;
          //*****/
-         /***** 法二
+         /***** method 2
          int cnt = 0;
          while(n){
              ++cnt;

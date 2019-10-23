@@ -3,13 +3,13 @@
   *FileName:   12Power.cpp
   *Author:  chenyu
   *Version:  1.0
-  *Date:  2019/10/20
+  *Date:  2019/10/21
   *Description:  Enter an integer and output the number of "1" in the binary representation 
                  of the number. The negative number is represented by the complement.
   *Others:  NewCoderOffer12
   *Code List: 
   *History:  
-     1.Date: 2019/10/20
+     1.Date: 2019/10/21
        Author: chenyu
        Modification: create
      2.…………

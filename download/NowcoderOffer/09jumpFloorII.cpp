@@ -19,7 +19,7 @@
 class Solution {
 public:
     int jumpFloorII(int number) {
-        /***** 法一
+        /***** method 1
         if(number < 1)
             return 0;
          
@@ -40,14 +40,14 @@ public:
          
         return ans += 1;
         *****/
-        /***** 法二
+        /***** method 2
         if(number < 1)
             return 0;
         if(number == 1)
             return 1;
         return 2*jumpFloorII(number-1);
         *****/
-        ///***** 法三
+        ///***** method 3
         if(number < 1)
             return 0;
         return 1 << (number-1);

@@ -122,7 +122,7 @@
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="汇总—牛客网剑指offer笔记1. 二维数组中的查找源码点击查看代码如下，主要是对 for 循环之前的 if 语句进行了一些分析。1234567891011121314151617bool Find(int target, vector&amp;lt;vector&amp;lt;int&amp;gt; &amp;gt; array) &amp;#123;       int row = array.size();       int c">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-21T15:35:04.013Z">
+<meta property="og:updated_time" content="2019-10-23T15:23:38.560Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇总--牛客网剑指offer笔记.md">
 <meta name="twitter:description" content="汇总—牛客网剑指offer笔记1. 二维数组中的查找源码点击查看代码如下，主要是对 for 循环之前的 if 语句进行了一些分析。1234567891011121314151617bool Find(int target, vector&amp;lt;vector&amp;lt;int&amp;gt; &amp;gt; array) &amp;#123;       int row = array.size();       int c">
@@ -448,7 +448,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-10-21 23:35:04" itemprop="dateModified" datetime="2019-10-21T23:35:04+08:00">2019-10-21</time>
+                <time title="Modified: 2019-10-23 23:23:38" itemprop="dateModified" datetime="2019-10-23T23:23:38+08:00">2019-10-23</time>
               
             
           </span>
@@ -493,7 +493,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">6k</span>
+                <span title="Symbols count in article">6.6k</span>
               
 
               
@@ -507,7 +507,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">5 mins.</span>
+                <span title="Reading time">6 mins.</span>
               
             </div>
           
@@ -574,6 +574,8 @@
 <p>这个题可以用二分幂方法计算：<br>$a^n =\begin{cases}<br>        a^{\frac{n}{2}}a^{\frac{n}{2}}, &amp; n奇数\\<br>        a^{\frac{n-1}{2}}a^{\frac{n-1}{2}}a, &amp; n偶数<br>    \end{cases}$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">result = pow(base, exponent&gt;&gt;1)</span><br><span class="line">result *= result;</span><br><span class="line">if(exponent &amp; 0x01 == 1)</span><br><span class="line">    result *= base;</span><br><span class="line"></span><br><span class="line">return result;</span><br></pre></td></tr></table></figure></p>
 <p><strong>法二——快速幂</strong></p>
 <p>假设指数是 13，底数 a，那么 13 用二进制表示是 1101，$b’1101 = 2^3\times 1+ 2^2\times 1 + 2^1\times 0 + 2^0\times 1$，所以 $a^{13} = a^{8} \times a^4\times a^1$。<br>对任意 $a^b$ 都表示成 $a^{2^k},…, a^4, a^2, a^1$ 中若干乘积，如果指数的第 i 位为1，那么 $a^{2^i}$ 就被选中，所以计算幂的时候，可以理解为，看指数的每一位，如果为 1 就累乘 $a^{2^i}$，另外  $a^{2^k},…, a^4, a^2, a^1$ 的前一项总等于后一项的平方。<br>所以先找为 1 的位，然后将结果存放在累积中，之后再用移位判断下一位是否为 1，再移位之前，更新 base 值，因为次低位项 $a^{2^k}$ 是低位项 $a^{2^{k-1}}$ 的平方。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">while(absExponent != 0)&#123;</span><br><span class="line">    if((absExponent &amp; 1) == 1)</span><br><span class="line">        result *= base;</span><br><span class="line">    base *= base;</span><br><span class="line">    absExponent &gt;&gt;= 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="13-调整数组顺序使奇数位于偶数前面"><a href="#13-调整数组顺序使奇数位于偶数前面" class="headerlink" title="13. 调整数组顺序使奇数位于偶数前面"></a>13. 调整数组顺序使奇数位于偶数前面</h4><p><a href="/download/NowcoderOffer/13reOrderArray.cpp">源码点击查看</a><br>这个题没什么说的，需要注意的一点是《剑指offer》里提到的函数指针，因为平时自己也没用过，当然这个算法实现我也没用，所以在这里贴出部分代码提一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void Reorder(int* pData, bool (*func)(int))&#123;</span><br><span class="line">    ...</span><br><span class="line">    int *pBegin = pData;</span><br><span class="line">    int *pEnd = pData + len - 1;</span><br><span class="line">    ...</span><br><span class="line">    while(pBegin &lt; pEnd &amp;&amp; !func(*pBegin))</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">bool isEven(int n)&#123;...&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">Reorder(pData, isEven);</span><br></pre></td></tr></table></figure></p>
+<h4 id="14-链表中倒数第k个结点"><a href="#14-链表中倒数第k个结点" class="headerlink" title="14. 链表中倒数第k个结点"></a>14. 链表中倒数第k个结点</h4><p><a href="/download/NowcoderOffer/14FindKthToTail.cpp">源码点击查看</a><br>可以用两个指针，一前一后的遍历，并且他俩的间距为 k-1，因为倒数第一个是尾结点。<br>除了考虑空指针和 k&lt;1 的情况之外，还要考虑 k 是否超过了链表长度。<br>这个题可以扩展到其他类型，比如让你输出链表的中间结点，还有检查单向链表是否行成了环形结构，这时候还是可以用两个指针。比如输出中间结点时，可以让一个指针先走一步，另一个指针走两步，当一个指针走到头时，另一个指针也就到了中间结点。</p>
 
       
     </div>
@@ -817,7 +819,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#汇总—牛客网剑指offer笔记"><span class="nav-number">1.</span> <span class="nav-text">汇总—牛客网剑指offer笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-二维数组中的查找"><span class="nav-number">1.1.</span> <span class="nav-text">1. 二维数组中的查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-替换空格"><span class="nav-number">1.2.</span> <span class="nav-text">2. 替换空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-从尾到头打印链表"><span class="nav-number">1.3.</span> <span class="nav-text">3. 从尾到头打印链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-重建二叉树"><span class="nav-number">1.4.</span> <span class="nav-text">4. 重建二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-用两个栈实现队列"><span class="nav-number">1.5.</span> <span class="nav-text">5. 用两个栈实现队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-旋转数组的最小数字"><span class="nav-number">1.6.</span> <span class="nav-text">6.    旋转数组的最小数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-斐波那契数列"><span class="nav-number">1.7.</span> <span class="nav-text">7. 斐波那契数列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-跳台阶"><span class="nav-number">1.8.</span> <span class="nav-text">8. 跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-变态跳台阶"><span class="nav-number">1.9.</span> <span class="nav-text">9. 变态跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-矩形覆盖"><span class="nav-number">1.10.</span> <span class="nav-text">10. 矩形覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-二进制中1的个数"><span class="nav-number">1.11.</span> <span class="nav-text">11. 二进制中1的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-数值的整数次方"><span class="nav-number">1.12.</span> <span class="nav-text">12. 数值的整数次方</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#汇总—牛客网剑指offer笔记"><span class="nav-number">1.</span> <span class="nav-text">汇总—牛客网剑指offer笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-二维数组中的查找"><span class="nav-number">1.1.</span> <span class="nav-text">1. 二维数组中的查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-替换空格"><span class="nav-number">1.2.</span> <span class="nav-text">2. 替换空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-从尾到头打印链表"><span class="nav-number">1.3.</span> <span class="nav-text">3. 从尾到头打印链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-重建二叉树"><span class="nav-number">1.4.</span> <span class="nav-text">4. 重建二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-用两个栈实现队列"><span class="nav-number">1.5.</span> <span class="nav-text">5. 用两个栈实现队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-旋转数组的最小数字"><span class="nav-number">1.6.</span> <span class="nav-text">6.    旋转数组的最小数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-斐波那契数列"><span class="nav-number">1.7.</span> <span class="nav-text">7. 斐波那契数列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-跳台阶"><span class="nav-number">1.8.</span> <span class="nav-text">8. 跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-变态跳台阶"><span class="nav-number">1.9.</span> <span class="nav-text">9. 变态跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-矩形覆盖"><span class="nav-number">1.10.</span> <span class="nav-text">10. 矩形覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-二进制中1的个数"><span class="nav-number">1.11.</span> <span class="nav-text">11. 二进制中1的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-数值的整数次方"><span class="nav-number">1.12.</span> <span class="nav-text">12. 数值的整数次方</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-调整数组顺序使奇数位于偶数前面"><span class="nav-number">1.13.</span> <span class="nav-text">13. 调整数组顺序使奇数位于偶数前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-链表中倒数第k个结点"><span class="nav-number">1.14.</span> <span class="nav-text">14. 链表中倒数第k个结点</span></a></li></ol></li></ol></div>
             
 
           </div>
