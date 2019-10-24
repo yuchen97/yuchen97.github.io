@@ -122,7 +122,7 @@
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="汇总—牛客网剑指offer笔记1. 二维数组中的查找源码点击查看代码如下，主要是对 for 循环之前的 if 语句进行了一些分析。1234567891011121314151617bool Find(int target, vector&amp;lt;vector&amp;lt;int&amp;gt; &amp;gt; array) &amp;#123;       int row = array.size();       int c">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-24T14:57:19.783Z">
+<meta property="og:updated_time" content="2019-10-24T16:17:15.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇总--牛客网剑指offer笔记.md">
 <meta name="twitter:description" content="汇总—牛客网剑指offer笔记1. 二维数组中的查找源码点击查看代码如下，主要是对 for 循环之前的 if 语句进行了一些分析。1234567891011121314151617bool Find(int target, vector&amp;lt;vector&amp;lt;int&amp;gt; &amp;gt; array) &amp;#123;       int row = array.size();       int c">
@@ -448,7 +448,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-10-24 22:57:19" itemprop="dateModified" datetime="2019-10-24T22:57:19+08:00">2019-10-24</time>
+                <time title="Modified: 2019-10-25 00:17:15" itemprop="dateModified" datetime="2019-10-25T00:17:15+08:00">2019-10-25</time>
               
             
           </span>
@@ -493,7 +493,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">6.6k</span>
+                <span title="Symbols count in article">7.6k</span>
               
 
               
@@ -507,7 +507,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">6 mins.</span>
+                <span title="Reading time">7 mins.</span>
               
             </div>
           
@@ -577,6 +577,11 @@
 <h4 id="13-调整数组顺序使奇数位于偶数前面"><a href="#13-调整数组顺序使奇数位于偶数前面" class="headerlink" title="13. 调整数组顺序使奇数位于偶数前面"></a>13. 调整数组顺序使奇数位于偶数前面</h4><p><a href="/download/NowcoderOffer/13reOrderArray.cpp">源码点击查看</a><br>这个题没什么说的，需要注意的一点是《剑指offer》里提到的函数指针，因为平时自己也没用过，当然这个算法实现我也没用，所以在这里贴出部分代码提一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void Reorder(int* pData, bool (*func)(int))&#123;</span><br><span class="line">    ...</span><br><span class="line">    int *pBegin = pData;</span><br><span class="line">    int *pEnd = pData + len - 1;</span><br><span class="line">    ...</span><br><span class="line">    while(pBegin &lt; pEnd &amp;&amp; !func(*pBegin))</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">bool isEven(int n)&#123;...&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">Reorder(pData, isEven);</span><br></pre></td></tr></table></figure></p>
 <h4 id="14-链表中倒数第k个结点"><a href="#14-链表中倒数第k个结点" class="headerlink" title="14. 链表中倒数第k个结点"></a>14. 链表中倒数第k个结点</h4><p><a href="/download/NowcoderOffer/14FindKthToTail.cpp">源码点击查看</a><br>可以用两个指针，一前一后的遍历，并且他俩的间距为 k-1，因为倒数第一个是尾结点。<br>除了考虑空指针和 k&lt;1 的情况之外，还要考虑 k 是否超过了链表长度。<br>这个题可以扩展到其他类型，比如让你输出链表的中间结点，还有检查单向链表是否行成了环形结构，这时候还是可以用两个指针。比如输出中间结点时，可以让一个指针先走一步，另一个指针走两步，当一个指针走到头时，另一个指针也就到了中间结点。</p>
 <h4 id="15-反转链表"><a href="#15-反转链表" class="headerlink" title="15. 反转链表"></a>15. 反转链表</h4><p><a href="/download/NowcoderOffer/15ReverseList.cpp">源码点击查看</a></p>
+<h4 id="16-合并两个排序的链表"><a href="#16-合并两个排序的链表" class="headerlink" title="16. 合并两个排序的链表"></a>16. 合并两个排序的链表</h4><p><a href="/download/NowcoderOffer/16Merge.cpp">源码点击查看</a><br>两种方法，循环和递归。</p>
+<p><strong>法一——循环</strong></p>
+<p>我采用的循环的方法是，选中一个头节点的值小的那个链表为主干链表，然后比较主干链表第一个元素的值与另外一个链表第一个元素的值，如果主干链表的值比次链表对应的值小，那么比较主干链表的第二个值与次干链表第一个值的大小，直到找到比次干链表第一个值大的值为止，然后将次干链表的一个节点插到主干链表节点（比次干链表第一个值大的节点）的前面，然后依次循环。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">while(p1 != nullptr)&#123;</span><br><span class="line">    if((p1-&gt;next!=nullptr) &amp;&amp; (p1-&gt;next-&gt;val &lt; p2-&gt;val))</span><br><span class="line">        p1 = p1-&gt;next;</span><br><span class="line">    else &#123;</span><br><span class="line">        ptmp = p2;</span><br><span class="line">        p2 = p2-&gt;next;</span><br><span class="line">        ptmp-&gt;next = p1-&gt;next;</span><br><span class="line">        p1-&gt;next = ptmp;</span><br><span class="line">        p1 = p1-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    if(p2 == nullptr)</span><br><span class="line">        break;</span><br><span class="line">&#125;</span><br><span class="line">return pHead1==nullptr ? pHead2:pHead1;</span><br></pre></td></tr></table></figure></p>
+<p><strong>法二——递归</strong></p>
+<p>用递归的思路要更好理解。创建一个链表的头节点 phead ，然后依次比较两个输入链表的节点的值，将较小的节点添加在头结点 phead 后面，直到遇到两输入链表其中一个为空为止。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if(pHead1 == nullptr)  return pHead2;</span><br><span class="line">if(pHead2 == nullptr)  return pHead1;</span><br><span class="line"></span><br><span class="line">if(pHead1-&gt;val &lt;= pHead2-&gt;val)&#123;</span><br><span class="line">    phead = pHead1;</span><br><span class="line">    phead-&gt;next = Merge(pHead1-&gt;next, pHead2);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    phead = pHead2;</span><br><span class="line">    phead-&gt;next = Merge(pHead1, pHead2-&gt;next);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -820,7 +825,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#汇总—牛客网剑指offer笔记"><span class="nav-number">1.</span> <span class="nav-text">汇总—牛客网剑指offer笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-二维数组中的查找"><span class="nav-number">1.1.</span> <span class="nav-text">1. 二维数组中的查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-替换空格"><span class="nav-number">1.2.</span> <span class="nav-text">2. 替换空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-从尾到头打印链表"><span class="nav-number">1.3.</span> <span class="nav-text">3. 从尾到头打印链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-重建二叉树"><span class="nav-number">1.4.</span> <span class="nav-text">4. 重建二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-用两个栈实现队列"><span class="nav-number">1.5.</span> <span class="nav-text">5. 用两个栈实现队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-旋转数组的最小数字"><span class="nav-number">1.6.</span> <span class="nav-text">6.    旋转数组的最小数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-斐波那契数列"><span class="nav-number">1.7.</span> <span class="nav-text">7. 斐波那契数列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-跳台阶"><span class="nav-number">1.8.</span> <span class="nav-text">8. 跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-变态跳台阶"><span class="nav-number">1.9.</span> <span class="nav-text">9. 变态跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-矩形覆盖"><span class="nav-number">1.10.</span> <span class="nav-text">10. 矩形覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-二进制中1的个数"><span class="nav-number">1.11.</span> <span class="nav-text">11. 二进制中1的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-数值的整数次方"><span class="nav-number">1.12.</span> <span class="nav-text">12. 数值的整数次方</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-调整数组顺序使奇数位于偶数前面"><span class="nav-number">1.13.</span> <span class="nav-text">13. 调整数组顺序使奇数位于偶数前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-链表中倒数第k个结点"><span class="nav-number">1.14.</span> <span class="nav-text">14. 链表中倒数第k个结点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-反转链表"><span class="nav-number">1.15.</span> <span class="nav-text">15. 反转链表</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#汇总—牛客网剑指offer笔记"><span class="nav-number">1.</span> <span class="nav-text">汇总—牛客网剑指offer笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-二维数组中的查找"><span class="nav-number">1.1.</span> <span class="nav-text">1. 二维数组中的查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-替换空格"><span class="nav-number">1.2.</span> <span class="nav-text">2. 替换空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-从尾到头打印链表"><span class="nav-number">1.3.</span> <span class="nav-text">3. 从尾到头打印链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-重建二叉树"><span class="nav-number">1.4.</span> <span class="nav-text">4. 重建二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-用两个栈实现队列"><span class="nav-number">1.5.</span> <span class="nav-text">5. 用两个栈实现队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-旋转数组的最小数字"><span class="nav-number">1.6.</span> <span class="nav-text">6.    旋转数组的最小数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-斐波那契数列"><span class="nav-number">1.7.</span> <span class="nav-text">7. 斐波那契数列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-跳台阶"><span class="nav-number">1.8.</span> <span class="nav-text">8. 跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-变态跳台阶"><span class="nav-number">1.9.</span> <span class="nav-text">9. 变态跳台阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-矩形覆盖"><span class="nav-number">1.10.</span> <span class="nav-text">10. 矩形覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-二进制中1的个数"><span class="nav-number">1.11.</span> <span class="nav-text">11. 二进制中1的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-数值的整数次方"><span class="nav-number">1.12.</span> <span class="nav-text">12. 数值的整数次方</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-调整数组顺序使奇数位于偶数前面"><span class="nav-number">1.13.</span> <span class="nav-text">13. 调整数组顺序使奇数位于偶数前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-链表中倒数第k个结点"><span class="nav-number">1.14.</span> <span class="nav-text">14. 链表中倒数第k个结点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-反转链表"><span class="nav-number">1.15.</span> <span class="nav-text">15. 反转链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-合并两个排序的链表"><span class="nav-number">1.16.</span> <span class="nav-text">16. 合并两个排序的链表</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -857,7 +862,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">481k</span>
+    <span title="Symbols count total">482k</span>
   
 
   
@@ -866,7 +871,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">7:17</span>
+    <span title="Reading time total">7:18</span>
   
 </div>
 
