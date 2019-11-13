@@ -122,7 +122,7 @@
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="MaxNumberOfUsers(Assignment2-7 DP OJA)Dynamic-Programming Problem DescriptionThere is a server which has the disk space of $M$ and the memory of $N$. Given some tasks, the $i-th$ task needs the disk s">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T10:37:57.546Z">
+<meta property="og:updated_time" content="2019-11-13T10:41:11.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MaxNumberOfUsers--OJ_DP_A.md">
 <meta name="twitter:description" content="MaxNumberOfUsers(Assignment2-7 DP OJA)Dynamic-Programming Problem DescriptionThere is a server which has the disk space of $M$ and the memory of $N$. Given some tasks, the $i-th$ task needs the disk s">
@@ -431,7 +431,7 @@
                 
               
 
-              <time title="Created: 2019-11-13 18:24:37 / Modified: 18:37:57" itemprop="dateCreated datePublished" datetime="2019-11-13T18:24:37+08:00">2019-11-13</time>
+              <time title="Created: 2019-11-13 18:24:37 / Modified: 18:41:11" itemprop="dateCreated datePublished" datetime="2019-11-13T18:24:37+08:00">2019-11-13</time>
             
 
             
@@ -635,11 +635,7 @@
 <p>初始化为 0，最大重量 6kg。<br><strong>i == 1</strong><br>dp[6] = max{dp[6], dp[6-w[1]]+v[1]} = max{0, 4} = 4  （只放了一次）<br>dp[3] = max{dp[3], dp[3-w[1]]+v[1]} = max{0, 4} = 4<br>dp[2] = max{dp[2], dp[2-w[1]]+v[1]} = max{0, 0+4} = 4<br><strong>i == 2</strong><br>dp[6] = max{dp[6], dp[6-w[2]]+v[2]} = max{4, dp[2]+8} = 12<br><strong>i == 3</strong><br>dp[6] = max{dp[6], dp[6-w[3]]+v[3]} = max{12, 4+6} = 12</p>
 <p>所以我们采用逆序遍历就可以节省空间复杂度。</p>
 <h4 id="四、回到原问题"><a href="#四、回到原问题" class="headerlink" title="四、回到原问题"></a>四、回到原问题</h4><p>前面道理懂了之后，就会发现原问题就是“0/1背包”的演变，“0/1背包”是只有一个 W 作为限制条件，而原问题是有两个限制条件。我们可以得到状态转移公式：</p>
-<p><code>$OPT(k,M,N)=max\begin{cases}
-        0, &amp; k&lt;=0 \\
-        OPT(k-1,M,N), &amp; not\ steal\\
-        OPT(k-1,M-m_k,N-n_k)+v_k, &amp;  steal
-    \end{cases}$</code></p>
+<p>$OPT(k,M,N)=max\begin{cases}<br>        0, &amp; k&lt;=0 \\<br>        OPT(k-1,M,N), &amp; not\ steal\\<br>        OPT(k-1,M-m_k,N-n_k)+v_k, &amp;  steal<br>    \end{cases}$</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for(int k=1; k&lt;=K; ++k)&#123;</span><br><span class="line">    for(int i=M; i&gt;=m[k]; --i)&#123;</span><br><span class="line">        for(int j=N; j&gt;=n[k]; --j)&#123;</span><br><span class="line">            dp[i][j] = dp[i][j] &gt; dp[i-m[k]][j-n[k]]+v[k] ? dp[i][j] : dp[i-m[k]][j-n[k]]+v[k];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">return dp[M][N];</span><br></pre></td></tr></table></figure>
 <p>在这里整个算法的时间复杂度是 $O(NMK)$，空间复杂度是 $O(MN)$.</p>
 
