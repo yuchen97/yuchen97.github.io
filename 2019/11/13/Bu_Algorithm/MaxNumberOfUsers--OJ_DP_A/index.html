@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="MaxNumberOfUsers(Assignment2-7 DP OJA)Dynamic-Programming Problem DescriptionThere is a server which has the disk space of $M$ and the memory of $N$. Given some tasks, the $i-th$ task needs the disk s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MaxNumberOfUsers--OJ_DP_A.md">
+<meta property="og:url" content="https://yuchen97.github.io/2019/11/13/Bu_Algorithm/MaxNumberOfUsers--OJ_DP_A/index.html">
+<meta property="og:site_name" content="Chenyu&#39;s Blog">
+<meta property="og:description" content="MaxNumberOfUsers(Assignment2-7 DP OJA)Dynamic-Programming Problem DescriptionThere is a server which has the disk space of $M$ and the memory of $N$. Given some tasks, the $i-th$ task needs the disk s">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-13T10:37:57.546Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MaxNumberOfUsers--OJ_DP_A.md">
+<meta name="twitter:description" content="MaxNumberOfUsers(Assignment2-7 DP OJA)Dynamic-Programming Problem DescriptionThere is a server which has the disk space of $M$ and the memory of $N$. Given some tasks, the $i-th$ task needs the disk s">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yuchen97.github.io/2019/11/13/Bu_Algorithm/MaxNumberOfUsers--OJ_DP_A/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MaxNumberOfUsers--OJ_DP_A.md | Chenyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/yuchen97" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff;
+        position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="
+     M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 
+     C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 
+     123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 
+     134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="
+     octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 
+     L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 
+     C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 
+     176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 
+     200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 
+     C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 
+     C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 
+     141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.
+        github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@
+        keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25
+        deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:
+        hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 
+        560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chenyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuchen97.github.io/2019/11/13/Bu_Algorithm/MaxNumberOfUsers--OJ_DP_A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenYu">
+      <meta itemprop="description" content="chenyu110197@gmail.com">
+      <meta itemprop="image" content="/images/image_touxiang.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MaxNumberOfUsers--OJ_DP_A.md
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-11-13 18:24:37 / Modified: 18:37:57" itemprop="dateCreated datePublished" datetime="2019-11-13T18:24:37+08:00">2019-11-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bu-Algorithm/" itemprop="url" rel="index"><span itemprop="name">Bu_Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">5.9k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">5 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="MaxNumberOfUsers-Assignment2-7-DP-OJA"><a href="#MaxNumberOfUsers-Assignment2-7-DP-OJA" class="headerlink" title="MaxNumberOfUsers(Assignment2-7 DP OJA)"></a>MaxNumberOfUsers(Assignment2-7 DP OJA)</h3><p><strong>Dynamic-Programming</strong></p>
+<p><strong>Problem Description</strong><br>There is a server which has the disk space of $M$ and the memory of $N$. Given some tasks, the $i-th$ task needs the disk space of $X_i$ and the memory of $Y_i$, and it can serve $U_i$ users. Design an algorithm and implement it to find out the maximum number of users that this server can serve simultaneously.</p>
+<p><strong>Input</strong><br>The first line of input contains three integers $M, N\ and\ K$, which denote the total disk space, the total memory and the number of tasks. The next $K$ lines are the disk space need, the memory need and the number of users served of tasks. $(1 ≤ M, N ≤ 1000 , K≤1000, and\ Ui ≤ 100000)$</p>
+<p><strong>Output</strong><br>Line1: Maximum number of users</p>
+<p><strong>Sample Input</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">15 10 4</span><br><span class="line"></span><br><span class="line">5 1 1000</span><br><span class="line">2 3 3000</span><br><span class="line">5 2 15000</span><br><span class="line">10 4 16000</span><br></pre></td></tr></table></figure></p>
+<p><strong>Sample Output</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">31000</span><br></pre></td></tr></table></figure></p>
+<h4 id="一、题目解读"><a href="#一、题目解读" class="headerlink" title="一、题目解读"></a>一、题目解读</h4><p>做个简单的解释，有两个大小的限制条件：$M、N$，并给出了 $K$ 个任务，每个任务都会耗费一定的 $M、N$，而每个任务都会带来不同的收益 $V$（题目中是人数 $U_i$，这里我用 value 来代替，都是一个意思）。我们要求的就是在给定任务中计算出 磁盘空间和内存占用的总数找到不超过 $M、N$ 时的最大收益值（每个只能取一次）。<br>对于上面测试样例，最大收益是 15000+16000，此时 M 和 N 分别还剩 0， 4 故不能继续添加任务来获得收益。<br>其实这是个“0/1 背包问题” 的演化。<br>（如果大家懂“0/1背包”问题，就直接跳到后面）</p>
+<h4 id="二、回归-0-1-背包问题"><a href="#二、回归-0-1-背包问题" class="headerlink" title="二、回归 0/1 背包问题"></a>二、回归 0/1 背包问题</h4><p>为了进行说明，先举一个简单的 “0/1 背包” 的例子。假设有小偷背着一个一共可以承载6kg的背包去偷金店（不要问我为什么他有没有同伙，也不要问为什么不拿个大包来偷，我更不是鼓励大家去偷），然后有三个物品的重量和价值分别是，翡翠：2kg，4$；金砖：4kg，8$；钻石：3kg，6$。为了方便观察我们做成表格：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>weight/kg</th>
+<th>value/$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>怎么求最大收益？可以用枚举法，但是太麻烦。</p>
+<ul>
+<li>csae1：看看最简单的问题会不会做，当index只有一个值的时候，我们只需要将 weight 与总重量 W 进行比较就可以，那么最简单的 case 是可以做。</li>
+<li>case2：再难一点 index 较多的时候要怎么做？index 有 n 个的时候我不会做，那么 n-1 会不会做？发现还是不会，那么 n-1 与 n 物品在计算收益时有没有什么关系可以寻呢？而对于此问题，只有偷和不偷两种选择，因此我们可以有以下推断：</li>
+</ul>
+<p>我们假设 index 有 n 个值，即有 n 件物品的时候小偷偷得的收益最大是 $OPT(n,W)$。 W 是当前背包容量。</p>
+<ul>
+<li>当第 k 个物品的重量大于当前容量时，小偷无法将第 k 个物品放入背包（不偷）此时最大收益 $OPT(k,W) = OPT(k-1,W)$</li>
+<li>当第 k 个物品的重量小于等于当前容量时，小偷可以选择放，也可以选择不放入背包，当小偷不偷时，$OPT(k,W) = OPT(k-1,W)$，因为此时的收益和背包容量都没有变。如果小偷选择偷，那么 $OPT(k,W) = OPT(k-1,W-w_k)+v_k$，也就是说当前的收益要加上第 k 个物品的 value，且容量要减去第 k 个物品的重量。</li>
+</ul>
+<p>总上，我们有前 k 件物品的最大收益的状态转移方程：<br>$OPT(k,W)=max\begin{cases}<br>        0, &amp; k&lt;=0 \\<br>        OPT(k-1,W), &amp; not\ steal\\<br>        OPT(k-1,W-w_k)+v_k, &amp;  steal<br>    \end{cases}$</p>
+<p>我们可以拿上面例子来进行说明（最多可以放 6kg）<br>index | weight/kg | value/$<br>—-|—-|—-<br>1 | 2 | 4<br>2 | 4 | 8<br>3 | 3 | 6</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">                       (3, 6)</span><br><span class="line">                    /           \</span><br><span class="line">           (2,6)                    (2,3)+6</span><br><span class="line">           /   \                     /</span><br><span class="line">     (1,6)      (1,3)+8            (1,3)</span><br><span class="line">     /  \          / \             /   \</span><br><span class="line">(0,6) (0,2)+4  (0,1) (0,2)+4   (0,3)  (0,1)+4</span><br></pre></td></tr></table></figure>
+<p>所以最大收益是 12，此时只拿 1 和 2 物品。<br>将状态转移方程对应到程序中，我们令 dp[i][j] 为前 i 个，且当前容量为 j 时的最大收益。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j]  = max&#123; dp[i-1][j], dp[i-1][j-w[i]] + v[i] &#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<p>那么我们就可以针对“0/1背包”问题来写程序了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for(int i=1; i&lt;=n; ++i)&#123;    // 枚举物品</span><br><span class="line">    for(int j=1; j&lt;=W; ++j)&#123;        // 枚举背包容量</span><br><span class="line">        if(j &lt; w[i])</span><br><span class="line">            dp[i][j] = dp[i - 1][j];</span><br><span class="line">        else</span><br><span class="line">            dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - w[i]] + v[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">return dp[i][j]</span><br></pre></td></tr></table></figure></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>weight/kg</th>
+<th>value/$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对照 for 循环我们有下表，i是指的第 i 个物品，j是指的当前背包容量，对应的值是当前的最大收益。<br>i/j| 0 | 1 | 2 | 3 | 4 | 5 | 6<br>—-|—-|—-|—-|—-|—-|—-|—-<br> 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0<br> 1 | 0 | 0 | 4 | 4 | 4 | 4 | 4<br> 2 | 0 | 0 | 4 | 4 | 8 | 8 | 12<br> 3 | 0 | 0 | 4 | 4 | 8 | 10| 12</p>
+<p>但是当数据过大的话，二维数组就比较浪费空间，所以我们可以降维，用一维数组来表达。</p>
+<h4 id="三、“0-1背包问题”优化"><a href="#三、“0-1背包问题”优化" class="headerlink" title="三、“0/1背包问题”优化"></a>三、“0/1背包问题”优化</h4><p>上面我们开了一个二维数组，但是我们注意到上面的表中，好多数据都是重复，没有必要去存储，我们只需要记录变化的点的值就可以，也就是说我们只保存对于 n 个物品，重量为 j 时收益最大的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[j] = max&#123; dp[j], dp[j-w[i]] + v[i]&#125;</span><br></pre></td></tr></table></figure></p>
+<p>dp[j] 是指的重量不超过 j 可得到的最大收益。<br><strong>在用一维数组的时候一定要倒序遍历，不要正序。</strong>max 中的 dp[i][j]是第 i-1 个的收益，如果正序遍历会更新值前面的值，这样就会导致后面的值的不准确，可能不是太好理解，我们继续拿前面的例子来进行说明：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>weight/kg</th>
+<th>value/$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>假设正序</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for(int i=1; i&lt;=n; ++i)&#123;    // 枚举物品</span><br><span class="line">    for(int j=1; j&lt;=W; ++j)&#123;        // 枚举背包容量</span><br><span class="line">        if(j &gt;= w[i])</span><br><span class="line">            dp[j] = max&#123; dp[j], dp[j-w[i]] + v[i]&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>初始化为 0，最大重量为 6kg。<br><strong>i == 1</strong><br><strong>dp[2]</strong> = max{dp[2], dp[2-w[1]]+v[1]} = max{0, 0+4} = 4<br><strong>dp[3]</strong> = max{dp[3], dp[3-w[1]]+v[1]} = max{0, dp[1]+4} = 4<br><strong>dp[4]</strong> = max{dp[4], dp[4-w[1]]+v[1]} = max{0, <strong>dp[2]</strong>+4} = max{0, 4+4} = 8<br>…<br><strong>dp[6]</strong> = max{dp[6], dp[6-w[1]]+v[1]} = max{0, <strong>dp[4]</strong>+4} = max{0, 8+4} = 12</p>
+<p><strong>i == 2</strong><br>dp[3] = max{<strong>dp[3]</strong>, dp[3-w[2]]+v[2]} = max{4, 0} = 4<br><strong>dp[6]</strong> = max{dp[6], dp[6-w[2]]+v[2]} = max{12, <strong>dp[2]</strong>+8} = max{12, 12} = 12</p>
+<p><strong>i == 3</strong><br>dp[6] = max{<strong>dp[6]</strong>, dp[6-w[3]]+v[3]} = max{12, <strong>dp[3]</strong>+6} = max{12, 10} = 12</p>
+<p>我们发现当 i 为 1 时，结果已经不对了，正序 i 为 1 的时候，他居然可以装的价值是 12，而我们规定的是每个物品只能装一次，也就是当只有物品 1 并且背包为 6kg 时，value 最多只有 4。那 12 是怎么来的呢？在计算 dp[6] 的时候我们是比较的初始时的 dp[6] 和更新之后的 dp[4]+v[1]，而跟新之后的 dp[4] 是已经<strong>偷了两次物品 1 之后的价值</strong>。所以dp[6] 就是指的偷了三次物品1之后的价值，这显然是不符合每件物品最多拿一次的要求的。<br>而最后 i=3 算出来 dp[6] 和二维数组的最大收益相同是因为，我们举出来的例子的最大收益是和完全背包一致的。也就是说，如果我们的背包放不满，假设背包是 8kg，那么最大收益就是 8+6 = 14（最大只能放4+3kg），而正序计算的话则为 8+8 =16（4+4kg）.<br>index | weight/kg | value/$<br>—-|—-|—-<br>1 | 2 | 4<br>2 | 4 | 8<br>3 | 3 | 6</p>
+<p><strong>假设逆序</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">for(int i=1; i&lt;=n; ++i)&#123;    // 枚举物品</span><br><span class="line">    for(int j=W; j&gt;=1; --j)&#123;        // 枚举背包容量</span><br><span class="line">        if(j &gt;= w[i])</span><br><span class="line">            dp[j] = max&#123; dp[j], dp[j-w[i]] + v[i]&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">其实可以简化为</span><br><span class="line">for(int i=1; i&lt;=n; ++i)&#123;    // 枚举物品</span><br><span class="line">    for(int j=W; j&gt;=w[i]; --j)&#123;        // 枚举背包容量</span><br><span class="line">            dp[j] = max&#123; dp[j], dp[j-w[i]] + v[i]&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>初始化为 0，最大重量 6kg。<br><strong>i == 1</strong><br>dp[6] = max{dp[6], dp[6-w[1]]+v[1]} = max{0, 4} = 4  （只放了一次）<br>dp[3] = max{dp[3], dp[3-w[1]]+v[1]} = max{0, 4} = 4<br>dp[2] = max{dp[2], dp[2-w[1]]+v[1]} = max{0, 0+4} = 4<br><strong>i == 2</strong><br>dp[6] = max{dp[6], dp[6-w[2]]+v[2]} = max{4, dp[2]+8} = 12<br><strong>i == 3</strong><br>dp[6] = max{dp[6], dp[6-w[3]]+v[3]} = max{12, 4+6} = 12</p>
+<p>所以我们采用逆序遍历就可以节省空间复杂度。</p>
+<h4 id="四、回到原问题"><a href="#四、回到原问题" class="headerlink" title="四、回到原问题"></a>四、回到原问题</h4><p>前面道理懂了之后，就会发现原问题就是“0/1背包”的演变，“0/1背包”是只有一个 W 作为限制条件，而原问题是有两个限制条件。我们可以得到状态转移公式：</p>
+<p><code>$OPT(k,M,N)=max\begin{cases}
+        0, &amp; k&lt;=0 \\
+        OPT(k-1,M,N), &amp; not\ steal\\
+        OPT(k-1,M-m_k,N-n_k)+v_k, &amp;  steal
+    \end{cases}$</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for(int k=1; k&lt;=K; ++k)&#123;</span><br><span class="line">    for(int i=M; i&gt;=m[k]; --i)&#123;</span><br><span class="line">        for(int j=N; j&gt;=n[k]; --j)&#123;</span><br><span class="line">            dp[i][j] = dp[i][j] &gt; dp[i-m[k]][j-n[k]]+v[k] ? dp[i][j] : dp[i-m[k]][j-n[k]]+v[k];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">return dp[M][N];</span><br></pre></td></tr></table></figure>
+<p>在这里整个算法的时间复杂度是 $O(NMK)$，空间复杂度是 $O(MN)$.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ChenYu WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/14/剑指Offer/汇总--牛客网剑指offer笔记/" rel="next" title="汇总--牛客网剑指offer笔记.md">
+                <i class="fa fa-chevron-left"></i> 汇总--牛客网剑指offer笔记.md
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTUzNC8xODA4MQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/image_touxiang.gif" alt="ChenYu">
+            
+              <p class="site-author-name" itemprop="name">ChenYu</p>
+              <p class="site-description motion-element" itemprop="description">chenyu110197@gmail.com</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">121</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yuchen97" title="GitHub &rarr; https://github.com/yuchen97" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/5162354460?is_hot=1" title="Weibo &rarr; https://weibo.com/u/5162354460?is_hot=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MaxNumberOfUsers-Assignment2-7-DP-OJA"><span class="nav-number">1.</span> <span class="nav-text">MaxNumberOfUsers(Assignment2-7 DP OJA)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、题目解读"><span class="nav-number">1.1.</span> <span class="nav-text">一、题目解读</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、回归-0-1-背包问题"><span class="nav-number">1.2.</span> <span class="nav-text">二、回归 0/1 背包问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、“0-1背包问题”优化"><span class="nav-number">1.3.</span> <span class="nav-text">三、“0/1背包问题”优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、回到原问题"><span class="nav-number">1.4.</span> <span class="nav-text">四、回到原问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--自己加的 begin-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<!--end-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenYu</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">492k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">7:27</span>
+  
+</div>
+
+<!--自己加的 begin-->
+<span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+<!--<span id="busuanzi_container_site_uv">
+    总访问量<span id="busuanzi_value_site_uv"></span>次
+</span>-->
+
+
+<span id="busuanzi_container_page_pv">
+    总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+<!--end-->
+
+<!--
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2019/11/13/Bu_Algorithm/MaxNumberOfUsers--OJ_DP_A/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.staticfile.org/MathJax/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+    overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
