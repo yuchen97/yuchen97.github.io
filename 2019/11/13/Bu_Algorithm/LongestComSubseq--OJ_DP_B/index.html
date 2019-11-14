@@ -115,17 +115,17 @@
 
 
 
-  <meta name="description" content="LongestComSubseq(Assignment2-6 DP OJB)一、题目解读我们要求多个序列对之间的最长公共子序列的长度，注意题目的要求，子序列是可以不连续的。比如：  S: B D C A B A T: A B C B D A C  那么 S、T之间的最长公共子序列如下（加粗）：  S: B D C A B A T: A B C B D A C  长度为 4.   二、一对 LCS我">
+  <meta name="description" content="LongestComSubseq(Assignment2-6 DP OJB)Problem DescriptionGiven two sequences, find the length of the longest common subsequence (LCS). A subsequence is different from a substring, for the former need">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LongestComSubseq--OJ_DP_B.md">
 <meta property="og:url" content="https://yuchen97.github.io/2019/11/13/Bu_Algorithm/LongestComSubseq--OJ_DP_B/index.html">
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
-<meta property="og:description" content="LongestComSubseq(Assignment2-6 DP OJB)一、题目解读我们要求多个序列对之间的最长公共子序列的长度，注意题目的要求，子序列是可以不连续的。比如：  S: B D C A B A T: A B C B D A C  那么 S、T之间的最长公共子序列如下（加粗）：  S: B D C A B A T: A B C B D A C  长度为 4.   二、一对 LCS我">
+<meta property="og:description" content="LongestComSubseq(Assignment2-6 DP OJB)Problem DescriptionGiven two sequences, find the length of the longest common subsequence (LCS). A subsequence is different from a substring, for the former need">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T10:45:14.966Z">
+<meta property="og:updated_time" content="2019-11-13T15:58:34.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LongestComSubseq--OJ_DP_B.md">
-<meta name="twitter:description" content="LongestComSubseq(Assignment2-6 DP OJB)一、题目解读我们要求多个序列对之间的最长公共子序列的长度，注意题目的要求，子序列是可以不连续的。比如：  S: B D C A B A T: A B C B D A C  那么 S、T之间的最长公共子序列如下（加粗）：  S: B D C A B A T: A B C B D A C  长度为 4.   二、一对 LCS我">
+<meta name="twitter:description" content="LongestComSubseq(Assignment2-6 DP OJB)Problem DescriptionGiven two sequences, find the length of the longest common subsequence (LCS). A subsequence is different from a substring, for the former need">
 
 
 
@@ -431,7 +431,7 @@
                 
               
 
-              <time title="Created: 2019-11-13 18:42:51 / Modified: 18:45:14" itemprop="dateCreated datePublished" datetime="2019-11-13T18:42:51+08:00">2019-11-13</time>
+              <time title="Created: 2019-11-13 18:42:51 / Modified: 23:58:34" itemprop="dateCreated datePublished" datetime="2019-11-13T18:42:51+08:00">2019-11-13</time>
             
 
             
@@ -481,7 +481,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">1.5k</span>
+                <span title="Symbols count in article">2.5k</span>
               
 
               
@@ -495,7 +495,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">1 mins.</span>
+                <span title="Reading time">2 mins.</span>
               
             </div>
           
@@ -515,7 +515,13 @@
       
 
       
-        <h3 id="LongestComSubseq-Assignment2-6-DP-OJB"><a href="#LongestComSubseq-Assignment2-6-DP-OJB" class="headerlink" title="LongestComSubseq(Assignment2-6 DP OJB)"></a>LongestComSubseq(Assignment2-6 DP OJB)</h3><h4 id="一、题目解读"><a href="#一、题目解读" class="headerlink" title="一、题目解读"></a>一、题目解读</h4><p>我们要求多个序列对之间的最长公共子序列的长度，注意题目的要求，子序列是可以不连续的。比如：</p>
+        <h3 id="LongestComSubseq-Assignment2-6-DP-OJB"><a href="#LongestComSubseq-Assignment2-6-DP-OJB" class="headerlink" title="LongestComSubseq(Assignment2-6 DP OJB)"></a>LongestComSubseq(Assignment2-6 DP OJB)</h3><p><strong>Problem Description</strong><br>Given two sequences, find the length of the longest common subsequence (LCS). A subsequence is different from a substring, for the former need NOT be consecutive of the original sequence. For example, for “ABCD” and “AEFC”, the longest common subsequence is “AC”, and the length of it is 2.</p>
+<p><strong>Input</strong><br>The first line of input is an integer N representing the pair number of sequences in this group test cases. (0 &lt; N &lt;= 100) For each test case, it contains two lines. The first line contains two integer L1 and L2, which represent the lengths of two sequences (0 &lt; L1, L2 &lt;= 1000). The second line consists of two sequences separated by a space. Each sequence consists of uppercase English characters only.</p>
+<p><strong>Output</strong><br>Output file must contain N integers - each integer represents the length of the longest common subsequence of the given sequences.</p>
+<p><strong>Sample Input</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line"></span><br><span class="line">4 4</span><br><span class="line"></span><br><span class="line">ABCD AEFC</span><br><span class="line"></span><br><span class="line">5 3</span><br><span class="line"></span><br><span class="line">SCFEZ BNI</span><br></pre></td></tr></table></figure></p>
+<p><strong>Sample Output</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line"></span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
+<p><a href="/download/Bu_Algorithm/LongestComSubseq.cpp">源码点击下载</a></p>
+<h4 id="一、题目解读"><a href="#一、题目解读" class="headerlink" title="一、题目解读"></a>一、题目解读</h4><p>我们要求多个序列对之间的最长公共子序列的长度，注意题目的要求，子序列是可以不连续的。比如：</p>
 <ul>
 <li>S: B D C A B A</li>
 <li>T: A B C B D A C</li>
@@ -810,7 +816,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">494k</span>
+    <span title="Symbols count total">495k</span>
   
 
   
@@ -819,7 +825,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">7:29</span>
+    <span title="Reading time total">7:30</span>
   
 </div>
 

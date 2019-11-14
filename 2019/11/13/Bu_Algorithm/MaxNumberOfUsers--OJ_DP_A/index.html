@@ -122,7 +122,7 @@
 <meta property="og:site_name" content="Chenyu&#39;s Blog">
 <meta property="og:description" content="MaxNumberOfUsers(Assignment2-7 DP OJA)Dynamic-Programming Problem DescriptionThere is a server which has the disk space of $M$ and the memory of $N$. Given some tasks, the $i-th$ task needs the disk s">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T10:41:11.592Z">
+<meta property="og:updated_time" content="2019-11-13T15:52:31.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MaxNumberOfUsers--OJ_DP_A.md">
 <meta name="twitter:description" content="MaxNumberOfUsers(Assignment2-7 DP OJA)Dynamic-Programming Problem DescriptionThere is a server which has the disk space of $M$ and the memory of $N$. Given some tasks, the $i-th$ task needs the disk s">
@@ -431,7 +431,7 @@
                 
               
 
-              <time title="Created: 2019-11-13 18:24:37 / Modified: 18:41:11" itemprop="dateCreated datePublished" datetime="2019-11-13T18:24:37+08:00">2019-11-13</time>
+              <time title="Created: 2019-11-13 18:24:37 / Modified: 23:52:31" itemprop="dateCreated datePublished" datetime="2019-11-13T18:24:37+08:00">2019-11-13</time>
             
 
             
@@ -521,6 +521,7 @@
 <p><strong>Output</strong><br>Line1: Maximum number of users</p>
 <p><strong>Sample Input</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">15 10 4</span><br><span class="line"></span><br><span class="line">5 1 1000</span><br><span class="line">2 3 3000</span><br><span class="line">5 2 15000</span><br><span class="line">10 4 16000</span><br></pre></td></tr></table></figure></p>
 <p><strong>Sample Output</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">31000</span><br></pre></td></tr></table></figure></p>
+<p><a href="/download/Bu_Algorithm/MaxNumberOfUsers.cpp">源码点击下载</a></p>
 <h4 id="一、题目解读"><a href="#一、题目解读" class="headerlink" title="一、题目解读"></a>一、题目解读</h4><p>做个简单的解释，有两个大小的限制条件：$M、N$，并给出了 $K$ 个任务，每个任务都会耗费一定的 $M、N$，而每个任务都会带来不同的收益 $V$（题目中是人数 $U_i$，这里我用 value 来代替，都是一个意思）。我们要求的就是在给定任务中计算出 磁盘空间和内存占用的总数找到不超过 $M、N$ 时的最大收益值（每个只能取一次）。<br>对于上面测试样例，最大收益是 15000+16000，此时 M 和 N 分别还剩 0， 4 故不能继续添加任务来获得收益。<br>其实这是个“0/1 背包问题” 的演化。<br>（如果大家懂“0/1背包”问题，就直接跳到后面）</p>
 <h4 id="二、回归-0-1-背包问题"><a href="#二、回归-0-1-背包问题" class="headerlink" title="二、回归 0/1 背包问题"></a>二、回归 0/1 背包问题</h4><p>为了进行说明，先举一个简单的 “0/1 背包” 的例子。假设有小偷背着一个一共可以承载6kg的背包去偷金店（不要问我为什么他有没有同伙，也不要问为什么不拿个大包来偷，我更不是鼓励大家去偷），然后有三个物品的重量和价值分别是，翡翠：2kg，4$；金砖：4kg，8$；钻石：3kg，6$。为了方便观察我们做成表格：</p>
 <div class="table-container">
@@ -922,7 +923,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">494k</span>
+    <span title="Symbols count total">495k</span>
   
 
   
@@ -931,7 +932,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">7:29</span>
+    <span title="Reading time total">7:30</span>
   
 </div>
 

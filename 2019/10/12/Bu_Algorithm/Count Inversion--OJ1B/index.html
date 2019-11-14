@@ -124,7 +124,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://yuchen97.github.io/img/Bu_Algorithm/CountInversion1.png">
 <meta property="og:image" content="https://yuchen97.github.io/img/Bu_Algorithm/CountInversion2.png">
-<meta property="og:updated_time" content="2019-10-13T06:53:49.728Z">
+<meta property="og:updated_time" content="2019-11-13T15:50:23.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Count Inversion--OJ1B.md">
 <meta name="twitter:description" content="Count Inversion( OJ 1-B )Problem DescriptionRecall the problem of finding the number of inversions. As in the course, we are given a sequence of $n$ numbers $a_1, a_2,\cdots,a_n$, and we define an inv">
@@ -451,7 +451,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-10-13 14:53:49" itemprop="dateModified" datetime="2019-10-13T14:53:49+08:00">2019-10-13</time>
+                <time title="Modified: 2019-11-13 23:50:23" itemprop="dateModified" datetime="2019-11-13T23:50:23+08:00">2019-11-13</time>
               
             
           </span>
@@ -541,7 +541,7 @@
 <h4 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6</span><br></pre></td></tr></table></figure>
 <p>一般的逆序对是计算 $a_i&gt;a_j$，而此题目是 $a_i &gt; 3a_j$，为了减少内存空间，可以将 $a_i &gt; 3a_j$转化成 $a_i - a_j &gt; a_j +a_j$，另外由于数据比较大，所以数值类型使用的 long long int。</p>
 <p>该算法主要是用了 Divide and Counqer 思想。选取一个中间点，分别对两边的子序列进行计算。算法内容可以结合下面的图文来进行理解。</p>
-<p><a href="/download/CountInversion.cpp">源码点击下载</a></p>
+<p><a href="/download/Bu_Algorithm/CountInversion.cpp">源码点击下载</a></p>
 <h4 id="一、Divide"><a href="#一、Divide" class="headerlink" title="一、Divide"></a>一、Divide</h4><p>假设有序列 $\{13, 8, 5, 4, 1, 2\}$，首先执行 Divide，将原序列分的不能再分时再执行 Conquer。<br>时间复杂度为 $T(n) = 2T(n/2)$.</p>
 <p><img src="/img/Bu_Algorithm/CountInversion1.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">long long int InversePairs(int* data, int* tmp_data, int left, int right)  // Divide</span><br><span class="line">&#123;</span><br><span class="line">    long long int cnt = 0;</span><br><span class="line"></span><br><span class="line">    if(left &lt; right)    // left &gt;= right 时结束递归</span><br><span class="line">    &#123;</span><br><span class="line">        int mid = (left + right)/2;</span><br><span class="line">        cnt += InversePairs(data, tmp_data, left, mid);</span><br><span class="line">        cnt += InversePairs(data, tmp_data, mid + 1, right);</span><br><span class="line">        cnt += Merge(data, tmp_data, left, mid, right);</span><br><span class="line">    &#125;</span><br><span class="line">    return cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="二、Conquer"><a href="#二、Conquer" class="headerlink" title="二、Conquer"></a>二、Conquer</h4><p>时间复杂度为 $T(n) = O(n)$.<br>总时间复杂度是 $T(n) = 2T(n/2) + O(n) = O(nlogn)$.</p>
@@ -839,7 +839,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">494k</span>
+    <span title="Symbols count total">495k</span>
   
 
   
@@ -848,7 +848,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">7:29</span>
+    <span title="Reading time total">7:30</span>
   
 </div>
 
