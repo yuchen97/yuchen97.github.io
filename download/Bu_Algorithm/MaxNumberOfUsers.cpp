@@ -10,12 +10,8 @@
                  implement it to find out the maximum number of users that this server
                  can serve simultaneously.
   *Others:  Assignment2_7(Dynamic-Programming OJ B)
-  *Code List:  
-     1. QuickSort->n/2 and O(nlogn)
-     2. Topk and O(n)
-     3. Using array features and O(n)
   *History:  
-     1.Date: 2019/10/11
+     1.Date: 2019/11/05
        Author: chenyu
        Modification: create
 
