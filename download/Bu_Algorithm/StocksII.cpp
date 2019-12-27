@@ -45,7 +45,7 @@ int main() {
     vector<int> stocks;
     char c;
     while (true) {
-        if ((c = cin.get()) == '\n') {    // 如果放到前面它会 cin 一个值，这样最后就会少最前面的值
+        if ((c = cin.get()) == '\n') {    // If you put it in front, it will cin a value, so that the last value will be less at the end.
             break;
         }
         ungetc(c, stdin);

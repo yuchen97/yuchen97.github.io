@@ -27,11 +27,11 @@ long long int MaxBananasEaten (vector<char> vec, int K) {
         if (visit[index] == true) {
             continue;
         }
-        for (long long int i=1; (i<=K) && (index+i < vec.size()); ++i) {    // 在 K 范围内，且没有数组越界
-            if ((vec[index] != vec[index+i]) && (visit[index+i] == false)) {    // 不相等说明一个 M 一个 B，false 表示没有配对过
+        for (long long int i=1; (i<=K) && (index+i < vec.size()); ++i) {    // In the K range and no array out of bounds
+            if ((vec[index] != vec[index+i]) && (visit[index+i] == false)) {    // Not equal means one M and one B, false means no pairing
                 ++cnt;
-                // 配对之后更新标志位
-                visit[index+i] = true; // 已配对
+                // Update flag bit after pairing
+                visit[index+i] = true; // Paired
                 visit[index] = true;
                 break;
             }
@@ -48,7 +48,7 @@ int main() {
     long long int result = 0;
     
     while ((c = getchar()) != '\n') {
-        ungetc(c, stdin);   // 将读到的字符回退到输入流中
+        ungetc(c, stdin);   // Roll back the characters read to the input stream
         cin >> str;
         cin >> K;
         for (long long int i=0; i<str.length(); ++i) {
